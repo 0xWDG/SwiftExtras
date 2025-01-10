@@ -10,8 +10,13 @@
 //
 
 import Foundation
+#if canImport(SwiftUI)
 import SwiftUI
+#endif
 
+/// AppInfo
+///
+/// Get information about the application
 public enum AppInfo {
     /// Get application name
     /// - Returns: application name
@@ -51,10 +56,12 @@ public enum AppInfo {
         return "0"
     }
 
+    /// Is the application running downloaded from TestFlight
     public static var isTestflight: Bool {
         Bundle.main.appStoreReceiptURL?.absoluteString.contains("testflight") ?? false
     }
 
+    /// Is the application running downloaded from AppStore
     public static var isiOSAppOnMac: Bool {
         if #available(iOS 14.0, *) {
             return ProcessInfo.processInfo.isiOSAppOnMac
@@ -63,6 +70,7 @@ public enum AppInfo {
         return false
     }
 
+    /// Is the application running as a Mac Catalyst app
     public static var isMacCatalystApp: Bool {
         if #available(iOS 14.0, *) {
             return ProcessInfo.processInfo.isMacCatalystApp
@@ -71,7 +79,9 @@ public enum AppInfo {
         return false
     }
 
+#if canImport(SwiftUI)
     /// Get application icon
+    ///
     /// - Returns: Application icon
     public static var appIcon: Image {
         guard let icons = Bundle.main.object(forInfoDictionaryKey: "CFBundleIcons") as? [String: Any],
@@ -98,31 +108,34 @@ public enum AppInfo {
 #endif
     }
 
-    public static var deviceType: String {
+    /// Get the SF Symbol for the current device
+    public static var deviceType: Image {
 #if os(iOS)
-        return UIDevice.current.userInterfaceIdiom == .pad ? "ipad" : "iphone"
+        Image(systemName: UIDevice.current.userInterfaceIdiom == .pad ? "ipad" : "iphone"()
 #elseif os(macOS)
-        return "macbook"
+        Image(systemName: "macbook")
 #elseif os(visionOS)
-        return "visionpro"
+        Image(systemName: "visionpro")
 #elseif os(tvOS)
-        return "appletv"
+        Image(systemName: "appletv")
 #elseif os(watchOS)
-        return "applewatch"
+        Image(systemName: "applewatch")
 #endif
     }
 
-    public static var deviceTypeApps: String {
+    /// Get device icon showing the app-grid (if available)
+    public static var deviceTypeApps: Image {
 #if os(iOS)
-        return UIDevice.current.userInterfaceIdiom == .pad ? "apps.ipad" : "apps.iphone"
+        Image(systemName: UIDevice.current.userInterfaceIdiom == .pad ? "apps.ipad" : "apps.iphone")
 #elseif os(macOS)
-        return "macbook"
+        Image(systemName: "macbook")
 #elseif os(visionOS)
-        return "visionpro"
+        Image(systemName: "visionpro")
 #elseif os(tvOS)
-        return "appletv"
+        Image(systemName: "appletv")
 #elseif os(watchOS)
-        return "applewatch"
+        Image(systemName: "applewatch")
 #endif
     }
+#endif
 }

@@ -12,7 +12,7 @@
 import Foundation
 
 extension String: @retroactive Identifiable {
-    public typealias ID = Int
+    public typealias ID = Int // swiftlint:disable:this type_name
     public var id: Int {
         return hash
     }
