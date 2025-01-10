@@ -15,9 +15,9 @@ import SwiftUI
 extension View {
     /// Show an error if there is any
     /// - Parameters:
-    ///   - error: <#error description#>
-    ///   - buttonTitle: <#buttonTitle description#>
-    /// - Returns: <#description#>
+    ///   - error: Error message
+    ///   - buttonTitle: Button title
+    /// - Returns: self
     public func showError(error: Binding<Error?>, buttonTitle: String = "OK") -> some View {
         alert(
             error.wrappedValue?.localizedDescription ?? "Unknown error",

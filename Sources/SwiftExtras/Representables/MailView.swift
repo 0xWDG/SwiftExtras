@@ -10,7 +10,6 @@
 //
 
 #if canImport(MessageUI) && canImport(SwiftUI)
-
 import SwiftUI
 import MessageUI
 
