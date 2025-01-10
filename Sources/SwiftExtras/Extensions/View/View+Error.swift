@@ -18,7 +18,6 @@ extension View {
     ///   - error: <#error description#>
     ///   - buttonTitle: <#buttonTitle description#>
     /// - Returns: <#description#>
-    @available(iOS 15.0, *)
     public func showError(error: Binding<Error?>, buttonTitle: String = "OK") -> some View {
         alert(
             error.wrappedValue?.localizedDescription ?? "Unknown error",

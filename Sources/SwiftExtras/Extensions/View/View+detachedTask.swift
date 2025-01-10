@@ -16,7 +16,6 @@ extension View {
     /// Run a task detached from the current task
     /// - Parameter task: Task to run
     /// - Returns: self
-    @available(iOS 15.0, macOS 12.0, *)
     @ViewBuilder
     public func detachedTask(_ task: @escaping () async -> Void) -> some View {
         self.task {

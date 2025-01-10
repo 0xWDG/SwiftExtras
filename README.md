@@ -10,7 +10,7 @@ SwiftExtras is a Swift Package containing Extensions and Helpers for Swift which
 ## Requirements
 
 - Swift 5.9+ (Xcode 15+)
-- iOS 13+, macOS 10.15+, tvOS 13+, watchOS 6+
+- iOS 15, macOS 12+, tvOS 15+, watchOS 8+
 
 ## Installation (Pakage.swift)
 
