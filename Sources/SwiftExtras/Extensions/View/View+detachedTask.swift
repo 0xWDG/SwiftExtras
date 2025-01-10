@@ -9,12 +9,13 @@
 //  MIT License
 //
 
+#if canImport(SwiftUI)
 import SwiftUI
 
 extension View {
-    /// <#Description#>
-    /// - Parameter task: <#task description#>
-    /// - Returns: <#description#>
+    /// Run a task detached from the current task
+    /// - Parameter task: Task to run
+    /// - Returns: self
     @available(iOS 15.0, *)
     @ViewBuilder
     public func detachedTask(_ task: @escaping () async -> Void) -> some View {
@@ -25,3 +26,4 @@ extension View {
         }
     }
 }
+#endif

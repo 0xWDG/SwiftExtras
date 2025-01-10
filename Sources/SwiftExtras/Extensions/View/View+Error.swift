@@ -9,6 +9,7 @@
 //  MIT License
 //
 
+#if canImport(SwiftUI)
 import SwiftUI
 
 extension View {
@@ -43,3 +44,4 @@ extension CustomError: LocalizedError {
         NSLocalizedString(message, comment: "")
     }
 }
+#endif

@@ -10,6 +10,7 @@
 //
 
 import Foundation
+
 #if canImport(SwiftUI)
 import SwiftUI
 #endif

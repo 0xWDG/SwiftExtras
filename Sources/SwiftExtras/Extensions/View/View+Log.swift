@@ -9,6 +9,7 @@
 //  MIT License
 //
 
+#if canImport(SwiftUI)
 import SwiftUI
 
 extension View {
@@ -28,3 +29,4 @@ extension View {
         return self
     }
 }
+#endif
