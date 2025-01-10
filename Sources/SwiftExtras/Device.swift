@@ -11,6 +11,7 @@
 
 import Foundation
 
+/// Device information
 public enum Device {
     /// Obtain the machine hardware platform from the `uname()` unix command
     public static var model: String {
