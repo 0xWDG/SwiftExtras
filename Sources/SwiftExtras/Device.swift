@@ -11,9 +11,9 @@
 
 import Foundation
 
-enum Device {
+public enum Device {
     /// Obtain the machine hardware platform from the `uname()` unix command
-    static var model: String {
+    public static var model: String {
 #if canImport(Darwin)
         var utsnameInstance = utsname()
         uname(&utsnameInstance)
@@ -30,7 +30,7 @@ enum Device {
     }
 
     /// Operating system version
-    static var osVersion: String {
+    public static var osVersion: String {
         ProcessInfo.processInfo.operatingSystemVersionString
     }
 }
