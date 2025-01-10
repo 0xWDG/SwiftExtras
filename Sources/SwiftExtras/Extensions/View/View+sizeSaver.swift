@@ -19,7 +19,7 @@ struct SaveSizeModifier: ViewModifier {
         content
             .background(
                 GeometryReader { proxy in
-                    if #available(iOS 17.0, *) {
+                    if #available(iOS 17.0, macOS 14.0, *) {
                         Color.clear
                             .onAppear {
                                 size = proxy.size
