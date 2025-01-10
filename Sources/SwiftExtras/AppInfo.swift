@@ -64,18 +64,22 @@ public enum AppInfo {
 
     /// Is the application running downloaded from AppStore
     public static var isiOSAppOnMac: Bool {
+        #if os(macOS) || os(iOS)
         if #available(iOS 14.0, *) {
             return ProcessInfo.processInfo.isiOSAppOnMac
         }
+        #endif
 
         return false
     }
 
     /// Is the application running as a Mac Catalyst app
     public static var isMacCatalystApp: Bool {
+        #if os(macOS) || os(iOS)
         if #available(iOS 14.0, *) {
             return ProcessInfo.processInfo.isMacCatalystApp
         }
+        #endif
 
         return false
     }
