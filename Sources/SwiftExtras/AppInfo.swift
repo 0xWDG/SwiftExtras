@@ -112,7 +112,7 @@ public enum AppInfo {
     /// Get the SF Symbol for the current device
     public static var deviceType: Image {
 #if os(iOS)
-        Image(systemName: UIDevice.current.userInterfaceIdiom == .pad ? "ipad" : "iphone"()
+        Image(systemName: UIDevice.current.userInterfaceIdiom == .pad ? "ipad" : "iphone")
 #elseif os(macOS)
         Image(systemName: "macbook")
 #elseif os(visionOS)
