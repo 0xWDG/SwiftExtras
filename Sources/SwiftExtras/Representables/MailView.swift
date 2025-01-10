@@ -53,8 +53,8 @@ public struct MailView: UIViewControllerRepresentable {
                 $presentation.wrappedValue.dismiss()
             }
 
-            guard error == nil else {
-                self.result = .failure(error!)
+            if let error {
+                self.result = .failure(error)
                 return
             }
 
