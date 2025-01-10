@@ -14,6 +14,7 @@
 import SwiftUI
 import MessageUI
 
+/// A view that represents a mail composer
 public struct MailView: UIViewControllerRepresentable {
     @Environment(\.presentationMode)
     var presentation
@@ -23,6 +24,10 @@ public struct MailView: UIViewControllerRepresentable {
 
     public var configure: ((MFMailComposeViewController) -> Void)?
 
+    /// Create a new Mail Composer view
+    /// - Parameters:
+    ///   - result: The result of the mail composer
+    ///   - configure: Configuration of the mail composer
     public init(
         result: Binding<Result<MFMailComposeResult, Error>?>,
         configure: ((MFMailComposeViewController) -> Void)? = nil
