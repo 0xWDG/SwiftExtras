@@ -11,9 +11,18 @@
 
 import Foundation
 
+#if swift(>=5.9)
+extension String: @retroactive Identifiable {
+    public typealias ID = Int // swiftlint:disable:this type_name
+    public var id: Int {
+        return hash
+    }
+}
+#else
 extension String: Identifiable {
     public typealias ID = Int // swiftlint:disable:this type_name
     public var id: Int {
         return hash
     }
 }
+#endif

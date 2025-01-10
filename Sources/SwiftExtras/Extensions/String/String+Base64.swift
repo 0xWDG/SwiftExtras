@@ -12,11 +12,15 @@
 import Foundation
 
 extension String {
-    func base64Encoded() -> String? {
+    /// Base64 encode
+    /// - Returns: Encoded string
+    public func base64Encoded() -> String? {
         return data(using: .utf8)?.base64EncodedString()
     }
 
-    func base64Decoded() -> String? {
+    /// Base64 decode
+    /// - Returns: Decoded string
+    public func base64Decoded() -> String? {
         guard let data = Data(base64Encoded: self) else {
             print("Unable to decode base64 string \"\(self)\"")
             return nil
@@ -24,7 +28,9 @@ extension String {
         return String(data: data, encoding: .utf8)
     }
 
-    func base64UrlDecode() -> String? {
+    /// Base64 (url) decode
+    /// - Returns: Decoded string
+    public func base64UrlDecode() -> String? {
         var base64 = self
             .replacingOccurrences(of: "-", with: "+")
             .replacingOccurrences(of: "_", with: "/")
@@ -42,5 +48,4 @@ extension String {
 
         return String(data: data, encoding: .utf8)
     }
-
 }
