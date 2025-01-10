@@ -1,26 +1,26 @@
-# spm-template
+# SwiftExtras
 
-spm-template is a Swift Package for ...
+SwiftExtras is a Swift Package containing Extensions and Helpers for Swift which I use on a regular basis, or find useful.
 
-[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2F0xWDG%2Fspm-template%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/0xWDG/spm-template)
-[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2F0xWDG%2Fspm-template%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/0xWDG/spm-template)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2F0xWDG%2FSwiftExtras%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/0xWDG/SwiftExtras)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2F0xWDG%2FSwiftExtras%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/0xWDG/SwiftExtras)
 [![Swift Package Manager](https://img.shields.io/badge/SPM-compatible-brightgreen.svg)](https://swift.org/package-manager)
-![License](https://img.shields.io/github/license/0xWDG/spm-template)
+![License](https://img.shields.io/github/license/0xWDG/SwiftExtras)
 
 ## Requirements
 
 - Swift 5.9+ (Xcode 15+)
-- iOS 13+, macOS 10.15+
+- iOS 13+, macOS 10.15+, tvOS 13+, watchOS 6+
 
 ## Installation (Pakage.swift)
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/0xWDG/spm-template.git", branch: "main"),
+    .package(url: "https://github.com/0xWDG/SwiftExtras.git", branch: "main"),
 ],
 targets: [
     .target(name: "MyTarget", dependencies: [
-        .product(name: "spm-template", package: "spm-template"),
+        .product(name: "SwiftExtras", package: "SwiftExtras"),
     ]),
 ]
 ```
@@ -28,24 +28,8 @@ targets: [
 ## Installation (Xcode)
 
 1. In Xcode, open your project and navigate to **File** → **Swift Packages** → **Add Package Dependency...**
-2. Paste the repository URL (`https://github.com/0xWDG/spm-template`) and click **Next**.
+2. Paste the repository URL (`https://github.com/0xWDG/SwiftExtras`) and click **Next**.
 3. Click **Finish**.
-
-## Usage
-
-```swift
-import SwiftUI
-import spm-template
-
-struct ContentView: View {
-    var body: some View {
-        VStack {
-            /// ...
-        }
-        .padding()
-    }
-}
-```
 
 ## Contact
 
