@@ -18,14 +18,15 @@ extension View {
     ///
     ///  ```swift
     ///  SomeSwiftUIView()
-    ///  .log {
-    ///    // Code you need to run
-    ///  }
+    ///     .log {
+    ///         // Code you need to run
+    ///     }
     ///  ```
     ///
     /// - Parameter closure: Code need to run
     /// - Returns: self
     public func log(_ closure: () -> Void) -> some View {
+        closure()
         return self
     }
 }
