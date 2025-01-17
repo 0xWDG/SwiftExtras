@@ -10,7 +10,6 @@
 //
 
 import Foundation
-
 #if canImport(SwiftUI)
 import SwiftUI
 #endif
@@ -62,6 +61,11 @@ public enum AppInfo {
         Bundle.main.appStoreReceiptURL?.absoluteString.contains("testflight") ?? false
     }
 
+    /// Is the application an app extension
+    public var isAppExtension: Bool {
+        return Bundle.main.executablePath?.contains(".appex/") ?? false
+    }
+
     /// Is the application running downloaded from AppStore
     public static var isiOSAppOnMac: Bool {
         #if os(macOS) || os(iOS)
@@ -82,6 +86,33 @@ public enum AppInfo {
         #endif
 
         return false
+    }
+
+    /// Is the app running tests
+    public static var isRunningTests: Bool {
+        ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
+    }
+
+    /// Is the app running UI tests
+    public static var isRunningUITests: Bool {
+        ProcessInfo.processInfo.arguments.contains("-ui_testing")
+    }
+
+    /// URL Schemes
+    public var schemes: [String] {
+        guard let infoDictionary = Bundle.main.infoDictionary,
+              let urlTypes = infoDictionary["CFBundleURLTypes"] as? [AnyObject],
+              let urlType = urlTypes.first as? [String: AnyObject],
+              let urlSchemes = urlType["CFBundleURLSchemes"] as? [String] else {
+            return []
+        }
+
+        return urlSchemes
+    }
+
+    /// Main URL scheme
+    public var mainScheme: String? {
+        return schemes.first
     }
 
 #if canImport(SwiftUI)

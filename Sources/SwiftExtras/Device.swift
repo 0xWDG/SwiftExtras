@@ -10,6 +10,9 @@
 //
 
 import Foundation
+#if canImport(UIKit)
+import UIKit
+#endif
 
 /// Device information
 public enum Device {
@@ -33,5 +36,16 @@ public enum Device {
     /// Operating system version
     public static var osVersion: String {
         ProcessInfo.processInfo.operatingSystemVersionString
+    }
+
+    /// Are we running on Carplay?
+    var isCarplay: Bool {
+#if canImport(UIKit)
+        return UIScreen.screens.filter {
+            $0.traitCollection.userInterfaceIdiom == .carPlay
+        }.count >= 1
+#else
+        return false
+#endif
     }
 }

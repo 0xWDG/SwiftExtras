@@ -9,7 +9,7 @@
 //  MIT License
 //
 
-#if canImport(MessageUI) && canImport(SwiftUI)
+#if canImport(SwiftUI) && canImport(MessageUI)
 import SwiftUI
 import MessageUI
 
