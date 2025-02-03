@@ -16,6 +16,12 @@ extension String {
     ///
     /// This subscript allows you to get a substring at a specified range.
     /// 
+    /// Usage:
+    /// ```swift
+    /// let string = "Hello, World!"
+    /// print(string[0...7]) // "Hello, W"
+    /// ```
+    ///
     /// - Parameter bounds: The range that will be used to find the substring.
     /// - Returns: The substring corresponding to the specified range.
     public subscript (bounds: CountableClosedRange<Int>) -> String {
@@ -37,6 +43,12 @@ extension String {
     /// A subscript to get a substring at a specified range.
     ///
     /// This subscript allows you to get a substring at a specified range.
+    ///
+    /// Usage:
+    /// ```swift
+    /// let string = "Hello, World!"
+    /// print(string[0..<7]) // "Hello, "
+    /// ```
     /// 
     /// - Parameter bounds: The range that will be used to find the substring.
     /// - Returns: The substring corresponding to the specified range.
@@ -49,6 +61,12 @@ extension String {
     /// A subscript to get a substring at a specified range.
     ///
     /// This subscript allows you to get a substring at a specified range.
+    ///
+    /// Usage:
+    /// ```swift
+    /// let string = "Hello, World!"
+    /// print(string[..<7]) // "Hello, "
+    /// ```
     /// 
     /// - Parameter bounds: The range that will be used to find the substring.
     /// - Returns: The substring corresponding to the specified range.
@@ -60,6 +78,12 @@ extension String {
     /// A subscript to get a substring at a specified range.
     ///
     /// This subscript allows you to get a substring at a specified range.
+    ///
+    /// Usage:
+    /// ```swift
+    /// let string = "Hello, World!"
+    /// print(string[...7]) // "Hello, "
+    /// ```
     /// 
     /// - Parameter bounds: The range that will be used to find the substring.
     /// - Returns: The substring corresponding to the specified range.
@@ -71,6 +95,12 @@ extension String {
     /// A subscript to get a substring at a specified range.
     ///
     /// This subscript allows you to get a substring at a specified range.
+    ///
+    /// Usage:
+    /// ```swift
+    /// let string = "Hello, World!"
+    /// print(string[7...]) // "World!"
+    /// ```
     /// 
     /// - Parameter bounds: The range that will be used to find the substring.
     /// - Returns: The substring corresponding to the specified range.
@@ -83,16 +113,15 @@ extension String {
     ///
     /// This subscript allows you to get a substring at a specified range.
     /// 
-    /// - Parameter integerIndex: The index of the character that we search for.
+    /// Usage:
+    /// ```swift
+    /// let string = "Hello, World!"
+    /// print(string[7]) // "W"
+    /// ```
+    ///
+    /// - Parameter characterIndex: The index of the character that we search for.
     /// - Returns: The character found at the specified index.
-    public subscript(integerIndex: Int) -> String {
-        return self[index(startIndex, offsetBy: integerIndex)]
-    }
-
-    /// Get character at index
-    /// - Parameter index: The index of the character that we search for.
-    /// - Returns: The character found at the specified index.
-    public subscript (index: Int) -> String {
-        return String(self[index] as Character)
+    public subscript(characterIndex: Int) -> String {
+        return String(self[self.index(startIndex, offsetBy: characterIndex)])
     }
 }

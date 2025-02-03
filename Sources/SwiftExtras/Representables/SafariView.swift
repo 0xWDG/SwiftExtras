@@ -9,7 +9,7 @@
 //  MIT License
 //
 
-#if canImport(SwiftUI) && canImport(WebKit) && canImport(UIKit) || canImport(AppKit)
+#if canImport(SwiftUI) && canImport(WebKit) && (canImport(UIKit) || canImport(AppKit))
 import SwiftUI
 @preconcurrency import WebKit
 
