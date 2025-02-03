@@ -12,7 +12,7 @@
 #if canImport(Foundation)
 import Foundation
 
-public extension Collection {
+extension Collection {
     /// Accesses the element at the specified position in a safe manner.
     ///
     /// This subscript provides a safe way to access elements within the collection by
@@ -45,7 +45,7 @@ public extension Collection {
     ///
     /// This method enhances the safety and readability of collection access, \
     /// especially in more complex logic where bounds checks are necessary.
-    subscript(safe index: Index) -> Element? {
+    public subscript(safe index: Index) -> Element? {
         indices.contains(index) ? self[index] : nil
     }
 }

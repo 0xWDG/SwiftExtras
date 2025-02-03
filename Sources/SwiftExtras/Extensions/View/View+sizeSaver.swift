@@ -12,6 +12,7 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Save the size of the view
 struct SaveSizeModifier: ViewModifier {
     @Binding var size: CGSize
 

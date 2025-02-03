@@ -15,6 +15,9 @@ import UIKit
 #endif
 
 /// Device information
+///
+/// Get information about the current running device.
+/// This can be used to get the device model, OS version, etc.
 public enum Device {
     /// Obtain the machine hardware platform from the `uname()` unix command
     public static var model: String {

@@ -16,7 +16,8 @@ import SwiftUI
 
 /// AppInfo
 ///
-/// Get information about the application
+/// Get information about the current running application.
+/// This can be used to get the application name, version number, build number, etc.
 public enum AppInfo {
     /// Get application name
     /// - Returns: application name

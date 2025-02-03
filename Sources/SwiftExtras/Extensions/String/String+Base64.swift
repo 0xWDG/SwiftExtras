@@ -13,12 +13,18 @@ import Foundation
 
 extension String {
     /// Base64 encode
+    ///
+    /// Encode the string to base64
+    ///
     /// - Returns: Encoded string
     public func base64Encoded() -> String? {
         return data(using: .utf8)?.base64EncodedString()
     }
 
     /// Base64 decode
+    ///
+    /// Decode the base64 string
+    ///
     /// - Returns: Decoded string
     public func base64Decoded() -> String? {
         guard let data = Data(base64Encoded: self) else {
@@ -29,6 +35,9 @@ extension String {
     }
 
     /// Base64 (url) decode
+    ///
+    /// Decode the base64 (url) string
+    ///
     /// - Returns: Decoded string
     public func base64UrlDecode() -> String? {
         var base64 = self

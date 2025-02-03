@@ -17,6 +17,8 @@ import Compression
 
 extension Data {
     /// Data as hexidecimal string
+    ///
+    /// Data as hexidecimal string representation
     public var hexString: String {
         return self.map({
             return String(format: "%02hhx", $0)
@@ -24,6 +26,8 @@ extension Data {
     }
 
     /// Data as string (utf8)
+    ///
+    /// Data as string representation
     public var stringValue: String? {
         return String.init(data: self, encoding: .utf8)
     }
@@ -37,7 +41,10 @@ extension Data {
         algorithm: compression_algorithm
     )
 
-    /// (de)compression)
+    /// (de)compression
+    ///
+    /// Perform the (de)compression
+    ///
     /// - Parameters:
     ///   - config: Configuration
     ///   - source: Source ponter
@@ -100,9 +107,19 @@ extension Data {
         }
     }
 
-    /// Compresses the data using the zlib deflate algorithm.
-    /// - returns: raw deflated data according to [RFC-1951](https://tools.ietf.org/html/rfc1951).
+    /// Compresses data using the zlib deflate algorithm.
+    ///
+    /// This method compresses the data using the zlib deflate algorithm.
+    ///
+    /// Example:
+    /// ```swift
+    /// let data = "Hello, World!".data(using: .utf8)
+    /// let compressed = data?.deflate()
+    /// ```
+    ///
     /// - note: Fixed at compression level 5 (best trade off between speed and time)
+    ///
+    /// - returns: raw deflated data according to [RFC-1951](https://tools.ietf.org/html/rfc1951).
     public func deflate() -> Data? {
         return self.withUnsafeBytes { (sourcePtr: UnsafePointer<UInt8>) -> Data? in
             let configuration = (
@@ -119,8 +136,19 @@ extension Data {
     }
 
     /// Decompresses the data using the zlib deflate algorithm.
+    ///
+    /// This method decompresses the data using the zlib deflate algorithm.
+    ///
+    /// Example:
+    /// ```swift
+    /// let data = "Hello, World!".data(using: .utf8)
+    /// let compressed = data?.deflate()
+    /// let decompressed = compressed?.inflate()
+    /// ```
+    ///
     /// - note: Self is expected to be a raw deflate, \
     /// stream according to [RFC-1951](https://tools.ietf.org/html/rfc1951).
+    ///
     /// - returns: uncompressed data
     public func inflate() -> Data? {
         return self.withUnsafeBytes { (sourcePtr: UnsafePointer<UInt8>) -> Data? in

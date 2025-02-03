@@ -13,6 +13,17 @@
 import SwiftUI
 
 /// Transparent blur view
+///
+/// This view is a wrapper around `UIVisualEffectView` on iOS.
+///
+/// Usage:
+/// ```swift
+/// VStack {
+///     Text("Hello, World!")
+///         .padding()
+/// }
+/// .background(TransparentBlurView())
+/// ```
 public struct TransparentBlurView: UIViewRepresentable {
     var removeAllFilters: Bool = false
 

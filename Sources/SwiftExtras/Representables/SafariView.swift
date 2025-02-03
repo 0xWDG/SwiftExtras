@@ -13,20 +13,71 @@
 import SwiftUI
 @preconcurrency import WebKit
 
+/// Create a Safari View
+///
+/// This view is a wrapper around `SFSafariViewController`.
+///
+/// Usage:
+/// Open a URL in Safari:
+/// ```swift
+/// SafariView(url: URL(string: "https://wesleydegroot.nl")!)
+/// ```
+///
+/// Open a HTML string in Safari:
+/// ```swift
+/// SafariView(html: "<html><body><h1>Hello, World!</h1></body></html>")
+/// ```
+///
 public struct WebView: ViewRepresentable {
     let url: URL
-    let onLoad: ((WKWebView) -> Void)?
+    let onLoad: ((WKWebView, WKNavigation) -> Void)?
+    let onError: ((WKWebView, WKNavigation, Error) -> Void)?
     let html: String?
     let webView = WKWebView()
 
-    public init(url: URL, onLoad: ((WKWebView) -> Void)?) {
+    /// Create a Safari View
+    ///
+    /// This view is a wrapper around `SFSafariViewController`.
+    ///
+    /// Usage:
+    /// Open a URL in Safari:
+    /// ```swift
+    /// SafariView(url: URL(string: "https://wesleydegroot.nl")!)
+    /// ```
+    ///
+    /// - Parameter url: The URL specifying which to navigate.
+    /// - Parameter onLoad: Invoked when a main frame navigation completes.
+    /// - Parameter onError: Invoked when an error occurs during a committed main frame navigation.
+    public init(
+        url: URL,
+        onLoad: ((WKWebView, WKNavigation) -> Void)? = nil,
+        onError: ((WKWebView, WKNavigation, Error) -> Void)? = nil
+    ) {
         self.url = url
         self.onLoad = onLoad
+        self.onError = onError
         self.html = nil
     }
 
+    /// Create a Safari View
+    ///
+    /// This view is a wrapper around `SFSafariViewController`.
+    ///
+    /// Usage:
+    /// Open a URL in Safari:
+    /// ```swift
+    /// SafariView(html: "<html><body><h1>Hello, World!</h1></body></html>")
+    /// ```
+    ///
+    /// - Parameter html: The HTML String to load.
+    /// - Parameter onLoad: Invoked when a main frame navigation completes.
+    /// - Parameter onError: Invoked when an error occurs during a committed main frame navigation.
     @available(iOS 16.0, macOS 13.0, *)
-    public init(html: String) {
+    public init(
+        html: String,
+        onLoad: ((WKWebView, WKNavigation) -> Void)? = nil,
+        onError: ((WKWebView, WKNavigation, Error) -> Void)? = nil
+    ) {
         self.url = .cachesDirectory
             .appendingPathComponent("\(UUID().uuidString).html")
 
@@ -38,7 +89,8 @@ public struct WebView: ViewRepresentable {
             print("Error writing HTML to \(url): \(error.localizedDescription)")
         }
 
-        self.onLoad = nil
+        self.onLoad = onLoad
+        self.onError = onError
     }
 
 #if canImport(UIKit)
@@ -74,22 +126,22 @@ public struct WebView: ViewRepresentable {
 #endif
 
     public func makeCoordinator() -> Coordinator {
-        Coordinator(onLoad: onLoad)
+        Coordinator(self)
     }
 
     public class Coordinator: NSObject, WKNavigationDelegate {
-        let onLoad: ((WKWebView) -> Void)?
+        var parent: WebView
 
-        init(onLoad: ((WKWebView) -> Void)?) {
-            self.onLoad = onLoad
+        init(_ parent: WebView) {
+            self.parent = parent
         }
 
         public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-            print("Error loading URL: \(error)")
+            parent.onError?(webView, navigation, error)
         }
 
         public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            onLoad?(webView)
+            parent.onLoad?(webView, navigation)
         }
     }
 }

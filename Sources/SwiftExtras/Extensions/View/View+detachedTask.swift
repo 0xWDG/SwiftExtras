@@ -14,6 +14,16 @@ import SwiftUI
 
 extension View {
     /// Run a task detached from the current task
+    ///
+    /// Use this modifier to run a task detached from the current task.
+    ///
+    /// Usage:
+    /// ```swift
+    /// .detachedTask {
+    ///     print("Hello, World!")
+    /// }
+    /// ```
+    ///
     /// - Parameter task: Task to run
     /// - Returns: self
     @ViewBuilder

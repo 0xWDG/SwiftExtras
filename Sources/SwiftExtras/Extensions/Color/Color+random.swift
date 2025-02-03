@@ -14,6 +14,8 @@ import SwiftUI
 
 extension Color {
     /// Returns a random color
+    ///
+    /// This variable returns a random color.
     public static var random: Color {
         Color(
             red: .random(in: 0...1),

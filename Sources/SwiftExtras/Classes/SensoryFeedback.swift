@@ -33,6 +33,9 @@ public class SensoryFeedback {
     }
 
     /// Fire sensory feedback
+    ///
+    /// This will generate sensory feedback based on the selected type.
+    ///
     /// - Parameter type: Feedback type
     @discardableResult
     public init(type: SensoryFeedbackType) {

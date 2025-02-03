@@ -14,6 +14,9 @@ import SwiftUI
 
 extension Text {
     /// Make the foreground gradient
+    ///
+    /// Create a gradient for the foreground of the text.
+    ///
     /// - Parameters:
     ///   - colors: Colors
     ///   - startPoint: Startpoint

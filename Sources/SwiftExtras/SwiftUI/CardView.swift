@@ -12,6 +12,9 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Card View
+///
+/// This view to represent a `CardView` like Apple is using in Maps, Find My, etc.
 @available(macOS 11.0, *, iOS 14, *)
 public struct CardView<Content: View>: View {
     // To dismiss this screen using the button.

@@ -14,6 +14,7 @@ import SwiftUI
 
 extension View {
     /// Get root view controller
+    ///
     /// - Returns: Root view controller
     public func getRootViewController() -> UIViewController {
         guard let screen = UIApplication.shared.connectedScenes.first as? UIWindowScene else {

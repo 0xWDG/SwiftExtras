@@ -12,11 +12,14 @@
 import Foundation
 
 #if os(iOS) || os(tvOS) || os(watchOS) || os(macOS) || os(visionOS)
-public extension UserDefaults {
+extension UserDefaults {
     /// Subscript from UserDefaults (Any)
+    ///
+    /// This allows you to use the `UserDefaults` as a dictionary.
+    ///
     /// - Parameter key: The key to search/update
     /// - Returns: The object
-    subscript(key: String) -> Any? {
+    public subscript(key: String) -> Any? {
         get {
             return object(forKey: key)
         }
@@ -26,9 +29,12 @@ public extension UserDefaults {
     }
 
     /// Subscript from UserDefaults (Bool)
+    ///
+    /// This allows you to use the `UserDefaults` as a dictionary.
+    ///
     /// - Parameter key: The key to search/update
     /// - Returns: The boolean
-    subscript(key: String) -> Bool {
+    public subscript(key: String) -> Bool {
         get {
             return bool(forKey: key)
         }
@@ -38,7 +44,7 @@ public extension UserDefaults {
     }
 
     /// Remove all the keys and their values stored in the user's defaults database.
-    func removeAll() {
+    public func removeAll() {
         for (key, _) in dictionaryRepresentation() {
             removeObject(forKey: key)
         }

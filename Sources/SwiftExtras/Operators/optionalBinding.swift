@@ -13,9 +13,12 @@
 import SwiftUI
 
 /// Optional binding
-/// - Parameters:
-///   - lhs: Optional binding value
-///   - rhs: Value if the optional binding value is nil
+///
+/// This operator allows you to use the nil-coalescing operator `??` with `Binding`.
+/// This is useful when you want to provide a default value for a `Binding` that wraps an optional value.
+///
+/// - Parameter lhs: Optional binding value
+/// - Parameter rhs: Value if the optional binding value is nil
 /// - Returns: Binding
 public func ?? <T>(lhs: Binding<T?>, rhs: T) -> Binding<T> {
     Binding(
