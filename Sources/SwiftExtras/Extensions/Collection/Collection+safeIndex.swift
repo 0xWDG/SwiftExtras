@@ -1,8 +1,8 @@
 //
-//  Collection.swift
+//  Collection+safeIndex.swift
 //  SwiftExtras
 //
-//  Created by Wesley de Groot on 2025-01-10.
+//  Created by Wesley de Groot on 2025-02-03.
 //  https://wesleydegroot.nl
 //
 //  https://github.com/0xWDG/SwiftExtras
