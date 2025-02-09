@@ -352,20 +352,34 @@ public struct SESettingsView<Content: View>: View {
 
 /// SwiftExtras Change Log Entry
 public struct SEChangeLogEntry: Identifiable {
+    /// The unique identifier for this entry.
     public var id: UUID = UUID()
-    var version: String
-    var text: String
 
+    /// The version number for this entry.
+    public var version: String
+
+    /// The changelog for this entry.
+    public var text: String
+
+    /// Initialize a new change log entry.
+    ///
+    /// - Parameters:
+    ///   - version: The version number for this entry.
+    ///   - text: The changelog for this entry.
     public init(version: String, text: String) {
         self.version = version
         self.text = text
     }
 }
 
-struct SEChangeLogView: View {
-    var changeLog: [SEChangeLogEntry]
+/// SwiftExtras Change Log View
+///
+/// SwiftExtras Change Log View is a SwiftUI View that can be used to show a change log.
+public struct SEChangeLogView: View {
+    /// The change log entries to display.
+    public var changeLog: [SEChangeLogEntry]
 
-    var body: some View {
+    public var body: some View {
         List {
             ForEach(changeLog) { changeLogEntry in
                 Section(.init("**Version \(changeLogEntry.version)**")) {
@@ -374,6 +388,14 @@ struct SEChangeLogView: View {
             }
         }
         .navigationTitle("Changelog")
+    }
+
+    /// Initialize a new change log view.
+    ///
+    /// - Parameters:
+    ///   - changeLog: The change log entries to display.
+    public init(changeLog: [SEChangeLogEntry]) {
+        self.changeLog = changeLog
     }
 }
 
