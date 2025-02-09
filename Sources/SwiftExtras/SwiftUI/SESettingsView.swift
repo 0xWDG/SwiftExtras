@@ -392,42 +392,5 @@ struct SEChangeLog: View {
     }
 }
 
-#if DEBUG
-#Preview("0xWDG") {
-    if #available(macOS 13.0, *) {
-        SESettingsView(_changeLog: [
-            .init(version: "1.0.0", text: "Initial release")
-        ]) {
-
-        }
-    }
-}
-
-#Preview("Me") {
-    if #available(macOS 13.0, *) {
-        SESettingsView(
-            createdBy: "Me",
-            //            privacyPolicyURL: <#T##URL?#>,
-            //            appStoreAppURL: <#T##URL?#>,
-            //            supportEmail: <#T##String?#>,
-            twitterHandle: "0xWDG",
-            //            blueskyHandle: <#T##String?#>,
-            //            mastodonHandle: <#T##String?#>,
-            //            appStoreDeveloperURL: <#T##String?#>,
-            changeLog: []
-        ) {}
-    }
-}
-
-#Preview("Changelog") {
-    if #available(macOS 13.0, *) {
-        NavigationStack {
-            SEChangeLog(changeLog: [
-                .init(version: "1.0.0", text: "Changelog release")
-            ])
-        }
-    }
-}
-#endif
 #endif
 // swiftlint:disable:this file_length
