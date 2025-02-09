@@ -398,5 +398,5 @@ public struct SEChangeLogView: View {
         self.changeLog = changeLog
     }
 }
-
 #endif
+// swiftlint:disable:this file_length
