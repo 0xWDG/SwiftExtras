@@ -15,8 +15,7 @@ let package = Package(
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "SwiftExtras",
-            targets: ["SwiftExtras"],
-            resources: [.process("Resources")]
+            targets: ["SwiftExtras"]
         )
     ],
     dependencies: [
@@ -29,6 +28,9 @@ let package = Package(
             name: "SwiftExtras",
             dependencies: [
                 .product(name: "OSLogViewer", package: "OSLogViewer")
+            ],
+            resources: [
+                .process("Assets.xcassets")
             ]
         ),
         .testTarget(
