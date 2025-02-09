@@ -13,7 +13,7 @@ import Foundation
 
 extension String {
     /// Slugify a string
-    var slugified: String {
+    public var slugified: String {
         let input = self
         let lowercased = input.lowercased()
         let trimmed = lowercased.trimmingCharacters(in: .whitespacesAndNewlines)
