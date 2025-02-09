@@ -97,6 +97,7 @@ public enum AppInfo {
     /// Get the AppStore information of the application
     /// - Returns: AppStore information
     public static func appStoreInfo() async -> SKAppInfoAppStoreInfo? {
+#if os(macOS) || os(iOS)
         let decoder = JSONDecoder()
 
         guard let itunesURL = URL(
@@ -113,6 +114,7 @@ public enum AppInfo {
         } catch {
             print("Error")
         }
+#endif
 
         return nil
     }
