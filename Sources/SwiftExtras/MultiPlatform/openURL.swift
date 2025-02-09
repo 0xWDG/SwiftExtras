@@ -32,4 +32,7 @@ public func openURL(_ url: URL) -> Bool {
     }
     return true
 #endif
+
+    // unfupported platform
+    return false
 }
