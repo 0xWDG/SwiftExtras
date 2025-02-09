@@ -27,6 +27,9 @@ public func openURL(_ url: URL) -> Bool {
     return NSWorkspace.shared.open(url)
 #endif
 #if canImport(UIKit)
-    return UIApplication.shared.open(url)
+    Task {
+        return await UIApplication.shared.open(url)
+    }
+    return true
 #endif
 }

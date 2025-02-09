@@ -7,7 +7,9 @@
 
 #if canImport(SwiftUI)
 import SwiftUI
+#if canImport(OSLog)
 import OSLogViewer
+#endif
 import StoreKit
 
 #if canImport(MessageUI)
@@ -24,7 +26,7 @@ public struct SESettingsView<Content: View>: View {
     // swiftlint:disable:previous type_body_length
     // MARK: Environment
     @Environment(\.dismiss) var dismiss
-    @Environment(\.requestReview) var requestReview
+//    @Environment(\.requestReview) var requestReview
 
 #if canImport(MessageUI)
     @State
@@ -34,7 +36,9 @@ public struct SESettingsView<Content: View>: View {
     @State
     private var isShowingMailView = false
 
+#if canImport(OSLog)
     var extractor: OSLogExtractor?
+#endif
 
     @State
     var OSLogString = ""
@@ -91,12 +95,14 @@ public struct SESettingsView<Content: View>: View {
         self.appStoreDeveloperURL = appStoreDeveloperURL
         self.changeLog = changeLog
         self.content = content
+#if canImport(OSLog)
         if let OSLogSubsystem {
             self.extractor = OSLogExtractor(
                 subsystem: OSLogSubsystem,
                 since: Date().addingTimeInterval(-900) // 15 minutes max.
             )
         }
+#endif
     }
 
     /// Internal: Initializes SwiftExtras Settings View (with default parameters for my apps)
@@ -119,10 +125,12 @@ public struct SESettingsView<Content: View>: View {
         self.appStoreDeveloperURL = "https://apps.apple.com/developer/wesley-de-groot/id602359900"
         self.changeLog = _changeLog
         self.content = content
+#if canImport(OSLog)
         self.extractor = OSLogExtractor(
             subsystem: "nl.wesleydegroot",
             since: Date().addingTimeInterval(-900) // 15 minutes max.
         )
+#endif
     }
 
     var getMailBody: String {
@@ -200,7 +208,7 @@ public struct SESettingsView<Content: View>: View {
                     if let supportEmail {
                         Button {
                             Task {
-#if canImport(OSLogViewer)
+#if canImport(OSLogViewer) && canImport(OSLog)
                                 if let extractor {
                                     isLoading = true
                                     OSLogString = await extractor.export()
@@ -318,17 +326,7 @@ public struct SESettingsView<Content: View>: View {
             .buttonStyle(.borderless)
             .foregroundStyle(Color.primary)
             .navigationTitle("About")
-
-            Spacer()
-            HStack {
-                Spacer()
-                Button("Save") {
-                    dismiss()
-                }
-            }
-            .padding()
         }
-        .frame(minWidth: 500, minHeight: 500)
     }
 
     struct AppStoreInfo: Decodable {
@@ -337,6 +335,7 @@ public struct SESettingsView<Content: View>: View {
 
     struct Results: Decodable {
         let artistId: Int
+        let trackId: Int
     }
 
     func getReviewURL() -> URL? {
@@ -351,10 +350,11 @@ public struct SESettingsView<Content: View>: View {
         do {
             let data = try Data(contentsOf: itunesURL)
             let json = try decoder.decode(AppStoreInfo.self, from: data)
-            if let identifier = json.results.first?.artistId,
+            if let identifier = json.results.first?.trackId,
                let url = URL(
                 string: "https://itunes.apple.com/app/id\(identifier)?action=write-review"
                ) {
+                print("Review URL: \(url)")
                 return url
             }
         } catch {
@@ -392,6 +392,7 @@ struct SEChangeLog: View {
     }
 }
 
+#if DEBUG
 #Preview("0xWDG") {
     if #available(macOS 13.0, *) {
         SESettingsView(_changeLog: [
@@ -427,5 +428,6 @@ struct SEChangeLog: View {
         }
     }
 }
+#endif
 #endif
 // swiftlint:disable:this file_length
