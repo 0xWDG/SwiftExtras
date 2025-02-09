@@ -173,6 +173,7 @@ public enum AppInfo {
     ///
     /// - Returns: Application icon
     public static var appIcon: Image {
+#if canImport(UIKit)
         guard let icons = Bundle.main.object(forInfoDictionaryKey: "CFBundleIcons") as? [String: Any],
               let primaryIcon = icons["CFBundlePrimaryIcon"] as? [String: Any],
               let iconFiles = primaryIcon["CFBundleIconFiles"] as? [String],
@@ -180,13 +181,16 @@ public enum AppInfo {
             return Image.init(systemName: "xmark.app")
         }
 
-#if canImport(UIKit)
         guard let uiImage = UIImage(named: iconFileName) else {
             return Image(systemName: "xmark.app")
         }
 
         return Image(uiImage: uiImage)
 #elseif canImport(AppKit)
+        guard let iconFileName = Bundle.main.object(forInfoDictionaryKey: "CFBundleIconName") as? String else {
+            return Image.init(systemName: "xmark.app")
+        }
+
         guard let nsImage = NSImage(named: iconFileName) else {
             return Image(systemName: "xmark.app")
         }
