@@ -74,24 +74,69 @@ public enum AppInfo {
 
     /// Is the application running downloaded from AppStore
     public static var isiOSAppOnMac: Bool {
-        #if os(macOS) || os(iOS)
+#if os(macOS) || os(iOS)
         if #available(iOS 14.0, *) {
             return ProcessInfo.processInfo.isiOSAppOnMac
         }
-        #endif
+#endif
 
         return false
     }
 
     /// Is the application running as a Mac Catalyst app
     public static var isMacCatalystApp: Bool {
-        #if os(macOS) || os(iOS)
+#if os(macOS) || os(iOS)
         if #available(iOS 14.0, *) {
             return ProcessInfo.processInfo.isMacCatalystApp
         }
-        #endif
+#endif
 
         return false
+    }
+
+    /// Get the AppStore information of the application
+    /// - Returns: AppStore information
+    public static func appStoreInfo() async -> SKAppInfoAppStoreInfo? {
+        let decoder = JSONDecoder()
+
+        guard let itunesURL = URL(
+            string: "http://itunes.apple.com/lookup?bundleId=\(AppInfo.bundleIdentifier)"
+        ) else {
+            return nil
+        }
+
+        do {
+            let session = URLSession(configuration: .default)
+            let request = URLRequest(url: itunesURL)
+            let (data, _) = try await session.data(for: request)
+            return try decoder.decode(SKAppInfoAppStoreInfo.self, from: data)
+        } catch {
+            print("Error")
+        }
+
+        return nil
+    }
+
+    /// Get the Review URL of the application
+    /// - Returns: URL of the review page in the AppStore
+    public static func getReviewURL() async -> URL? {
+        if let identifier = await AppInfo.appStoreInfo()?.results.first?.trackId,
+           let url = URL(string: "https://itunes.apple.com/app/id\(identifier)?action=write-review") {
+            return url
+        }
+
+        return nil
+    }
+
+    /// Get the URL of the developer page in the AppStore
+    /// - Returns: URL of the developer page in the AppStore
+    public static func getDeveloperURL() async -> URL? {
+        if let identifier = await AppInfo.appStoreInfo()?.results.first?.artistId,
+           let url = URL(string: "https://apps.apple.com/developer/id\(identifier)") {
+            return url
+        }
+
+        return nil
     }
 
     /// Is the app running tests
@@ -180,4 +225,13 @@ public enum AppInfo {
 #endif
     }
 #endif
+}
+
+public struct SKAppInfoAppStoreInfo: Decodable {
+    let results: [SKAppInfoAppStoreResult]
+}
+
+public struct SKAppInfoAppStoreResult: Decodable {
+    let artistId: Int
+    let trackId: Int
 }

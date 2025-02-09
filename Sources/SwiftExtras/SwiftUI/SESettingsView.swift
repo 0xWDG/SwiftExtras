@@ -26,7 +26,7 @@ public struct SESettingsView<Content: View>: View {
     // swiftlint:disable:previous type_body_length
     // MARK: Environment
     @Environment(\.dismiss) var dismiss
-//    @Environment(\.requestReview) var requestReview
+    //    @Environment(\.requestReview) var requestReview
 
 #if canImport(MessageUI)
     @State
@@ -45,6 +45,8 @@ public struct SESettingsView<Content: View>: View {
 
     @State
     private var isLoading: Bool = false
+
+    // When adding a new `@State` this view crashes.
 
     // MARK: Custom
     var createdBy: String?
@@ -150,178 +152,11 @@ public struct SESettingsView<Content: View>: View {
     public var body: some View {
         NavigationStack {
             List {
-                Section {
-                    VStack(alignment: .center) {
-                        AppInfo.appIcon
-                            .resizable()
-                            .frame(width: 124, height: 124)
-
-                        Text(AppInfo.appName)
-                            .font(.title)
-
-                        if let createdBy {
-                            Text(.init("Created by \(createdBy)"))
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
-                }
-
-                // Custom settings
-                content()
-
-                Section {
-                    if let changeLog {
-                        NavigationLink(
-                            destination: SEChangeLog(changeLog: changeLog)
-                        ) {
-                            Label(
-                                "Changelog",
-                                systemImage: "newspaper"
-                            )
-                        }
-                    }
-
-                    if let privacyPolicyURL {
-                        Button {
-                            openURL(privacyPolicyURL)
-                        } label: {
-                            Label(
-                                "Privacy Policy",
-                                systemImage: "person.badge.key"
-                            )
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                    }
-
-                    if let reviewURL = getReviewURL() {
-                        Button {
-                            openURL(reviewURL)
-                        } label: {
-                            Label(
-                                "Rate the app",
-                                systemImage: "star"
-                            )
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                    }
-
-                    if let supportEmail {
-                        Button {
-                            Task {
-#if canImport(OSLogViewer) && canImport(OSLog)
-                                if let extractor {
-                                    isLoading = true
-                                    OSLogString = await extractor.export()
-                                    isLoading = false
-                                }
-#endif
-#if canImport(MessageUI)
-                                if MFMailComposeViewController.canSendMail() {
-                                    isShowingMailView.toggle()
-                                    return
-                                }
-#endif
-
-                                // Send mail
-                                if let body = getMailBody.addingPercentEncoding(
-                                    withAllowedCharacters: .urlHostAllowed
-                                ) {
-                                    let mail = "mailto:\(supportEmail)" +
-                                    "?subject=\(AppInfo.appName.slugified)%20Feedback" +
-                                    "&body=\(body)"
-                                    if let urlStr = URL(string: mail) {
-                                        openURL(urlStr)
-                                    }
-                                }
-                            }
-                        } label: {
-                            HStack {
-                                Label(
-                                    "Feedback",
-                                    systemImage: "pencil.and.ellipsis.rectangle"
-                                ).frame(maxWidth: .infinity, alignment: .leading)
-
-                                if isLoading {
-                                    Spacer()
-
-                                    ProgressView()
-                                        .controlSize(.small)
-                                    Text("Fetching logs...")
-                                }
-                            }
-                        }
-                        .disabled(isLoading)
-                    }
-                } header: {
-                    Label("Application Info", systemImage: "info.circle")
-                }
-
-                Section {
-                    if let twitterHandle,
-                       let url = URL(string: "https://twitter.com/\(twitterHandle)") {
-                        Button {
-                            openURL(url)
-                        } label: {
-                            Label {
-                                Text("𝕏/Twitter")
-                            } icon: {
-                                Image("x-twitter", bundle: Bundle.module)
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                    }
-
-                    if let blueskyHandle,
-                       let url = URL(string: "https://bsky.app/profile/\(blueskyHandle)") {
-                        Button {
-                            openURL(url)
-                        } label: {
-                            Label {
-                                Text("Bluesky")
-                            } icon: {
-                                Image("bluesky", bundle: Bundle.module)
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                    }
-
-                    if let mastodonHandle,
-                       let url = URL(string: "https://mastodon.social/\(mastodonHandle)") {
-                        Button {
-                            openURL(url)
-                        } label: {
-                            Label {
-                                Text("Mastodon")
-                            } icon: {
-                                Image("mastodon", bundle: Bundle.module)
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                    }
-
-                    if let appStoreDeveloperURL,
-                       let url = URL(string: appStoreDeveloperURL) {
-                        Button {
-                            openURL(url)
-                        } label: {
-                            Label("More apps from the developer", systemImage: "info.bubble")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                    }
-                } header: {
-                    Label("About the developer", systemImage: "person")
-                }
-
-                VStack(alignment: .leading) {
-                    Text(
-                        "\(AppInfo.appName) version: \(AppInfo.versionNumber), build: \(AppInfo.buildNumber)"
-                    )
-                    if let createdBy {
-                        Text(.init("Created by \(createdBy)"))
-                    }
-                }
-                .listRowBackground(Color.clear)
-                .listRowSeparator(.hidden)
+                headerSection
+                content() // Custom settings
+                applicationInfoSection
+                aboutTheDeveloperSection
+                footerSection
             }
             .buttonStyle(.borderless)
             .foregroundStyle(Color.primary)
@@ -329,39 +164,189 @@ public struct SESettingsView<Content: View>: View {
         }
     }
 
-    struct AppStoreInfo: Decodable {
-        let results: [Results]
-    }
+    var headerSection: some View {
+        Section {
+            VStack(alignment: .center) {
+                AppInfo.appIcon
+                    .resizable()
+                    .frame(width: 124, height: 124)
 
-    struct Results: Decodable {
-        let artistId: Int
-        let trackId: Int
-    }
+                Text(AppInfo.appName)
+                    .font(.title)
 
-    func getReviewURL() -> URL? {
-        let decoder = JSONDecoder()
-
-        guard let itunesURL = URL(
-            string: "http://itunes.apple.com/lookup?bundleId=\(AppInfo.bundleIdentifier)"
-        ) else {
-            return nil
-        }
-
-        do {
-            let data = try Data(contentsOf: itunesURL)
-            let json = try decoder.decode(AppStoreInfo.self, from: data)
-            if let identifier = json.results.first?.trackId,
-               let url = URL(
-                string: "https://itunes.apple.com/app/id\(identifier)?action=write-review"
-               ) {
-                print("Review URL: \(url)")
-                return url
+                if let createdBy {
+                    Text(.init("Created by \(createdBy)"))
+                }
             }
-        } catch {
-            print(error)
+            .frame(maxWidth: .infinity)
         }
+    }
 
-        return nil
+    var applicationInfoSection: some View {
+        Section {
+            if let changeLog {
+                NavigationLink(
+                    destination: SEChangeLogView(changeLog: changeLog)
+                ) {
+                    Label(
+                        "Changelog",
+                        systemImage: "newspaper"
+                    )
+                }
+            }
+
+            if let privacyPolicyURL {
+                Button {
+                    openURL(privacyPolicyURL)
+                } label: {
+                    Label(
+                        "Privacy Policy",
+                        systemImage: "person.badge.key"
+                    )
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
+
+            AsyncView {
+                return await AppInfo.getReviewURL()
+            } content: { response in
+                if let reviewURL = response {
+                    Button {
+                        openURL(reviewURL)
+                    } label: {
+                        Label(
+                            "Rate the app",
+                            systemImage: "star"
+                        )
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
+            }
+
+            if let supportEmail {
+                Button {
+                    Task {
+#if canImport(OSLogViewer) && canImport(OSLog)
+                        if let extractor {
+                            isLoading = true
+                            OSLogString = await extractor.export()
+                            isLoading = false
+                        }
+#endif
+#if canImport(MessageUI)
+                        if MFMailComposeViewController.canSendMail() {
+                            isShowingMailView.toggle()
+                            return
+                        }
+#endif
+
+                        // Send mail
+                        if let body = getMailBody.addingPercentEncoding(
+                            withAllowedCharacters: .urlHostAllowed
+                        ) {
+                            let mail = "mailto:\(supportEmail)" +
+                            "?subject=\(AppInfo.appName.slugified)%20Feedback" +
+                            "&body=\(body)"
+                            if let urlStr = URL(string: mail) {
+                                openURL(urlStr)
+                            }
+                        }
+                    }
+                } label: {
+                    HStack {
+                        Label(
+                            "Feedback",
+                            systemImage: "pencil.and.ellipsis.rectangle"
+                        ).frame(maxWidth: .infinity, alignment: .leading)
+
+                        if isLoading {
+                            Spacer()
+
+                            ProgressView()
+                                .controlSize(.small)
+                            Text("Fetching logs...")
+                        }
+                    }
+                }
+                .disabled(isLoading)
+            }
+        } header: {
+            Label("Application Info", systemImage: "info.circle")
+        }
+    }
+
+    var aboutTheDeveloperSection: some View {
+        Section {
+            if let twitterHandle,
+               let url = URL(string: "https://twitter.com/\(twitterHandle)") {
+                Button {
+                    openURL(url)
+                } label: {
+                    Label {
+                        Text("𝕏/Twitter")
+                    } icon: {
+                        Image("x-twitter", bundle: Bundle.module)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
+
+            if let blueskyHandle,
+               let url = URL(string: "https://bsky.app/profile/\(blueskyHandle)") {
+                Button {
+                    openURL(url)
+                } label: {
+                    Label {
+                        Text("Bluesky")
+                    } icon: {
+                        Image("bluesky", bundle: Bundle.module)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
+
+            if let mastodonHandle,
+               let url = URL(string: "https://mastodon.social/\(mastodonHandle)") {
+                Button {
+                    openURL(url)
+                } label: {
+                    Label {
+                        Text("Mastodon")
+                    } icon: {
+                        Image("mastodon", bundle: Bundle.module)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
+
+            AsyncView {
+                return await AppInfo.getDeveloperURL()
+            } content: { result in
+                if let url = result {
+                    Button {
+                        openURL(url)
+                    } label: {
+                        Label("More apps from the developer", systemImage: "info.bubble")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
+            }
+        } header: {
+            Label("About the developer", systemImage: "person")
+        }
+    }
+
+    var footerSection: some View {
+        VStack(alignment: .leading) {
+            Text(
+                "\(AppInfo.appName) version: \(AppInfo.versionNumber), build: \(AppInfo.buildNumber)"
+            )
+            if let createdBy {
+                Text(.init("Created by \(createdBy)"))
+            }
+        }
+        .listRowBackground(Color.clear)
+        .listRowSeparator(.hidden)
     }
 }
 
@@ -377,7 +362,7 @@ public struct SEChangeLogEntry: Identifiable {
     }
 }
 
-struct SEChangeLog: View {
+struct SEChangeLogView: View {
     var changeLog: [SEChangeLogEntry]
 
     var body: some View {
