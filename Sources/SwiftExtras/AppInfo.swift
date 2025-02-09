@@ -229,11 +229,20 @@ public enum AppInfo {
 #endif
 }
 
+/// AppStore Search Result
 public struct SKAppInfoAppStoreInfo: Decodable {
-    let results: [SKAppInfoAppStoreResult]
+    /// Result Count
+    public let resultCount: Int
+
+    /// Results
+    public let results: [SKAppInfoAppStoreResult]
 }
 
+/// AppStore App Info Result
 public struct SKAppInfoAppStoreResult: Decodable {
-    let artistId: Int
-    let trackId: Int
+    /// Developer Identifier
+    public let artistId: Int
+
+    /// App Identifier
+    public let trackId: Int
 }
