@@ -96,7 +96,7 @@ public enum AppInfo {
 
     /// Get the AppStore information of the application
     /// - Returns: AppStore information
-    public static func appStoreInfo() async -> SKAppInfoAppStoreInfo? {
+    public static func appStoreInfo() async -> SEAppInfoAppStoreInfo? {
 #if os(macOS) || os(iOS)
         let decoder = JSONDecoder()
 
@@ -110,7 +110,7 @@ public enum AppInfo {
             let session = URLSession(configuration: .default)
             let request = URLRequest(url: itunesURL)
             let (data, _) = try await session.data(for: request)
-            return try decoder.decode(SKAppInfoAppStoreInfo.self, from: data)
+            return try decoder.decode(SEAppInfoAppStoreInfo.self, from: data)
         } catch {
             print("Error")
         }
@@ -230,16 +230,16 @@ public enum AppInfo {
 }
 
 /// AppStore Search Result
-public struct SKAppInfoAppStoreInfo: Decodable {
+public struct SEAppInfoAppStoreInfo: Decodable {
     /// Result Count
     public let resultCount: Int
 
     /// Results
-    public let results: [SKAppInfoAppStoreResult]
+    public let results: [SEAppInfoAppStoreResult]
 }
 
 /// AppStore App Info Result
-public struct SKAppInfoAppStoreResult: Decodable {
+public struct SEAppInfoAppStoreResult: Decodable {
     /// Developer Identifier
     public let artistId: Int
 
