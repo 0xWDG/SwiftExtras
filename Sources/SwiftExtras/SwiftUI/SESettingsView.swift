@@ -393,4 +393,3 @@ struct SEChangeLog: View {
 }
 
 #endif
-// swiftlint:disable:this file_length
