@@ -100,6 +100,11 @@ public enum AppInfo {
 #if os(macOS) || os(iOS)
         let decoder = JSONDecoder()
 
+        if let cached = UserDefaults.standard.data(forKey: "SEAppInfoAppStoreInfo"),
+           let appStoreInfo = try? decoder.decode(SEAppInfoAppStoreInfo.self, from: cached) {
+            return appStoreInfo
+        }
+
         guard let itunesURL = URL(
             string: "http://itunes.apple.com/lookup?bundleId=\(AppInfo.bundleIdentifier)"
         ) else {
@@ -110,6 +115,7 @@ public enum AppInfo {
             let session = URLSession(configuration: .default)
             let request = URLRequest(url: itunesURL)
             let (data, _) = try await session.data(for: request)
+            UserDefaults.standard.set(data, forKey: "SEAppInfoAppStoreInfo")
             return try decoder.decode(SEAppInfoAppStoreInfo.self, from: data)
         } catch {
             print("Error")

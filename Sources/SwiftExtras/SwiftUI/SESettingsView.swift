@@ -10,8 +10,9 @@ import SwiftUI
 #if canImport(OSLog)
 import OSLogViewer
 #endif
+#if canImport(StoreKit)
 import StoreKit
-
+#endif
 #if canImport(MessageUI)
 import MessageUI
 #endif
@@ -26,7 +27,9 @@ public struct SESettingsView<Content: View>: View {
     // swiftlint:disable:previous type_body_length
     // MARK: Environment
     @Environment(\.dismiss) var dismiss
-    //    @Environment(\.requestReview) var requestReview
+#if canImport(StoreKit)
+    @Environment(\.requestReview) var requestReview
+#endif
 
 #if canImport(MessageUI)
     @State
@@ -37,27 +40,31 @@ public struct SESettingsView<Content: View>: View {
     private var isShowingMailView = false
 
 #if canImport(OSLog)
-    var extractor: OSLogExtractor?
+    private var extractor: OSLogExtractor?
 #endif
 
     @State
-    var OSLogString = ""
+    private var OSLogString = ""
 
     @State
     private var isLoading: Bool = false
 
-    // When adding a new `@State` this view crashes.
+    @State
+    private var reviewURL: URL?
+
+    @State
+    private var developerURL: URL?
 
     // MARK: Custom
     var createdBy: String?
     var privacyPolicyURL: URL?
-    var supportEmail: String? = "email@wesleydegroot.nl"
-    var twitterHandle: String? = "0xWDG"
-    var blueskyHandle: String? = "0xwdg.bsky.social"
-    var mastodonHandle: String? = "@0xWDG@mastodon.social"
-    var appStoreDeveloperURL: String? = "https://apps.apple.com/developer/wesley-de-groot/id602359900"
+    var supportEmail: String?
+    var twitterHandle: String?
+    var blueskyHandle: String?
+    var mastodonHandle: String?
+    var appStoreDeveloperURL: String?
     var changeLog: [SEChangeLogEntry]?
-    let content: () -> Content?
+    let customSection: () -> Content?
 
     /// Initialize SwiftExtras Settings View
     ///
@@ -72,7 +79,6 @@ public struct SESettingsView<Content: View>: View {
     ///   - twitterHandle: Your Twitter / X dandle
     ///   - blueskyHandle: Your Bluesky handle
     ///   - mastodonHandle: Your Mastodon handle
-    ///   - appStoreDeveloperURL: Your App Developer URL
     ///   - OSLogSubsystem: The subsystem for your OS-Logs (nil = hidden), no value = AppBundle
     ///   - changeLog: Changelog
     ///   - content: Additional content
@@ -83,7 +89,6 @@ public struct SESettingsView<Content: View>: View {
         twitterHandle: String? = nil,
         blueskyHandle: String? = nil,
         mastodonHandle: String? = nil,
-        appStoreDeveloperURL: String? = nil,
         OSLogSubsystem: String? = AppInfo.bundleIdentifier,
         changeLog: [SEChangeLogEntry]?,
         @ViewBuilder content: @escaping () -> Content? = { nil }
@@ -94,9 +99,8 @@ public struct SESettingsView<Content: View>: View {
         self.twitterHandle = twitterHandle
         self.blueskyHandle = blueskyHandle
         self.mastodonHandle = mastodonHandle
-        self.appStoreDeveloperURL = appStoreDeveloperURL
         self.changeLog = changeLog
-        self.content = content
+        self.customSection = content
 #if canImport(OSLog)
         if let OSLogSubsystem {
             self.extractor = OSLogExtractor(
@@ -109,7 +113,6 @@ public struct SESettingsView<Content: View>: View {
 
     /// Internal: Initializes SwiftExtras Settings View (with default parameters for my apps)
     public init(
-        appStoreAppURL: URL? = nil,
         _changeLog: [SEChangeLogEntry]?,
         // swiftlint:disable:previous identifier_name
         @ViewBuilder content: @escaping () -> Content? = { nil }
@@ -124,9 +127,8 @@ public struct SESettingsView<Content: View>: View {
         self.twitterHandle = "0xWDG"
         self.blueskyHandle = "0xwdg.bsky.social"
         self.mastodonHandle = "@0xWDG@mastodon.social"
-        self.appStoreDeveloperURL = "https://apps.apple.com/developer/wesley-de-groot/id602359900"
         self.changeLog = _changeLog
-        self.content = content
+        self.customSection = content
 #if canImport(OSLog)
         self.extractor = OSLogExtractor(
             subsystem: "nl.wesleydegroot",
@@ -153,10 +155,18 @@ public struct SESettingsView<Content: View>: View {
         NavigationStack {
             List {
                 headerSection
-                content() // Custom settings
+                customSection() // Custom section
                 applicationInfoSection
                 aboutTheDeveloperSection
                 footerSection
+            }
+            .task {
+#if canImport(StoreKit)
+                if appStoreDeveloperURL != nil &&
+                    Int.random(in: 0..<10) == 5 {
+                    requestReview()
+                }
+#endif
             }
             .buttonStyle(.borderless)
             .foregroundStyle(Color.primary)
@@ -180,6 +190,7 @@ public struct SESettingsView<Content: View>: View {
             }
             .frame(maxWidth: .infinity)
         }
+        .listRowSeparator(.hidden)
     }
 
     var applicationInfoSection: some View {
@@ -207,10 +218,7 @@ public struct SESettingsView<Content: View>: View {
                 }
             }
 
-            AsyncView {
-                return await AppInfo.getReviewURL()
-            } content: { response in
-                if let reviewURL = response {
+            if let reviewURL = reviewURL {
                     Button {
                         openURL(reviewURL)
                     } label: {
@@ -221,7 +229,6 @@ public struct SESettingsView<Content: View>: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
-            }
 
             if let supportEmail {
                 Button {
@@ -273,6 +280,11 @@ public struct SESettingsView<Content: View>: View {
         } header: {
             Label("Application Info", systemImage: "info.circle")
         }
+        .task {
+            if reviewURL == nil {
+                reviewURL = await AppInfo.getReviewURL()
+            }
+        }
     }
 
     var aboutTheDeveloperSection: some View {
@@ -319,20 +331,21 @@ public struct SESettingsView<Content: View>: View {
                 }
             }
 
-            AsyncView {
-                return await AppInfo.getDeveloperURL()
-            } content: { result in
-                if let url = result {
-                    Button {
-                        openURL(url)
-                    } label: {
-                        Label("More apps from the developer", systemImage: "info.bubble")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
+            if let url = developerURL {
+                Button {
+                    openURL(url)
+                } label: {
+                    Label("More apps from the developer", systemImage: "info.bubble")
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
         } header: {
             Label("About the developer", systemImage: "person")
+        }
+        .task {
+            if developerURL == nil {
+                developerURL = await AppInfo.getDeveloperURL()
+            }
         }
     }
 
@@ -350,53 +363,4 @@ public struct SESettingsView<Content: View>: View {
     }
 }
 
-/// SwiftExtras Change Log Entry
-public struct SEChangeLogEntry: Identifiable {
-    /// The unique identifier for this entry.
-    public var id: UUID = UUID()
-
-    /// The version number for this entry.
-    public var version: String
-
-    /// The changelog for this entry.
-    public var text: String
-
-    /// Initialize a new change log entry.
-    ///
-    /// - Parameters:
-    ///   - version: The version number for this entry.
-    ///   - text: The changelog for this entry.
-    public init(version: String, text: String) {
-        self.version = version
-        self.text = text
-    }
-}
-
-/// SwiftExtras Change Log View
-///
-/// SwiftExtras Change Log View is a SwiftUI View that can be used to show a change log.
-public struct SEChangeLogView: View {
-    /// The change log entries to display.
-    public var changeLog: [SEChangeLogEntry]
-
-    public var body: some View {
-        List {
-            ForEach(changeLog) { changeLogEntry in
-                Section(.init("**Version \(changeLogEntry.version)**")) {
-                    Text(.init(changeLogEntry.text))
-                }
-            }
-        }
-        .navigationTitle("Changelog")
-    }
-
-    /// Initialize a new change log view.
-    ///
-    /// - Parameters:
-    ///   - changeLog: The change log entries to display.
-    public init(changeLog: [SEChangeLogEntry]) {
-        self.changeLog = changeLog
-    }
-}
 #endif
-// swiftlint:disable:this file_length
