@@ -64,6 +64,7 @@ public struct SESettingsView<Content: View>: View {
     var mastodonHandle: String?
     var appStoreDeveloperURL: String?
     var changeLog: [SEChangeLogEntry]?
+    var acknowledgments: [SEAcknowledgement]?
     let customSection: () -> Content?
 
     /// Initialize SwiftExtras Settings View
@@ -81,6 +82,7 @@ public struct SESettingsView<Content: View>: View {
     ///   - mastodonHandle: Your Mastodon handle
     ///   - OSLogSubsystem: The subsystem for your OS-Logs (nil = hidden), no value = AppBundle
     ///   - changeLog: Changelog
+    ///   - acknowledgements: Acknowledgements to mention
     ///   - content: Additional content
     public init(
         createdBy: String? = nil,
@@ -91,6 +93,7 @@ public struct SESettingsView<Content: View>: View {
         mastodonHandle: String? = nil,
         OSLogSubsystem: String? = AppInfo.bundleIdentifier,
         changeLog: [SEChangeLogEntry]?,
+        acknowledgements: [SEAcknowledgement]?,
         @ViewBuilder content: @escaping () -> Content? = { nil }
     ) {
         self.createdBy = createdBy
@@ -100,6 +103,7 @@ public struct SESettingsView<Content: View>: View {
         self.blueskyHandle = blueskyHandle
         self.mastodonHandle = mastodonHandle
         self.changeLog = changeLog
+        self.acknowledgments = acknowledgements
         self.customSection = content
 #if canImport(OSLog)
         if let OSLogSubsystem {
@@ -115,6 +119,8 @@ public struct SESettingsView<Content: View>: View {
     public init(
         _changeLog: [SEChangeLogEntry]?,
         // swiftlint:disable:previous identifier_name
+        _acknowledgements: [SEAcknowledgement]?,
+        // swiftlint:disable:previous identifier_name
         @ViewBuilder content: @escaping () -> Content? = { nil }
     ) {
         self.createdBy = "[Wesley de Groot](https://wesleydegroot.nl)"
@@ -128,6 +134,7 @@ public struct SESettingsView<Content: View>: View {
         self.blueskyHandle = "0xwdg.bsky.social"
         self.mastodonHandle = "@0xWDG@mastodon.social"
         self.changeLog = _changeLog
+        self.acknowledgments = _acknowledgements
         self.customSection = content
 #if canImport(OSLog)
         self.extractor = OSLogExtractor(
@@ -202,6 +209,17 @@ public struct SESettingsView<Content: View>: View {
                     Label(
                         "Changelog",
                         systemImage: "newspaper"
+                    )
+                }
+            }
+
+            if let acknowledgments {
+                NavigationLink(
+                    destination: SEAcknowledgementView(entries: acknowledgments)
+                ) {
+                    Label(
+                        "Acknowledgements",
+                        systemImage: "paperclip"
                     )
                 }
             }
