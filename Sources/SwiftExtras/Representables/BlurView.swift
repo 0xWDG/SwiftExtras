@@ -24,7 +24,7 @@ import SwiftUI
 /// }
 /// .background(BlurView(style: .systemMaterial))
 /// ```
-public struct BlurView: ViewRepresentable {
+public struct BlurView: PlatformViewRepresentableType {
 #if canImport(UIKit)
     public var style: UIBlurEffect.Style = .regular
 

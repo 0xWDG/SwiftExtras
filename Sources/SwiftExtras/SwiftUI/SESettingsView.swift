@@ -2,7 +2,11 @@
 //  SESettingsView.swift
 //  SwiftExtras
 //
-//  Created by Wesley de Groot on 09/02/2025.
+//  Created by Wesley de Groot on 2025-02-09.
+//  https://wesleydegroot.nl
+//
+//  https://github.com/0xWDG/SwiftExtras
+//  MIT License
 //
 
 #if canImport(SwiftUI)
@@ -178,6 +182,9 @@ public struct SESettingsView<Content: View>: View {
             .buttonStyle(.borderless)
             .foregroundStyle(Color.primary)
             .navigationTitle("About")
+#if os(iOS)
+            .navigationBarTitleDisplayMode(.inline)
+#endif
         }
     }
 

@@ -28,7 +28,7 @@ import SwiftUI
 /// SafariView(html: "<html><body><h1>Hello, World!</h1></body></html>")
 /// ```
 ///
-public struct WebView: ViewRepresentable {
+public struct WebView: PlatformViewRepresentableType {
     let url: URL
     let onLoad: ((WKWebView, WKNavigation) -> Void)?
     let onError: ((WKWebView, WKNavigation, Error) -> Void)?
