@@ -17,12 +17,12 @@ import SwiftUI
 /// SwiftExtras Acknowledgement View is a SwiftUI View that can be used to show acknowledgements.
 public struct SEAcknowledgementView: View {
     /// The change log entries to display.
-    public var entries: [SEAcknowledgement]
+    public var entries: Set<SEAcknowledgement>
 
     /// The body of the view.
     public var body: some View {
         List {
-            ForEach(entries) { entry in
+            ForEach(entries.sorted(by: { $0.name < $1.name })) { entry in
                 if let string = entry.url,
                    let url = URL(string: string) {
                     NavigationLink {
@@ -37,12 +37,13 @@ public struct SEAcknowledgementView: View {
                     } label: {
                         label(for: entry)
                     }
+                    .id(UUID())
                 } else {
                     label(for: entry)
                 }
             }
         }
-        .navigationTitle("Acknowledgements")
+        .navigationTitle(Text("Acknowledgements", bundle: Bundle.module))
 #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
 #endif
@@ -56,10 +57,10 @@ public struct SEAcknowledgementView: View {
         VStack(alignment: .leading) {
             Text("\(entry.name)")
 
-            Text("by \(entry.copyright)")
+            Text("Created by \(entry.copyright)", bundle: Bundle.module)
                 .font(.callout)
 
-            Text("Licensed under \(entry.licence)")
+            Text("Licensed under \(entry.licence)", bundle: Bundle.module)
                 .font(.caption)
         }
     }
@@ -69,10 +70,10 @@ public struct SEAcknowledgementView: View {
     /// - Parameters:
     ///   - changeLog: The change log entries to display.
     public init(entries: [SEAcknowledgement]) {
-        self.entries = entries
+        self.entries = Set(entries)
 
         if entries.first(where: { $0.name == "SwiftExtras" }) == nil {
-            self.entries.append(
+            self.entries.insert(
                 .init(
                     name: "SwiftExtras",
                     copyright: "Wesley de Groot",
@@ -83,7 +84,7 @@ public struct SEAcknowledgementView: View {
         }
 
         if entries.first(where: { $0.name == "OSLogViewer" }) == nil {
-            self.entries.append(
+            self.entries.insert(
                 .init(
                     name: "OSLogViewer",
                     copyright: "Wesley de Groot",

@@ -2,7 +2,11 @@
 //  SEAcknowledgement.swift
 //  SwiftExtras
 //
-//  Created by Wesley de Groot on 11/02/2025.
+//  Created by Wesley de Groot on 2025-01-10.
+//  https://wesleydegroot.nl
+//
+//  https://github.com/0xWDG/SwiftExtras
+//  MIT License
 //
 
 import Foundation
@@ -10,9 +14,11 @@ import Foundation
 /// SwiftExtras Acknoledgement Entry
 ///
 /// Acknowledgement entry for use in the `SEAcknowledgementView`.
-public struct SEAcknowledgement: Identifiable {
+public struct SEAcknowledgement: Identifiable, Hashable {
     /// The unique identifier for this entry.
-    public var id: UUID = UUID()
+    public var id: String {
+        name
+    }
 
     /// The name of the framework.
     public var name: String

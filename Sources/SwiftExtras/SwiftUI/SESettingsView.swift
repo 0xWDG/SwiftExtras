@@ -27,7 +27,7 @@ import MessageUI
 /// It can show the app icon, app name, created by, privacy policy, support email, twitter handle,
 /// bluesky handle, mastodon handle, app store developer URL, changelog, and additional content.
 @available(macOS 13.0, *)
-public struct SESettingsView<Content: View>: View {
+public struct SESettingsView<TopContent: View, BottomContent: View>: View {
     // swiftlint:disable:previous type_body_length
     // MARK: Environment
     @Environment(\.dismiss) var dismiss
@@ -69,7 +69,8 @@ public struct SESettingsView<Content: View>: View {
     var appStoreDeveloperURL: String?
     var changeLog: [SEChangeLogEntry]?
     var acknowledgments: [SEAcknowledgement]?
-    let customSection: () -> Content?
+    let customTopSection: () -> TopContent?
+    let customBottomSection: () -> BottomContent?
 
     /// Initialize SwiftExtras Settings View
     ///
@@ -98,7 +99,8 @@ public struct SESettingsView<Content: View>: View {
         OSLogSubsystem: String? = AppInfo.bundleIdentifier,
         changeLog: [SEChangeLogEntry]?,
         acknowledgements: [SEAcknowledgement]?,
-        @ViewBuilder content: @escaping () -> Content? = { nil }
+        @ViewBuilder topContent: @escaping () -> TopContent? = { nil },
+        @ViewBuilder bottomContent: @escaping () -> BottomContent? = { nil }
     ) {
         self.createdBy = createdBy
         self.privacyPolicyURL = privacyPolicyURL
@@ -108,7 +110,8 @@ public struct SESettingsView<Content: View>: View {
         self.mastodonHandle = mastodonHandle
         self.changeLog = changeLog
         self.acknowledgments = acknowledgements
-        self.customSection = content
+        self.customTopSection = topContent
+        self.customBottomSection = bottomContent
 #if canImport(OSLog)
         if let OSLogSubsystem {
             self.extractor = OSLogExtractor(
@@ -125,7 +128,8 @@ public struct SESettingsView<Content: View>: View {
         // swiftlint:disable:previous identifier_name
         _acknowledgements: [SEAcknowledgement]?,
         // swiftlint:disable:previous identifier_name
-        @ViewBuilder content: @escaping () -> Content? = { nil }
+        @ViewBuilder topContent: @escaping () -> TopContent? = { nil },
+        @ViewBuilder bottomContent: @escaping () -> BottomContent? = { nil }
     ) {
         self.createdBy = "[Wesley de Groot](https://wesleydegroot.nl)"
         if let privacyURL = URL(
@@ -139,7 +143,8 @@ public struct SESettingsView<Content: View>: View {
         self.mastodonHandle = "@0xWDG@mastodon.social"
         self.changeLog = _changeLog
         self.acknowledgments = _acknowledgements
-        self.customSection = content
+        self.customTopSection = topContent
+        self.customBottomSection = bottomContent
 #if canImport(OSLog)
         self.extractor = OSLogExtractor(
             subsystem: "nl.wesleydegroot",
@@ -166,9 +171,10 @@ public struct SESettingsView<Content: View>: View {
         NavigationStack {
             List {
                 headerSection
-                customSection() // Custom section
+                customTopSection() // Custom section
                 applicationInfoSection
                 aboutTheDeveloperSection
+                customBottomSection()
                 footerSection
             }
             .task {
@@ -181,9 +187,20 @@ public struct SESettingsView<Content: View>: View {
             }
             .buttonStyle(.borderless)
             .foregroundStyle(Color.primary)
-            .navigationTitle("About")
+            .navigationTitle(Text("Settings", bundle: Bundle.module))
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+#endif
+#if canImport(SwiftUI) && canImport(MessageUI)
+            .sheet(isPresented: $isShowingMailView) {
+                if let supportEmail = self.supportEmail {
+                    MailView(result: $result) { composer in
+                        composer.setSubject("\(AppInfo.appName.slugified) Feedback")
+                        composer.setToRecipients([supportEmail])
+                        composer.setMessageBody(getMailBody, isHTML: false)
+                    }
+                }
+            }
 #endif
         }
     }
@@ -193,13 +210,14 @@ public struct SESettingsView<Content: View>: View {
             VStack(alignment: .center) {
                 AppInfo.appIcon
                     .resizable()
+                    .cornerRadius(18)
                     .frame(width: 124, height: 124)
 
                 Text(AppInfo.appName)
                     .font(.title)
 
                 if let createdBy {
-                    Text(.init("Created by \(createdBy)"))
+                    Text(.init("Created by \(createdBy)"), bundle: Bundle.module)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -213,10 +231,11 @@ public struct SESettingsView<Content: View>: View {
                 NavigationLink(
                     destination: SEChangeLogView(changeLog: changeLog)
                 ) {
-                    Label(
-                        "Changelog",
-                        systemImage: "newspaper"
-                    )
+                    Label {
+                        Text("Changelog", bundle: Bundle.module)
+                    } icon: {
+                        Image(systemName: "newspaper")
+                    }
                 }
             }
 
@@ -224,10 +243,11 @@ public struct SESettingsView<Content: View>: View {
                 NavigationLink(
                     destination: SEAcknowledgementView(entries: acknowledgments)
                 ) {
-                    Label(
-                        "Acknowledgements",
-                        systemImage: "paperclip"
-                    )
+                    Label {
+                        Text("Acknowledgements", bundle: Bundle.module)
+                    } icon: {
+                        Image(systemName: "paperclip")
+                    }
                 }
             }
 
@@ -235,10 +255,11 @@ public struct SESettingsView<Content: View>: View {
                 Button {
                     openURL(privacyPolicyURL)
                 } label: {
-                    Label(
-                        "Privacy Policy",
-                        systemImage: "person.badge.key"
-                    )
+                    Label {
+                        Text("Privacy Policy", bundle: Bundle.module)
+                    } icon: {
+                        Image(systemName: "person.badge.key")
+                    }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
@@ -247,10 +268,11 @@ public struct SESettingsView<Content: View>: View {
                     Button {
                         openURL(reviewURL)
                     } label: {
-                        Label(
-                            "Rate the app",
-                            systemImage: "star"
-                        )
+                        Label {
+                            Text("Rate the app", bundle: Bundle.module)
+                        } icon: {
+                            Image(systemName: "star")
+                        }
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
@@ -286,24 +308,31 @@ public struct SESettingsView<Content: View>: View {
                     }
                 } label: {
                     HStack {
-                        Label(
-                            "Feedback",
-                            systemImage: "pencil.and.ellipsis.rectangle"
-                        ).frame(maxWidth: .infinity, alignment: .leading)
+                        Label {
+                            Text("Feedback", bundle: Bundle.main)
+                        } icon: {
+                            Image(systemName: "pencil.and.ellipsis.rectangle")
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
 
                         if isLoading {
                             Spacer()
 
                             ProgressView()
                                 .controlSize(.small)
-                            Text("Fetching logs...")
+
+                            Text("Fetching logs...", bundle: Bundle.module)
                         }
                     }
                 }
                 .disabled(isLoading)
             }
         } header: {
-            Label("Application Info", systemImage: "info.circle")
+            Label {
+                Text("Application Info", bundle: Bundle.module)
+            } icon: {
+                Image(systemName: "info.circle")
+            }
         }
         .task {
             if reviewURL == nil {
@@ -320,7 +349,7 @@ public struct SESettingsView<Content: View>: View {
                     openURL(url)
                 } label: {
                     Label {
-                        Text("𝕏/Twitter")
+                        Text("𝕏/Twitter", bundle: Bundle.module)
                     } icon: {
                         Image("x-twitter", bundle: Bundle.module)
                     }
@@ -334,7 +363,7 @@ public struct SESettingsView<Content: View>: View {
                     openURL(url)
                 } label: {
                     Label {
-                        Text("Bluesky")
+                        Text("Bluesky", bundle: Bundle.module)
                     } icon: {
                         Image("bluesky", bundle: Bundle.module)
                     }
@@ -348,7 +377,7 @@ public struct SESettingsView<Content: View>: View {
                     openURL(url)
                 } label: {
                     Label {
-                        Text("Mastodon")
+                        Text("Mastodon", bundle: Bundle.module)
                     } icon: {
                         Image("mastodon", bundle: Bundle.module)
                     }
@@ -360,12 +389,20 @@ public struct SESettingsView<Content: View>: View {
                 Button {
                     openURL(url)
                 } label: {
-                    Label("More apps from the developer", systemImage: "info.bubble")
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Label {
+                        Text("More apps from the developer", bundle: Bundle.module)
+                    } icon: {
+                        Image(systemName: "info.bubble")
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
         } header: {
-            Label("About the developer", systemImage: "person")
+            Label {
+                Text("About the developer", bundle: Bundle.module)
+            } icon: {
+                Image(systemName: "person")
+            }
         }
         .task {
             if developerURL == nil {
@@ -377,15 +414,19 @@ public struct SESettingsView<Content: View>: View {
     var footerSection: some View {
         VStack(alignment: .leading) {
             Text(
-                "\(AppInfo.appName) version: \(AppInfo.versionNumber), build: \(AppInfo.buildNumber)"
+                "\(AppInfo.appName) version: \(AppInfo.versionNumber), build: \(AppInfo.buildNumber)",
+                bundle: Bundle.module
             )
             if let createdBy {
-                Text(.init("Created by \(createdBy)"))
+                Text(
+                    .init("Created by \(createdBy)"),
+                    bundle: Bundle.module
+                )
             }
         }
         .listRowBackground(Color.clear)
         .listRowSeparator(.hidden)
     }
 }
-
 #endif
+// swiftlint:disable:this file_length

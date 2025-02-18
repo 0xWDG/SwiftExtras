@@ -14,7 +14,9 @@ import Foundation
 /// SwiftExtras Change Log Entry
 public struct SEChangeLogEntry: Identifiable {
     /// The unique identifier for this entry.
-    public var id: UUID = UUID()
+    public var id: String {
+        version
+    }
 
     /// The version number for this entry.
     public var version: String

@@ -22,12 +22,16 @@ public struct SEChangeLogView: View {
     public var body: some View {
         List {
             ForEach(changeLog) { changeLogEntry in
-                Section(.init("**Version \(changeLogEntry.version)**")) {
+                Section {
                     Text(.init(changeLogEntry.text))
+                } header: {
+                    Text("Version \(changeLogEntry.version)")
+                        .bold()
                 }
+
             }
         }
-        .navigationTitle("Changelog")
+        .navigationTitle(Text("Changelog", bundle: Bundle.module))
 #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
 #endif

@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "SwiftExtras",
+    defaultLocalization: "en",
     platforms: [
         .iOS(.v16),
         .macOS(.v13),
@@ -30,7 +31,8 @@ let package = Package(
                 .product(name: "OSLogViewer", package: "OSLogViewer")
             ],
             resources: [
-                .process("Assets.xcassets")
+                .process("Assets.xcassets"),
+                .process("Localizable.xcstrings")
             ]
         ),
         .testTarget(
