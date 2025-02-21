@@ -87,8 +87,7 @@ public typealias PlatformViewControllerRepresentable = NSViewControllerRepresent
 public typealias PlatformViewRepresentableType = NSViewRepresentable
 
 /// `UIScreen/NSScreen` alias for platform-agnostic code.
-/// - note: `UIScreen` is not available on visionOS. When building for visionOS, \
-/// this alias resolves to a shimmed type that only includes the static `main` and the `scale` properties.
+/// - note: `UIScreen` is not available on visionOS.
 public typealias PlatformScreen = NSScreen
 
 /// `UIWindowScene` alias for platform-agnostic code.
