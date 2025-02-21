@@ -1,5 +1,5 @@
 //
-//  SafariView.swift
+//  WebView.swift
 //  SwiftExtras
 //
 //  Created by Wesley de Groot on 2025-01-10.
@@ -13,19 +13,19 @@
 import SwiftUI
 @preconcurrency import WebKit
 
-/// Create a Safari View
+/// Create a Web View
 ///
 /// This view is a wrapper around `SFSafariViewController`.
 ///
 /// Usage:
 /// Open a URL in Safari:
 /// ```swift
-/// SafariView(url: URL(string: "https://wesleydegroot.nl")!)
+/// WebView(url: URL(string: "https://wesleydegroot.nl")!)
 /// ```
 ///
 /// Open a HTML string in Safari:
 /// ```swift
-/// SafariView(html: "<html><body><h1>Hello, World!</h1></body></html>")
+/// WebView(html: "<html><body><h1>Hello, World!</h1></body></html>")
 /// ```
 ///
 public struct WebView: PlatformViewRepresentableType {
@@ -42,7 +42,7 @@ public struct WebView: PlatformViewRepresentableType {
     /// Usage:
     /// Open a URL in Safari:
     /// ```swift
-    /// SafariView(url: URL(string: "https://wesleydegroot.nl")!)
+    /// WebView(url: URL(string: "https://wesleydegroot.nl")!)
     /// ```
     ///
     /// - Parameter url: The URL specifying which to navigate.
@@ -66,7 +66,7 @@ public struct WebView: PlatformViewRepresentableType {
     /// Usage:
     /// Open a URL in Safari:
     /// ```swift
-    /// SafariView(html: "<html><body><h1>Hello, World!</h1></body></html>")
+    /// WebView(html: "<html><body><h1>Hello, World!</h1></body></html>")
     /// ```
     ///
     /// - Parameter html: The HTML String to load.

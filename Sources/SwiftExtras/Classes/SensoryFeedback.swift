@@ -39,6 +39,7 @@ public class SensoryFeedback {
     /// - Parameter type: Feedback type
     @discardableResult
     public init(type: SensoryFeedbackType) {
+#if !os(visionOS)
         switch type {
         case .error:
             let generator = UINotificationFeedbackGenerator()
@@ -64,6 +65,7 @@ public class SensoryFeedback {
             let generator = UIImpactFeedbackGenerator(style: .heavy)
             generator.impactOccurred()
         }
+#endif
     }
 }
 #endif
