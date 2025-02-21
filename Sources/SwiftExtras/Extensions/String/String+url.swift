@@ -25,6 +25,10 @@ extension String {
     ///        "it's easy to encode strings".urlEncoded -> "it's%20easy%20to%20encode%20strings"
     ///
     public var urlEncoded: String {
-        return addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        guard let encodedString = addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
+            return self
+        }
+
+        return encodedString
     }
 }
