@@ -1,16 +1,29 @@
 excluded:
   - "*resource_bundle_accessor*" # SwiftPM Generated
   - ".build/*"
+  - "Package.swift"
 
 opt_in_rules:
-   - missing_docs
-   - empty_count
-   - empty_string
-   - toggle_bool
-   - unused_optional_binding
-   - valid_ibinspectable
-   - modifier_order
-   - first_where
-   - fatal_error_message
-   - force_unwrapping
+  - missing_docs
+  - empty_count
+  - empty_string
+  - toggle_bool
+  - unused_optional_binding
+  - valid_ibinspectable
+  - modifier_order
+  - first_where
+  - fatal_error_message
+  - force_unwrapping
+  - file_header
 
+file_header:
+  required_pattern: |
+    \/\/
+    \/\/  .*?\.swift
+    \/\/  SwiftExtras
+    \/\/
+    \/\/  Created by .*? on .*?\.
+    \/\/  https:\/\/.*?
+    \/\/
+    \/\/  https:\/\/github\.com\/0xWDG\/SwiftExtras
+    \/\/  MIT License

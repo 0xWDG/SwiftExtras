@@ -25,8 +25,7 @@ public struct SEChangeLogView: View {
                 Section {
                     Text(.init(changeLogEntry.text))
                 } header: {
-                    Text("Version \(changeLogEntry.version)")
-                        .bold()
+                    Text(.init("Version \(changeLogEntry.version)"))
                 }
 
             }

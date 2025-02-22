@@ -31,4 +31,12 @@ extension String {
 
         return encodedString
     }
+
+    /// Encode the string for `x-www-form-urlencoded`.
+    ///
+    /// This uses `urlEncoded()` then replaces `+` with `%2B`.
+    func formEncoded() -> String? {
+        self.urlEncoded
+            .replacingOccurrences(of: "+", with: "%2B")
+    }
 }

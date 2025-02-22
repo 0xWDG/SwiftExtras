@@ -18,6 +18,12 @@ import SwiftUI
 
 import UIKit
 
+/// `UIFont/NSFont` alias for platform-agnostic code.
+public typealias PlatformFont = UIFont
+
+/// `UIPasteboard/NSPasteboard` alias for platform-agnostic code.
+public typealias PlatformPasteboard = UIPasteboard
+
 /// `UIImage/NSImage` alias for platform-agnostic code.
 public typealias PlatformImage = UIImage
 
@@ -65,6 +71,12 @@ public extension PlatformImage {
 #if os(macOS)
 
 import AppKit
+
+/// `UIFont/NSFont` alias for platform-agnostic code.
+public typealias PlatformFont = NSFont
+
+/// `UIPasteboard/NSPasteboard` alias for platform-agnostic code.
+public typealias PlatformPasteboard = NSPasteboard
 
 /// `UIImage/NSImage` alias for platform-agnostic code.
 public typealias PlatformImage = NSImage

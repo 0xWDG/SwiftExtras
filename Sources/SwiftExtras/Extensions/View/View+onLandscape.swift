@@ -1,16 +1,13 @@
-// Aurora framework for Swift
 //
-// The **Aurora.framework** contains a base for your project.
+//  View+onLandscape.swift
+//  SwiftExtras
 //
-// It has a lot of extensions built-in to make development easier.
+//  Created by Wesley de Groot on 2025-02-22.
+//  https://wesleydegroot.nl
 //
-// - Version: 1.0
-// - Copyright: [Wesley de Groot](https://wesleydegroot.nl) ([WDGWV](https://wdgwv.com))\
-//  and [Contributors](https://github.com/AuroraFramework/Aurora.swift/graphs/contributors).
+//  https://github.com/0xWDG/SwiftExtras
+//  MIT License
 //
-// Thanks for using!
-//
-// Licence: MIT
 
 #if canImport(SwiftUI)
 import SwiftUI
