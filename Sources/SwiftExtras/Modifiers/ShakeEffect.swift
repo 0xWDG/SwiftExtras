@@ -9,9 +9,9 @@
 //  MIT License
 //
 
+#if canImport(SwiftUI)
 import SwiftUI
 
-#if canImport(SwiftUI)
 /// A modifier that applies a shake animation to a view when triggered.
 public struct ShakeEffect: GeometryEffect {
     var amount: CGFloat = 10
