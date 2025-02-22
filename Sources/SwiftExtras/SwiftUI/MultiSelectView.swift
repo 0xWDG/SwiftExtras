@@ -90,7 +90,9 @@ public struct MultiSelectView<Label: View>: View {
                 }
             }
         }
+#if os(iOS)
         .listStyle(.grouped)
+#endif
     }
 }
 

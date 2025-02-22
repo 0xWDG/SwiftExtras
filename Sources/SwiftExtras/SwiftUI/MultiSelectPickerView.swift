@@ -98,7 +98,9 @@ public struct MultiSelectPickerView<PickerLabel: View, SelectionLabel: View>: Vi
                     }
                 }
             }
+#if os(iOS)
             .listStyle(.grouped)
+#endif
             } label: {
             pickerLabel()
         }
