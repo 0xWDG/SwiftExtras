@@ -12,7 +12,7 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
-@available(iOS 17.0, *)
+@available(iOS 17.0, macOS 14.0, *)
 public struct BorderedToggleStyle: ToggleStyle {
     public func makeBody(configuration: Configuration) -> some View {
         let symbol = configuration.isOn ? "checkmark.circle.fill" : "circle"
