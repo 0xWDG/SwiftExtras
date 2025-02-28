@@ -42,7 +42,7 @@ public struct BorderedToggleStyle: ToggleStyle {
     }
 }
 
-@available(iOS 17.0, *)
+@available(iOS 17.0, macOS 14.0, *)
 extension ToggleStyle where Self == BorderedToggleStyle {
     /// A toggle style that uses a border around the toggle.
     ///
@@ -56,7 +56,7 @@ extension ToggleStyle where Self == BorderedToggleStyle {
     public static var bordered: BorderedToggleStyle { .init() }
 }
 
-@available(iOS 17.0, *)
+@available(iOS 17.0, macOS 14.0, *)
 struct BorderedToggleStylePreview: PreviewProvider {
     static var previews: some View {
         VStack {

@@ -40,7 +40,7 @@ public struct BlueButtonStyle: ButtonStyle {
     }
 }
 
-@available(iOS 17.0, *)
+@available(iOS 17.0, macOS 14.0, *)
 extension ButtonStyle where Self == BlueButtonStyle {
     /// A button style that uses the system's blue color.
     ///
@@ -57,7 +57,7 @@ extension ButtonStyle where Self == BlueButtonStyle {
     public static var blue: BlueButtonStyle { .init() }
 }
 
-@available(iOS 17.0, *)
+@available(iOS 17.0, macOS 14.0, *)
 struct BlueButtonPreview: PreviewProvider {
     static var previews: some View {
         VStack {

@@ -41,7 +41,7 @@ public struct GrayButtonStyle: ButtonStyle {
     }
 }
 
-@available(iOS 17.0, *)
+@available(iOS 17.0, macOS 14.0, *)
 extension ButtonStyle where Self == GrayButtonStyle {
     /// A button style makes a filled gray button.
     ///
@@ -56,7 +56,7 @@ extension ButtonStyle where Self == GrayButtonStyle {
     public static var gray: GrayButtonStyle { .init() }
 }
 
-@available(iOS 17.0, *)
+@available(iOS 17.0, macOS 14.0, *)
 struct GrayButtonStyleButtonStylePreview: PreviewProvider {
     static var previews: some View {
         VStack {
