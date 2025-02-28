@@ -235,6 +235,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                         Text("Changelog", bundle: Bundle.module)
                     } icon: {
                         Image(systemName: "newspaper")
+                            .accessibilityHidden(true)
                     }
                 }
             }
@@ -247,6 +248,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                         Text("Acknowledgements", bundle: Bundle.module)
                     } icon: {
                         Image(systemName: "paperclip")
+                            .accessibilityHidden(true)
                     }
                 }
             }
@@ -259,6 +261,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                         Text("Privacy Policy", bundle: Bundle.module)
                     } icon: {
                         Image(systemName: "person.badge.key")
+                            .accessibilityHidden(true)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
@@ -272,6 +275,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                             Text("Rate the app", bundle: Bundle.module)
                         } icon: {
                             Image(systemName: "star")
+                                .accessibilityHidden(true)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }
@@ -312,6 +316,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                             Text("Feedback", bundle: Bundle.main)
                         } icon: {
                             Image(systemName: "pencil.and.ellipsis.rectangle")
+                                .accessibilityHidden(true)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -332,6 +337,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                 Text("Application Info", bundle: Bundle.module)
             } icon: {
                 Image(systemName: "info.circle")
+                    .accessibilityHidden(true)
             }
         }
         .task {
@@ -352,6 +358,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                         Text("𝕏/Twitter", bundle: Bundle.module)
                     } icon: {
                         Image("x-twitter", bundle: Bundle.module)
+                            .accessibilityHidden(true)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
@@ -366,6 +373,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                         Text("Bluesky", bundle: Bundle.module)
                     } icon: {
                         Image("bluesky", bundle: Bundle.module)
+                            .accessibilityHidden(true)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
@@ -380,6 +388,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                         Text("Mastodon", bundle: Bundle.module)
                     } icon: {
                         Image("mastodon", bundle: Bundle.module)
+                            .accessibilityHidden(true)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
@@ -393,6 +402,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                         Text("More apps from the developer", bundle: Bundle.module)
                     } icon: {
                         Image(systemName: "info.bubble")
+                            .accessibilityHidden(true)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
@@ -402,6 +412,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                 Text("About the developer", bundle: Bundle.module)
             } icon: {
                 Image(systemName: "person")
+                    .accessibilityHidden(true)
             }
         }
         .task {

@@ -82,6 +82,7 @@ public struct MultiSelectView<Label: View>: View {
                                     ? 1.0
                                     : 0.0
                                 )
+                                .accessibilityLabel("Selected")
 
                             label(item)
                         }

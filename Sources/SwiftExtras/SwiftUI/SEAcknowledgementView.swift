@@ -32,6 +32,7 @@ public struct SEAcknowledgementView: View {
                                     openURL(url)
                                 } label: {
                                     Image(systemName: "safari")
+                                        .accessibilityLabel(Text("Open in Safari"))
                                 }
                             }
                     } label: {
@@ -72,7 +73,7 @@ public struct SEAcknowledgementView: View {
     public init(entries: [SEAcknowledgement]) {
         self.entries = Set(entries)
 
-        if entries.first(where: { $0.name == "SwiftExtras" }) == nil {
+        if entries.contains(where: { $0.name == "SwiftExtras" }) == false {
             self.entries.insert(
                 .init(
                     name: "SwiftExtras",
@@ -83,7 +84,7 @@ public struct SEAcknowledgementView: View {
             )
         }
 
-        if entries.first(where: { $0.name == "OSLogViewer" }) == nil {
+        if entries.contains(where: { $0.name == "OSLogViewer" }) == nil {
             self.entries.insert(
                 .init(
                     name: "OSLogViewer",

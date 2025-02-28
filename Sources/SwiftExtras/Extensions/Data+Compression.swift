@@ -29,7 +29,7 @@ extension Data {
     ///
     /// Data as string representation
     public var stringValue: String? {
-        return String.init(data: self, encoding: .utf8)
+        return String(data: self, encoding: .utf8)
     }
 }
 

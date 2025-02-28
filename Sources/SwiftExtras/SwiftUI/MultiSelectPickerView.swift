@@ -90,6 +90,7 @@ public struct MultiSelectPickerView<PickerLabel: View, SelectionLabel: View>: Vi
                                         ? 1.0
                                         : 0.0
                                     )
+                                    .accessibilityLabel("Selected")
 
                                 selectionLabel(item)
                             }
@@ -115,12 +116,12 @@ struct MultiSelectPickerViewPreviews: PreviewProvider {
         NavigationView {
             List {
                 MultiSelectPickerView(
-                    sourceItems: items,
-                    selectedItems: $selectedItems) {
-                        Text("Pick your items")
-                    } selectionLabel: { item in
-                        Label(item, systemImage: item)
-                    }
+                sourceItems: items,
+                selectedItems: $selectedItems) {
+                    Text("Pick your items")
+                } selectionLabel: { item in
+                    Label(item, systemImage: item)
+                }
             }
         }
     }

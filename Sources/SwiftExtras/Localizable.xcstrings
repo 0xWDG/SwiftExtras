@@ -2332,6 +2332,9 @@
         }
       }
     },
+    "Open in Safari" : {
+
+    },
     "Privacy Policy" : {
       "extractionState" : "translated",
       "localizations" : {
@@ -2641,6 +2644,9 @@
           }
         }
       }
+    },
+    "Selected" : {
+
     },
     "Settings" : {
       "localizations" : {

@@ -184,7 +184,7 @@ public enum AppInfo {
               let primaryIcon = icons["CFBundlePrimaryIcon"] as? [String: Any],
               let iconFiles = primaryIcon["CFBundleIconFiles"] as? [String],
               let iconFileName = iconFiles.last else {
-            return Image.init(systemName: "xmark.app")
+            return Image(systemName: "xmark.app")
         }
 
         guard let uiImage = UIImage(named: iconFileName) else {
@@ -194,7 +194,7 @@ public enum AppInfo {
         return Image(uiImage: uiImage)
 #elseif canImport(AppKit)
         guard let iconFileName = Bundle.main.object(forInfoDictionaryKey: "CFBundleIconName") as? String else {
-            return Image.init(systemName: "xmark.app")
+            return Image(systemName: "xmark.app")
         }
 
         guard let nsImage = NSImage(named: iconFileName) else {
