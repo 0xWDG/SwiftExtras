@@ -12,11 +12,25 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// A button style makes a filled gray button.
+///
+/// The style uses the system's gray color for the background of the button.
+/// The text color is primary when the button is enabled and gray when the button is disabled.
+///
+/// Example:
+/// ```swift
+/// Button("Hello, World!") {}
+///     .buttonStyle(.gray)
+/// ```
 @available(iOS 17.0, macOS 14.0, *)
 public struct GrayButtonStyle: ButtonStyle {
     @Environment(\.isEnabled)
     private var isEnabled
 
+    /// Creates a gray button style.
+    ///
+    /// - Parameter configuration: The configuration of the button.
+    /// - Returns: A gray button style.
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(.horizontal)

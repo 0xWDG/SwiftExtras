@@ -12,11 +12,27 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// A button style that uses the system's blue color.
+///
+/// The style uses the system's blue color for the background of the button.
+/// The text color is white when the button is enabled and blue when the button is disabled.
+///
+/// - Returns: A button style that uses the system's blue color.
+///
+/// Example:
+/// ```swift
+/// Button("Hello, World!") {}
+///     .buttonStyle(.blue)
+/// ```
 @available(iOS 17.0, macOS 14.0, *)
 public struct BlueButtonStyle: ButtonStyle {
     @Environment(\.isEnabled)
     private var isEnabled
 
+    /// Creates a blue button style.
+    ///
+    /// - Parameter configuration: The configuration of the button.
+    /// - Returns: A blue button style.
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(.horizontal)

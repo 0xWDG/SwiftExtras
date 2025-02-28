@@ -12,8 +12,21 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// A toggle style that uses a border around the toggle.
+///
+/// The style uses a ``GrayButtonStyle`` button style and a border around the toggle.
+///
+/// Example:
+/// ```swift
+/// Toggle("Hello, World!", isOn: .constant(true))
+///     .toggleStyle(.bordered)
+/// ```
 @available(iOS 17.0, macOS 14.0, *)
 public struct BorderedToggleStyle: ToggleStyle {
+    /// Creates a bordered toggle style.
+    ///
+    /// - Parameter configuration: The configuration of the toggle.
+    /// - Returns: A bordered toggle style.
     public func makeBody(configuration: Configuration) -> some View {
         let symbol = configuration.isOn ? "checkmark.circle.fill" : "circle"
         let borderColor = configuration.isOn ? Color.blue : .clear

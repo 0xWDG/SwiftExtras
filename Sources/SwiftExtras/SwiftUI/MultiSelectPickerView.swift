@@ -12,10 +12,10 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
-// MultiSelectPickerView
-//
-// This is a picker view that allows you to select multiple items from a list.
-// It displays a list of items, each with a checkbox that allows you to select or deselect it.
+/// MultiSelectPickerView
+///
+/// This is a picker view that allows you to select multiple items from a list.
+/// It displays a list of items, each with a checkbox that allows you to select or deselect it.
 public struct MultiSelectPickerView<PickerLabel: View, SelectionLabel: View>: View {
     /// The list of all items to read from
     @State var sourceItems: [String]
@@ -29,33 +29,33 @@ public struct MultiSelectPickerView<PickerLabel: View, SelectionLabel: View>: Vi
     /// The label for each item
     var selectionLabel: (_ item: String) -> SelectionLabel?
 
-    // MultiSelectPickerView
-    //
-    // This is a picker view that allows you to select multiple items from a list.
-    // It displays a list of items, each with a checkbox that allows you to select or deselect it.
-    //
-    // Usage:
-    // ```
-    // NavigationLink {
-    //     List {
-    //         MultiSelectPickerView(
-    //             sourceItems: items,
-    //             selectedItems: $selectedItems) {
-    //                 Text("Pick your items")
-    //             } selectionLabel: { item in
-    //                 Label(item, systemImage: item)
-    //             }
-    //     }
-    // }
-    // ```
-    //
-    // The `label` parameter is optional, and defaults to a text view.
-    //
-    // Parameters:
-    // - sourceItems: The list of all items to read from.
-    // - selectedItems: A binding to the values we want to track.
-    // - pickerLabel: A closure that returns a label for the picker.
-    // - selectionLabel: A closure that returns a label for each item.
+    /// MultiSelectPickerView
+    ///
+    /// This is a picker view that allows you to select multiple items from a list.
+    /// It displays a list of items, each with a checkbox that allows you to select or deselect it.
+    ///
+    /// Usage:
+    /// ```
+    /// NavigationLink {
+    ///     List {
+    ///         MultiSelectPickerView(
+    ///             sourceItems: items,
+    ///             selectedItems: $selectedItems) {
+    ///                 Text("Pick your items")
+    ///             } selectionLabel: { item in
+    ///                 Label(item, systemImage: item)
+    ///             }
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// The `label` parameter is optional, and defaults to a text view.
+    ///
+    /// Parameters:
+    /// - sourceItems: The list of all items to read from.
+    /// - selectedItems: A binding to the values we want to track.
+    /// - pickerLabel: A closure that returns a label for the picker.
+    /// - selectionLabel: A closure that returns a label for each item.
     public init(
         sourceItems: [String],
         selectedItems: Binding<[String]>,

@@ -12,10 +12,10 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
-// MultiSelectView
-//
-// This is a picker view that allows you to select multiple items from a list.
-// It displays a list of items, each with a checkbox that allows you to select or deselect it.
+/// MultiSelectView
+///
+/// This is a picker view that allows you to select multiple items from a list.
+/// It displays a list of items, each with a checkbox that allows you to select or deselect it.
 public struct MultiSelectView<Label: View>: View {
     /// The list of all items to read from
     @State var sourceItems: [String]
@@ -26,31 +26,31 @@ public struct MultiSelectView<Label: View>: View {
     /// The label for each item
     var label: (_ item: String) -> Label?
 
-    // MultiSelectPickerView
-    //
-    // This is a picker view that allows you to select multiple items from a list.
-    // It displays a list of items, each with a checkbox that allows you to select or deselect it.
-    //
-    // Usage:
-    // ```
-    // NavigationLink {
-    //     MultiSelectView(
-    //         sourceItems: items,
-    //         selectedItems: $selectedItems
-    //     ) { item in
-    //         Label(item, systemImage: item)
-    //     }
-    // } label: {
-    //     Text("Picker + Label")
-    // }
-    // ```
-    //
-    // The `label` parameter is optional, and defaults to a text view.
-    //
-    // Parameters:
-    // - sourceItems: The list of all items to read from.
-    // - selectedItems: A binding to the values we want to track.
-    // - label: A closure that returns a view for each item.
+    /// MultiSelectPickerView
+    ///
+    /// This is a picker view that allows you to select multiple items from a list.
+    /// It displays a list of items, each with a checkbox that allows you to select or deselect it.
+    ///
+    /// Usage:
+    /// ```
+    /// NavigationLink {
+    ///     MultiSelectView(
+    ///         sourceItems: items,
+    ///         selectedItems: $selectedItems
+    ///     ) { item in
+    ///         Label(item, systemImage: item)
+    ///     }
+    /// } label: {
+    ///     Text("Picker + Label")
+    /// }
+    /// ```
+    ///
+    /// The `label` parameter is optional, and defaults to a text view.
+    ///
+    /// Parameters:
+    /// - sourceItems: The list of all items to read from.
+    /// - selectedItems: A binding to the values we want to track.
+    /// - label: A closure that returns a view for each item.
     public init(
         sourceItems: [String],
         selectedItems: Binding<[String]>,
