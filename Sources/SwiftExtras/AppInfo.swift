@@ -64,7 +64,7 @@ public enum AppInfo {
 
     /// Is the application running downloaded from TestFlight
     public static var isTestflight: Bool {
-        Bundle.main.appStoreReceiptURL?.absoluteString.contains("testflight") ?? false
+        Bundle.main.appStoreReceiptURL?.absoluteString.contains("sandboxReceipt") ?? false
     }
 
     /// Is the application an app extension
