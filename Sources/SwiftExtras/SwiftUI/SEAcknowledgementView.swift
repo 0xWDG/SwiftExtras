@@ -27,6 +27,7 @@ public struct SEAcknowledgementView: View {
                    let url = URL(string: string) {
                     NavigationLink {
                         WebView(url: url)
+                            .navigationTitle(entry.name)
                             .toolbar {
                                 Button {
                                     openURL(url)
@@ -84,7 +85,7 @@ public struct SEAcknowledgementView: View {
             )
         }
 
-        if entries.contains(where: { $0.name == "OSLogViewer" }) == nil {
+        if entries.contains(where: { $0.name == "OSLogViewer" }) == false {
             self.entries.insert(
                 .init(
                     name: "OSLogViewer",
