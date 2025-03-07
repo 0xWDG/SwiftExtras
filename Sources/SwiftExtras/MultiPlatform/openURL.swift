@@ -25,14 +25,13 @@ import UIKit
 public func openURL(_ url: URL) -> Bool {
 #if canImport(AppKit)
     return NSWorkspace.shared.open(url)
-#endif
-#if canImport(UIKit)
+#elseif canImport(UIKit)
     Task {
         return await UIApplication.shared.open(url)
     }
     return true
-#endif
-
-    // unfupported platform
+#else
+    // unsupported platform
     return false
+#endif
 }

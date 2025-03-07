@@ -55,7 +55,7 @@ public struct MultiSelectView<Label: View>: View {
         sourceItems: [String],
         selectedItems: Binding<[String]>,
         @ViewBuilder label: @escaping (_ item: String) -> Label? = { item in
-            Text(item + "1")
+            Text(item)
         }
     ) {
         self.sourceItems = sourceItems

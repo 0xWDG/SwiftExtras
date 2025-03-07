@@ -33,7 +33,7 @@ public struct SEAcknowledgementView: View {
                                     openURL(url)
                                 } label: {
                                     Image(systemName: "safari")
-                                        .accessibilityLabel(Text("Open in Safari"))
+                                        .accessibilityLabel(Text("Open in web browser"))
                                 }
                             }
                     } label: {
