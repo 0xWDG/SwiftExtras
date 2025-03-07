@@ -127,18 +127,26 @@ extension Date {
 
     /// Start of the month (first day)
     public var startOfMonth: Date {
-        Calendar.current.dateInterval(of: .month, for: self)!.start
+        guard let start = Calendar.current.dateInterval(of: .month, for: self)?.start else {
+            fatalError("Unable to determine the start of the month")
+        }
+        return start
     }
 
     /// End of the month (last day)
     public var endOfMonth: Date {
-        let lastDay = Calendar.current.dateInterval(of: .month, for: self)!.end
-        return Calendar.current.date(byAdding: .day, value: -1, to: lastDay)!
+        guard let lastDay = Calendar.current.dateInterval(of: .month,for: self)?.end,
+              let end = Calendar.current.date(byAdding: .day, value: -1, to: lastDay) else {
+            fatalError("Unable to determine the end of the month")
+        }
+        return end
     }
 
     /// Start of the previous month (first day)
     public var startOfPreviousMonth: Date {
-        let dayInPreviousMonth = Calendar.current.date(byAdding: .month, value: -1, to: self)!
+        guard let dayInPreviousMonth = Calendar.current.date(byAdding: .month, value: -1, to: self) else {
+            fatalError("Unable to determine the start of the previous month")
+        }
         return dayInPreviousMonth.startOfMonth
     }
 
@@ -161,7 +169,15 @@ extension Date {
             numberFromPreviousMonth += 7
         }
 
-        return Calendar.current.date(byAdding: .day, value: -numberFromPreviousMonth, to: startOfMonth)!
+        guard let firstWeekDay = Calendar.current.date(
+            byAdding: .day,
+            value: -numberFromPreviousMonth,
+            to: startOfMonth
+        ) else {
+            fatalError("Unable to determine the first weekday before the start of the month")
+        }
+
+        return firstWeekDay
     }
 
     /// Grid of dates for the month
@@ -175,14 +191,17 @@ extension Date {
         var day = firstDisplayDay
 
         while day < startOfMonth {
-            days.append(day)
-            day = Calendar.current.date(byAdding: .day, value: 1, to: day)!
+            if let newDay = Calendar.current.date(byAdding: .day, value: 1, to: day) {
+                days.append(day)
+                day = newDay
+            }
         }
 
         var dayOffset = 0
         while days.count <= 41 {
-            let newDay = Calendar.current.date(byAdding: .day, value: dayOffset, to: startOfMonth)
-            days.append(newDay!)
+            if let newDay = Calendar.current.date(byAdding: .day, value: dayOffset, to: startOfMonth) {
+                days.append(newDay)
+            }
             dayOffset += 1
         }
 
@@ -219,6 +238,10 @@ extension Date {
         components.day = 1
         components.second = -1
 
-        return Calendar.current.date(byAdding: components, to: startOfDay)!
+        guard let endOfDay = Calendar.current.date(byAdding: components, to: startOfDay) else {
+            fatalError("Unable to determine the end of the day")
+        }
+
+        return endOfDay
     }
 }
