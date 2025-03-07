@@ -135,7 +135,7 @@ extension Date {
 
     /// End of the month (last day)
     public var endOfMonth: Date {
-        guard let lastDay = Calendar.current.dateInterval(of: .month,for: self)?.end,
+        guard let lastDay = Calendar.current.dateInterval(of: .month, for: self)?.end,
               let end = Calendar.current.date(byAdding: .day, value: -1, to: lastDay) else {
             fatalError("Unable to determine the end of the month")
         }
