@@ -42,7 +42,7 @@ extension View {
     /// - Parameter buttonTitle: Button title
     ///
     /// - Returns: self
-    public func showError(error: Binding<Error?>, buttonTitle: String = "OK") -> some View {
+    public func showError(error: Binding<Error?>, buttonTitle: LocalizedStringKey = "OK") -> some View {
         alert(
             error.wrappedValue?.localizedDescription ?? "Unknown error",
             isPresented: .constant(error.wrappedValue != nil)
