@@ -87,6 +87,7 @@ extension TimeInterval {
         return Int(abs(self)) % 60
     }
 
+#if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS) || os(macOS)
     /// Returns the time interval in relative time
     public var timeString: String {
         if self == 0 {
@@ -100,4 +101,5 @@ extension TimeInterval {
             .joined(separator: " ")
         + " " + NSLocalizedString("before", comment: "before")
     }
+#endif
 }
