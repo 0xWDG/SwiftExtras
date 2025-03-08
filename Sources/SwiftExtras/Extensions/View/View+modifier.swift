@@ -35,7 +35,7 @@ extension View {
     /// NavigationStack {
     ///     Text("Hello, World!")
     /// }
-    /// .modifier { 
+    /// .modify { 
     /// #if !os(macOS)
     ///     $0.navigationBarTitle("Hello, World!")
     /// #else
@@ -46,7 +46,7 @@ extension View {
     ///
     /// - Parameter transforation: The transform to apply to the source `View`.
     /// - Returns: the modified `View`.
-    @ViewBuilder func modifier<Content: View>(_ transforation: (Self) -> Content) -> some View {
+    @ViewBuilder func modify<Content: View>(_ transforation: (Self) -> Content) -> some View {
         transforation(self)
     }
 }

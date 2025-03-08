@@ -99,8 +99,8 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
         OSLogSubsystem: String? = AppInfo.bundleIdentifier,
         changeLog: [SEChangeLogEntry]?,
         acknowledgements: [SEAcknowledgement]?,
-        @ViewBuilder topContent: @escaping () -> TopContent? = { nil },
-        @ViewBuilder bottomContent: @escaping () -> BottomContent? = { nil }
+        @ViewBuilder topContent: @escaping () -> TopContent? = { EmptyView() },
+        @ViewBuilder bottomContent: @escaping () -> BottomContent? = { EmptyView() }
     ) {
         self.createdBy = createdBy
         self.privacyPolicyURL = privacyPolicyURL
@@ -124,12 +124,12 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
 
     /// Internal: Initializes SwiftExtras Settings View (with default parameters for my apps)
     public init(
-        _changeLog: [SEChangeLogEntry]?,
-        // swiftlint:disable:previous identifier_name
-        _acknowledgements: [SEAcknowledgement]?,
-        // swiftlint:disable:previous identifier_name
-        @ViewBuilder topContent: @escaping () -> TopContent? = { nil },
-        @ViewBuilder bottomContent: @escaping () -> BottomContent? = { nil }
+    _changeLog: [SEChangeLogEntry]?,
+    // swiftlint:disable:previous identifier_name
+    _acknowledgements: [SEAcknowledgement]?,
+    // swiftlint:disable:previous identifier_name
+    @ViewBuilder topContent: @escaping () -> TopContent? = { EmptyView() },
+    @ViewBuilder bottomContent: @escaping () -> BottomContent? = { EmptyView() }
     ) {
         self.createdBy = "[Wesley de Groot](https://wesleydegroot.nl)"
         if let privacyURL = URL(
@@ -440,4 +440,25 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
     }
 }
 #endif
+
+@available(iOS 17.0, macOS 14.0, *)
+struct SESettingsViewPreview: PreviewProvider {
+    static var previews: some View {
+        NavigationStack {
+            SESettingsView(
+                _changeLog: [
+                    .init(version: "0.0.1", text: "Initial version")
+                ],
+                _acknowledgements: [
+                    .init(
+                        name: "This Package",
+                        copyright: "Wesley de Groot",
+                        licence: "Licence",
+                        url: "https://wesleydegroot.nl"
+                    )
+                ]
+            )
+        }
+    }
+}
 // swiftlint:disable:this file_length

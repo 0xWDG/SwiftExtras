@@ -19,10 +19,10 @@ import SwiftUI
 /// Example:
 /// ```swift
 /// Toggle("Hello, World!", isOn: .constant(true))
-///     .toggleStyle(.bordered)
+///     .toggleStyle(.plainBordered)
 /// ```
 @available(iOS 17.0, macOS 14.0, *)
-public struct BorderedToggleStyle: ToggleStyle {
+public struct PlainBorderedToggleStyle: ToggleStyle {
     /// Creates a bordered toggle style.
     ///
     /// - Parameter configuration: The configuration of the toggle.
@@ -43,74 +43,81 @@ public struct BorderedToggleStyle: ToggleStyle {
                 }
             }
         )
-        .buttonStyle(.gray)
+        .buttonStyle(.toggle)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .strokeBorder(
-                    .tint,
-                    style: .init(lineWidth: configuration.isOn ? 2 : 0)
+                    .secondary,
+                    style: .init(lineWidth: 2)
                 )
         )
+        .if(configuration.isOn, transform: {
+            $0.overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .strokeBorder(
+                        .tint,
+                        style: .init(lineWidth: 2)
+                    )
+            )
+        })
     }
 }
 
 @available(iOS 17.0, macOS 14.0, *)
-extension ToggleStyle where Self == BorderedToggleStyle {
+extension ToggleStyle where Self == PlainBorderedToggleStyle {
     /// A toggle style that uses a border around the toggle.
-    ///
-    /// The style uses a ``GrayButtonStyle`` button style and a border around the toggle.
     ///
     /// Example:
     /// ```swift
     /// Toggle("Hello, World!", isOn: .constant(true))
-    ///     .toggleStyle(.bordered)
+    ///     .toggleStyle(.plainBordered)
     /// ```
-    public static var bordered: BorderedToggleStyle { .init() }
+    public static var plainBordered: PlainBorderedToggleStyle { .init() }
 }
 
 @available(iOS 17.0, macOS 14.0, *)
-struct GreyBorderedToggleStylePreview: PreviewProvider {
+struct BorderedToggleStylePreview: PreviewProvider {
     static var previews: some View {
         VStack {
             Toggle(
                 "Hello World",
                 isOn: .constant(false)
             )
-            .toggleStyle(.bordered)
+            .toggleStyle(.plainBordered)
 
             Toggle(
                 "Hello World",
                 isOn: .constant(true)
             )
-            .toggleStyle(.bordered)
+            .toggleStyle(.plainBordered)
 
             Toggle(
                 "Hello World",
                 isOn: .constant(false)
             )
             .accentColor(.green)
-            .toggleStyle(.bordered)
+            .toggleStyle(.plainBordered)
 
             Toggle(
                 "Hello World",
                 isOn: .constant(true)
             )
             .accentColor(.green)
-            .toggleStyle(.bordered)
+            .toggleStyle(.plainBordered)
 
             Toggle(
                 "Hello World",
                 isOn: .constant(false)
             )
             .tint(.red)
-            .toggleStyle(.bordered)
+            .toggleStyle(.plainBordered)
 
             Toggle(
                 "Hello World",
                 isOn: .constant(true)
             )
             .tint(.red)
-            .toggleStyle(.bordered)
+            .toggleStyle(.plainBordered)
         }
         .padding()
     }
