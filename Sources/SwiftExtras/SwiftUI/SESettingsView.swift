@@ -439,7 +439,6 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
         .listRowSeparator(.hidden)
     }
 }
-#endif
 
 @available(iOS 17.0, macOS 14.0, *)
 struct SESettingsViewPreview: PreviewProvider {
@@ -461,4 +460,6 @@ struct SESettingsViewPreview: PreviewProvider {
         }
     }
 }
+
+#endif
 // swiftlint:disable:this file_length
