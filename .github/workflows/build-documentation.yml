@@ -14,7 +14,17 @@ on:
 jobs:
   Build-documentation:
     if: github.repository_owner == '0xWDG'
-    runs-on: macos-latest
+    runs-on: macos-15
     steps:
+      - name: "Select Xcode (Default)"
+        run: sudo xcode-select -s /Applications/Xcode_16.app
+
+      - name: Runner environment
+        run: |
+          echo "MacOS Version"
+          sw_vers
+          echo "Toolchain version"
+          swift -version
+
       - name: Build documentation
         uses: 0xWDG/build-documentation@main
