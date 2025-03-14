@@ -68,51 +68,51 @@ extension ToggleStyle where Self == BorderedToggleStyle {
     public static var bordered: BorderedToggleStyle { .init() }
 }
 
-@available(iOS 17.0, macOS 14.0, *)
-struct GreyBorderedToggleStylePreview: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            Toggle(
-                "Hello World",
-                isOn: .constant(false)
-            )
-            .toggleStyle(.bordered)
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    VStack {
+        Toggle(
+            "Hello World",
+            isOn: .constant(false)
+        )
+        .toggleStyle(.bordered)
 
-            Toggle(
-                "Hello World",
-                isOn: .constant(true)
-            )
-            .toggleStyle(.bordered)
+        Toggle(
+            "Hello World",
+            isOn: .constant(true)
+        )
+        .toggleStyle(.bordered)
 
-            Toggle(
-                "Hello World",
-                isOn: .constant(false)
-            )
-            .accentColor(.green)
-            .toggleStyle(.bordered)
+        Toggle(
+            "Hello World",
+            isOn: .constant(false)
+        )
+        .accentColor(.green)
+        .toggleStyle(.bordered)
 
-            Toggle(
-                "Hello World",
-                isOn: .constant(true)
-            )
-            .accentColor(.green)
-            .toggleStyle(.bordered)
+        Toggle(
+            "Hello World",
+            isOn: .constant(true)
+        )
+        .accentColor(.green)
+        .toggleStyle(.bordered)
 
-            Toggle(
-                "Hello World",
-                isOn: .constant(false)
-            )
-            .tint(.red)
-            .toggleStyle(.bordered)
+        Toggle(
+            "Hello World",
+            isOn: .constant(false)
+        )
+        .tint(.red)
+        .toggleStyle(.bordered)
 
-            Toggle(
-                "Hello World",
-                isOn: .constant(true)
-            )
-            .tint(.red)
-            .toggleStyle(.bordered)
-        }
-        .padding()
+        Toggle(
+            "Hello World",
+            isOn: .constant(true)
+        )
+        .tint(.red)
+        .toggleStyle(.bordered)
     }
+    .padding()
 }
+#endif
 #endif

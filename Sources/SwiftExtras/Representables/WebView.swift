@@ -110,6 +110,7 @@ public struct WebView: PlatformViewRepresentableType {
         }
     }
 #endif
+
 #if canImport(AppKit)
     public func makeNSView(context: Context) -> some NSView {
         webView.navigationDelegate = context.coordinator
@@ -145,5 +146,12 @@ public struct WebView: PlatformViewRepresentableType {
         }
     }
 }
-
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    if let url = URL(string: "https://wesleydegroot.nl") {
+        WebView(url: url)
+    }
+}
+#endif
 #endif

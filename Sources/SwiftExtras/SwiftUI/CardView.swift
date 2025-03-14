@@ -34,6 +34,7 @@ public struct CardView<Content: View>: View {
         Image(systemName: "xmark.circle.fill")
             .foregroundColor(.gray)
             .font(.system(size: 26))
+            .opacity(0.75)
             .accessibility(label: Text("Close"))
             .accessibility(hint: Text("Tap to close the screen"))
             .accessibility(addTraits: .isButton)
@@ -84,19 +85,15 @@ public struct CardView<Content: View>: View {
     }
 }
 
-@available(macOS 11.0, *, iOS 14, *)
-struct CardViewPreviews: PreviewProvider {
-    static var previews: some View {
-        CardView(title: "Title") {
-            Text("Hello")
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    Text("Hello world")
+        .sheet(isPresented: .constant(true)) {
+            CardView(title: "Title", subtitle: "Subtitle") {
+                Text("Hi :)")
+            }
         }
-    }
-
-    static var previews2: some View {
-        CardView(title: "Title", subtitle: "AAA") {
-            Text("Hello")
-        }
-    }
-
 }
+#endif
 #endif

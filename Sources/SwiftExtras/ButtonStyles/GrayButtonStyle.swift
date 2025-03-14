@@ -40,8 +40,7 @@ public struct GrayButtonStyle: ButtonStyle {
                 .background.secondary,
                 in: .rect(cornerRadius: 10)
             )
-            .foregroundStyle(.primary)
-            .foregroundStyle(isEnabled ? .primary : Color.gray)
+            .foregroundStyle(isEnabled ? .primary : .secondary)
             .font(.body.weight(.medium))
             .opacity(configuration.isPressed ? 0.8 : 1)
             .animation(
@@ -70,18 +69,18 @@ extension ButtonStyle where Self == GrayButtonStyle {
     public static var gray: GrayButtonStyle { .init() }
 }
 
-@available(iOS 17.0, macOS 14.0, *)
-struct GrayButtonStyleButtonStylePreview: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            Button("Hello, World!") {}
-                .buttonStyle(.gray)
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    VStack {
+        Button("Hello, World!") {}
+            .buttonStyle(.gray)
 
-            Button("Hello, World!") {}
-                .buttonStyle(.gray)
-                .disabled(true)
-        }
-        .padding()
+        Button("Hello, World!") {}
+            .buttonStyle(.gray)
+            .disabled(true)
     }
+    .padding()
 }
+#endif
 #endif

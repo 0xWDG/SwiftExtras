@@ -44,4 +44,13 @@ public struct SEChangeLogView: View {
         self.changeLog = changeLog
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    SEChangeLogView(changeLog: [
+        .init(version: "1.0.0", text: "Initial version")
+    ])
+}
+#endif
 #endif

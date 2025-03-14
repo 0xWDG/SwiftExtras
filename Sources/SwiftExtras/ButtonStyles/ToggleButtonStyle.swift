@@ -36,8 +36,7 @@ public struct ToggleButtonStyle: ButtonStyle {
             .padding(.horizontal)
             .frame(maxWidth: .infinity)
             .frame(height: 50)
-            .foregroundStyle(.primary)
-            .foregroundStyle(isEnabled ? .primary : Color.gray)
+            .foregroundStyle(isEnabled ? .primary : .secondary)
             .font(.body.weight(.medium))
             .opacity(configuration.isPressed ? 0.8 : 1)
             .animation(
@@ -66,18 +65,18 @@ extension ButtonStyle where Self == GrayButtonStyle {
     public static var toggle: ToggleButtonStyle { .init() }
 }
 
-@available(iOS 17.0, macOS 14.0, *)
-struct ToggleButtonStyleButtonStylePreview: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            Button("Hello, World!") {}
-                .buttonStyle(.toggle)
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    VStack {
+        Button("Hello, World!") {}
+            .buttonStyle(.toggle)
 
-            Button("Hello, World!") {}
-                .buttonStyle(.toggle)
-                .disabled(true)
-        }
-        .padding()
+        Button("Hello, World!") {}
+            .buttonStyle(.toggle)
+            .disabled(true)
     }
+    .padding()
 }
+#endif
 #endif

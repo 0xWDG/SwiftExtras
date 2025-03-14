@@ -124,12 +124,12 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
 
     /// Internal: Initializes SwiftExtras Settings View (with default parameters for my apps)
     public init(
-    _changeLog: [SEChangeLogEntry]?,
-    // swiftlint:disable:previous identifier_name
-    _acknowledgements: [SEAcknowledgement]?,
-    // swiftlint:disable:previous identifier_name
-    @ViewBuilder topContent: @escaping () -> TopContent? = { EmptyView() },
-    @ViewBuilder bottomContent: @escaping () -> BottomContent? = { EmptyView() }
+        _changeLog: [SEChangeLogEntry]?,
+        // swiftlint:disable:previous identifier_name
+        _acknowledgements: [SEAcknowledgement]?,
+        // swiftlint:disable:previous identifier_name
+        @ViewBuilder topContent: @escaping () -> TopContent? = { EmptyView() },
+        @ViewBuilder bottomContent: @escaping () -> BottomContent? = { EmptyView() }
     ) {
         self.createdBy = "[Wesley de Groot](https://wesleydegroot.nl)"
         if let privacyURL = URL(
@@ -185,7 +185,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                 }
 #endif
             }
-            .buttonStyle(.borderless)
+            .buttonStyle(.list)
             .foregroundStyle(Color.primary)
             .navigationTitle(Text("Settings", bundle: Bundle.module))
 #if os(iOS)
@@ -268,18 +268,18 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
             }
 
             if let reviewURL = reviewURL {
-                    Button {
-                        openURL(reviewURL)
-                    } label: {
-                        Label {
-                            Text("Rate the app", bundle: Bundle.module)
-                        } icon: {
-                            Image(systemName: "star")
-                                .accessibilityHidden(true)
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                Button {
+                    openURL(reviewURL)
+                } label: {
+                    Label {
+                        Text("Rate the app", bundle: Bundle.module)
+                    } icon: {
+                        Image(systemName: "star")
+                            .accessibilityHidden(true)
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
+            }
 
             if let supportEmail {
                 Button {
@@ -440,26 +440,25 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
     }
 }
 
-@available(iOS 17.0, macOS 14.0, *)
-struct SESettingsViewPreview: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            SESettingsView(
-                _changeLog: [
-                    .init(version: "0.0.1", text: "Initial version")
-                ],
-                _acknowledgements: [
-                    .init(
-                        name: "This Package",
-                        copyright: "Wesley de Groot",
-                        licence: "Licence",
-                        url: "https://wesleydegroot.nl"
-                    )
-                ]
-            )
-        }
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    NavigationStack {
+        SESettingsView(
+            _changeLog: [
+                .init(version: "0.0.1", text: "Initial version")
+            ],
+            _acknowledgements: [
+                .init(
+                    name: "This Package",
+                    copyright: "Wesley de Groot",
+                    licence: "Licence",
+                    url: "https://wesleydegroot.nl"
+                )
+            ]
+        )
     }
 }
-
+#endif
 #endif
 // swiftlint:disable:this file_length

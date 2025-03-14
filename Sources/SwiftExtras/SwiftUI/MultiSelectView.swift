@@ -82,6 +82,7 @@ public struct MultiSelectView<Label: View>: View {
                                     ? 1.0
                                     : 0.0
                                 )
+                                .foregroundStyle(Color.accentColor)
                                 .accessibilityLabel("Selected")
 
                             label(item)
@@ -97,17 +98,18 @@ public struct MultiSelectView<Label: View>: View {
     }
 }
 
-struct MultiSelectViewPreviews: PreviewProvider {
-    static var items = ["star", "person", "rainbow"]
-    @State static var selectedItems: [String] = []
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    @Previewable @State var selectedItems: [String] = []
+    var items = ["star", "person", "rainbow"]
 
-    static var previews: some View {
-        MultiSelectView(
-            sourceItems: items,
-            selectedItems: $selectedItems
-        ) { item in
-            Label(item, systemImage: item)
-        }
+    MultiSelectView(
+        sourceItems: items,
+        selectedItems: $selectedItems
+    ) { item in
+        Label(item, systemImage: item)
     }
 }
+#endif
 #endif

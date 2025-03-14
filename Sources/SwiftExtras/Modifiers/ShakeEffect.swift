@@ -23,7 +23,12 @@ public struct ShakeEffect: GeometryEffect {
     }
 
     public func effectValue(size: CGSize) -> ProjectionTransform {
-        ProjectionTransform(CGAffineTransform(translationX: amount * sin(animatableData * .pi * CGFloat(shakes)), y: 0))
+        ProjectionTransform(
+            CGAffineTransform(
+                translationX: amount * sin(animatableData * .pi * CGFloat(shakes)),
+                y: 0
+            )
+        )
     }
 }
 
@@ -36,4 +41,12 @@ public extension View {
         modifier(ShakeEffect(animatableData: times))
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    Text("Hello, World!")
+        .shake(10)
+}
+#endif
 #endif

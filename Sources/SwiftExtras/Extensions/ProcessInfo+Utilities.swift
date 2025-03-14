@@ -13,7 +13,7 @@ import Foundation
 
 public extension ProcessInfo {
     /// Detects if running in Xcode SwiftUI Preview mode
-    static var isXcodePreview: Bool {
+    static var isSwiftUIPreview: Bool {
 #if DEBUG
         processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
 #else

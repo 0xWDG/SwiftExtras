@@ -90,6 +90,7 @@ public struct MultiSelectPickerView<PickerLabel: View, SelectionLabel: View>: Vi
                                         ? 1.0
                                         : 0.0
                                     )
+                                    .foregroundStyle(Color.accentColor)
                                     .accessibilityLabel("Selected")
 
                                 selectionLabel(item)
@@ -102,28 +103,29 @@ public struct MultiSelectPickerView<PickerLabel: View, SelectionLabel: View>: Vi
 #if os(iOS)
             .listStyle(.grouped)
 #endif
-            } label: {
+        } label: {
             pickerLabel()
         }
     }
 }
 
-struct MultiSelectPickerViewPreviews: PreviewProvider {
-    static var items = ["star", "person", "rainbow"]
-    @State static var selectedItems: [String] = []
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    @Previewable @State var selectedItems: [String] = []
+    var items = ["star", "person", "rainbow"]
 
-    static var previews: some View {
-        NavigationView {
-            List {
-                MultiSelectPickerView(
+    NavigationView {
+        List {
+            MultiSelectPickerView(
                 sourceItems: items,
                 selectedItems: $selectedItems) {
                     Text("Pick your items")
                 } selectionLabel: { item in
                     Label(item, systemImage: item)
-                }
             }
         }
     }
 }
+#endif
 #endif

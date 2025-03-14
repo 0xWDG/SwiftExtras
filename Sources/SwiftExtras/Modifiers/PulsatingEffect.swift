@@ -19,7 +19,12 @@ public struct PulsatingEffect: ViewModifier {
     public func body(content: Content) -> some View {
         content
             .scaleEffect(scale)
-            .animation(Animation.easeInOut(duration: 1.0).repeatForever(autoreverses: true), value: scale)
+            .animation(
+                Animation
+                    .easeInOut(duration: 1.0)
+                    .repeatForever(autoreverses: true),
+                value: scale
+            )
             .onAppear {
                 scale = 1.2
             }
@@ -34,4 +39,14 @@ public extension View {
         self.modifier(PulsatingEffect())
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    Button("Pulsating") {
+
+    }
+    .pulsating()
+}
+#endif
 #endif

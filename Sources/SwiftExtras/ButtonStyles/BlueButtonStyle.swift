@@ -73,18 +73,18 @@ extension ButtonStyle where Self == BlueButtonStyle {
     public static var blue: BlueButtonStyle { .init() }
 }
 
-@available(iOS 17.0, macOS 14.0, *)
-struct BlueButtonPreview: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            Button("Hello, World!") {}
-                .buttonStyle(.blue)
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    VStack {
+        Button("Hello, World!") {}
+            .buttonStyle(.blue)
 
-            Button("Hello, World!") {}
-                .buttonStyle(.blue)
-                .disabled(true)
-        }
-        .padding()
+        Button("Hello, World!") {}
+            .buttonStyle(.blue)
+            .disabled(true)
     }
+    .padding()
 }
+#endif
 #endif

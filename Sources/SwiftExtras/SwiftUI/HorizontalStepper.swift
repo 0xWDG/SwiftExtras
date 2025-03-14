@@ -75,4 +75,14 @@ struct HorizontalStepper: View {
             .frame(height: 6)
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    GroupBox {
+        HorizontalStepper(step: 2, total: 10)
+    }
+    .padding()
+}
+#endif
 #endif

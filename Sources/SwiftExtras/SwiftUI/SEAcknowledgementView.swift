@@ -97,4 +97,15 @@ public struct SEAcknowledgementView: View {
         }
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    NavigationStack {
+        SEAcknowledgementView(entries: [
+            .init(name: "Test", copyright: "Copyright", licence: "MIT")
+        ])
+    }
+}
+#endif
 #endif

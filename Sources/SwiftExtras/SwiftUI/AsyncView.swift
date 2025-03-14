@@ -71,7 +71,23 @@ public struct AsyncView<Content: View, Result>: View {
                         result = await task()
                     }
                 }
+
+            Text("Loading", bundle: .module)
         }
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    AsyncView {
+        try? await Task.sleep(for: .seconds(5))
+        return "Loaded"
+    } content: { result in
+        Text("Hi :)")
+        Text(result)
+    }
+
+}
+#endif
 #endif

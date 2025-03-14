@@ -645,6 +645,16 @@
         }
       }
     },
+    "%lld characters left" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld karakters over"
+          }
+        }
+      }
+    },
     "About the developer" : {
       "localizations" : {
         "af" : {
@@ -3522,6 +3532,17 @@
         }
       }
     },
+    "Enter text" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voer tekst in"
+          }
+        }
+      }
+    },
     "Feedback" : {
       "localizations" : {
         "af" : {
@@ -4166,6 +4187,17 @@
         }
       }
     },
+    "Hello world" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hallo wereld"
+          }
+        }
+      }
+    },
     "Licensed under %@" : {
       "localizations" : {
         "af" : {
@@ -4484,6 +4516,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "根據 %@ 授權"
+          }
+        }
+      }
+    },
+    "Loading" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laden"
           }
         }
       }
@@ -5201,6 +5243,12 @@
             "value" : "Rendben"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ok"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5533,6 +5581,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在網絡瀏覽器中打開"
+          }
+        }
+      }
+    },
+    "Pick your items" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kies je items"
           }
         }
       }
