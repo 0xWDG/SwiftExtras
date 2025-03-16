@@ -4,7 +4,11 @@ This file contains the changelog of SwiftExtras.
 
 ### 1.1.8
 https://github.com/0xWDG/SwiftExtras/compare/1.1.0...1.1.8
-- Make [`HorizontalStepper`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/horizontalstepper) public.
+https://github.com/0xWDG/SwiftExtras/commit/bb3d362657ddb0b3345d8f7431312748c93dd3c3
+
+- Added this changelog.
+- Made [`HorizontalStepper`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/horizontalstepper) public.
+- Made [`formEncoded`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/string/formencoded) public.
 
 ### 1.1.7
 https://github.com/0xWDG/SwiftExtras/compare/1.1.6...1.1.7
@@ -34,9 +38,75 @@ https://github.com/0xWDG/SwiftExtras/compare/1.0.9...1.1.0
 https://github.com/0xWDG/SwiftExtras/compare/1.0.8...1.0.9
 
 ### 1.0.8 (Made a typo in this release)
-https://github.com/0xWDG/SwiftExtras/compare/0.1.7...1.0.8
 - Added [`SwiftLint`](https://0xwdg.github.io/SwiftExtras/documentation/swiftlint) rules  
   Added SwiftLint to the project
+- Added [`userCountry`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/locale/usercountry) to `Locale`  
+  This property returns the user's country
+- Added [`userLanguage`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/locale/userlanguage) to `Locale`  
+  This property returns the user's language
+- Added [`userCurrencyCode`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/locale/usercurrencycode) to `Locale`  
+  This property returns the user's currency code
+- Added [`userCurrencySymbol`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/locale/usercurrencysymbol) to `Locale`
+- Added [`deviceMeasurementSystem`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/locale/devicemeasurementsystem) to `Locale`  
+  This property returns the device's measurement system
+- Added [`userTimeZone`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/locale/usertimezone) to `Locale`  
+  This property returns the user's time zone
+- Added [`userCalendar`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/locale/usercalendar) to `Locale`  
+  This property returns the user's calendar
+- Added [`collationIdentifier`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/locale/collationidentifier) to `Locale`  
+  This property returns the collation identifier
+- Added [`isXcodePreview`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/processinfo/isxcodepreview) to `ProcessInfo`  
+  This property returns true if the app is running in an Xcode preview
+- Added [`isUITesting`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/processinfo/isuitesting) to `ProcessInfo`  
+  This property returns true if the app is running UI tests
+- Added [`isUnitTesting`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/processinfo/isunittesting) to `ProcessInfo`  
+  This property returns true if the app is running unit tests
+- Added [`isLowPowerModeActive`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/processinfo/islowpowermodeactive) to `ProcessInfo`  
+  This property returns true if the device is in low power mode
+- Added [`currentSystemUptime`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/processinfo/currentsystemuptime) to `ProcessInfo`  
+  This property returns the current system uptime
+- Added [`systemUptimeInDays`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/processinfo/systemuptimeindays) to `ProcessInfo`  
+  This property returns the system uptime in days
+- Added [`isRunningOnMacCatalyst`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/processinfo/isrunningonmaccatalyst) to `ProcessInfo`  
+  This property returns true if the app is running on Mac Catalyst
+- Added [`isRunningiOSAppOnMac`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/processinfo/isrunningiosapponmac) to `ProcessInfo`  
+  This property returns true if the app is running an iOS app on Mac
+- Added [`contains(_:casesensitive:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/string/contains(_:casesensitive:)) to `String`  
+  This function checks if a string contains an value
+- Added [`trimmed(for:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/string/trimmed(for:)) to `String`  
+  This property returns the trimmed string
+- Improved `urlEncoded`.
+  It does not force unwrap the string anymore
+- Added [`formEncoded`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/string/formencoded) to `String`  
+  This property returns the form encoded string
+- Added [`deviceName`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/uidevice/devicename) to `UIDevice` (iOS only)  
+  This property returns the device name
+- Added [`deviceSystemName`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/uidevice/devicesystemname) to `UIDevice` (iOS only)  
+  This property returns the device system name
+- Added [`deviceSystemVersion`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/uidevice/devicesystembersion) to `UIDevice` (iOS only)
+- Added [`deviceModel`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/uidevice/devicemodel) to `UIDevice` (iOS only)  
+  This property returns the device model
+- Added [`deviceIdentifierForVendor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/uidevice/deviceIdentifierforvendor) to `UIDevice` (iOS only)  
+  This property returns the device identifier for vendor
+- Added [`isiPad`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/uidevice/isipad) to `UIDevice` (iOS only)  
+  This property returns true if the device is an iPad
+- Added [`isiPhone`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/uidevice/isiphone) to `UIDevice` (iOS only)
+- Added [`deviceBatteryLevel`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/uidevice/devicebatterylevel) to `UIDevice` (iOS only)  
+  This property returns the device battery level
+- Added [`deviceBatteryState`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/uidevice/devicebatterystate) to `UIDevice` (iOS only)  
+  This property returns the device battery state
+- Added [`deviceOrientation`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/uidevice/deviceorientation) to `UIDevice` (iOS only)  
+  This property returns the device orientation
+- Added [`isPortraitMode`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/uidevice/isportraitmode) to `UIDevice` (iOS only)  
+  This property returns true if the device is in portrait mode
+- Added [`isLandscapeMode`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/uidevice/islandscapemode) to `UIDevice` (iOS only)  
+  This property returns true if the device is in landscape mode
+- Added [`.dismissKeyboardOnTap()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/dismisskeyboardontap()) to `View`  
+  This view modifier dismisses the keyboard on tap
+- Added [`pulsating()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/pulsating()) to `View`  
+  This view modifier adds a pulsating effect to a view
+- Added [`shake(_:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/shake(_:)) to `View`  
+  This view modifier adds a shake effect to a view
 
 ### 0.1.7
 - visionOS specific fixes.
