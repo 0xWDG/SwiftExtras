@@ -184,7 +184,7 @@ extension Date {
     ///
     /// The grid is an array of 42 dates, starting with the days from the previous month to fill the grid.
     /// The grid is used to display the calendar in a grid format.
-    public var calendatGrid: [Date] {
+    public var calendarGrid: [Date] {
         var days: [Date] = []
         // Start with days from the previous month to fill the grid
         let firstDisplayDay = firstWeekDayBeforeStart

@@ -3,39 +3,222 @@
 This file contains the changelog of SwiftExtras.
 
 ### 1.1.8
-https://github.com/0xWDG/SwiftExtras/compare/1.1.0...1.1.8
-https://github.com/0xWDG/SwiftExtras/commit/bb3d362657ddb0b3345d8f7431312748c93dd3c3
-
-- Added this changelog.
-- Made [`HorizontalStepper`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/horizontalstepper) public.
-- Made [`formEncoded`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/string/formencoded) public.
+- Created [`DisclosureSection`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/disclosuresection)  
+  A disclosurable section
+- Added this changelog.  
+  To have a history of changes
+- Made [`HorizontalStepper`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/horizontalstepper) public.  
+  To make it accessible from outside the module
+- Made [`formEncoded`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/string/formencoded) public.  
+  To make it accessible from outside the module
+- Created [`SocialIcons`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/socialicons) enum.
+  To load social icons in your SwiftUI view.
+- Renamed `calendatGrid` to [`calendarGrid`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/calendargrid)  
+  Fixed typo.
 
 ### 1.1.7
-https://github.com/0xWDG/SwiftExtras/compare/1.1.6...1.1.7
+- Update GitHub Actions runners
+  To use the latest runners
+- Changed all `PreviewProvider` to `#Preview` macros.  
+  To support `@State` in previews
+- Added [`ListButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/listbuttonstyle)  
+  A button style that represents a list button
+- Added [`.list`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/list) to `ButtonStyle`
+- Added some colors to `Color`, [`label`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/label), [`secondaryLabel`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/secondarylabel), [`tertiaryLabel`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/tertiarylabel), [`quaternaryLabel`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/quaternarylabel), [`systemFill`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemfill), [`secondarySystemFill`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/secondarysystemfill), [`tertiarySystemFill`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/tertiarysystemfill), [`quaternarySystemFill`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/quaternarysystemfill), [`placeholderText`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/placeholdertext), [`systemBackground`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systembackground), [`secondarySystemBackground`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/secondarysystembackground), [`tertiarySystemBackground`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/tertiarysystembackground), [`systemGroupedBackground`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemgroupedbackground), [`secondarySystemGroupedBackground`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/secondarysystemgroupedbackground), [`tertiarySystemGroupedBackground`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/tertiarysystemgroupedbackground), [`separator`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/separator), [`opaqueSeparator`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/opaqueseparator), [`link`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/link), [`systemBlue`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemblue), [`systemGreen`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemgreen), [`systemIndigo`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemindigo), [`systemOrange`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemorange), [`systemPink`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systempink), [`systemPurple`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systempurple), [`systemRed`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemred), [`systemTeal`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemteal), [`systemYellow`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemyellow), [`systemGray`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemgray), [`systemGray2`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemgray2), [`systemGray3`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemgray3), [`systemGray4`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemgray4), [`systemGray5`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemgray5), [`systemGray6`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemgray6)  
+  These colors are the system colors and trough this extension available in SwiftUI using the `Color` struct.
+- Add [`publisher`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/nsnotification/name/publisher) to `NSNotification.Name`  
+  Returns the publisher of the notification on the default notification center.
+- Added [`post(object:on:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/nsnotification/name/post(object:on:)) to `NSNotification.Name`  
+  Posts a notification with an object on the default notification center.
+- Renamed `isXcodePreview` to `isSwiftUIPreview`  
+  To make it more clear
+- Removed `BlurView`  
+  Since it is now available in SwiftUI
+- Removed `TransparentBlurView`
+  Since it is now available in SwiftUI
+- Improved color of close button in `CardView`  
+  To make it more visible
+- Added [`LimitedTextField`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/limitedtextfield)  
+  A text field that limits the number of characters
+- Improved `foregroundStyle` in `MultiSelectView` and `MultiSelectPickerView`  
+  To make the UI more consistent
+- Added a lot of `#Preview` macros
+  To show previews
 
 ### 1.1.6
-https://github.com/0xWDG/SwiftExtras/compare/1.1.5...1.1.6
+- Add some `#if` to `TimeInterval+.swift`
+  To build on non-Apple platforms
+- Change the parameter of [`showError(error:buttontitle:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/showerror(error:buttontitle:)) to accept a `LocalizedStringKey` instead of a `String`  
+  To support localization
 
 ### 1.1.5
-https://github.com/0xWDG/SwiftExtras/compare/1.1.4...1.1.5
+- Make [`if(_:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/if(_:transform:)) public  
+  To make it accessible from outside the module
+- Make [`modify(_:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/modify(_:)) public  
+  To make it accessible from outside the module
+- Added [`read(offsetX:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/read(offsetx:)) to `View`  
+  This function reads the offset x of the view
 
 ### 1.1.4
-https://github.com/0xWDG/SwiftExtras/compare/1.1.3...1.1.4
+- Added [`ToggleButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/togglebuttonstyle)  
+  A button style that represents a toggle button
+- Added [`.toggle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/toggle) to `ButtonStyle`
+- Renamed `.modifier(_:)` to [`.modify(_:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/modify(_:))  
+  This view modifier conditionally applies a view modifier
+- Updated `SESettingsView` to make `topContent` and `bottomContent` optional  
+  This allows to hide the top and bottom content
+- Updated `BorderedToggleStyle` to use `.tint` color for the border color  
+  This makes the border color consistent with the tint color
+- Renamed `BorderedToggleStylePreview` to `GreyBorderedToggleStylePreview`
+- Added [`PlainBorderedToggleStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/plainborderedtogglestyle)  
+  A button style that represents a plain bordered toggle button
+- Added [`.plainBordered`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/togglestyle/plainbordered) to `ToggleStyle`
 
 ### 1.1.3
 https://github.com/0xWDG/SwiftExtras/compare/1.1.2...1.1.3
+- Added [`isCurrentDay`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/iscurrentday) to `Date`  
+  This property returns true if the date is the current day
+- Added [`isWeekend`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/isweekend) to `Date`  
+  This property returns true if the date is a weekend
+- Added [`time`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/time) to `Date`  
+  This property returns the time of the date in `HH:MM` format
+- Added [`yyyymmdd`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/yyyymmdd) to `Date`  
+  This property returns the date in `YYYY-MM-DD` format
+- Added [`ddmmyyyy`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/ddmmyyyy) to `Date`  
+  This property returns the date in `DD-MM-YYYY` format
+- Added [`day`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/day) to `Date`  
+  This property returns the day of the date
+- Added [`month`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/month) to `Date`
+  This property returns the month of the date
+- Added [`year`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/year) to `Date`  
+  This property returns the year of the date
+- Added [`dayName`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/dayname) to `Date`  
+  This property returns the name of the day
+- Added [`monthAndYear`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/monthandyear) to `Date`  
+  This property returns the month and year
+- Added [`fullDateString`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/fulldatestring) to `Date`  
+  This property returns the full date string in "EEEE dd MMMM yyyy" format
+- Added [`firstDayOfWeek`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/firstdayofweek) to `Date`  
+  This property returns the first day of the week
+- Added [`capitalizedFirstLettersOfWeekdays`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/capitalizedfirstlettersofweekdays) to `Date`  
+  This property returns the capitalized first letters of the weekdays
+- Added [`fullMonthNames`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/fullmonthnames) to `Date`  
+  This property returns the full month names
+- Added[`startOfMonth`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/startofmonth) to `Date`  
+  This property returns the start of the month
+- Added [`endOfMonth`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/endofmonth) to `Date`  
+  This property returns the end of the month
+- Added [`startOfPreviousMonth`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/startofpreviousmonth) to `Date`  
+  This property returns the start of the previous month
+- Added [`numberOfDaysInMonth`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/numberofdaysinmonth) to `Date`  
+  This property returns the number of days in the month
+- Added [`weekNumber`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/weeknumber) to `Date`  
+  This property returns the week number
+- Add [`firstWeekDayBeforeStart`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/firstweekdaybeforestart) to `Date`  
+  This property returns the first week day before the start date
+- Added [`calendarGrid`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/calendargrid) to `Date`  
+  This property returns the calendar grid
+- Added [`startOfDay`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/startofday) to `Date`  
+  This property returns the start of the day
+- Added [`random(in:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/random(in:)) to `Date`  
+  This property returns a random date in the range
+- Added [`endOfDay`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/endofday) to `Date`  
+  This property returns the end of the day
+- Added [`Identifiable`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/identifiable-implementations) to `Date`  
+  To make it identifiable
+- Added [`years`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/double/years) to `TimeInterval`  
+  This property returns the years of the time interval
+- Added [`months`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/double/months) to `TimeInterval`  
+  This property returns the months of the time interval
+- Added [`weeks`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/double/weeks) to `TimeInterval`  
+  This property returns the weeks of the time interval
+- Added [`days`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/double/days) to `TimeInterval`
+  This property returns the days of the time interval
+- Added [`hours`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/double/hours) to `TimeInterval`  
+  This property returns the hours of the time interval
+- Added [`minutes`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/double/minutes) to `TimeInterval`  
+  This property returns the minutes of the time interval
+- Added [`seconds`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/double/seconds) to `TimeInterval`  
+  This property returns the seconds of the time interval
+- Added [`milliseconds`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/double/milliseconds) to `TimeInterval`  
+  This property returns the milliseconds of the time interval
+- Added [`AbsoluteYears`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/double/absoluteyears) to `TimeInterval`  
+  This property returns the absolute years of the time interval
+- Added [`AbsoluteMonths`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/double/absolutemonths) to `TimeInterval`  
+  This property returns the absolute months of the time interval
+- Added [`AbsoluteWeeks`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/double/absoluteweeks) to `TimeInterval`  
+  This property returns the absolute weeks of the time interval
+- Added [`AbsoluteDays`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/double/absolutedays) to `TimeInterval`  
+  This property returns the absolute days of the time interval
+- Added [`AbsoluteHours`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/double/absolutehours) to `TimeInterval`  
+  This property returns the absolute hours of the time interval
+- Added [`AbsoluteMinutes`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/double/absoluteminutes) to `TimeInterval`  
+  This property returns the absolute minutes of the time interval
+- Added [`AbsoluteSeconds`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/double/absoluteseconds) to `TimeInterval`
+  This property returns the absolute seconds of the time interval
+- Added [`timeString`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/timestring) to `TimeInterval`  
+  This property returns the relative time string
+- Some improvements to [`openURL(_:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras//openurl(_:))  
+  To make it more reliable
+- Added [`=~`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/=~(_:_:)) operator  
+  This operator checks if a string matches a regular expression
+- Added [`!~`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/!~(_:_:)) operator  
+  This operator checks if a string does not match a regular expression
+- Fixed a typo in `MultiSelectView`  
+  Fixed typo.
+- Added a `.navigationTitle(_:)` to `SEAcknowledgementsView`  
+  To set the navigation title
+- Improved filter in `SEAcknowledgementsView`
 
 ### 1.1.2
-https://github.com/0xWDG/SwiftExtras/compare/1.1.1...1.1.2
+- Added more SwiftLint rules
+  To improve code quality
+- fixed [`isTestflight`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/istestflight) in [`AppInfo`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo)
+  to return false if the app is not running in TestFlight
+- Removed .init
+  Explicitly calling the initializer is not necessary
+- Added [`BlueButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/bluebuttonstyle)  
+  A button style that represents a blue button
+- Added [`.blue`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/blue) to `ButtonStyle`  
+  A button style that represents a blue button
+- Added [`GreyButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/greybuttonstyle)  
+  A button style that represents a blue button
+- Added [`.grey`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/grey) to `ButtonStyle`  
+  A button style that represents a grey button
+- Added [`BorderedToggleStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/borderedtogglestyle)  
+  A button style that represents a blue button
+- Added [`.bordered`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/togglestyle/bordered) to `ToggleStyle`  
+  A button style that represents a grey button
+- Fixed some documentation issues
+  To improve the documentation
+- Added accessibility labels
+  To improve accessibility
 
 ### 1.1.1
-https://github.com/0xWDG/SwiftExtras/compare/1.1.0...1.1.1
+- Added `#if DEBUG` to `isXcodePreview`  
+  to reduce calculations in release builds
+- Added `#if DEBUG` to `isUITesting`  
+  to reduce calculations in release builds
+- Added `#if DEBUG` to `isUnitTesting`  
+  to reduce calculations in release builds
+- Added `#if os(iOS) || os(WatchOS)` to `isLowPowerModeActive` 
+  to reduce calculations in release builds
+- Added `#if os(iOS)` to `isRunningiOSAppOnMac`  
+  to reduce calculations in release builds
+- Added some iOS specific UI properties to `MultiSelectPickerView`
+  To unify the UI
+- Added some iOS specific UI properties to `MultiSelectView`
+  To unify the UI
 
 ### 1.1.0
-https://github.com/0xWDG/SwiftExtras/compare/1.0.9...1.1.0
+- Added canImport to `ShakeEffect.swift` 
+  This fixes building on non-SwiftUI platforms
 
 ### 1.0.9
-https://github.com/0xWDG/SwiftExtras/compare/1.0.8...1.0.9
+- Added [`MultiSelectPickerView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/multiselectpickerview)  
+  A view that represents a multi select picker view
+- Added [`MultiSelectView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/multiselectview)  
+  A view that represents a multi select view
 
 ### 1.0.8 (Made a typo in this release)
 - Added [`SwiftLint`](https://0xwdg.github.io/SwiftExtras/documentation/swiftlint) rules  

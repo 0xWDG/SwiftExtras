@@ -1,5 +1,5 @@
 //
-//  HorizontalStepper.swift
+//  LimitedTextField.swift
 //  SwiftExtras
 //
 //  Created by Wesley de Groot on 2025-02-09.
