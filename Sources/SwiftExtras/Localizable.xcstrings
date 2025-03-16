@@ -3210,6 +3210,9 @@
         }
       }
     },
+    "Collapse" : {
+
+    },
     "Created by %@" : {
       "localizations" : {
         "af" : {
@@ -3542,6 +3545,9 @@
           }
         }
       }
+    },
+    "Expand" : {
+
     },
     "Feedback" : {
       "localizations" : {

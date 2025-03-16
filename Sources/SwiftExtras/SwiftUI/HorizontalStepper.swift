@@ -16,7 +16,7 @@ import SwiftUI
 ///
 /// This is a simple horizontal stepper, you can use it to show the progress of a process.
 /// It will show a line with steps, and the current step will be colored.
-struct HorizontalStepper: View {
+public struct HorizontalStepper: View {
     private let step: Int
     private let total: Int
     private let spacing: CGFloat

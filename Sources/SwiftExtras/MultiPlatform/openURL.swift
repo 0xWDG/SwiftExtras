@@ -22,7 +22,11 @@ import UIKit
 /// - Parameter url: A URL specifying the location to open.
 /// - Returns: `true` if the location was successfully opened; otherwise, `false`.
 @discardableResult
-public func openURL(_ url: URL) -> Bool {
+public func openURL(_ url: URL?) -> Bool {
+    guard let url = url else {
+        return false
+    }
+
 #if canImport(AppKit)
     return NSWorkspace.shared.open(url)
 #elseif canImport(UIKit)
