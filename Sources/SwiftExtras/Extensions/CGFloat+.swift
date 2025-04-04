@@ -23,9 +23,9 @@ extension CGFloat {
    /// ## Usage Example:
    /// ```swift
    /// SomeView("...")
-   ///   .padding(.platformDefaultSpacing)
+   ///   .padding(.defaultSpacing)
    /// ```
-   public static var platformDefaultSpacing: Self {
+   public static var defaultSpacing: Self {
       #if os(tvOS)
       return 30
       #elseif os(macOS) || os(watchOS)
@@ -45,9 +45,9 @@ extension CGFloat {
    /// ## Usage Example:
    /// ```swift
    /// Text("...")
-   ///   .frame(height: .platformDefaultTextHeight)
+   ///   .frame(height: .defaultTextHeight)
    /// ```
-   public static var platformDefaultTextHeight: Self {
+   public static var defaultTextHeight: Self {
       #if os(tvOS)
       return 45.5
       #elseif os(macOS)
