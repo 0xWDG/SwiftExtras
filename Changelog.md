@@ -2,6 +2,11 @@
 
 This file contains the changelog of SwiftExtras.
 
+### 1.1.9
+- Created [`WHStack`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/whstack)  
+  A Wrapping HStack
+- Updated translations.
+  
 ### 1.1.8
 - Created [`DisclosureSection`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/disclosuresection)  
   A disclosurable section

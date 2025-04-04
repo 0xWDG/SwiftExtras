@@ -59,8 +59,8 @@ public extension ButtonStyle where Self == ListButtonStyle {
             print("Hello World!")
         }
 
-        Button("Hello, World?") {
-            print("Hello World?")
+        Button("Hello, World!") {
+            print("Hello World!")
         }
         .disabled(true)
     }

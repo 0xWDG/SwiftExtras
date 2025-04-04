@@ -12,13 +12,13 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
-/// Wrapped Horizontal Stack
+/// Wrapping Horizontal Stack
 ///
 /// A layout that arranges its children in a horizontal stack, wrapping to the next line when the width is exceeded.
 public struct WHStack: Layout {
     var spacing: CGFloat
 
-    /// Wrapped Horizontal Stack
+    /// Wrapping Horizontal Stack
     ///
     /// A layout that arranges its children in a horizontal stack, wrapping to the next line when the width is exceeded.
     /// 
