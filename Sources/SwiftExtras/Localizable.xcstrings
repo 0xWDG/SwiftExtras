@@ -6743,6 +6743,7 @@
       }
     },
     "Hello, World?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -7385,6 +7386,9 @@
           }
         }
       }
+    },
+    "Hi %lld." : {
+
     },
     "Licensed under %@" : {
       "localizations" : {
