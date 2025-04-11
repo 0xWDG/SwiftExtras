@@ -93,7 +93,7 @@ public struct WStack: Layout {
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
     List {
-        WHStack {
+        WStack {
             ForEach(0..<50) { count in
                 Text("Hi \(count).")
                     .border(.blue)
