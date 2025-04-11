@@ -2,6 +2,10 @@
 
 This file contains the changelog of SwiftExtras.
 
+### 1.2.0
+- Created Renamed `WHStack` to [`WStack`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/wstack)  
+  A Wrapping HStack
+
 ### 1.1.9
 - Created [`WHStack`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/whstack)  
   A Wrapping HStack
