@@ -13,6 +13,9 @@ import Foundation
 #if canImport(SwiftUI)
 import SwiftUI
 #endif
+#if canImport(LocalAuthentication)
+import LocalAuthentication
+#endif
 
 /// AppInfo
 ///
@@ -87,7 +90,7 @@ public enum AppInfo {
     public static var isiOSAppOnVisionPro: Bool {
 #if targetEnvironment(simulator)
         return ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"]?.hasPrefix("RealityDevice") ?? false
-#else
+#elseif canImport(LocalAuthentication)
         if #available(iOS 17, *) {
             let authContext = LAContext()
             _ = authContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
@@ -95,6 +98,8 @@ public enum AppInfo {
         } else {
             return false
         }
+#else
+        return false
 #endif
     }
 
