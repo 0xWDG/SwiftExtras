@@ -72,7 +72,7 @@ public enum AppInfo {
         return Bundle.main.executablePath?.contains(".appex/") ?? false
     }
 
-    /// Is the application running downloaded from AppStore
+    /// Is the iOS application running on a mac
     public static var isiOSAppOnMac: Bool {
 #if os(macOS) || os(iOS)
         if #available(iOS 14.0, *) {
@@ -81,6 +81,21 @@ public enum AppInfo {
 #endif
 
         return false
+    }
+
+    /// Is the iOS application running on a Vision Pro
+    public static var isiOSAppOnVisionPro: Bool {
+#if targetEnvironment(simulator)
+        return ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"]?.hasPrefix("RealityDevice") ?? false
+#else
+        if #available(iOS 17, *) {
+            let authContext = LAContext()
+            _ = authContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
+            return authContext.biometryType == .opticID
+        } else {
+            return false
+        }
+#endif
     }
 
     /// Is the application running as a Mac Catalyst app

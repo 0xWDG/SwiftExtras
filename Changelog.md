@@ -2,6 +2,11 @@
 
 This file contains the changelog of SwiftExtras.
 
+### 1.2.2
+- A lot of fixes to make this framework multi-platform
+- Added [`AppInfo.isiOSAppOnVisionPro`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/isiosapponvisionpro)  
+  Check if the App is running in as iOS app on the Vision Pro. 
+
 ### 1.2.1
 - Added `isExpanded` to [`DisclosureSection`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/disclosuresection)  
   A disclosurable section.
