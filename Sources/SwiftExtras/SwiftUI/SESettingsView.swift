@@ -31,7 +31,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
     // swiftlint:disable:previous type_body_length
     // MARK: Environment
     @Environment(\.dismiss) var dismiss
-#if canImport(StoreKit)
+#if canImport(StoreKit) && !os(watchOS) && !os(tvOS)
     @Environment(\.requestReview) var requestReview
 #endif
 
@@ -178,7 +178,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                 footerSection
             }
             .task {
-#if canImport(StoreKit)
+#if canImport(StoreKit) && !os(watchOS) && !os(tvOS)
                 if appStoreDeveloperURL != nil &&
                     Int.random(in: 0..<10) == 5 {
                     requestReview()
@@ -222,7 +222,9 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
             }
             .frame(maxWidth: .infinity)
         }
+#if !os(watchOS) && !os(tvOS)
         .listRowSeparator(.hidden)
+#endif
     }
 
     var applicationInfoSection: some View {
@@ -324,8 +326,9 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                             Spacer()
 
                             ProgressView()
+#if !os(tvOS)
                                 .controlSize(.small)
-
+#endif
                             Text("Fetching logs...", bundle: Bundle.module)
                         }
                     }
@@ -436,7 +439,9 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
             }
         }
         .listRowBackground(Color.clear)
+#if !os(watchOS) && !os(tvOS)
         .listRowSeparator(.hidden)
+#endif
     }
 }
 

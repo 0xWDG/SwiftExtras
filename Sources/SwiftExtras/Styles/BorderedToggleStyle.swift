@@ -21,7 +21,7 @@ import SwiftUI
 /// Toggle("Hello World!", isOn: .constant(true))
 ///     .toggleStyle(.bordered)
 /// ```
-@available(iOS 17.0, macOS 14.0, *)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 public struct BorderedToggleStyle: ToggleStyle {
     /// Creates a bordered toggle style.
     ///
@@ -54,7 +54,7 @@ public struct BorderedToggleStyle: ToggleStyle {
     }
 }
 
-@available(iOS 17.0, macOS 14.0, *)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 extension ToggleStyle where Self == BorderedToggleStyle {
     /// A toggle style that uses a border around the toggle.
     ///

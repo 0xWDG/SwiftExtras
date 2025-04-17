@@ -9,7 +9,7 @@
 //  MIT License
 //
 
-#if canImport(SwiftUI) && (canImport(AppKit) || canImport(UIKit)) && !canImport(Colors)
+#if !os(watchOS) && canImport(SwiftUI) && (canImport(AppKit) || canImport(UIKit)) && !canImport(Colors)
 import SwiftUI
 
 #if canImport(AppKit)

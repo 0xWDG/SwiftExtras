@@ -43,7 +43,7 @@ public enum Device {
 
     /// Are we running on Carplay?
     var isCarplay: Bool {
-#if canImport(UIKit) && !os(visionOS)
+#if canImport(UIKit) && os(iOS)
         return UIScreen.screens.filter {
             $0.traitCollection.userInterfaceIdiom == .carPlay
         }.count >= 1

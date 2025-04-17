@@ -9,7 +9,7 @@
 //  MIT License
 //
 
-#if canImport(SwiftUI) && canImport(UIKit)
+#if canImport(SwiftUI) && canImport(UIKit) && !os(watchOS)
 import SwiftUI
 
 /// A modifier to dismiss the keyboard when tapping outside a text field.

@@ -57,7 +57,9 @@ public struct CardView<Content: View>: View {
                     // Move everything up
                     Spacer()
                 }
-            }.toolbar {
+            }
+            .toolbar {
+#if !os(watchOS) && !os(tvOS)
                 ToolbarItem(placement: .navigation) {
                     VStack(alignment: .leading, spacing: 0) {
                         Text(.init(title))
@@ -80,6 +82,13 @@ public struct CardView<Content: View>: View {
                     }
                     .keyboardShortcut(.cancelAction)
                 }
+#else
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    self.closeButton
+                }
+#endif
             }
         }
     }

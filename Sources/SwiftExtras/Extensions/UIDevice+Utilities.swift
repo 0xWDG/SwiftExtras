@@ -34,12 +34,14 @@ public extension UIDevice {
     /// Detect if the device is an iPhone
     static var isiPhone: Bool { current.userInterfaceIdiom == .phone }
 
+#if !os(tvOS)
     /// The current battery level (0.0 to 1.0)
     static var deviceBatteryLevel: Float { current.batteryLevel }
 
     /// The current battery state (charging, full, unplugged)
     static var deviceBatteryState: UIDevice.BatteryState { current.batteryState }
 
+#if !os(visionOS)
     /// The device’s orientation (portrait, landscape, etc.)
     static var deviceOrientation: UIDeviceOrientation { current.orientation }
 
@@ -48,5 +50,7 @@ public extension UIDevice {
 
     /// Detect if the device is in landscape mode
     static var isLandscapeMode: Bool { current.orientation.isLandscape }
+#endif
+#endif
 }
 #endif

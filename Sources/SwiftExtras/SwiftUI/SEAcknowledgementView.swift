@@ -25,6 +25,7 @@ public struct SEAcknowledgementView: View {
             ForEach(entries.sorted(by: { $0.name < $1.name })) { entry in
                 if let string = entry.url,
                    let url = URL(string: string) {
+#if canImport(WebKit)
                     NavigationLink {
                         WebView(url: url)
                             .navigationTitle(entry.name)
@@ -40,6 +41,9 @@ public struct SEAcknowledgementView: View {
                         label(for: entry)
                     }
                     .id(UUID())
+#else
+                    label(for: entry)
+#endif
                 } else {
                     label(for: entry)
                 }

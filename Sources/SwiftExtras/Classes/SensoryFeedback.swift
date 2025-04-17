@@ -39,7 +39,7 @@ public class SensoryFeedback {
     /// - Parameter type: Feedback type
     @discardableResult
     public init(type: SensoryFeedbackType) {
-#if !os(visionOS)
+#if os(iOS)
         switch type {
         case .error:
             let generator = UINotificationFeedbackGenerator()

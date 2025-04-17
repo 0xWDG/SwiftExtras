@@ -39,7 +39,7 @@ public struct LimitedTextField: View {
                   self.text = String(self.text.prefix(characterLimit))
                }
             }
-            #if !os(tvOS)
+            #if !os(tvOS) && !os(watchOS)
             .textFieldStyle(.roundedBorder)
             #endif
 

@@ -24,7 +24,7 @@ import SwiftUI
 /// Button("Hello World!") {}
 ///     .buttonStyle(.blue)
 /// ```
-@available(iOS 17.0, macOS 14.0, *)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 public struct BlueButtonStyle: ButtonStyle {
     @Environment(\.isEnabled)
     private var isEnabled
@@ -49,14 +49,16 @@ public struct BlueButtonStyle: ButtonStyle {
                 .easeOut(duration: 0.2),
                 value: configuration.isPressed
             )
+#if !os(visionOS)
             .sensoryFeedback(
                 .selection,
                 trigger: configuration.isPressed
             )
+#endif
     }
 }
 
-@available(iOS 17.0, macOS 14.0, *)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 extension ButtonStyle where Self == BlueButtonStyle {
     /// A button style that uses the system's blue color.
     ///

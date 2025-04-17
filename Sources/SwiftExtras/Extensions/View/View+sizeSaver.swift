@@ -13,6 +13,7 @@
 import SwiftUI
 
 /// Save the size of the view
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 struct SaveSizeModifier: ViewModifier {
     @Binding var size: CGSize
 
@@ -46,6 +47,7 @@ extension View {
     /// Save the size of the view
     /// - Parameter size: size of view
     /// - Returns: self
+    @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
     public func saveSize(in size: Binding<CGSize>) -> some View {
         modifier(SaveSizeModifier(size: size))
     }

@@ -22,7 +22,7 @@ import SwiftUI
 /// Button("Hello World!") {}
 ///     .buttonStyle(.toggle)
 /// ```
-@available(iOS 17.0, macOS 14.0, *)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 public struct ToggleButtonStyle: ButtonStyle {
     @Environment(\.isEnabled)
     private var isEnabled
@@ -43,14 +43,16 @@ public struct ToggleButtonStyle: ButtonStyle {
                 .easeOut(duration: 0.2),
                 value: configuration.isPressed
             )
+#if !os(visionOS)
             .sensoryFeedback(
                 .selection,
                 trigger: configuration.isPressed
             )
+#endif
     }
 }
 
-@available(iOS 17.0, macOS 14.0, *)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 extension ButtonStyle where Self == GrayButtonStyle {
     /// A button style makes a toggle style button.
     ///

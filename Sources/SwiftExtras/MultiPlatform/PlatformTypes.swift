@@ -21,8 +21,10 @@ import UIKit
 /// `UIFont/NSFont` alias for platform-agnostic code.
 public typealias PlatformFont = UIFont
 
+#if !os(watchOS) && !os(tvOS)
 /// `UIPasteboard/NSPasteboard` alias for platform-agnostic code.
 public typealias PlatformPasteboard = UIPasteboard
+#endif
 
 /// `UIImage/NSImage` alias for platform-agnostic code.
 public typealias PlatformImage = UIImage
