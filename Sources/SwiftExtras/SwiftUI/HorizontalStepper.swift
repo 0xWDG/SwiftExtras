@@ -79,7 +79,7 @@ public struct HorizontalStepper: View {
 #if DEBUG
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
-    GroupBox {
+    Group {
         HorizontalStepper(step: 2, total: 10)
     }
     .padding()
