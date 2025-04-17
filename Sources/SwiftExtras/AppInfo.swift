@@ -90,7 +90,7 @@ public enum AppInfo {
     public static var isiOSAppOnVisionPro: Bool {
 #if targetEnvironment(simulator)
         return ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"]?.hasPrefix("RealityDevice") ?? false
-#elseif canImport(LocalAuthentication)
+#elseif canImport(LocalAuthentication) && os(iOS)
         if #available(iOS 17, *) {
             let authContext = LAContext()
             _ = authContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
