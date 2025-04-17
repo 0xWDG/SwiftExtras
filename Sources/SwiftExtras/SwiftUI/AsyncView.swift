@@ -84,7 +84,7 @@ public struct AsyncView<Content: View, Result>: View {
         try? await Task.sleep(for: .seconds(5))
         return "Loaded"
     } content: { result in
-        Text("Hi :)")
+        Text("Hello World!")
         Text(result)
     }
 

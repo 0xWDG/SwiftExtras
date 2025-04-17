@@ -18,7 +18,7 @@ import SwiftUI
 ///
 /// Example:
 /// ```swift
-/// Toggle("Hello, World!", isOn: .constant(true))
+/// Toggle("Hello World!", isOn: .constant(true))
 ///     .toggleStyle(.bordered)
 /// ```
 @available(iOS 17.0, macOS 14.0, *)
@@ -62,7 +62,7 @@ extension ToggleStyle where Self == BorderedToggleStyle {
     ///
     /// Example:
     /// ```swift
-    /// Toggle("Hello, World!", isOn: .constant(true))
+    /// Toggle("Hello World!", isOn: .constant(true))
     ///     .toggleStyle(.bordered)
     /// ```
     public static var bordered: BorderedToggleStyle { .init() }
@@ -73,40 +73,40 @@ extension ToggleStyle where Self == BorderedToggleStyle {
 #Preview {
     VStack {
         Toggle(
-            "Hello World",
+            "Hello World!",
             isOn: .constant(false)
         )
         .toggleStyle(.bordered)
 
         Toggle(
-            "Hello World",
+            "Hello World!",
             isOn: .constant(true)
         )
         .toggleStyle(.bordered)
 
         Toggle(
-            "Hello World",
+            "Hello World!",
             isOn: .constant(false)
         )
         .accentColor(.green)
         .toggleStyle(.bordered)
 
         Toggle(
-            "Hello World",
+            "Hello World!",
             isOn: .constant(true)
         )
         .accentColor(.green)
         .toggleStyle(.bordered)
 
         Toggle(
-            "Hello World",
+            "Hello World!",
             isOn: .constant(false)
         )
         .tint(.red)
         .toggleStyle(.bordered)
 
         Toggle(
-            "Hello World",
+            "Hello World!",
             isOn: .constant(true)
         )
         .tint(.red)

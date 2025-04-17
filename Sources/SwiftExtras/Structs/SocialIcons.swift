@@ -119,7 +119,7 @@ public enum SocialIcons {
                 }
             }
         }
-        .navigationTitle("Social icons")
+        .navigationTitle("All Social icons")
     }
 }
 #endif

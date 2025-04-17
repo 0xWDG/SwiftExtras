@@ -157,6 +157,11 @@ public enum AppInfo {
         ProcessInfo.processInfo.arguments.contains("-ui_testing")
     }
 
+    /// Is the app running in Xcode Preview
+    public static var isRunningInPreview: Bool {
+        ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] != nil
+    }
+
     /// URL Schemes
     public var schemes: [String] {
         guard let infoDictionary = Bundle.main.infoDictionary,

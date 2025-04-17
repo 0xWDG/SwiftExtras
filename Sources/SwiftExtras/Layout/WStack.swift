@@ -16,6 +16,7 @@ import SwiftUI
 ///
 /// A layout that arranges its children in a horizontal stack, wrapping to the next line when the width is exceeded.
 public struct WStack: Layout {
+    /// Spacing inbetween items
     var spacing: CGFloat
 
     /// Wrapping Stack
@@ -37,7 +38,10 @@ public struct WStack: Layout {
     ) -> CGSize {
         return .init(
             width: proposal.width ?? 0,
-            height: maxHeight(proposal: proposal, subviews: subviews)
+            height: maxHeight(
+                proposal: proposal,
+                subviews: subviews
+            )
         )
     }
 
@@ -77,7 +81,8 @@ public struct WStack: Layout {
             if (origin.x + fitSize.width) > (proposal.width ?? 0) {
                 origin.x = 0
                 origin.y += fitSize.height + spacing
-                origin.x += fitSize.width + spacing
+                origin.x += fitSize.width + (spacing * 2)
+                // fix edge case by multiplying the spacing
             } else {
                 origin.x += fitSize.width + spacing
                 if subview == subviews.last {
@@ -94,9 +99,17 @@ public struct WStack: Layout {
 #Preview {
     List {
         WStack {
-            ForEach(0..<50) { count in
-                Text("Hi \(count).")
+            ForEach(0..<49) { count in
+                Text("Test \(count).")
                     .border(.blue)
+            }
+        }
+
+        WStack {
+            ForEach(0..<75) { count in
+                // Edge case which previously failed
+                Text("Test \(count).")
+                    .border(.red)
             }
         }
     }

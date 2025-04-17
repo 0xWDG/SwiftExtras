@@ -21,7 +21,7 @@ import SwiftUI
 ///
 /// Example:
 /// ```swift
-/// Button("Hello, World!") {}
+/// Button("Hello World!") {}
 ///     .buttonStyle(.blue)
 /// ```
 @available(iOS 17.0, macOS 14.0, *)
@@ -67,7 +67,7 @@ extension ButtonStyle where Self == BlueButtonStyle {
     ///
     /// Example:
     /// ```swift
-    /// Button("Hello, World!") {}
+    /// Button("Hello World!") {}
     ///     .buttonStyle(.blue)
     /// ```
     public static var blue: BlueButtonStyle { .init() }
@@ -77,10 +77,10 @@ extension ButtonStyle where Self == BlueButtonStyle {
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
     VStack {
-        Button("Hello, World!") {}
+        Button("Hello World!") {}
             .buttonStyle(.blue)
 
-        Button("Hello, World!") {}
+        Button("Hello World!") {}
             .buttonStyle(.blue)
             .disabled(true)
     }

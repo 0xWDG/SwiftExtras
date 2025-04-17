@@ -20,7 +20,7 @@ extension View {
     /// Usage:
     /// ```swift
     /// .detachedTask {
-    ///     print("Hello, World!")
+    ///     print("Hello World!")
     /// }
     /// ```
     ///

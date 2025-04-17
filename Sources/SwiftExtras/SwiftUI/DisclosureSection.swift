@@ -28,6 +28,7 @@ public struct DisclosureSection<Content: View, Label: View>: View {
     ///
     /// - Parameters:
     ///   - titleKey: The localized key for the section title.
+    ///   - isExpanded: Is the section expanded
     ///   - content: A closure that returns the content to be displayed when the section is expanded.
     ///
     /// **Example:**
@@ -38,9 +39,11 @@ public struct DisclosureSection<Content: View, Label: View>: View {
     /// ```
     public init(
         _ titleKey: LocalizedStringKey,
+        isExpanded: Bool = false,
         @ViewBuilder content: @escaping () -> Content
     ) where Label == Text {
         self.content = content
+        self.isExpanded = isExpanded
         self.label = { Text(titleKey) }
     }
 
@@ -48,6 +51,7 @@ public struct DisclosureSection<Content: View, Label: View>: View {
     ///
     /// - Parameters:
     ///   - content: A closure that returns the content to be displayed when the section is expanded.
+    ///   - isExpanded: Is the section expanded
     ///   - label: A closure that returns the custom label view.
     ///
     /// **Example:**
@@ -63,9 +67,11 @@ public struct DisclosureSection<Content: View, Label: View>: View {
     /// ```
     public init(
         @ViewBuilder content: @escaping () -> Content,
+        isExpanded: Bool = false,
         @ViewBuilder label: @escaping () -> Label
     ) {
         self.content = content
+        self.isExpanded = isExpanded
         self.label = label
     }
 
@@ -100,6 +106,11 @@ public struct DisclosureSection<Content: View, Label: View>: View {
 #Preview {
     Form {
         DisclosureSection("Custom Disclosure Section") {
+            Text("Test")
+            Text("Test")
+        }
+
+        DisclosureSection("Custom Disclosure Section", isExpanded: true) {
             Text("Test")
             Text("Test")
         }

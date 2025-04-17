@@ -19,7 +19,7 @@ import SwiftUI
 ///
 /// Example:
 /// ```swift
-/// Button("Hello, World!") {}
+/// Button("Hello World!") {}
 ///     .buttonStyle(.toggle)
 /// ```
 @available(iOS 17.0, macOS 14.0, *)
@@ -59,7 +59,7 @@ extension ButtonStyle where Self == GrayButtonStyle {
     ///
     /// Example:
     /// ```swift
-    /// Button("Hello, World!") {}
+    /// Button("Hello World!") {}
     ///     .buttonStyle(.toggle)
     /// ```
     public static var toggle: ToggleButtonStyle { .init() }
@@ -69,10 +69,10 @@ extension ButtonStyle where Self == GrayButtonStyle {
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
     VStack {
-        Button("Hello, World!") {}
+        Button("Hello World!") {}
             .buttonStyle(.toggle)
 
-        Button("Hello, World!") {}
+        Button("Hello World!") {}
             .buttonStyle(.toggle)
             .disabled(true)
     }

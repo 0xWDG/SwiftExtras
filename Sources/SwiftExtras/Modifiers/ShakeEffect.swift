@@ -45,7 +45,7 @@ public extension View {
 #if DEBUG
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
-    Text("Hello, World!")
+    Text("Hello World!")
         .shake(10)
 }
 #endif

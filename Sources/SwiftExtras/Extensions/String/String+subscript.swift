@@ -18,7 +18,7 @@ extension String {
     /// 
     /// Usage:
     /// ```swift
-    /// let string = "Hello, World!"
+    /// let string = "Hello World!"
     /// print(string[0...7]) // "Hello, W"
     /// ```
     ///
@@ -46,7 +46,7 @@ extension String {
     ///
     /// Usage:
     /// ```swift
-    /// let string = "Hello, World!"
+    /// let string = "Hello World!"
     /// print(string[0..<7]) // "Hello, "
     /// ```
     /// 
@@ -64,7 +64,7 @@ extension String {
     ///
     /// Usage:
     /// ```swift
-    /// let string = "Hello, World!"
+    /// let string = "Hello World!"
     /// print(string[..<7]) // "Hello, "
     /// ```
     /// 
@@ -81,7 +81,7 @@ extension String {
     ///
     /// Usage:
     /// ```swift
-    /// let string = "Hello, World!"
+    /// let string = "Hello World!"
     /// print(string[...7]) // "Hello, "
     /// ```
     /// 
@@ -98,7 +98,7 @@ extension String {
     ///
     /// Usage:
     /// ```swift
-    /// let string = "Hello, World!"
+    /// let string = "Hello World!"
     /// print(string[7...]) // "World!"
     /// ```
     /// 
@@ -115,7 +115,7 @@ extension String {
     /// 
     /// Usage:
     /// ```swift
-    /// let string = "Hello, World!"
+    /// let string = "Hello World!"
     /// print(string[7]) // "W"
     /// ```
     ///

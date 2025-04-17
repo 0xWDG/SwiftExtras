@@ -88,10 +88,10 @@ public struct CardView<Content: View>: View {
 #if DEBUG
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
-    Text("Hello world")
+    Text("Hello World!")
         .sheet(isPresented: .constant(true)) {
             CardView(title: "Title", subtitle: "Subtitle") {
-                Text("Hi :)")
+                Text("Hello World!")
             }
         }
 }

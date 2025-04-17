@@ -45,7 +45,7 @@ public extension ButtonStyle where Self == ListButtonStyle {
     ///
     /// Example:
     /// ```swift
-    /// Button("Hello, World!") {}
+    /// Button("Hello World!") {}
     ///     .buttonStyle(.list)
     /// ```
     static var list: ListButtonStyle { .init() }
@@ -55,11 +55,11 @@ public extension ButtonStyle where Self == ListButtonStyle {
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
     List {
-        Button("Hello, World!") {
+        Button("Hello World!") {
             print("Hello World!")
         }
 
-        Button("Hello, World!") {
+        Button("Hello World!") {
             print("Hello World!")
         }
         .disabled(true)

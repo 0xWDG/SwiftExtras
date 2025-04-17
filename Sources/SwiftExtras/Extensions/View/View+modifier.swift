@@ -33,11 +33,11 @@ extension View {
     /// Example:
     /// ```
     /// NavigationStack {
-    ///     Text("Hello, World!")
+    ///     Text("Hello World!")
     /// }
     /// .modify { 
     /// #if !os(macOS)
-    ///     $0.navigationBarTitle("Hello, World!")
+    ///     $0.navigationBarTitle("Hello World!")
     /// #else
     ///     $0
     /// #endif

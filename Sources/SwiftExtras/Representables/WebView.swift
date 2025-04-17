@@ -25,7 +25,7 @@ import SwiftUI
 ///
 /// Open a HTML string in Safari:
 /// ```swift
-/// WebView(html: "<html><body><h1>Hello, World!</h1></body></html>")
+/// WebView(html: "<html><body><h1>Hello World!</h1></body></html>")
 /// ```
 ///
 public struct WebView: PlatformViewRepresentableType {
@@ -66,7 +66,7 @@ public struct WebView: PlatformViewRepresentableType {
     /// Usage:
     /// Open a URL in Safari:
     /// ```swift
-    /// WebView(html: "<html><body><h1>Hello, World!</h1></body></html>")
+    /// WebView(html: "<html><body><h1>Hello World!</h1></body></html>")
     /// ```
     ///
     /// - Parameter html: The HTML String to load.

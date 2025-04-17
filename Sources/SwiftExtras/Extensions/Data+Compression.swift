@@ -113,7 +113,7 @@ extension Data {
     ///
     /// Example:
     /// ```swift
-    /// let data = "Hello, World!".data(using: .utf8)
+    /// let data = "Hello World!".data(using: .utf8)
     /// let compressed = data?.deflate()
     /// ```
     ///
@@ -141,7 +141,7 @@ extension Data {
     ///
     /// Example:
     /// ```swift
-    /// let data = "Hello, World!".data(using: .utf8)
+    /// let data = "Hello World!".data(using: .utf8)
     /// let compressed = data?.deflate()
     /// let decompressed = compressed?.inflate()
     /// ```

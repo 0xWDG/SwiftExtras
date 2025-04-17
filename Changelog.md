@@ -2,9 +2,17 @@
 
 This file contains the changelog of SwiftExtras.
 
+### 1.2.1
+- Added `isExpanded` to [`DisclosureSection`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/disclosuresection)  
+  A disclosurable section.
+- Added [`AppInfo.isRunningInPreview`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/isrunninginpreview)  
+  Check if the App is running in Xcode Previews.
+- Fixed a spacing issue in [`WStack`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/wstack)  
+  Sometimes the last item would be half shown on screen.
+  
 ### 1.2.0
 - Renamed `WHStack` to [`WStack`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/wstack)  
-  A Wrapping HStack
+  A Wrapping HStack.
 
 ### 1.1.9
 - Created [`WHStack`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/whstack)  
