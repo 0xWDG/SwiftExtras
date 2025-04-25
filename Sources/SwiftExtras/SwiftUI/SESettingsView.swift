@@ -169,7 +169,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
 
     public var body: some View {
         NavigationStack {
-            List {
+            Form {
                 headerSection
                 customTopSection() // Custom section
                 applicationInfoSection
@@ -187,6 +187,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
             }
             .buttonStyle(.list)
             .foregroundStyle(Color.primary)
+            .formStyle(.grouped)
             .navigationTitle(Text("Settings", bundle: Bundle.module))
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)

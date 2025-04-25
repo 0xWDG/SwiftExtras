@@ -2,6 +2,10 @@
 
 This file contains the changelog of SwiftExtras.
 
+### 1.2.3
+- Updated [`SESettingsView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/sesettingsview)
+  to make the layout more consistent on multiple platforms.
+
 ### 1.2.2
 - A lot of fixes to make this framework multi-platform
 - Added [`AppInfo.isiOSAppOnVisionPro`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/isiosapponvisionpro)  
@@ -87,7 +91,7 @@ This file contains the changelog of SwiftExtras.
 - Added [`.toggle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/toggle) to `ButtonStyle`
 - Renamed `.modifier(_:)` to [`.modify(_:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/modify(_:))  
   This view modifier conditionally applies a view modifier
-- Updated `SESettingsView` to make `topContent` and `bottomContent` optional  
+- Updated [`SESettingsView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/sesettingsview) to make `topContent` and `bottomContent` optional  
   This allows to hide the top and bottom content
 - Updated `BorderedToggleStyle` to use `.tint` color for the border color  
   This makes the border color consistent with the tint color
@@ -336,7 +340,7 @@ https://github.com/0xWDG/SwiftExtras/compare/1.1.2...1.1.3
   A horizontal stepper that can be used for onboarding
 - Improvements to `SEAcknowledgementsView`  
   Prevent double entries
-- Improvements to `SESettingsView`
+- Improvements to [`SESettingsView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/sesettingsview)
   You can now add custom top and bottom content
 
 ### 0.1.5

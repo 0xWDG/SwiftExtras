@@ -1612,7 +1612,7 @@
       }
     },
     "All Social icons" : {
-      "shouldTranslate" : false
+
     },
     "Application Info" : {
       "localizations" : {
@@ -4170,10 +4170,10 @@
       }
     },
     "Custom Disclosure Section" : {
-      "shouldTranslate" : false
+
     },
     "Enter text" : {
-      "shouldTranslate" : false
+
     },
     "Expand" : {
       "localizations" : {
@@ -5142,7 +5142,7 @@
       }
     },
     "Hello World!" : {
-      "shouldTranslate" : false
+
     },
     "Licensed under %@" : {
       "localizations" : {
@@ -7054,7 +7054,7 @@
       }
     },
     "Pick your items" : {
-      "shouldTranslate" : false
+
     },
     "Privacy Policy" : {
       "localizations" : {
@@ -8667,7 +8667,7 @@
       }
     },
     "Test" : {
-      "shouldTranslate" : false
+
     },
     "Test %lld." : {
       "shouldTranslate" : false

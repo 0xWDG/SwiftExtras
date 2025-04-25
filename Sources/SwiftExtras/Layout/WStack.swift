@@ -81,8 +81,12 @@ public struct WStack: Layout {
             if (origin.x + fitSize.width) > (proposal.width ?? 0) {
                 origin.x = 0
                 origin.y += fitSize.height + spacing
-                origin.x += fitSize.width + (spacing * 2)
-                // fix edge case by multiplying the spacing
+                origin.x += fitSize.width
+
+                if subview == subviews.last {
+                    // On last row, add the y one more time
+                    origin.y += fitSize.height
+                }
             } else {
                 origin.x += fitSize.width + spacing
                 if subview == subviews.last {
@@ -106,10 +110,15 @@ public struct WStack: Layout {
         }
 
         WStack {
-            ForEach(0..<75) { count in
+            ForEach(0..<25) { count in
                 // Edge case which previously failed
-                Text("Test \(count).")
+                Capsule()
+                    .foregroundStyle(.blue)
+                    .frame(width: 150, height: 50)
                     .border(.red)
+                    .overlay {
+                        Text("Test \(count).")
+                    }
             }
         }
     }
