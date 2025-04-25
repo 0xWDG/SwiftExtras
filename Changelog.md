@@ -54,9 +54,8 @@ This file contains the changelog of SwiftExtras.
   Get the djb2 hash of a string
 - Added [`String.sdbmhash`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/string/sdbmhash)
   Get the sdbm hash of a string
-- Added [`View.render(scale:)](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/render(scale:))
+- Added [`View.render(scale:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/render(scale:))
   Render a view to an [`PlatformImage`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/platformimage) with a scale
- create mode 100644 Sources/SwiftExtras/Functions/kMeansCluster.swift
 - Added [`kMeansCluster(colors:clusters:iterations:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/kmeanscluster(colors:clusters:iterations:))
   This function clusters a set of colors into color clusters using the k-means algorithm.
 
