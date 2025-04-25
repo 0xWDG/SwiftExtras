@@ -47,11 +47,11 @@ func kMeansCluster(colors: [Color], clusters: Int, iterations: Int = 10) -> [Col
                 pow(color.redValue - $0.blueValue, 2)
             }
 
-            guard let closestIndex = distances.enumerated().min(by: { $0.element < $1.element }).offset else {
+            guard let distance = distances.enumerated().min(by: { $0.element < $1.element }) else {
                 continue
             }
 
-            clusterArray[closestIndex].append(color)
+            clusterArray[distance.offset].append(color)
         }
 
         // Update centroids

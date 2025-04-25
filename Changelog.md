@@ -5,6 +5,12 @@ This file contains the changelog of SwiftExtras.
 ### 1.2.3
 - Updated [`SESettingsView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/sesettingsview)
   to make the layout more consistent on multiple platforms.
+ create mode 100644 Sources/SwiftExtras/Extensions/Color+colorBlind.swift
+ create mode 100644 Sources/SwiftExtras/Extensions/Color+components.swift
+ create mode 100644 Sources/SwiftExtras/Extensions/Color+init.swift
+ create mode 100644 Sources/SwiftExtras/Extensions/String/String+hashed.swift
+ create mode 100644 Sources/SwiftExtras/Extensions/View/View+render.swift
+ create mode 100644 Sources/SwiftExtras/Functions/kMeansCluster.swift
 
 ### 1.2.2
 - A lot of fixes to make this framework multi-platform

@@ -51,15 +51,13 @@ extension Color {
         var alphaValue: CGFloat = 0
 
         #if canImport(UIKit)
-        typealias NativeColor = UIColor
-        #elseif canImport(AppKit)
-        typealias NativeColor = NSColor
-        #endif
-
-        guard NativeColor(self).getRed(&redValue, green: &greenValue, blue: &blueValue, alpha: &alphaValue) else {
+        guard UIColor(self).getRed(&redValue, green: &greenValue, blue: &blueValue, alpha: &alphaValue) else {
             // You can handle the failure here as you want
             return (0, 0, 0, 0)
         }
+        #elseif canImport(AppKit)
+        NSColor(self).getRed(&redValue, green: &greenValue, blue: &blueValue, alpha: &alphaValue)
+        #endif
 
         return (
             Double(round(1000 * (redValue * 255)) / 1000),
