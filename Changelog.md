@@ -5,12 +5,60 @@ This file contains the changelog of SwiftExtras.
 ### 1.2.3
 - Updated [`SESettingsView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/sesettingsview)
   to make the layout more consistent on multiple platforms.
- create mode 100644 Sources/SwiftExtras/Extensions/Color+colorBlind.swift
- create mode 100644 Sources/SwiftExtras/Extensions/Color+components.swift
- create mode 100644 Sources/SwiftExtras/Extensions/Color+init.swift
- create mode 100644 Sources/SwiftExtras/Extensions/String/String+hashed.swift
- create mode 100644 Sources/SwiftExtras/Extensions/View/View+render.swift
+- Added [`Color.alphaValue`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/alphavalue)
+  Get the alpha value of a color
+- Added [`Color.redValue`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/redvalue)
+  Get the red value of a color
+- Added [`Color.greenValue`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/greenvalue)
+  Get the green value of a color
+- Added [`Color.blueValue`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/bluevalue)
+  Get the blue value of a color
+- Added [`Color.components`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/components/)
+  To get all the components of a color
+- Added [`Color.deuteranopia`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/deuteranopia)
+  A color that simulates the appearance of the color for a person with deuteranopia. Deuteranopia is a type of red-green color blindness that affects the perception of green light.
+- Added [`Color.protanopia`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/protanopia)
+  A color that simulates the appearance of the color for a person with protanopia. Protanopia is a type of red-green color blindness that affects the perception of red light.
+- Added [`Color.tritanopia`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/tritanopia)
+  A color that simulates the appearance of the color for a person with tritanopia. Tritanopia is a type of blue-yellow color blindness that affects the perception of blue light.
+- Added [`Color.inverted`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/inverted)
+  A color that simulates the appearance of the color for a person with inverted colors. Inverted colors are the opposite of the original colors.
+- Added [`Color.hex6`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/hex6)
+  A color that simulates the appearance of the color for a person with hex6 colors. Hex6 colors are the standard RGB colors.
+- Added [`Color.hsbString()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/hsbstring())
+  A color that simulates the appearance of the color for a person with HSB colors. HSB colors are the standard HSB colors.
+- Added [`Color.hslString()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/hslstring())
+  A color that simulates the appearance of the color for a person with HSL colors. HSL colors are the standard HSL colors.
+- Added [`Color.labString()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/labstring())
+  A color that simulates the appearance of the color for a person with LAB colors. LAB colors are the standard LAB colors.
+- Added [`Color.xyzString()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/xyzstring())
+  A color that simulates the appearance of the color for a person with XYZ colors. XYZ colors are the standard XYZ colors.
+- Added [`Color.rgbString()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/rgbstring())
+  A color that simulates the appearance of the color for a person with RGB colors. RGB colors are the standard RGB colors.
+- Added [`Color.resolved.alphaValue`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/resolved/alphavalue)
+  Get the alpha value of a resolved color
+- Added [`Color.resolved.blueValue`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/resolved/bluevalue)
+  Get the blue value of a resolved color
+- Added [`Color.resolved.greenValue`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/resolved/greenvalue)
+  Get the green value of a resolved color
+- Added [`Color.resolved.redValue`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/resolved/redvalue)
+- Added [`Color.resolved.hex`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/resolved/hex)
+  Get the hex value of a resolved color
+- Added [`Color.resolved.hex6`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/resolved/hex6)
+  Get the hex6 value of a resolved color
+- Added [`Color.init(_:)](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/init(_:))
+  Initialize a color with a platform color
+- Added [`String.hashed`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/string/hashed)
+  Get the hash of a string
+- Added [`String.djb2hash`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/string/djb2hash)
+  Get the djb2 hash of a string
+- Added [`String.sdbmhash`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/string/sdbmhash)
+  Get the sdbm hash of a string
+- Added [`View.render(scale:)](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/render(scale:))
+  Render a view to an [`PlatformImage`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/platformimage) with a scale
  create mode 100644 Sources/SwiftExtras/Functions/kMeansCluster.swift
+- Added [`kMeansCluster(colors:clusters:iterations:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/kmeanscluster(colors:clusters:iterations:))
+  This function clusters a set of colors into color clusters using the k-means algorithm.
 
 ### 1.2.2
 - A lot of fixes to make this framework multi-platform

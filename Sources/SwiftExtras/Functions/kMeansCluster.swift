@@ -27,7 +27,7 @@ import SwiftUI
 ///   - iterations: The number of iterations to run the algorithm.
 /// - Returns: An array of colors representing the cluster centroids.
 /// - Note: This implementation uses the Euclidean distance in RGB space to determine the distance between colors.
-func kMeansCluster(colors: [Color], clusters: Int, iterations: Int = 10) -> [Color] {
+public func kMeansCluster(colors: [Color], clusters: Int, iterations: Int = 10) -> [Color] {
     guard !colors.isEmpty, clusters > 0 else { return [] }
 
     // Initialize random centroids
