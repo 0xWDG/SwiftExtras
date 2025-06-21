@@ -9,6 +9,7 @@
 //  MIT License
 //
 
+#if canImport(SwiftUI)
 import SwiftUI
 
 /// A button style that triggers an action on long press.
@@ -88,3 +89,4 @@ extension View {
         modifier(LongPressModifier(longPressAction: action))
     }
 }
+#endif
