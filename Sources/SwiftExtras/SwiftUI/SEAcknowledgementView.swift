@@ -107,7 +107,7 @@ public struct SEAcknowledgementView: View {
 #Preview {
     NavigationStack {
         SEAcknowledgementView(entries: [
-            .init(name: "Test", copyright: "Copyright", licence: "MIT")
+            .init(name: "Test", copyright: "Creator", licence: "MIT")
         ])
     }
 }

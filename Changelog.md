@@ -2,6 +2,18 @@
 
 This file contains the changelog of SwiftExtras.
 
+### 1.2.4
+- Added [`AppInfo.openAppStorePage()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/openappstorepage())  
+  Open the App Store page of the app.
+- Added [`AppInfo.isLatestVersion()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/islatestversion())  
+  Check if the app is the latest version.
+- Changed internals of [`Locale.userCalendar`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/locale/usercalendar)  
+  To prevent an iOS 16.2 crash when this framework is loaded.
+- Added [`String.clean()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/string/clean())
+  To remove diacritics from a string
+- Added [`.longPress`]() action to views.
+- Added [`MonthYearPickerView()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/MonthYearPickerView)
+
 ### 1.2.3
 - Updated [`SESettingsView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/sesettingsview)
   to make the layout more consistent on multiple platforms.

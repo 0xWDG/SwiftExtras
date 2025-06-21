@@ -31,7 +31,7 @@ public extension Locale {
     static var userTimeZone: String { TimeZone.current.identifier }
 
     /// The preferred calendar identifier (e.g., "gregorian")
-    static var userCalendar: String { current.calendar.identifier.debugDescription }
+    static var userCalendar: String { String(describing: current.calendar.identifier) }
 
     /// The user's collation identifier (sorting order preference)
     static var collationIdentifier: String { current.collation.identifier }

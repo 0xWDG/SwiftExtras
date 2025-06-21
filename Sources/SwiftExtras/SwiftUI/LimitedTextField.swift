@@ -9,7 +9,7 @@
 //  MIT License
 //
 
-#if canImport(SwiftUI)
+#if canImport(SwiftUI) && os(iOS)
 import SwiftUI
 
 /// A custom `TextField` view that limits the number of characters and 

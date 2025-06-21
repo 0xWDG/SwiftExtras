@@ -114,14 +114,61 @@ public enum AppInfo {
         return false
     }
 
+    /// Detects if running in Xcode SwiftUI Preview mode
+    static var isSwiftUIPreview: Bool {
+#if DEBUG
+        ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+#else
+        false
+#endif
+    }
+
+    /// Detects if UI Tests are running
+    static var isUITesting: Bool {
+#if DEBUG
+        ProcessInfo.processInfo.arguments.contains("UI_TESTING")
+#else
+        false
+#endif
+    }
+
+    /// Detects if Unit Tests are running
+    static var isUnitTesting: Bool {
+#if DEBUG
+        NSClassFromString("XCTestCase") != nil
+#else
+        false
+#endif
+}
+
+    /// Detects if Low Power Mode is enabled
+    static var isLowPowerModeActive: Bool {
+#if os(iOS) || os(watchOS)
+        ProcessInfo.processInfo.isLowPowerModeEnabled
+#else
+        false
+#endif
+    }
+
+    /// Detects if running an iOS app on Mac
+    static var isRunningiOSAppOnMac: Bool {
+#if os(iOS)
+        ProcessInfo.processInfo.isiOSAppOnMac
+#else
+        false
+#endif
+    }
+
     /// Get the AppStore information of the application
+    /// - Parameter forceRefresh: forced refresh?
     /// - Returns: AppStore information
-    public static func appStoreInfo() async -> SEAppInfoAppStoreInfo? {
+    public static func appStoreInfo(_ forceRefresh: Bool = false) async -> SEAppInfoAppStoreInfo? {
 #if os(macOS) || os(iOS)
         let decoder = JSONDecoder()
 
         if let cached = UserDefaults.standard.data(forKey: "SEAppInfoAppStoreInfo"),
-           let appStoreInfo = try? decoder.decode(SEAppInfoAppStoreInfo.self, from: cached) {
+           let appStoreInfo = try? decoder.decode(SEAppInfoAppStoreInfo.self, from: cached),
+           !forceRefresh {
             return appStoreInfo
         }
 
@@ -156,6 +203,18 @@ public enum AppInfo {
         return nil
     }
 
+    /// Open the AppStore Page for the current app
+    /// - Returns: URL of the review page in the AppStore
+    @discardableResult
+    public static func openAppStorePage() async -> Bool {
+        if let identifier = await AppInfo.appStoreInfo()?.results.first?.trackId,
+           let url = URL(string: "https://itunes.apple.com/app/id\(identifier)") {
+            return openURL(url)
+        }
+        
+        return false
+    }
+    
     /// Get the URL of the developer page in the AppStore
     /// - Returns: URL of the developer page in the AppStore
     public static func getDeveloperURL() async -> URL? {
@@ -165,6 +224,16 @@ public enum AppInfo {
         }
 
         return nil
+    }
+
+    /// Is this the latest version of the app?
+    /// - Returns: Boolean indicating if this is the current version
+    public static func isLatestVersion() async -> Bool? {
+        if let version = await AppInfo.appStoreInfo(true)?.results.first?.version {
+            return version > versionNumber
+        }
+
+        return false
     }
 
     /// Is the app running tests
@@ -280,4 +349,7 @@ public struct SEAppInfoAppStoreResult: Decodable {
 
     /// App Identifier
     public let trackId: Int
+    
+    /// App Version number
+    public let version: String
 }

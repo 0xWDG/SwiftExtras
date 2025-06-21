@@ -6087,6 +6087,9 @@
       },
       "shouldTranslate" : false
     },
+    "Month" : {
+
+    },
     "More apps from the developer" : {
       "localizations" : {
         "af" : {
@@ -8023,6 +8026,7 @@
       }
     },
     "Settings" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -8970,6 +8974,9 @@
         }
       },
       "shouldTranslate" : false
+    },
+    "Year" : {
+
     }
   },
   "version" : "1.0"

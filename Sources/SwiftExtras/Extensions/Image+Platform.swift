@@ -27,6 +27,17 @@ extension Image {
     }
 }
 
+#if swift(>=5.9)
+extension PlatformImage: @retroactive Identifiable {
+    public typealias ID = Int // swiftlint:disable:this type_name
+    /// The identifier of the color.
+    ///
+    /// This is a random hash value to make Color conform to Identifiable.
+    public var id: Int {
+        return UUID().hashValue
+    }
+}
+#else
 extension PlatformImage: Identifiable {
     public typealias ID = Int // swiftlint:disable:this type_name
     /// The identifier of the color.
@@ -36,4 +47,5 @@ extension PlatformImage: Identifiable {
         return UUID().hashValue
     }
 }
+#endif
 #endif

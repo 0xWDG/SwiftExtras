@@ -188,7 +188,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
             .buttonStyle(.list)
             .foregroundStyle(Color.primary)
             .formStyle(.grouped)
-            .navigationTitle(Text("Settings", bundle: Bundle.module))
+            .navigationTitle(AppInfo.appName)
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
 #endif
@@ -211,7 +211,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
             VStack(alignment: .center) {
                 AppInfo.appIcon
                     .resizable()
-                    .cornerRadius(18)
+                    .cornerRadius(24)
                     .frame(width: 124, height: 124)
 
                 Text(AppInfo.appName)

@@ -12,7 +12,7 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
-#if swift(>=6.0)
+#if swift(>=5.9)
 extension Color: @retroactive Identifiable {
     public typealias ID = Int // swiftlint:disable:this type_name
 

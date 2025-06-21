@@ -244,4 +244,36 @@ extension Date {
 
         return endOfDay
     }
+
+    /// Get local date from provided date
+    public func localDate() -> Date {
+        let timeZoneOffset = Double(TimeZone.current.secondsFromGMT(for: self))
+        guard let localDate = Calendar.current.date(byAdding: .second, value: Int(timeZoneOffset), to: self) else {
+            return self
+        }
+
+        return localDate
+    }
+
+    /// Change date to timezone.
+    public func to(timeZone outputTimeZone: TimeZone, from inputTimeZone: TimeZone) -> Date {
+        let delta = TimeInterval(outputTimeZone.secondsFromGMT(for: self) - inputTimeZone.secondsFromGMT(for: self))
+        return addingTimeInterval(delta)
+    }
+
+    /// Create a date from specified parameters
+    ///
+    /// - Parameters:
+    ///   - year: The desired year
+    ///   - month: The desired month
+    ///   - day: The desired day
+    /// - Returns: A `Date` object
+    public init(year: Int, month: Int, day: Int) {
+        let calendar = Calendar(identifier: .gregorian)
+        var dateComponents = DateComponents()
+        dateComponents.year = year
+        dateComponents.month = month
+        dateComponents.day = day
+        self.init(timeIntervalSince1970: calendar.date(from: dateComponents)?.timeIntervalSince1970 ?? 0)
+    }
 }

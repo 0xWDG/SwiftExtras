@@ -121,7 +121,13 @@ extension Data {
     ///
     /// - returns: raw deflated data according to [RFC-1951](https://tools.ietf.org/html/rfc1951).
     public func deflate() -> Data? {
-        return self.withUnsafeBytes { (sourcePtr: UnsafePointer<UInt8>) -> Data? in
+        return self.withUnsafeBytes { (rawBufferPtr: UnsafeRawBufferPointer) -> Data? in
+            guard let baseAddress = rawBufferPtr.baseAddress else {
+                return nil
+            }
+
+            let sourcePtr = baseAddress.assumingMemoryBound(to: UInt8.self)
+
             let configuration = (
                 operation: COMPRESSION_STREAM_ENCODE,
                 algorithm: COMPRESSION_ZLIB
@@ -151,7 +157,13 @@ extension Data {
     ///
     /// - returns: uncompressed data
     public func inflate() -> Data? {
-        return self.withUnsafeBytes { (sourcePtr: UnsafePointer<UInt8>) -> Data? in
+        return self.withUnsafeBytes { (rawBufferPtr: UnsafeRawBufferPointer) -> Data? in
+            guard let baseAddress = rawBufferPtr.baseAddress else {
+                return nil
+            }
+
+            let sourcePtr = baseAddress.assumingMemoryBound(to: UInt8.self)
+
             let configuration = (
                 operation: COMPRESSION_STREAM_DECODE,
                 algorithm: COMPRESSION_ZLIB

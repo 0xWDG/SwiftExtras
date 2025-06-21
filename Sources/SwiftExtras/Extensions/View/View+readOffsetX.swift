@@ -45,7 +45,6 @@ struct ViewOffsetXKey: PreferenceKey {
 }
 
 /// Save the frame of the view
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 struct ReadFrameModifier: ViewModifier {
     @Binding var frame: CGRect
 
@@ -53,7 +52,7 @@ struct ReadFrameModifier: ViewModifier {
         content
             .background(
                 GeometryReader { proxy in
-                    if #available(iOS 17.0, macOS 14.0, *) {
+                    if #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) {
                         Color.clear
                             .onAppear {
                                 frame = proxy.frame(in: .global)
@@ -79,7 +78,6 @@ extension View {
     /// Save the frame of the view
     /// - Parameter frame: frame of view
     /// - Returns: self
-    @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
     public func read(frame: Binding<CGRect>) -> some View {
         modifier(ReadFrameModifier(frame: frame))
     }

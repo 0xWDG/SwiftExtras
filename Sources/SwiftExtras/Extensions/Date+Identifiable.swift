@@ -11,7 +11,7 @@
 
 import Foundation
 
-#if swift(>=6.0)
+#if swift(>=5.9)
 extension Date: @retroactive Identifiable {
     public typealias ID = Int // swiftlint:disable:this type_name
 

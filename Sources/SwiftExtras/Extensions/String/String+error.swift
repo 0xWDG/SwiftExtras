@@ -22,7 +22,7 @@ public extension String {
 
 }
 
-#if swift(>=6.0)
+#if swift(>=5.9)
 extension String: @retroactive LocalizedError { }
 #else
 extension String: LocalizedError { }
