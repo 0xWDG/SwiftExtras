@@ -5,6 +5,8 @@ This file contains the changelog of SwiftExtras.
 ### 1.2.4
 - Added [`IndexedList(data:rowContent:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/indexedlist)  
   A view that displays a list of items with an index.
+- Added [`Error.errorCode`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/error/errorcode)  
+  Get the error code of an error.
 - Added [`AppInfo.openAppStorePage()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/openappstorepage())  
   Open the App Store page of the app.
 - Added [`AppInfo.isLatestVersion()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/islatestversion())  
