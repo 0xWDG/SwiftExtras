@@ -30,7 +30,7 @@ public func openURL(_ url: URL?) -> Bool {
 #if canImport(AppKit)
     return NSWorkspace.shared.open(url)
 #elseif canImport(UIKit) && !os(watchOS)
-    Task {
+    Task { @MainActor in
         return await UIApplication.shared.open(url)
     }
     return true

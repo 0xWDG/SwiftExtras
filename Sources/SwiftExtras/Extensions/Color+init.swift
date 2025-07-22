@@ -25,5 +25,51 @@ extension Color {
         self.init(color.description)
 #endif
     }
+
+    /// Creates a Color that adapts to the current user interface style.
+    /// - Parameters:
+    ///   - light: The color to use in light mode.
+    ///   - dark: The color to use in dark mode.
+    /// - Returns: A Color that adapts to the current user interface style.
+    public init(light: Color, dark: Color) {
+#if canImport(UIKit)
+#if os(watchOS)
+        // watchOS does not support light mode / dark mode
+        self.init(uiColor: UIColor(dark))
+#else
+        self.init(uiColor: UIColor(dynamicProvider: { traits in
+            switch traits.userInterfaceStyle {
+            case .light, .unspecified:
+                return UIColor(light)
+
+            case .dark:
+                return UIColor(dark)
+
+            @unknown default:
+                return UIColor(light)
+            }
+        }))
+#endif
+#else
+        self.init(nsColor: NSColor(name: nil, dynamicProvider: { appearance in
+            switch appearance.name {
+            case .aqua,
+                    .vibrantLight,
+                    .accessibilityHighContrastAqua,
+                    .accessibilityHighContrastVibrantLight:
+                return NSColor(light)
+
+            case .darkAqua,
+                    .vibrantDark,
+                    .accessibilityHighContrastDarkAqua,
+                    .accessibilityHighContrastVibrantDark:
+                return NSColor(dark)
+
+            default:
+                return NSColor(light)
+            }
+        }))
+#endif
+    }
 }
 #endif

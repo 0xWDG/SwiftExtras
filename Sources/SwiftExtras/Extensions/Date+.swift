@@ -95,6 +95,27 @@ extension Date {
         return dateFormatter.string(from: self)
     }
 
+    /// Full date string in the format "EE dd MMMM yyyy"
+    public var smallDateString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EE dd MMMM yyyy"
+        return dateFormatter.string(from: self)
+    }
+
+    /// Full date string in the format "dd MMMM yyyy"
+    public var dateString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMMM yyyy"
+        return dateFormatter.string(from: self)
+    }
+
+    /// Full date string in the format "dd mm yyyy"
+    public var extraSmallDateString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-mm-yyyy"
+        return dateFormatter.string(from: self)
+    }
+
     /// First day of the week
     public static var firstDayOfWeek = Calendar.current.firstWeekday
 
@@ -275,5 +296,37 @@ extension Date {
         dateComponents.month = month
         dateComponents.day = day
         self.init(timeIntervalSince1970: calendar.date(from: dateComponents)?.timeIntervalSince1970 ?? 0)
+    }
+
+    /// Create a date from specified parameters
+    ///
+    /// - Parameters:
+    ///   - year: The desired year
+    ///   - month: The desired month
+    ///   - day: The desired day
+    ///   - hour: The desired hour
+    ///   - minute: The desired minute
+    ///   - second: The desired second
+    /// - Returns: A `Date` object
+    public init(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int = 0) {
+        let calendar = Calendar(identifier: .gregorian)
+        var dateComponents = DateComponents()
+        dateComponents.year = year
+        dateComponents.month = month
+        dateComponents.day = day
+        dateComponents.hour = hour
+        dateComponents.minute = minute
+        dateComponents.second = second
+        self.init(timeIntervalSince1970: calendar.date(from: dateComponents)?.timeIntervalSince1970 ?? 0)
+    }
+
+    /// Is the date between a range of dates?
+    /// 
+    /// - Parameters:
+    ///  - date1: The first date of the range
+    ///  - date2: The second date of the range
+    /// - Returns: `true` if the date is between the two dates, `false` otherwise
+    public func isBetween(_ date1: Date, and date2: Date) -> Bool {
+        return (min(date1, date2)...max(date1, date2)).contains(self)
     }
 }

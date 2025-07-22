@@ -58,7 +58,7 @@ public enum Device {
 #endif
 }
 
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(watchOS)
 /// The device name (e.g., "John’s iPhone")
 static var deviceName: String {
     UIDevice.current.name
@@ -83,7 +83,7 @@ static var deviceBatteryLevel: Float { UIDevice.current.batteryLevel }
 /// The current battery state (charging, full, unplugged)
 static var deviceBatteryState: UIDevice.BatteryState { UIDevice.current.batteryState }
 
-#if !os(visionOS)
+#if !os(visionOS) || os(iOS)
 /// The device’s orientation (portrait, landscape, etc.)
 static var deviceOrientation: UIDeviceOrientation { UIDevice.current.orientation }
 

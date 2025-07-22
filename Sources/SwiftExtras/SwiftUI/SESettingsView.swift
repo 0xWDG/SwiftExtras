@@ -218,7 +218,10 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                     .font(.title)
 
                 if let createdBy {
-                    Text(.init("Created by \(createdBy)"), bundle: Bundle.module)
+                    HStack(spacing: 2) {
+                        Text("Created by", bundle: Bundle.module)
+                        Text(.init(createdBy))
+                    }
                 }
             }
             .frame(maxWidth: .infinity)
@@ -433,10 +436,10 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                 bundle: Bundle.module
             )
             if let createdBy {
-                Text(
-                    .init("Created by \(createdBy)"),
-                    bundle: Bundle.module
-                )
+                HStack(spacing: 2) {
+                    Text("Created by", bundle: Bundle.module)
+                    Text(.init(createdBy))
+                }
             }
         }
         .listRowBackground(Color.clear)

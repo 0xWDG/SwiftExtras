@@ -1,8 +1,10 @@
 # Changelog
 
 This file contains the changelog of SwiftExtras.
-
+    
 ### 1.2.4
+- Added [`IndexedList(data:rowContent:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/indexedlist)  
+  A view that displays a list of items with an index.
 - Added [`AppInfo.openAppStorePage()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/openappstorepage())  
   Open the App Store page of the app.
 - Added [`AppInfo.isLatestVersion()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/islatestversion())  
@@ -11,8 +13,10 @@ This file contains the changelog of SwiftExtras.
   To prevent an iOS 16.2 crash when this framework is loaded.
 - Added [`String.clean()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/string/clean())
   To remove diacritics from a string
-- Added [`.longPress`]() action to views.
-- Added [`MonthYearPickerView()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/MonthYearPickerView)
+- Added [`.longPress(action:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/asyncview/longpress(action:)) action to views.
+- Added [`MonthYearPickerView()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/monthyearpickerview)
+- Added String[`.containsHTML`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/string/containsHTML)
+- Added String[`.htmlToAttrinbutedString()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/string/htmlToAttrinbutedString())
 
 ### 1.2.3
 - Updated [`SESettingsView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/sesettingsview)

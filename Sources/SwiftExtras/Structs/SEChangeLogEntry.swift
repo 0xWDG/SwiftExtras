@@ -10,6 +10,9 @@
 //
 
 import Foundation
+#if canImport(SwiftUI)
+import SwiftUI
+#endif
 
 /// SwiftExtras Change Log Entry
 public struct SEChangeLogEntry: Identifiable {
@@ -24,6 +27,17 @@ public struct SEChangeLogEntry: Identifiable {
     /// The changelog for this entry.
     public var text: String
 
+    #if canImport(SwiftUI)
+    /// Initialize a new change log entry.
+    ///
+    /// - Parameters:
+    ///   - version: The version number for this entry.
+    ///   - text: The changelog for this entry.
+    public init(version: String, text: LocalizedStringKey) {
+        self.version = version
+        self.text = text.stringValue
+    }
+    #else
     /// Initialize a new change log entry.
     ///
     /// - Parameters:
@@ -33,4 +47,5 @@ public struct SEChangeLogEntry: Identifiable {
         self.version = version
         self.text = text
     }
+    #endif
 }

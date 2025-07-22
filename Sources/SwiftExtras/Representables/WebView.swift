@@ -12,7 +12,9 @@
 #if canImport(SwiftUI) && canImport(WebKit) && (canImport(UIKit) || canImport(AppKit))
 import SwiftUI
 @preconcurrency import WebKit
-
+#if canImport(OSLog)
+import OSLog
+#endif
 /// Create a Web View
 ///
 /// This view is a wrapper around `SFSafariViewController`.
@@ -29,6 +31,9 @@ import SwiftUI
 /// ```
 ///
 public struct WebView: PlatformViewRepresentableType {
+    #if canImport(OSLog)
+    let logger = Logger(default: true)
+    #endif
     let url: URL
     let onLoad: ((WKWebView, WKNavigation) -> Void)?
     let onError: ((WKWebView, WKNavigation, Error) -> Void)?
@@ -78,15 +83,21 @@ public struct WebView: PlatformViewRepresentableType {
         onLoad: ((WKWebView, WKNavigation) -> Void)? = nil,
         onError: ((WKWebView, WKNavigation, Error) -> Void)? = nil
     ) {
-        self.url = .cachesDirectory
+        let tempURL: URL = .cachesDirectory
             .appendingPathComponent("\(UUID().uuidString).html")
-
+        self.url = tempURL
         self.html = html
 
         do {
             try html.data(using: .utf8)?.write(to: url)
         } catch {
+            #if canImport(OSLog)
+            logger.error(
+                "Error writing HTML to \(tempURL, privacy: .public): \(error.localizedDescription, privacy: .public)"
+            )
+            #else
             print("Error writing HTML to \(url): \(error.localizedDescription)")
+            #endif
         }
 
         self.onLoad = onLoad
