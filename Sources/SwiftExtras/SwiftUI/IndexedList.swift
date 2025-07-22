@@ -107,16 +107,18 @@ public struct IndexedList<Cell: View>: View {
                         ForEach(sortedKeys, id: \.self) { key in
                             // Displaying the key as a tappable text view
                             Text(key)
-                                // Add some padding to make it easier to tap
-                                .padding(.horizontal, 10)
+                                // Add a small font
                                 .font(.caption2)
-                                .foregroundStyle(currentIndex == key ? .blue : Color.accentColor)
-                                // Add some general padding
+                                // Add accent color
+                                .foregroundStyle(Color.accentColor)
+                                // Add some padding
                                 .padding(2)
                                 // On tap gesture to scroll to the section corresponding to the key
                                 .onTapGesture {
                                     proxy.scrollTo(key, anchor: .top)
                                 }
+                                // Zoom when hovering over the indexed letter
+                                .scaleEffect(currentIndex == key ? 2.0 : 1.0)
                                 // Adding a background to add the GeometryReader
                                 .background(
                                     // Using GeometryReader to capture the frame of each index key
@@ -124,7 +126,12 @@ public struct IndexedList<Cell: View>: View {
                                     GeometryReader { proxy in
                                         Color.clear.preference(
                                             key: IndexKeyPreferenceKey.self,
-                                            value: [IndexKeyInfo(key: key, frame: proxy.frame(in: .global))]
+                                            value: [
+                                                IndexKeyInfo(
+                                                    key: key,
+                                                    frame: proxy.frame(in: .global)
+                                                )
+                                            ]
                                         )
                                     }
                                 )
@@ -239,16 +246,17 @@ struct IndexKeyPreferenceKey: PreferenceKey {
 
 #Preview {
     IndexedList(data: [
-        "Anne", "Bram", "Sanne", "Daan", "Lieke", "Milan", "Femke", "Joris", "Tess", "Thijs",
-        "Noa", "Sem", "Lars", "Lotte", "Max", "Eva", "Luuk", "Nina", "Finn", "Roos",
-        "Janneke", "Gijs", "Isa", "Koen", "Sofie", "Tijn", "Maud", "Ruben", "Evi", "Siem",
-        "Luca", "Bo", "Jelle", "Fleur", "Mees", "Yara", "Pim", "Elin", "Stijn", "Mare",
-        "Noud", "Saar", "Tim", "Bente", "Jochem", "Ilse", "Pepijn", "Marit", "Teun", "Milou",
-        "Jip", "Jet", "Bas", "Anouk", "Timo", "Veerle", "Floris", "Lana", "Jens", "Mila",
-        "Job", "Loes", "Cas", "Tirza", "Nick", "Fenna", "Hidde", "Lynn", "Dirk", "Jade",
-        "Mark", "Iris", "Bart", "Elise", "Wout", "Norah", "Maarten", "Nora", "Kees", "Tessa",
-        "Rik", "Amber", "Nathan", "Vera", "Roel", "Zara", "Jan", "Esmee", "Tom", "Britt",
-        "Stef", "Demi", "Arjen", "Floor", "Johan", "Liv", "Harm", "Romy", "Martijn", "Suze"
+        "Wesley", "Carlo", "Uneata", "Anne", "Bram", "Sanne", "Daan", "Lieke", "Milan",
+        "Femke", "Joris", "Tess", "Thijs", "Noa", "Sem", "Lars", "Lotte", "Max", "Eva",
+        "Luuk", "Nina", "Finn", "Roos", "Janneke", "Gijs", "Isa", "Koen", "Sofie", "Tijn",
+        "Maud", "Ruben", "Evi", "Siem", "Luca", "Bo", "Jelle", "Fleur", "Mees", "Yara",
+        "Pim", "Elin", "Stijn", "Mare", "Noud", "Saar", "Tim", "Bente", "Jochem", "Ilse",
+        "Pepijn", "Marit", "Teun", "Milou", "Jip", "Jet", "Bas", "Anouk", "Timo", "Veerle",
+        "Floris", "Lana", "Jens", "Mila", "Job", "Loes", "Cas", "Tirza", "Nick", "Fenna",
+        "Hidde", "Lynn", "Dirk", "Jade", "Mark", "Iris", "Bart", "Elise", "Wout", "Norah",
+        "Maarten", "Nora", "Kees", "Tessa", "Rik", "Amber", "Nathan", "Vera", "Roel", "Zara",
+        "Jan", "Esmee", "Tom", "Britt", "Stef", "Demi", "Arjen", "Floor", "Johan", "Liv",
+        "Harm", "Romy", "Martijn", "Suze", "Kees"
     ]) { name in
         Text(name)
     }
