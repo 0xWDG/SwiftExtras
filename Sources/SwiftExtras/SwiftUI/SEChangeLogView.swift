@@ -10,46 +10,47 @@
 //
 
 #if canImport(SwiftUI)
-    import SwiftUI
+import SwiftUI
 
-    /// SwiftExtras Change Log View
-    ///
-    /// SwiftExtras Change Log View is a SwiftUI View that can be used to show a change log.
-    public struct SEChangeLogView: View {
-        /// The change log entries to display.
-        public var changeLog: [SEChangeLogEntry]
+/// SwiftExtras Change Log View
+///
+/// SwiftExtras Change Log View is a SwiftUI View that can be used to show a
+/// change log.
+public struct SEChangeLogView: View {
+    /// The change log entries to display.
+    public var changeLog: [SEChangeLogEntry]
 
-        public var body: some View {
-            List {
-                ForEach(changeLog) { changeLogEntry in
-                    Section {
-                        Text(.init(changeLogEntry.text))
-                    } header: {
-                        Text(.init("Version \(changeLogEntry.version)"))
-                    }
+    public var body: some View {
+        List {
+            ForEach(changeLog) { changeLogEntry in
+                Section {
+                    Text(.init(changeLogEntry.text))
+                } header: {
+                    Text(.init("Version \(changeLogEntry.version)"))
                 }
             }
-            .navigationTitle(Text("Changelog", bundle: Bundle.module))
-            #if os(iOS)
-                .navigationBarTitleDisplayMode(.inline)
-            #endif
         }
-
-        /// Initialize a new change log view.
-        ///
-        /// - Parameters:
-        ///   - changeLog: The change log entries to display.
-        public init(changeLog: [SEChangeLogEntry]) {
-            self.changeLog = changeLog
-        }
+        .navigationTitle(Text("Changelog", bundle: Bundle.module))
+        #if os(iOS)
+            .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
 
-    #if DEBUG
-        @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
-        #Preview {
-            SEChangeLogView(changeLog: [
-                .init(version: "1.0.0", text: "Initial version")
-            ])
-        }
-    #endif
+    /// Initialize a new change log view.
+    ///
+    /// - Parameters:
+    ///   - changeLog: The change log entries to display.
+    public init(changeLog: [SEChangeLogEntry]) {
+        self.changeLog = changeLog
+    }
+}
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    SEChangeLogView(changeLog: [
+        .init(version: "1.0.0", text: "Initial version")
+    ])
+}
+#endif
 #endif

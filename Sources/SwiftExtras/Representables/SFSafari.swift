@@ -10,57 +10,59 @@
 //
 
 #if canImport(SwiftUI) && canImport(SafariServices) && canImport(UIKit)
-    import SafariServices
-    import SwiftUI
-    import UIKit
+import SafariServices
+import SwiftUI
+import UIKit
 
-    /// Make a Safari View for SwiftUI
-    @available(iOS 14.0, *)
-    public struct SafariView: UIViewControllerRepresentable {
-        public typealias UIViewControllerType = SFSafariViewController
+/// Make a Safari View for SwiftUI
+@available(iOS 14.0, *)
+public struct SafariView: UIViewControllerRepresentable {
+    public typealias UIViewControllerType = SFSafariViewController
 
-        @Binding public var urlString: String
+    @Binding public var urlString: String
 
-        public init(url: Binding<URL>) {
-            _urlString = Binding(get: {
-                url.wrappedValue.absoluteString
-            }, set: { _ in
-                // Ignore
-            })
-        }
-
-        public init(url: Binding<String>) {
-            _urlString = url
-        }
-
-        public func makeUIViewController(
-            context _: UIViewControllerRepresentableContext<SafariView>
-        ) -> SFSafariViewController {
-            guard let safeURL = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-                  let url = URL(string: safeURL)
-            else {
-                fatalError("Invalid urlString: \(urlString)")
-            }
-
-            let safariViewController = SFSafariViewController(url: url)
-            #if !os(visionOS)
-                safariViewController.preferredControlTintColor = UIColor(Color.accentColor)
-                safariViewController.dismissButtonStyle = .close
-            #endif
-
-            return safariViewController
-        }
-
-        public func updateUIViewController(
-            _: SFSafariViewController,
-            context _: UIViewControllerRepresentableContext<SafariView>
-        ) {}
+    public init(url: Binding<URL>) {
+        _urlString = Binding(get: {
+            url.wrappedValue.absoluteString
+        }, set: { _ in
+            // Ignore
+        })
     }
 
-    #if DEBUG
-        @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
-        #Preview {
-            SafariView(url: .constant(.init(stringLiteral: "https://wesleydegroot.nl")))
+    public init(url: Binding<String>) {
+        _urlString = url
+    }
+
+    public func makeUIViewController(
+        context _: UIViewControllerRepresentableContext<SafariView>
+    ) -> SFSafariViewController {
+        guard let safeURL = urlString
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+            let url = URL(string: safeURL)
+        else {
+            fatalError("Invalid urlString: \(urlString)")
         }
-    #endif
+
+        let safariViewController = SFSafariViewController(url: url)
+        #if !os(visionOS)
+        safariViewController
+            .preferredControlTintColor = UIColor(Color.accentColor)
+        safariViewController.dismissButtonStyle = .close
+        #endif
+
+        return safariViewController
+    }
+
+    public func updateUIViewController(
+        _: SFSafariViewController,
+        context _: UIViewControllerRepresentableContext<SafariView>
+    ) {}
+}
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    SafariView(url: .constant(.init(stringLiteral: "https://wesleydegroot.nl")))
+}
+#endif
 #endif

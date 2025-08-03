@@ -15,45 +15,45 @@ public extension ProcessInfo {
     /// Detects if running in Xcode SwiftUI Preview mode
     static var isSwiftUIPreview: Bool {
         #if DEBUG
-            processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+        processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
         #else
-            false
+        false
         #endif
     }
 
     /// Detects if UI Tests are running
     static var isUITesting: Bool {
         #if DEBUG
-            processInfo.arguments.contains("UI_TESTING")
+        processInfo.arguments.contains("UI_TESTING")
         #else
-            false
+        false
         #endif
     }
 
     /// Detects if Unit Tests are running
     static var isUnitTesting: Bool {
         #if DEBUG
-            NSClassFromString("XCTestCase") != nil
+        NSClassFromString("XCTestCase") != nil
         #else
-            false
+        false
         #endif
     }
 
     /// Detects if Low Power Mode is enabled
     static var isLowPowerModeActive: Bool {
         #if os(iOS) || os(watchOS)
-            processInfo.isLowPowerModeEnabled
+        processInfo.isLowPowerModeEnabled
         #else
-            false
+        false
         #endif
     }
 
     /// Detects if running an iOS app on Mac
     static var isRunningiOSAppOnMac: Bool {
         #if os(iOS)
-            processInfo.isiOSAppOnMac
+        processInfo.isiOSAppOnMac
         #else
-            false
+        false
         #endif
     }
 }

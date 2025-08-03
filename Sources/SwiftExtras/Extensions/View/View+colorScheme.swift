@@ -11,41 +11,41 @@
 //
 
 #if canImport(SwiftUI)
-    import SwiftUI
+import SwiftUI
 
-    public extension View {
-        /// Sets the color scheme of the view.
-        ///
-        ///  ```swift
-        ///  SomeSwiftUIView()
-        ///     .colorScheme(.dark)
-        ///  ```
-        ///
-        /// - Parameter closure: Code need to run
-        /// - Returns: self
-        func colorScheme(colorSheme: ColorScheme) -> some View {
-            environment(\.colorScheme, colorSheme)
-        }
+public extension View {
+    /// Sets the color scheme of the view.
+    ///
+    ///  ```swift
+    ///  SomeSwiftUIView()
+    ///     .colorScheme(.dark)
+    ///  ```
+    ///
+    /// - Parameter closure: Code need to run
+    /// - Returns: self
+    func colorScheme(colorSheme: ColorScheme) -> some View {
+        environment(\.colorScheme, colorSheme)
     }
+}
 
-    #if DEBUG
-        @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
-        #Preview {
-            VStack {
-                Spacer()
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    VStack {
+        Spacer()
 
-                Text("Light mode")
-                    .colorScheme(.light)
+        Text("Light mode")
+            .colorScheme(.light)
 
-                Spacer()
+        Spacer()
 
-                Text("Light mode")
-                    .colorScheme(.dark)
+        Text("Light mode")
+            .colorScheme(.dark)
 
-                Spacer()
-            }
-            .frame(maxSize: .infinity)
-            .background(.gray)
-        }
-    #endif
+        Spacer()
+    }
+    .frame(maxSize: .infinity)
+    .background(.gray)
+}
+#endif
 #endif

@@ -12,25 +12,27 @@
 import Foundation
 
 #if swift(>=5.9)
-    extension String: @retroactive Identifiable {
-        public typealias ID = Int // swiftlint:disable:this type_name
+extension String: @retroactive Identifiable {
+    public typealias ID = Int // swiftlint:disable:this type_name
 
-        /// The identifier of the string.
-        ///
-        /// This is a hash value of the string to make String conform to Identifiable.
-        public var id: Int {
-            hash
-        }
+    /// The identifier of the string.
+    ///
+    /// This is a hash value of the string to make String conform to
+    /// Identifiable.
+    public var id: Int {
+        hash
     }
+}
 #else
-    extension String: Identifiable {
-        public typealias ID = Int // swiftlint:disable:this type_name
+extension String: Identifiable {
+    public typealias ID = Int // swiftlint:disable:this type_name
 
-        /// The identifier of the string.
-        ///
-        /// This is a hash value of the string to make String conform to Identifiable.
-        public var id: Int {
-            hash
-        }
+    /// The identifier of the string.
+    ///
+    /// This is a hash value of the string to make String conform to
+    /// Identifiable.
+    public var id: Int {
+        hash
     }
+}
 #endif

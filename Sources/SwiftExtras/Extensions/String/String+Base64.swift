@@ -27,7 +27,8 @@ public extension String {
     ///
     /// - Returns: Decoded string
     func base64Decoded() -> String? {
-        guard let data = Data(base64Encoded: self) else {
+        guard let data = Data(base64Encoded: self)
+        else {
             print("Unable to decode base64 string \"\(self)\"")
             return nil
         }
@@ -46,10 +47,18 @@ public extension String {
         let requiredLength = 4 * ceil(length / 4.0)
         let paddingLength = requiredLength - length
         if paddingLength > 0 {
-            let padding = "".padding(toLength: Int(paddingLength), withPad: "=", startingAt: 0)
+            let padding = "".padding(
+                toLength: Int(paddingLength),
+                withPad: "=",
+                startingAt: 0
+            )
             base64 += padding
         }
-        guard let data = Data(base64Encoded: base64, options: .ignoreUnknownCharacters) else {
+        guard let data = Data(
+            base64Encoded: base64,
+            options: .ignoreUnknownCharacters
+        )
+        else {
             print("Unable to decode base64UrlDecode string \"\(self)\"")
             return nil
         }

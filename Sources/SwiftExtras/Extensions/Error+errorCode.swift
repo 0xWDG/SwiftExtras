@@ -14,11 +14,13 @@ import Foundation
 public extension Error {
     /// Returns the error code of the error if it is an NSError.
     /// If the error is not an NSError, this will return nil.
-    /// This is useful for extracting error codes from errors that conform to the NSError protocol.
+    /// This is useful for extracting error codes from errors that conform to
+    /// the NSError protocol.
     ///
     /// Example usage:
     /// ```swift
-    /// let error: Error = NSError(domain: "nl.wesleydegroot.SwiftExtras", code: 404, userInfo: nil)
+    /// let error: Error = NSError(domain: "nl.wesleydegroot.SwiftExtras", code:
+    /// 404, userInfo: nil)
     /// if let code = error.errorCode {
     ///     print("Error code: \(code)") // Output: Error code: 404
     /// }

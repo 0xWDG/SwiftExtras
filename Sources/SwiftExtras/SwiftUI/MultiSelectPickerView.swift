@@ -10,123 +10,130 @@
 //
 
 #if canImport(SwiftUI)
-    import SwiftUI
+import SwiftUI
+
+/// MultiSelectPickerView
+///
+/// This is a picker view that allows you to select multiple items from a list.
+/// It displays a list of items, each with a checkbox that allows you to select
+/// or deselect it.
+public struct MultiSelectPickerView<
+    PickerLabel: View,
+    SelectionLabel: View
+>: View {
+    /// The list of all items to read from
+    @State var sourceItems: [String]
+
+    /// The values we want to track
+    @Binding var selectedItems: [String]
+
+    /// The picker label
+    var pickerLabel: () -> PickerLabel
+
+    /// The label for each item
+    var selectionLabel: (_ item: String) -> SelectionLabel?
 
     /// MultiSelectPickerView
     ///
-    /// This is a picker view that allows you to select multiple items from a list.
-    /// It displays a list of items, each with a checkbox that allows you to select or deselect it.
-    public struct MultiSelectPickerView<PickerLabel: View, SelectionLabel: View>: View {
-        /// The list of all items to read from
-        @State var sourceItems: [String]
-
-        /// The values we want to track
-        @Binding var selectedItems: [String]
-
-        /// The picker label
-        var pickerLabel: () -> PickerLabel
-
-        /// The label for each item
-        var selectionLabel: (_ item: String) -> SelectionLabel?
-
-        /// MultiSelectPickerView
-        ///
-        /// This is a picker view that allows you to select multiple items from a list.
-        /// It displays a list of items, each with a checkbox that allows you to select or deselect it.
-        ///
-        /// Usage:
-        /// ```
-        /// NavigationLink {
-        ///     List {
-        ///         MultiSelectPickerView(
-        ///             sourceItems: items,
-        ///             selectedItems: $selectedItems) {
-        ///                 Text("Pick your items")
-        ///             } selectionLabel: { item in
-        ///                 Label(item, systemImage: item)
-        ///             }
-        ///     }
-        /// }
-        /// ```
-        ///
-        /// The `label` parameter is optional, and defaults to a text view.
-        ///
-        /// Parameters:
-        /// - sourceItems: The list of all items to read from.
-        /// - selectedItems: A binding to the values we want to track.
-        /// - pickerLabel: A closure that returns a label for the picker.
-        /// - selectionLabel: A closure that returns a label for each item.
-        public init(
-            sourceItems: [String],
-            selectedItems: Binding<[String]>,
-            @ViewBuilder pickerLabel: @escaping () -> PickerLabel,
-            @ViewBuilder selectionLabel: @escaping (_ item: String) -> SelectionLabel? = { item in
+    /// This is a picker view that allows you to select multiple items from a
+    /// list.
+    /// It displays a list of items, each with a checkbox that allows you to
+    /// select or deselect it.
+    ///
+    /// Usage:
+    /// ```
+    /// NavigationLink {
+    ///     List {
+    ///         MultiSelectPickerView(
+    ///             sourceItems: items,
+    ///             selectedItems: $selectedItems) {
+    ///                 Text("Pick your items")
+    ///             } selectionLabel: { item in
+    ///                 Label(item, systemImage: item)
+    ///             }
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// The `label` parameter is optional, and defaults to a text view.
+    ///
+    /// Parameters:
+    /// - sourceItems: The list of all items to read from.
+    /// - selectedItems: A binding to the values we want to track.
+    /// - pickerLabel: A closure that returns a label for the picker.
+    /// - selectionLabel: A closure that returns a label for each item.
+    public init(
+        sourceItems: [String],
+        selectedItems: Binding<[String]>,
+        @ViewBuilder pickerLabel: @escaping () -> PickerLabel,
+        @ViewBuilder selectionLabel: @escaping (_ item: String)
+            -> SelectionLabel? = { item in
                 Text(item)
             }
-        ) {
-            self.sourceItems = sourceItems
-            _selectedItems = selectedItems
-            self.pickerLabel = pickerLabel
-            self.selectionLabel = selectionLabel
-        }
+    ) {
+        self.sourceItems = sourceItems
+        _selectedItems = selectedItems
+        self.pickerLabel = pickerLabel
+        self.selectionLabel = selectionLabel
+    }
 
-        /// The body of the view
-        public var body: some View {
-            NavigationLink {
-                Form {
-                    List {
-                        ForEach(sourceItems, id: \.self) { item in
-                            Button {
-                                if selectedItems.contains(item) {
-                                    selectedItems.removeAll(where: { $0 == item })
-                                } else {
-                                    selectedItems.append(item)
-                                }
-                            } label: {
-                                HStack {
-                                    Image(systemName: "checkmark")
-                                        .opacity(
-                                            selectedItems.contains(item)
-                                                ? 1.0
-                                                : 0.0
-                                        )
-                                        .foregroundStyle(Color.accentColor)
-                                        .accessibilityLabel("Selected")
-
-                                    selectionLabel(item)
-                                }
+    /// The body of the view
+    public var body: some View {
+        NavigationLink {
+            Form {
+                List {
+                    ForEach(sourceItems, id: \.self) { item in
+                        Button {
+                            if selectedItems.contains(item) {
+                                selectedItems.removeAll(where: { $0 == item })
+                            } else {
+                                selectedItems.append(item)
                             }
-                            .foregroundColor(.primary)
+                        } label: {
+                            HStack {
+                                Image(systemName: "checkmark")
+                                    .opacity(
+                                        selectedItems.contains(item)
+                                            ? 1.0
+                                            : 0.0
+                                    )
+                                    .foregroundStyle(Color.accentColor)
+                                    .accessibilityLabel("Selected")
+
+                                selectionLabel(item)
+                            }
                         }
+                        .foregroundColor(.primary)
                     }
                 }
-                #if os(iOS)
-                .listStyle(.grouped)
-                #endif
-            } label: {
-                pickerLabel()
+            }
+            #if os(iOS)
+            .listStyle(.grouped)
+            #endif
+        } label: {
+            pickerLabel()
+        }
+    }
+}
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    @Previewable @State var selectedItems: [String] = []
+    var items = ["star", "person", "rainbow"]
+
+    NavigationView {
+        List {
+            MultiSelectPickerView(
+                sourceItems: items,
+                selectedItems: $selectedItems
+            ) {
+                Text("Pick your items")
+            } selectionLabel: { item in
+                Label(item, systemImage: item)
             }
         }
     }
-
-    #if DEBUG
-        @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
-        #Preview {
-            @Previewable @State var selectedItems: [String] = []
-            var items = ["star", "person", "rainbow"]
-
-            NavigationView {
-                List {
-                    MultiSelectPickerView(
-                        sourceItems: items,
-                        selectedItems: $selectedItems
-                    ) {
-                        Text("Pick your items")
-                    } selectionLabel: { item in
-                        Label(item, systemImage: item)
-                    }
-                }
-            }
-        }
-    #endif
+}
+#endif
 #endif

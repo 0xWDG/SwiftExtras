@@ -16,7 +16,8 @@ public extension String {
     /// - Parameters:
     ///   - string: The string to check for.
     ///   - caseSensitive: Whether the search should be case-sensitive.
-    /// - Returns: `true` if the string contains the other string, `false` otherwise.
+    /// - Returns: `true` if the string contains the other string, `false`
+    /// otherwise.
     func contains(_ string: String, caseSensitive: Bool) -> Bool {
         caseSensitive
             ? contains(string)

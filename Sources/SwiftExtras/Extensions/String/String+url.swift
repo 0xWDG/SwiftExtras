@@ -14,7 +14,8 @@ import Foundation
 public extension String {
     /// Readable string from a URL string.
     ///
-    ///        "it's%20easy%20to%20decode%20strings".urlDecoded -> "it's easy to decode strings"
+    ///        "it's%20easy%20to%20decode%20strings".urlDecoded -> "it's easy to
+    /// decode strings"
     ///
     var urlDecoded: String {
         removingPercentEncoding ?? self
@@ -22,10 +23,13 @@ public extension String {
 
     /// URL escaped string.
     ///
-    ///        "it's easy to encode strings".urlEncoded -> "it's%20easy%20to%20encode%20strings"
+    ///        "it's easy to encode strings".urlEncoded ->
+    /// "it's%20easy%20to%20encode%20strings"
     ///
     var urlEncoded: String {
-        guard let encodedString = addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
+        guard let encodedString =
+            addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        else {
             return self
         }
 

@@ -14,17 +14,17 @@ import Foundation
 public extension TimeInterval {
     /// Returns the time interval in years
     var years: Int {
-        Int(self) / 31536000
+        Int(self) / 31_536_000
     }
 
     /// Returns the time interval in months
     var months: Int {
-        Int(self) / 2592000
+        Int(self) / 2_592_000
     }
 
     /// Returns the time interval in weeks
     var weeks: Int {
-        Int(self) / 604800
+        Int(self) / 604_800
     }
 
     /// Returns the time interval in days
@@ -54,17 +54,17 @@ public extension TimeInterval {
 
     /// Returns the time interval in absolute years
     var absoluteYears: Int {
-        Int(abs(self)) / 31536000
+        Int(abs(self)) / 31_536_000
     }
 
     /// Returns the time interval in absolute months
     var absoluteMonths: Int {
-        Int(abs(self)) / 2592000
+        Int(abs(self)) / 2_592_000
     }
 
     /// Returns the time interval in absolute weeks
     var absoluteWeeks: Int {
-        Int(abs(self)) / 604800
+        Int(abs(self)) / 604_800
     }
 
     /// Returns the time interval in absolute days
@@ -88,18 +88,21 @@ public extension TimeInterval {
     }
 
     #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS) || os(macOS)
-        /// Returns the time interval in relative time
-        var timeString: String {
-            if self == 0 {
-                return NSLocalizedString("At time of event", comment: "At time of event")
-            }
-
-            return RelativeDateTimeFormatter()
-                .localizedString(fromTimeInterval: self)
-                .components(separatedBy: " ")
-                .dropLast()
-                .joined(separator: " ")
-                + " " + NSLocalizedString("before", comment: "before")
+    /// Returns the time interval in relative time
+    var timeString: String {
+        if self == 0 {
+            return NSLocalizedString(
+                "At time of event",
+                comment: "At time of event"
+            )
         }
+
+        return RelativeDateTimeFormatter()
+            .localizedString(fromTimeInterval: self)
+            .components(separatedBy: " ")
+            .dropLast()
+            .joined(separator: " ")
+            + " " + NSLocalizedString("before", comment: "before")
+    }
     #endif
 }

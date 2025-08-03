@@ -29,7 +29,8 @@ public extension String {
 
         let end = index(
             startIndex,
-            offsetBy: (count <= bounds.upperBound ? bounds.upperBound : count) - 1
+            offsetBy: (count <= bounds.upperBound ? bounds.upperBound : count) -
+                1
         )
 
         // If self is empty, then do nothing with it.
@@ -119,7 +120,8 @@ public extension String {
     /// print(string[7]) // "W"
     /// ```
     ///
-    /// - Parameter characterIndex: The index of the character that we search for.
+    /// - Parameter characterIndex: The index of the character that we search
+    /// for.
     /// - Returns: The character found at the specified index.
     subscript(characterIndex: Int) -> String {
         String(self[index(startIndex, offsetBy: characterIndex)])

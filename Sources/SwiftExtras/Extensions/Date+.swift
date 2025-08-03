@@ -153,14 +153,20 @@ public extension Date {
 
         return (1 ... 12).compactMap { month in
             dateFormatter.setLocalizedDateFormatFromTemplate("MMMM")
-            let date = Calendar.current.date(from: DateComponents(year: 2000, month: month, day: 1))
+            let date = Calendar.current.date(from: DateComponents(
+                year: 2000,
+                month: month,
+                day: 1
+            ))
             return date.map { dateFormatter.string(from: $0) }
         }
     }
 
     /// Start of the month (first day)
     var startOfMonth: Date {
-        guard let start = Calendar.current.dateInterval(of: .month, for: self)?.start else {
+        guard let start = Calendar.current.dateInterval(of: .month, for: self)?
+            .start
+        else {
             fatalError("Unable to determine the start of the month")
         }
         return start
@@ -168,8 +174,13 @@ public extension Date {
 
     /// End of the month (last day)
     var endOfMonth: Date {
-        guard let lastDay = Calendar.current.dateInterval(of: .month, for: self)?.end,
-              let end = Calendar.current.date(byAdding: .day, value: -1, to: lastDay)
+        guard let lastDay = Calendar.current
+            .dateInterval(of: .month, for: self)?.end,
+            let end = Calendar.current.date(
+                byAdding: .day,
+                value: -1,
+                to: lastDay
+            )
         else {
             fatalError("Unable to determine the end of the month")
         }
@@ -178,7 +189,12 @@ public extension Date {
 
     /// Start of the previous month (first day)
     var startOfPreviousMonth: Date {
-        guard let dayInPreviousMonth = Calendar.current.date(byAdding: .month, value: -1, to: self) else {
+        guard let dayInPreviousMonth = Calendar.current.date(
+            byAdding: .month,
+            value: -1,
+            to: self
+        )
+        else {
             fatalError("Unable to determine the start of the previous month")
         }
         return dayInPreviousMonth.startOfMonth
@@ -196,7 +212,10 @@ public extension Date {
 
     /// First weekday before the start of the month
     var firstWeekDayBeforeStart: Date {
-        let startOfMonthWeekday = Calendar.current.component(.weekday, from: startOfMonth)
+        let startOfMonthWeekday = Calendar.current.component(
+            .weekday,
+            from: startOfMonth
+        )
         var numberFromPreviousMonth = startOfMonthWeekday - Self.firstDayOfWeek
 
         if numberFromPreviousMonth < 0 {
@@ -207,8 +226,11 @@ public extension Date {
             byAdding: .day,
             value: -numberFromPreviousMonth,
             to: startOfMonth
-        ) else {
-            fatalError("Unable to determine the first weekday before the start of the month")
+        )
+        else {
+            fatalError(
+                "Unable to determine the first weekday before the start of the month"
+            )
         }
 
         return firstWeekDay
@@ -216,7 +238,8 @@ public extension Date {
 
     /// Grid of dates for the month
     ///
-    /// The grid is an array of 42 dates, starting with the days from the previous month to fill the grid.
+    /// The grid is an array of 42 dates, starting with the days from the
+    /// previous month to fill the grid.
     /// The grid is used to display the calendar in a grid format.
     var calendarGrid: [Date] {
         var days: [Date] = []
@@ -225,7 +248,11 @@ public extension Date {
         var day = firstDisplayDay
 
         while day < startOfMonth {
-            if let newDay = Calendar.current.date(byAdding: .day, value: 1, to: day) {
+            if let newDay = Calendar.current.date(
+                byAdding: .day,
+                value: 1,
+                to: day
+            ) {
                 days.append(day)
                 day = newDay
             }
@@ -233,7 +260,11 @@ public extension Date {
 
         var dayOffset = 0
         while days.count <= 41 {
-            if let newDay = Calendar.current.date(byAdding: .day, value: dayOffset, to: startOfMonth) {
+            if let newDay = Calendar.current.date(
+                byAdding: .day,
+                value: dayOffset,
+                to: startOfMonth
+            ) {
                 days.append(newDay)
             }
             dayOffset += 1
@@ -261,7 +292,8 @@ public extension Date {
     static func random(in range: Range<Date>) -> Date {
         Date(
             timeIntervalSinceNow: .random(
-                in: range.lowerBound.timeIntervalSinceNow ... range.upperBound.timeIntervalSinceNow
+                in: range.lowerBound.timeIntervalSinceNow ... range.upperBound
+                    .timeIntervalSinceNow
             )
         )
     }
@@ -272,7 +304,11 @@ public extension Date {
         components.day = 1
         components.second = -1
 
-        guard let endOfDay = Calendar.current.date(byAdding: components, to: startOfDay) else {
+        guard let endOfDay = Calendar.current.date(
+            byAdding: components,
+            to: startOfDay
+        )
+        else {
             fatalError("Unable to determine the end of the day")
         }
 
@@ -282,7 +318,12 @@ public extension Date {
     /// Get local date from provided date
     func localDate() -> Date {
         let timeZoneOffset = Double(TimeZone.current.secondsFromGMT(for: self))
-        guard let localDate = Calendar.current.date(byAdding: .second, value: Int(timeZoneOffset), to: self) else {
+        guard let localDate = Calendar.current.date(
+            byAdding: .second,
+            value: Int(timeZoneOffset),
+            to: self
+        )
+        else {
             return self
         }
 
@@ -290,8 +331,14 @@ public extension Date {
     }
 
     /// Change date to timezone.
-    func to(timeZone outputTimeZone: TimeZone, from inputTimeZone: TimeZone) -> Date {
-        let delta = TimeInterval(outputTimeZone.secondsFromGMT(for: self) - inputTimeZone.secondsFromGMT(for: self))
+    func to(
+        timeZone outputTimeZone: TimeZone,
+        from inputTimeZone: TimeZone
+    ) -> Date {
+        let delta = TimeInterval(outputTimeZone
+            .secondsFromGMT(for: self) - inputTimeZone
+            .secondsFromGMT(for: self)
+        )
         return addingTimeInterval(delta)
     }
 
@@ -308,7 +355,10 @@ public extension Date {
         dateComponents.year = year
         dateComponents.month = month
         dateComponents.day = day
-        self.init(timeIntervalSince1970: calendar.date(from: dateComponents)?.timeIntervalSince1970 ?? 0)
+        self
+            .init(timeIntervalSince1970: calendar.date(from: dateComponents)?
+                .timeIntervalSince1970 ?? 0
+            )
     }
 
     /// Create a date from specified parameters
@@ -321,7 +371,14 @@ public extension Date {
     ///   - minute: The desired minute
     ///   - second: The desired second
     /// - Returns: A `Date` object
-    init(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int = 0) {
+    init(
+        year: Int,
+        month: Int,
+        day: Int,
+        hour: Int,
+        minute: Int,
+        second: Int = 0
+    ) {
         let calendar = Calendar(identifier: .gregorian)
         var dateComponents = DateComponents()
         dateComponents.year = year
@@ -330,7 +387,10 @@ public extension Date {
         dateComponents.hour = hour
         dateComponents.minute = minute
         dateComponents.second = second
-        self.init(timeIntervalSince1970: calendar.date(from: dateComponents)?.timeIntervalSince1970 ?? 0)
+        self
+            .init(timeIntervalSince1970: calendar.date(from: dateComponents)?
+                .timeIntervalSince1970 ?? 0
+            )
     }
 
     /// Is the date between a range of dates?
@@ -338,7 +398,8 @@ public extension Date {
     /// - Parameters:
     ///  - date1: The first date of the range
     ///  - date2: The second date of the range
-    /// - Returns: `true` if the date is between the two dates, `false` otherwise
+    /// - Returns: `true` if the date is between the two dates, `false`
+    /// otherwise
     func isBetween(_ date1: Date, and date2: Date) -> Bool {
         (min(date1, date2) ... max(date1, date2)).contains(self)
     }
@@ -361,3 +422,4 @@ public extension Date {
         return "\(hour):\(minute)"
     }
 }
+// swiftlint:disable:this file_length
