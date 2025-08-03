@@ -22,7 +22,7 @@
     /// Example:
     /// ```swift
     /// Button("Hello World!") {}
-    ///     .buttonStyle(.blue)
+    ///     .buttonStyle(colored(color: .blue))
     /// ```
     @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
     public struct ColoredButtonStyle: ButtonStyle {

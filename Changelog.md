@@ -3,9 +3,9 @@
 This file contains the changelog of SwiftExtras.
 
 ### 1.2.5
-- Added [`ConfettiView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/confettiview)  
+- Added [`ConfettiView`](https://github.com/0xWDG/SwiftExtras/blob/main/Sources/SwiftExtras/SwiftUI/ConfettiView.swift)  
   A view that displays confetti.
-- Added [`View.displayConfetti(isActive:colors:automaticEnd:shape:animationTime:fadeTime:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/displayconfetti(isactive:colors:automaticend:shape:animationtime:fadeTime:))  
+- Added [`View.displayConfetti(isActive:colors:automaticEnd:shape:animationTime:fadeTime:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/displayconfetti(isactive:colors:automaticend:shape:animationtime:fadetime:))  
   A view modifier that displays confetti on the view.
 - Added [`HexShape`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/hexshape)  
   A shape that represents a hexagon.
@@ -17,35 +17,35 @@ This file contains the changelog of SwiftExtras.
   This property returns the end of the year
 - Added [`Date.time(timeZone:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/time(timezone:))  
   This property returns the time of the date in a specific time zone
-- Added [`.blueColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/bluecolor) to `ButtonStyle`  
+- Added [`.blueColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/bluecolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents a blue button
-- Added [`.redColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/redcolor) to `ButtonStyle`  
+- Added [`.redColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/redcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents a red button
-- Added [`.orangeColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/orangecolor) to `ButtonStyle`  
+- Added [`.orangeColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/orangecolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents an orange button
-- Added [`.yellowColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/yellowcolor) to `ButtonStyle`  
+- Added [`.yellowColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/yellowcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents a yellow button
-- Added [`.greenColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/greencolor) to `ButtonStyle`  
+- Added [`.greenColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/greencolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents a green button
-- Added [`.mintColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/mintcolor) to `ButtonStyle`  
+- Added [`.mintColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/mintcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents a mint button
-- Added [`.tealColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/tealcolor) to `ButtonStyle`  
+- Added [`.tealColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/tealcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents a teal button
-- Added [`.cyanColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/cyancolor) to `ButtonStyle`  
+- Added [`.cyanColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/cyancolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents a cyan button
-- Added [`.indigoColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/indigocolor) to `ButtonStyle`  
+- Added [`.indigoColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/indigocolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents an indigo button
-- Added [`.purpleColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/purplecolor) to `ButtonStyle`  
+- Added [`.purpleColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/purplecolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents a purple button
-- Added [`.pinkColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/pinkcolor) to `ButtonStyle`  
+- Added [`.pinkColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/pinkcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents a pink button
-- Added [`.brownColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/browncolor) to `ButtonStyle`  
+- Added [`.brownColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/browncolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents a brown button
-- Added [`.whiteColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/whitecolor) to `ButtonStyle`  
+- Added [`.whiteColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/whitecolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents a white button
-- Added [`.grayColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/graycolor) to `ButtonStyle`  
+- Added [`.grayColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/graycolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents a gray button
-- Added [`.blackColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/blackcolor) to `ButtonStyle`  
+- Added [`.blackColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/blackcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents a black button
 
 ### 1.2.4
@@ -166,7 +166,7 @@ This file contains the changelog of SwiftExtras.
   To support `@State` in previews
 - Added [`ListButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/listbuttonstyle)  
   A button style that represents a list button
-- Added [`.list`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/list) to `ButtonStyle`
+- Added [`.list`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/list) to [`ButtonStyl](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)e`
 - Added some colors to `Color`, [`label`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/label), [`secondaryLabel`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/secondarylabel), [`tertiaryLabel`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/tertiarylabel), [`quaternaryLabel`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/quaternarylabel), [`systemFill`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemfill), [`secondarySystemFill`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/secondarysystemfill), [`tertiarySystemFill`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/tertiarysystemfill), [`quaternarySystemFill`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/quaternarysystemfill), [`placeholderText`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/placeholdertext), [`systemBackground`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systembackground), [`secondarySystemBackground`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/secondarysystembackground), [`tertiarySystemBackground`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/tertiarysystembackground), [`systemGroupedBackground`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemgroupedbackground), [`secondarySystemGroupedBackground`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/secondarysystemgroupedbackground), [`tertiarySystemGroupedBackground`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/tertiarysystemgroupedbackground), [`separator`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/separator), [`opaqueSeparator`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/opaqueseparator), [`link`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/link), [`systemBlue`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemblue), [`systemGreen`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemgreen), [`systemIndigo`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemindigo), [`systemOrange`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemorange), [`systemPink`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systempink), [`systemPurple`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systempurple), [`systemRed`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemred), [`systemTeal`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemteal), [`systemYellow`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemyellow), [`systemGray`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemgray), [`systemGray2`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemgray2), [`systemGray3`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemgray3), [`systemGray4`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemgray4), [`systemGray5`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemgray5), [`systemGray6`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/systemgray6)  
   These colors are the system colors and trough this extension available in SwiftUI using the `Color` struct.
 - Add [`publisher`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/nsnotification/name/publisher) to `NSNotification.Name`  
@@ -205,7 +205,7 @@ This file contains the changelog of SwiftExtras.
 ### 1.1.4
 - Added [`ToggleButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/togglebuttonstyle)  
   A button style that represents a toggle button
-- Added [`.toggle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/toggle) to `ButtonStyle`
+- Added [`.toggle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/toggle) to [`ButtonStyl](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)e`
 - Renamed `.modifier(_:)` to [`.modify(_:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/modify(_:))  
   This view modifier conditionally applies a view modifier
 - Updated [`SESettingsView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/sesettingsview) to make `topContent` and `bottomContent` optional  
@@ -322,11 +322,11 @@ https://github.com/0xWDG/SwiftExtras/compare/1.1.2...1.1.3
   Explicitly calling the initializer is not necessary
 - Added [`BlueButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/bluebuttonstyle)  
   A button style that represents a blue button
-- Added [`.blue`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/blue) to `ButtonStyle`  
+- Added [`.blue`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/blue) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents a blue button
 - Added [`GreyButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/greybuttonstyle)  
   A button style that represents a blue button
-- Added [`.grey`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/grey) to `ButtonStyle`  
+- Added [`.grey`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/grey) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents a grey button
 - Added [`BorderedToggleStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/borderedtogglestyle)  
   A button style that represents a blue button
