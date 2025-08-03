@@ -28,7 +28,7 @@ extension Date {
 
     /// Time in HH:MM format
     public var time: String {
-        time(for: .current)
+        time(timeZone: .current)
     }
 
     /// Date in YYYY-MM-DD format
