@@ -5,7 +5,7 @@ This file contains the changelog of SwiftExtras.
 ### 1.2.5
 - Added [`ConfettiView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/confettiview)  
   A view that displays confetti.
-- Added [`View.displayConfetti(isActive:colors:automaticEnd:shape:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/displayconfetti(isactive:colors:automaticend:shape:))  
+- Added [`View.displayConfetti(isActive:colors:automaticEnd:shape:animationTime:fadeTime:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/displayconfetti(isactive:colors:automaticend:shape:animationtime:fadeTime:))  
   A view modifier that displays confetti on the view.
 - Added [`HexShape`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/hexshape)  
   A shape that represents a hexagon.
