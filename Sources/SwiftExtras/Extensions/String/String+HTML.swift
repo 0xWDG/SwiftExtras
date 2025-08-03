@@ -34,12 +34,11 @@ public extension String {
                        .documentType: NSAttributedString.DocumentType.html,
                        .defaultAttributes: [
                            NSAttributedString.Key.font: font,
-                           NSAttributedString.Key.foregroundColor: UIColor.label,
-                       ],
+                           NSAttributedString.Key.foregroundColor: UIColor.label
+                       ]
                    ],
                    documentAttributes: nil
-               )
-            {
+               ) {
                 let attributes: [NSAttributedString.Key: AnyObject] = [.foregroundColor: UIColor.label]
                 attributedString.addAttributes(
                     attributes,

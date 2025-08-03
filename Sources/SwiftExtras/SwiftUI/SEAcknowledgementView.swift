@@ -24,8 +24,7 @@
             List {
                 ForEach(entries.sorted(by: { $0.name < $1.name })) { entry in
                     if let string = entry.url,
-                       let url = URL(string: string)
-                    {
+                       let url = URL(string: string) {
                         #if canImport(WebKit)
                             NavigationLink {
                                 WebView(url: url)
@@ -108,7 +107,7 @@
         #Preview {
             NavigationStack {
                 SEAcknowledgementView(entries: [
-                    .init(name: "Test", copyright: "Creator", licence: "MIT"),
+                    .init(name: "Test", copyright: "Creator", licence: "MIT")
                 ])
             }
         }

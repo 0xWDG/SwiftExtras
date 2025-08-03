@@ -94,6 +94,7 @@
                 #if canImport(OSLog)
                     logger.error(
                         "Error writing HTML to \(tempURL, privacy: .public): \(error.localizedDescription, privacy: .public)"
+                        // swiftlint:disable:previous line_length
                     )
                 #else
                     print("Error writing HTML to \(url): \(error.localizedDescription)")

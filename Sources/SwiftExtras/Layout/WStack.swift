@@ -21,7 +21,8 @@
 
         /// Wrapping Stack
         ///
-        /// A layout that arranges its children in a horizontal stack, wrapping to the next line when the width is exceeded.
+        /// A layout that arranges its children in a horizontal stack, \
+        /// wrapping to the next line when the width is exceeded.
         ///
         /// - Parameter spacing: The spacing between the items in the stack.
         /// - Returns: A new `WHStack` instance.

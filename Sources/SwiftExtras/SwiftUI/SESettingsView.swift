@@ -183,8 +183,7 @@
                 .task {
                     #if canImport(StoreKit) && !os(watchOS) && !os(tvOS)
                         if appStoreDeveloperURL != nil,
-                           Int.random(in: 0 ..< 10) == 5
-                        {
+                           Int.random(in: 0 ..< 10) == 5 {
                             requestReview()
                         }
                     #endif
@@ -361,8 +360,7 @@
         var aboutTheDeveloperSection: some View {
             Section {
                 if let twitterHandle,
-                   let url = URL(string: "https://twitter.com/\(twitterHandle)")
-                {
+                   let url = URL(string: "https://twitter.com/\(twitterHandle)") {
                     Button {
                         openURL(url)
                     } label: {
@@ -377,8 +375,7 @@
                 }
 
                 if let blueskyHandle,
-                   let url = URL(string: "https://bsky.app/profile/\(blueskyHandle)")
-                {
+                   let url = URL(string: "https://bsky.app/profile/\(blueskyHandle)") {
                     Button {
                         openURL(url)
                     } label: {
@@ -393,8 +390,7 @@
                 }
 
                 if let mastodonHandle,
-                   let url = URL(string: "https://mastodon.social/\(mastodonHandle)")
-                {
+                   let url = URL(string: "https://mastodon.social/\(mastodonHandle)") {
                     Button {
                         openURL(url)
                     } label: {
@@ -462,7 +458,7 @@
             NavigationStack {
                 SESettingsView(
                     _changeLog: [
-                        .init(version: "0.0.1", text: "Initial version"),
+                        .init(version: "0.0.1", text: "Initial version")
                     ],
                     _acknowledgements: [
                         .init(
@@ -470,7 +466,7 @@
                             copyright: "Wesley de Groot",
                             licence: "Licence",
                             url: "https://wesleydegroot.nl"
-                        ),
+                        )
                     ]
                 )
             }

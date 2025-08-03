@@ -133,7 +133,7 @@
                                                     IndexKeyInfo(
                                                         key: key,
                                                         frame: proxy.frame(in: .global)
-                                                    ),
+                                                    )
                                                 ]
                                             )
                                         }
@@ -170,7 +170,8 @@
                                         in: geo.frame(in: .global),
                                         keyFrames: indexKeyFrames
                                     ) {
-                                        // If the current index is nil or has changed, update it and scroll to the section
+                                        // If the current index is nil or has changed, \
+                                        // update it and scroll to the section
                                         if currentIndex != match {
                                             currentIndex = match
                                             proxy.scrollTo(match, anchor: .top)
@@ -260,7 +261,7 @@
             "Hidde", "Lynn", "Dirk", "Jade", "Mark", "Iris", "Bart", "Elise", "Wout", "Norah",
             "Maarten", "Nora", "Kees", "Tessa", "Rik", "Amber", "Nathan", "Vera", "Roel", "Zara",
             "Jan", "Esmee", "Tom", "Britt", "Stef", "Demi", "Arjen", "Floor", "Johan", "Liv",
-            "Harm", "Romy", "Martijn", "Suze", "Kees",
+            "Harm", "Romy", "Martijn", "Suze", "Kees"
         ]) { name in
             Text(name)
         }

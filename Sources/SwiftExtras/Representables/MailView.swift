@@ -94,8 +94,7 @@
             var result: Result<MFMailComposeResult, Error>?
 
             init(presentation: Binding<PresentationMode>,
-                 result: Binding<Result<MFMailComposeResult, Error>?>)
-            {
+                 result: Binding<Result<MFMailComposeResult, Error>?>) {
                 _presentation = presentation
                 _result = result
             }

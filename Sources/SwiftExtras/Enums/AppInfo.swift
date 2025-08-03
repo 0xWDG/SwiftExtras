@@ -27,14 +27,12 @@ public enum AppInfo {
     /// - Returns: application name
     public static var appName: String {
         if let dictionary = Bundle.main.infoDictionary,
-           let dName = dictionary["CFBundleDisplayName"] as? String
-        {
+           let dName = dictionary["CFBundleDisplayName"] as? String {
             return dName
         }
 
         if let dictionary = Bundle.main.infoDictionary,
-           let dName = dictionary["CFBundleName"] as? String
-        {
+           let dName = dictionary["CFBundleName"] as? String {
             return dName
         }
 
@@ -45,8 +43,7 @@ public enum AppInfo {
     /// - Returns: application version number
     public static var versionNumber: String {
         if let dictionary = Bundle.main.infoDictionary,
-           let dVersion = dictionary["CFBundleShortVersionString"] as? String
-        {
+           let dVersion = dictionary["CFBundleShortVersionString"] as? String {
             return dVersion
         }
 
@@ -57,8 +54,7 @@ public enum AppInfo {
     /// - Returns: application build number
     public static var buildNumber: String {
         if let dictionary = Bundle.main.infoDictionary,
-           let dBuild = dictionary["CFBundleVersion"] as? String
-        {
+           let dBuild = dictionary["CFBundleVersion"] as? String {
             return dBuild
         }
 
@@ -176,8 +172,7 @@ public enum AppInfo {
 
             if let cached = UserDefaults.standard.data(forKey: "SEAppInfoAppStoreInfo"),
                let appStoreInfo = try? decoder.decode(SEAppInfoAppStoreInfo.self, from: cached),
-               !forceRefresh
-            {
+               !forceRefresh {
                 return appStoreInfo
             }
 
@@ -208,8 +203,7 @@ public enum AppInfo {
     public static func getReviewURL() async -> URL? {
         if let identifier = await AppInfo.appStoreInfo()?.results.first?.trackId,
            let url = URL(
-               string: "https://itunes.apple.com/app/id\(identifier)?action=write-review")
-        {
+               string: "https://itunes.apple.com/app/id\(identifier)?action=write-review") {
             return url
         }
 
@@ -221,8 +215,7 @@ public enum AppInfo {
     @discardableResult
     public static func openAppStorePage() async -> Bool {
         if let identifier = await AppInfo.appStoreInfo()?.results.first?.trackId,
-           let url = URL(string: "https://itunes.apple.com/app/id\(identifier)")
-        {
+           let url = URL(string: "https://itunes.apple.com/app/id\(identifier)") {
             return openURL(url)
         }
 
@@ -233,8 +226,7 @@ public enum AppInfo {
     /// - Returns: URL of the developer page in the AppStore
     public static func getDeveloperURL() async -> URL? {
         if let identifier = await AppInfo.appStoreInfo()?.results.first?.artistId,
-           let url = URL(string: "https://apps.apple.com/developer/id\(identifier)")
-        {
+           let url = URL(string: "https://apps.apple.com/developer/id\(identifier)") {
             return url
         }
 

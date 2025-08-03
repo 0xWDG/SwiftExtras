@@ -51,7 +51,7 @@
         /// A color that simulates the appearance of the color for a person with deuteranopia.
         /// Deuteranopia is a type of red-green color blindness that affects the perception of green light.
         /// - Returns: A color that simulates the appearance of the color for a person with deuteranopia.
-        /// - Note: This is a simulation and may not accurately represent the experience of individuals with deuteranopia.
+        /// - Note: This is a simulation and may not accurately represent the experience of people with deuteranopia
         /// - SeeAlso: [Color blindness](https://en.wikipedia.org/wiki/Color_blindness)
         /// - SeeAlso: [Deuteranopia](https://en.wikipedia.org/wiki/Deuteranopia)
         var deuteranopia: Color {
