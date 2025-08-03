@@ -9,7 +9,7 @@
 //  MIT License
 //
 
-#if canImport(SwiftUI)
+#if canImport(SwiftUI) && canImport(UIKit)
 import SwiftUI
 
 // A view that displays confetti animation when activated.

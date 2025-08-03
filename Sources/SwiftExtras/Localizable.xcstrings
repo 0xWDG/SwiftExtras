@@ -1606,6 +1606,7 @@
       }
     },
     "All Social icons" : {
+      "extractionState" : "stale",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -4481,6 +4482,7 @@
       }
     },
     "Custom Disclosure Section" : {
+      "extractionState" : "stale",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -4640,13 +4642,8 @@
         }
       }
     },
-    "Dark" : {
-
-    },
-    "Dark (disabled)" : {
-
-    },
     "Enter text" : {
+      "extractionState" : "stale",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -5772,10 +5769,8 @@
         }
       }
     },
-    "Hello world" : {
-
-    },
     "Hello World!" : {
+      "extractionState" : "stale",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -5936,6 +5931,7 @@
       }
     },
     "Initial version" : {
+      "extractionState" : "stale",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -6416,12 +6412,6 @@
           }
         }
       }
-    },
-    "Light" : {
-
-    },
-    "Light (disabled)" : {
-
     },
     "Loading" : {
       "localizations" : {
@@ -8237,6 +8227,7 @@
       }
     },
     "Pick your items" : {
+      "extractionState" : "stale",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -9685,6 +9676,7 @@
       }
     },
     "Test" : {
+      "extractionState" : "stale",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
