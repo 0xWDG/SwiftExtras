@@ -11,7 +11,7 @@
 
 import Foundation
 
-extension Date {
+public extension Date {
     /// Get a formatted date
     ///
     /// This function will return a formatted date
@@ -24,7 +24,7 @@ extension Date {
     ///
     /// - Parameter format: The format you want to use
     /// - Returns: The formatted date
-    public func formatted(_ format: String) -> String {
+    func formatted(_ format: String) -> String {
         let dateformat = DateFormatter()
         dateformat.dateFormat = format
         return dateformat.string(from: self)

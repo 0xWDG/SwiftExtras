@@ -13,7 +13,7 @@
 #if canImport(SwiftUI)
     import SwiftUI
 
-    extension View {
+    public extension View {
         /// Sets the color scheme of the view.
         ///
         ///  ```swift
@@ -23,8 +23,8 @@
         ///
         /// - Parameter closure: Code need to run
         /// - Returns: self
-        public func colorScheme(colorSheme: ColorScheme) -> some View {
-            self.environment(\.colorScheme, colorSheme)
+        func colorScheme(colorSheme: ColorScheme) -> some View {
+            environment(\.colorScheme, colorSheme)
         }
     }
 

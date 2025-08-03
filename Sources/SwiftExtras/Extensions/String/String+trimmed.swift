@@ -11,14 +11,14 @@
 
 import Foundation
 
-extension String {
+public extension String {
     /// This is a shorthand for `trimmingCharacters(in:)`.
     ///
     /// - Parameter set: The set of characters to trim.
     /// - Returns: A new string with the specified characters trimmed.
-    public func trimmed(
+    func trimmed(
         for set: CharacterSet = .whitespacesAndNewlines
     ) -> String {
-        self.trimmingCharacters(in: set)
+        trimmingCharacters(in: set)
     }
 }

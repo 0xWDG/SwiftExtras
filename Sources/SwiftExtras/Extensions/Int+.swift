@@ -11,11 +11,11 @@
 
 import Foundation
 
-extension Int {
+public extension Int {
     /// Convert Int to Currency
     ///
     /// - Returns: String
-    public func toCurrency(digits: Int = 2) -> String {
+    func toCurrency(digits: Int = 2) -> String {
         let formatter = NumberFormatter()
         formatter.locale = Locale.current
         formatter.numberStyle = .currency

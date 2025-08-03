@@ -10,10 +10,10 @@
 //
 
 #if canImport(Foundation)
-import Foundation
+    import Foundation
 
-extension Sequence where Element: AdditiveArithmetic {
-    /// Returns the total sum of all elements in the sequence
-    public func sum() -> Element { reduce(.zero, +) }
-}
+    public extension Sequence where Element: AdditiveArithmetic {
+        /// Returns the total sum of all elements in the sequence
+        func sum() -> Element { reduce(.zero, +) }
+    }
 #endif

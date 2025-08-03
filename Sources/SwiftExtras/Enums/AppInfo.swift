@@ -27,12 +27,14 @@ public enum AppInfo {
     /// - Returns: application name
     public static var appName: String {
         if let dictionary = Bundle.main.infoDictionary,
-            let dName = dictionary["CFBundleDisplayName"] as? String {
+           let dName = dictionary["CFBundleDisplayName"] as? String
+        {
             return dName
         }
 
         if let dictionary = Bundle.main.infoDictionary,
-            let dName = dictionary["CFBundleName"] as? String {
+           let dName = dictionary["CFBundleName"] as? String
+        {
             return dName
         }
 
@@ -43,7 +45,8 @@ public enum AppInfo {
     /// - Returns: application version number
     public static var versionNumber: String {
         if let dictionary = Bundle.main.infoDictionary,
-            let dVersion = dictionary["CFBundleShortVersionString"] as? String {
+           let dVersion = dictionary["CFBundleShortVersionString"] as? String
+        {
             return dVersion
         }
 
@@ -54,7 +57,8 @@ public enum AppInfo {
     /// - Returns: application build number
     public static var buildNumber: String {
         if let dictionary = Bundle.main.infoDictionary,
-            let dBuild = dictionary["CFBundleVersion"] as? String {
+           let dBuild = dictionary["CFBundleVersion"] as? String
+        {
             return dBuild
         }
 
@@ -73,7 +77,7 @@ public enum AppInfo {
 
     /// Is the application an app extension
     public var isAppExtension: Bool {
-        return Bundle.main.executablePath?.contains(".appex/") ?? false
+        Bundle.main.executablePath?.contains(".appex/") ?? false
     }
 
     /// Is the iOS application running on a mac
@@ -96,7 +100,8 @@ public enum AppInfo {
             if #available(iOS 17, *) {
                 let authContext = LAContext()
                 _ = authContext.canEvaluatePolicy(
-                    .deviceOwnerAuthenticationWithBiometrics, error: nil)
+                    .deviceOwnerAuthenticationWithBiometrics, error: nil
+                )
                 return authContext.biometryType == .opticID
             } else {
                 return false
@@ -170,8 +175,9 @@ public enum AppInfo {
             let decoder = JSONDecoder()
 
             if let cached = UserDefaults.standard.data(forKey: "SEAppInfoAppStoreInfo"),
-                let appStoreInfo = try? decoder.decode(SEAppInfoAppStoreInfo.self, from: cached),
-                !forceRefresh {
+               let appStoreInfo = try? decoder.decode(SEAppInfoAppStoreInfo.self, from: cached),
+               !forceRefresh
+            {
                 return appStoreInfo
             }
 
@@ -201,8 +207,9 @@ public enum AppInfo {
     /// - Returns: URL of the review page in the AppStore
     public static func getReviewURL() async -> URL? {
         if let identifier = await AppInfo.appStoreInfo()?.results.first?.trackId,
-            let url = URL(
-                string: "https://itunes.apple.com/app/id\(identifier)?action=write-review") {
+           let url = URL(
+               string: "https://itunes.apple.com/app/id\(identifier)?action=write-review")
+        {
             return url
         }
 
@@ -214,7 +221,8 @@ public enum AppInfo {
     @discardableResult
     public static func openAppStorePage() async -> Bool {
         if let identifier = await AppInfo.appStoreInfo()?.results.first?.trackId,
-            let url = URL(string: "https://itunes.apple.com/app/id\(identifier)") {
+           let url = URL(string: "https://itunes.apple.com/app/id\(identifier)")
+        {
             return openURL(url)
         }
 
@@ -225,7 +233,8 @@ public enum AppInfo {
     /// - Returns: URL of the developer page in the AppStore
     public static func getDeveloperURL() async -> URL? {
         if let identifier = await AppInfo.appStoreInfo()?.results.first?.artistId,
-            let url = URL(string: "https://apps.apple.com/developer/id\(identifier)") {
+           let url = URL(string: "https://apps.apple.com/developer/id\(identifier)")
+        {
             return url
         }
 
@@ -260,9 +269,9 @@ public enum AppInfo {
     /// URL Schemes
     public var schemes: [String] {
         guard let infoDictionary = Bundle.main.infoDictionary,
-            let urlTypes = infoDictionary["CFBundleURLTypes"] as? [AnyObject],
-            let urlType = urlTypes.first as? [String: AnyObject],
-            let urlSchemes = urlType["CFBundleURLSchemes"] as? [String]
+              let urlTypes = infoDictionary["CFBundleURLTypes"] as? [AnyObject],
+              let urlType = urlTypes.first as? [String: AnyObject],
+              let urlSchemes = urlType["CFBundleURLSchemes"] as? [String]
         else {
             return []
         }
@@ -272,7 +281,7 @@ public enum AppInfo {
 
     /// Main URL scheme
     public var mainScheme: String? {
-        return schemes.first
+        schemes.first
     }
 
     #if canImport(SwiftUI)
@@ -283,7 +292,7 @@ public enum AppInfo {
             #if canImport(UIKit)
                 guard
                     let icons = Bundle.main.object(forInfoDictionaryKey: "CFBundleIcons")
-                        as? [String: Any],
+                    as? [String: Any],
                     let primaryIcon = icons["CFBundlePrimaryIcon"] as? [String: Any],
                     let iconFiles = primaryIcon["CFBundleIconFiles"] as? [String],
                     let iconFileName = iconFiles.last
@@ -299,7 +308,7 @@ public enum AppInfo {
             #elseif canImport(AppKit)
                 guard
                     let iconFileName = Bundle.main.object(forInfoDictionaryKey: "CFBundleIconName")
-                        as? String
+                    as? String
                 else {
                     return Image(systemName: "xmark.app")
                 }

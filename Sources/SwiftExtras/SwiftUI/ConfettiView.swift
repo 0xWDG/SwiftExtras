@@ -48,7 +48,7 @@
         /// ```swift
         /// ConfettiView(colors: [Color.red, Color.blue], shape: Circle())
         /// ```
-        public init(
+        init(
             colors: [Color] = [Color.orange, Color.green, Color.blue, Color.red, Color.yellow],
             shape: ConfettiShape = Rectangle()
         ) {
@@ -65,18 +65,18 @@
                     .clear
                     .saveSize(in: $viewSize)
 
-                ForEach(0..<count, id: \.self) { _ in
+                ForEach(0 ..< count, id: \.self) { _ in
                     Confetti(colors: colors, shape: shape)
                         .position(
-                            x: CGFloat.random(in: 0...viewSize.width),
-                            y: yPosition != 0 ? CGFloat.random(in: 0...viewSize.height) : yPosition
+                            x: CGFloat.random(in: 0 ... viewSize.width),
+                            y: yPosition != 0 ? CGFloat.random(in: 0 ... viewSize.height) : yPosition
                         )
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .ignoresSafeArea()
             .onAppear {
-                yPosition = CGFloat.random(in: 0...viewSize.width)
+                yPosition = CGFloat.random(in: 0 ... viewSize.width)
             }
         }
 
@@ -94,17 +94,17 @@
 
             /// The speed of the confetti piece's rotation around the x-axis.
             /// This is a random value between 0.7 and 2 seconds, which determines
-            @State private var xSpeed = Double.random(in: 0.7...2)
+            @State private var xSpeed = Double.random(in: 0.7 ... 2)
 
             /// The speed of the confetti piece's rotation around the z-axis.
             /// This is a random value between 1 and 2 seconds, which determines how fast
             /// the confetti rotates around the z-axis.
-            @State private var zSpeed = Double.random(in: 1...2)
+            @State private var zSpeed = Double.random(in: 1 ... 2)
 
             /// The anchor point for the z-axis rotation, which is a random value between 0 and 1.
             /// This value is rounded to ensure it is a valid anchor point.
             /// It determines the point around which the confetti rotates in 3D space.
-            @State private var anchor = CGFloat.random(in: 0...1).rounded()
+            @State private var anchor = CGFloat.random(in: 0 ... 1).rounded()
 
             /// The colors of the confetti piece, which are randomly selected from the provided array.
             /// If the array is empty, it defaults to a blue color.
@@ -119,7 +119,7 @@
             /// - Parameters:
             ///   - colors: An array of colors for the confetti piece.
             ///   - shape: The shape of the confetti piece, which can be any SwiftUI view.
-            public init(colors: [Color], shape: ConfettiShape) {
+            init(colors: [Color], shape: ConfettiShape) {
                 self.colors = colors
                 self.shape = shape
             }
@@ -230,7 +230,7 @@
         }
     }
 
-    extension View {
+    public extension View {
         /// Displays confetti on the view when `isActive` is true.
         /// This modifier can be used to celebrate events like achievements, \
         /// wins, or other significant moments in your app.
@@ -243,15 +243,15 @@
         ///   - shape: The shape of the confetti. Defaults to a rectangle.
         ///   - animationTime: The duration of the confetti animation in seconds.
         ///   - fadeTime: The duration of the fade-out effect after the confetti animation ends.
-        public func displayConfetti<ConfettiShape: View>(
+        func displayConfetti(
             isActive: Binding<Bool>,
             colors: [Color] = [Color.orange, Color.green, Color.blue, Color.red, Color.yellow],
             automaticEnd: Bool = true,
-            shape: ConfettiShape = Rectangle(),
+            shape: some View = Rectangle(),
             animationTime: Double = 3.0,
             fadeTime: Double = 2.0
         ) -> some View {
-            self.modifier(
+            modifier(
                 ConfettiModifier(
                     isActive: isActive,
                     colors: colors,

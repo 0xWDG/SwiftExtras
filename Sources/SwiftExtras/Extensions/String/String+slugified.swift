@@ -11,9 +11,9 @@
 
 import Foundation
 
-extension String {
+public extension String {
     /// Slugify a string
-    public var slugified: String {
+    var slugified: String {
         let input = self
         let lowercased = input.lowercased()
         let trimmed = lowercased.trimmingCharacters(in: .whitespacesAndNewlines)

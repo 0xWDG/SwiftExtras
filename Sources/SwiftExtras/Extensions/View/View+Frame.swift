@@ -10,23 +10,23 @@
 //
 
 #if canImport(SwiftUI)
-import SwiftUI
+    import SwiftUI
 
-extension View {
-    /// Set a frame size (HxB)
-    ///
-    /// - Parameter closure: Code need to run
-    /// - Returns: self
-    public func frame(size: CGFloat) -> some View {
-        self.frame(width: size, height: size)
-    }
+    public extension View {
+        /// Set a frame size (HxB)
+        ///
+        /// - Parameter closure: Code need to run
+        /// - Returns: self
+        func frame(size: CGFloat) -> some View {
+            frame(width: size, height: size)
+        }
 
-    /// Set a max frame size (HxB)
-    ///
-    /// - Parameter closure: Code need to run
-    /// - Returns: self
-    public func frame(maxSize: CGFloat) -> some View {
-        self.frame(maxWidth: maxSize, maxHeight: maxSize)
+        /// Set a max frame size (HxB)
+        ///
+        /// - Parameter closure: Code need to run
+        /// - Returns: self
+        func frame(maxSize: CGFloat) -> some View {
+            frame(maxWidth: maxSize, maxHeight: maxSize)
+        }
     }
-}
 #endif

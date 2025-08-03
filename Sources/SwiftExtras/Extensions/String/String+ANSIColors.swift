@@ -47,7 +47,7 @@ public enum ANSIColors: String {
 ///   - right: String
 /// - Returns: Colored String
 func + (left: ANSIColors, right: String) -> String {
-    return left.rawValue + right
+    left.rawValue + right
 }
 
 /// Add ANSI colors to a string
@@ -64,5 +64,5 @@ func + (left: ANSIColors, right: String) -> String {
 ///   - right: ANSI Color
 /// - Returns: Colored String
 func + (left: String, right: ANSIColors) -> String {
-    return left + right.rawValue
+    left + right.rawValue
 }

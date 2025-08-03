@@ -10,29 +10,29 @@
 //
 
 #if canImport(SwiftUI)
-import SwiftUI
+    import SwiftUI
 
-#if swift(>=5.9)
-extension LocalizedStringKey: @retroactive Identifiable {
-    public typealias ID = Int // swiftlint:disable:this type_name
+    #if swift(>=5.9)
+        extension LocalizedStringKey: @retroactive Identifiable {
+            public typealias ID = Int // swiftlint:disable:this type_name
 
-    /// The identifier of the color.
-    ///
-    /// This is a random hash value to make Color conform to Identifiable.
-    public var id: Int {
-        return self.stringKey?.hashValue ?? UUID().hashValue
-    }
-}
-#else
-extension LocalizedStringKey: Identifiable {
-    public typealias ID = Int // swiftlint:disable:this type_name
+            /// The identifier of the color.
+            ///
+            /// This is a random hash value to make Color conform to Identifiable.
+            public var id: Int {
+                stringKey?.hashValue ?? UUID().hashValue
+            }
+        }
+    #else
+        extension LocalizedStringKey: Identifiable {
+            public typealias ID = Int // swiftlint:disable:this type_name
 
-    /// The identifier of the color.
-    ///
-    /// This is a random hash value to make Color conform to Identifiable.
-    public var id: Int {
-        return self.stringKey?.hashValue ?? UUID().hashValue
-    }
-}
-#endif
+            /// The identifier of the color.
+            ///
+            /// This is a random hash value to make Color conform to Identifiable.
+            public var id: Int {
+                stringKey?.hashValue ?? UUID().hashValue
+            }
+        }
+    #endif
 #endif

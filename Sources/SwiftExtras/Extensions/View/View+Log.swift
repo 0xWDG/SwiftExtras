@@ -10,24 +10,24 @@
 //
 
 #if canImport(SwiftUI)
-import SwiftUI
+    import SwiftUI
 
-extension View {
-    /// Log
-    /// This enables:
-    ///
-    ///  ```swift
-    ///  SomeSwiftUIView()
-    ///     .log {
-    ///         // Code you need to run
-    ///     }
-    ///  ```
-    ///
-    /// - Parameter closure: Code need to run
-    /// - Returns: self
-    public func log(_ closure: () -> Void) -> some View {
-        closure()
-        return self
+    public extension View {
+        /// Log
+        /// This enables:
+        ///
+        ///  ```swift
+        ///  SomeSwiftUIView()
+        ///     .log {
+        ///         // Code you need to run
+        ///     }
+        ///  ```
+        ///
+        /// - Parameter closure: Code need to run
+        /// - Returns: self
+        func log(_ closure: () -> Void) -> some View {
+            closure()
+            return self
+        }
     }
-}
 #endif

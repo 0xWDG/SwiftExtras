@@ -1,5 +1,5 @@
 //
-//  Date+IdentifiableString.swift
+//  Date+Identifiable.swift
 //  SwiftExtras
 //
 //  Created by Wesley de Groot on 2024-08-22.
@@ -12,25 +12,25 @@
 import Foundation
 
 #if swift(>=5.9)
-extension Date: @retroactive Identifiable {
-    public typealias ID = Int // swiftlint:disable:this type_name
+    extension Date: @retroactive Identifiable {
+        public typealias ID = Int // swiftlint:disable:this type_name
 
-    /// The identifier of the string.
-    ///
-    /// This is a hash value of the string to make String conform to Identifiable.
-    public var id: Int {
-        return self.description.hashValue
+        /// The identifier of the string.
+        ///
+        /// This is a hash value of the string to make String conform to Identifiable.
+        public var id: Int {
+            description.hashValue
+        }
     }
-}
 #else
-extension Date: Identifiable {
-    public typealias ID = Int // swiftlint:disable:this type_name
+    extension Date: Identifiable {
+        public typealias ID = Int // swiftlint:disable:this type_name
 
-    /// The identifier of the string.
-    ///
-    /// This is a hash value of the string to make String conform to Identifiable.
-    public var id: Int {
-        return self.description.hashValue
+        /// The identifier of the string.
+        ///
+        /// This is a hash value of the string to make String conform to Identifiable.
+        public var id: Int {
+            description.hashValue
+        }
     }
-}
 #endif

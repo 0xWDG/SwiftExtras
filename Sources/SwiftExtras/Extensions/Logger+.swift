@@ -10,20 +10,20 @@
 //
 
 #if canImport(OSLog)
-import OSLog
+    import OSLog
 
-extension Logger {
-    /// Start a logger with default values
-    /// subsystem: Bundle.main.bundleIdentifier
-    /// catefory: #function (or class when called from a class)
-    ///
-    /// - Parameter default: Set this to whatever you want
-    /// - Parameter category: #function
-    public init(default: Any = true, category: StaticString = #function) {
-        self.init(
-            subsystem: Bundle.main.bundleIdentifier ?? "nl.wesleydegroot",
-            category: String(describing: category)
-        )
+    public extension Logger {
+        /// Start a logger with default values
+        /// subsystem: Bundle.main.bundleIdentifier
+        /// catefory: #function (or class when called from a class)
+        ///
+        /// - Parameter default: Set this to whatever you want
+        /// - Parameter category: #function
+        init(default _: Any = true, category: StaticString = #function) {
+            self.init(
+                subsystem: Bundle.main.bundleIdentifier ?? "nl.wesleydegroot",
+                category: String(describing: category)
+            )
+        }
     }
-}
 #endif

@@ -54,17 +54,17 @@
                     .easeOut(duration: 0.2),
                     value: configuration.isPressed
                 )
-                #if !os(visionOS)
-                    .sensoryFeedback(
-                        .selection,
-                        trigger: configuration.isPressed
-                    )
-                #endif
+            #if !os(visionOS)
+                .sensoryFeedback(
+                    .selection,
+                    trigger: configuration.isPressed
+                )
+            #endif
         }
     }
 
     @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-    extension ButtonStyle where Self == ColoredButtonStyle {
+    public extension ButtonStyle where Self == ColoredButtonStyle {
         /// A button style that uses a custom color.
         ///
         /// The style uses a custom color for the background of the button.
@@ -77,7 +77,7 @@
         /// Button("Hello World!") {}
         ///     .buttonStyle(colored(color: .blue))
         /// ```
-        public static func colored(color: Color) -> ColoredButtonStyle {
+        static func colored(color: Color) -> ColoredButtonStyle {
             .init(color: color)
         }
 
@@ -93,7 +93,7 @@
         /// Button("Hello World!") {}
         ///     .buttonStyle(.redColor)
         /// ```
-        public static var redColor: ColoredButtonStyle {
+        static var redColor: ColoredButtonStyle {
             .init(color: .red)
         }
 
@@ -109,7 +109,7 @@
         /// Button("Hello World!") {}
         ///     .buttonStyle(.orangeColor)
         /// ```
-        public static var orangeColor: ColoredButtonStyle {
+        static var orangeColor: ColoredButtonStyle {
             .init(color: .orange)
         }
 
@@ -125,7 +125,7 @@
         /// Button("Hello World!") {}
         ///     .buttonStyle(.yellowColor)
         /// ```
-        public static var yellowColor: ColoredButtonStyle {
+        static var yellowColor: ColoredButtonStyle {
             .init(color: .yellow)
         }
 
@@ -141,7 +141,7 @@
         /// Button("Hello World!") {}
         ///     .buttonStyle(.greenColor)
         /// ```
-        public static var greenColor: ColoredButtonStyle {
+        static var greenColor: ColoredButtonStyle {
             .init(color: .green)
         }
 
@@ -157,7 +157,7 @@
         /// Button("Hello World!") {}
         ///     .buttonStyle(.mintColor)
         /// ```
-        public static var mintColor: ColoredButtonStyle {
+        static var mintColor: ColoredButtonStyle {
             .init(color: .mint)
         }
 
@@ -173,7 +173,7 @@
         /// Button("Hello World!") {}
         ///     .buttonStyle(.tealColor)
         /// ```
-        public static var tealColor: ColoredButtonStyle {
+        static var tealColor: ColoredButtonStyle {
             .init(color: .teal)
         }
 
@@ -189,7 +189,7 @@
         /// Button("Hello World!") {}
         ///     .buttonStyle(.cyanColor)
         /// ```
-        public static var cyanColor: ColoredButtonStyle {
+        static var cyanColor: ColoredButtonStyle {
             .init(color: .cyan)
         }
 
@@ -205,7 +205,7 @@
         /// Button("Hello World!") {}
         ///     .buttonStyle(.blueColor)
         /// ```
-        public static var blueColor: ColoredButtonStyle {
+        static var blueColor: ColoredButtonStyle {
             .init(color: .blue)
         }
 
@@ -221,7 +221,7 @@
         /// Button("Hello World!") {}
         ///     .buttonStyle(.indigoColor)
         /// ```
-        public static var indigoColor: ColoredButtonStyle {
+        static var indigoColor: ColoredButtonStyle {
             .init(color: .indigo)
         }
 
@@ -237,7 +237,7 @@
         /// Button("Hello World!") {}
         ///     .buttonStyle(.purpleColor)
         /// ```
-        public static var purpleColor: ColoredButtonStyle {
+        static var purpleColor: ColoredButtonStyle {
             .init(color: .purple)
         }
 
@@ -253,7 +253,7 @@
         /// Button("Hello World!") {}
         ///     .buttonStyle(.pinkColor)
         /// ```
-        public static var pinkColor: ColoredButtonStyle {
+        static var pinkColor: ColoredButtonStyle {
             .init(color: .pink)
         }
 
@@ -269,7 +269,7 @@
         /// Button("Hello World!") {}
         ///     .buttonStyle(.brownColor)
         /// ```
-        public static var brownColor: ColoredButtonStyle {
+        static var brownColor: ColoredButtonStyle {
             .init(color: .brown)
         }
 
@@ -285,7 +285,7 @@
         /// Button("Hello World!") {}
         ///     .buttonStyle(.whiteColor)
         /// ```
-        public static var whiteColor: ColoredButtonStyle {
+        static var whiteColor: ColoredButtonStyle {
             .init(color: .white)
         }
 
@@ -301,7 +301,7 @@
         /// Button("Hello World!") {}
         ///     .buttonStyle(.grayColor)
         /// ```
-        public static var grayColor: ColoredButtonStyle {
+        static var grayColor: ColoredButtonStyle {
             .init(color: .gray)
         }
 
@@ -317,7 +317,7 @@
         /// Button("Hello World!") {}
         ///     .buttonStyle(.blackColor)
         /// ```
-        public static var blackColor: ColoredButtonStyle {
+        static var blackColor: ColoredButtonStyle {
             .init(color: .black)
         }
 
@@ -333,7 +333,7 @@
         /// Button("Hello World!") {}
         ///     .buttonStyle(.primaryColor)
         /// ```
-        public static var primaryColor: ColoredButtonStyle {
+        static var primaryColor: ColoredButtonStyle {
             .init(color: .primary)
         }
 
@@ -349,7 +349,7 @@
         /// Button("Hello World!") {}
         ///     .buttonStyle(.secondaryColor)
         /// ```
-        public static var secondaryColor: ColoredButtonStyle {
+        static var secondaryColor: ColoredButtonStyle {
             .init(color: .secondary)
         }
 
@@ -366,7 +366,7 @@
         /// ```
         /// - Note: This is a deprecated alias for `blueColor`.
         @available(*, deprecated, renamed: "blueColor")
-        public static var blue: ColoredButtonStyle {
+        static var blue: ColoredButtonStyle {
             .init(color: .blue)
         }
     }
@@ -377,7 +377,7 @@
             let colors: [Color] = [
                 .blue, .red, .orange, .yellow, .green, .mint, .teal,
                 .cyan, .indigo, .purple, .pink, .brown, .white, .gray,
-                .black,  // swiftlint:disable:this trailing_comma
+                .black, // swiftlint:disable:this trailing_comma
             ]
 
             VStack {

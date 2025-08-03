@@ -10,18 +10,18 @@
 //
 
 #if canImport(SwiftUI)
-import SwiftUI
+    import SwiftUI
 
-@available(macOS 10.15, iOS 13, watchOS 6.0, tvOS 13.0, *)
-extension View {
-    /// Horizontally centers the view by embedding it
-    /// in a HStack bookended by Spacers.
-    public func horizontallyCentered() -> some View {
-        HStack {
-            Spacer()
-            self
-            Spacer()
+    @available(macOS 10.15, iOS 13, watchOS 6.0, tvOS 13.0, *)
+    public extension View {
+        /// Horizontally centers the view by embedding it
+        /// in a HStack bookended by Spacers.
+        func horizontallyCentered() -> some View {
+            HStack {
+                Spacer()
+                self
+                Spacer()
+            }
         }
     }
-}
 #endif

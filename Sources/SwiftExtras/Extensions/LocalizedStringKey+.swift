@@ -10,20 +10,20 @@
 //
 
 #if canImport(SwiftUI)
-import SwiftUI
+    import SwiftUI
 
-extension LocalizedStringKey {
-    /// The string key of the LocalizedStringKey
-    var stringKey: String? {
-        Mirror(reflecting: self)
-            .children
-            .first(where: { $0.label == "key" })?
-            .value as? String
-    }
+    extension LocalizedStringKey {
+        /// The string key of the LocalizedStringKey
+        var stringKey: String? {
+            Mirror(reflecting: self)
+                .children
+                .first(where: { $0.label == "key" })?
+                .value as? String
+        }
 
-    /// The string value of the LocalizedStringKey
-    public var stringValue: String {
-        return NSLocalizedString(self.stringKey ?? "Unknown", comment: "None")
+        /// The string value of the LocalizedStringKey
+        public var stringValue: String {
+            NSLocalizedString(stringKey ?? "Unknown", comment: "None")
+        }
     }
-}
 #endif

@@ -10,29 +10,29 @@
 //
 
 #if canImport(SwiftUI)
-import SwiftUI
+    import SwiftUI
 
-extension View {
-    /// Run a task detached from the current task
-    ///
-    /// Use this modifier to run a task detached from the current task.
-    ///
-    /// Usage:
-    /// ```swift
-    /// .detachedTask {
-    ///     print("Hello World!")
-    /// }
-    /// ```
-    ///
-    /// - Parameter task: Task to run
-    /// - Returns: self
-    @ViewBuilder
-    public func detachedTask(_ task: @escaping () async -> Void) -> some View {
-        self.task {
-            Task.detached(priority: .userInitiated) {
-                await task()
+    public extension View {
+        /// Run a task detached from the current task
+        ///
+        /// Use this modifier to run a task detached from the current task.
+        ///
+        /// Usage:
+        /// ```swift
+        /// .detachedTask {
+        ///     print("Hello World!")
+        /// }
+        /// ```
+        ///
+        /// - Parameter task: Task to run
+        /// - Returns: self
+        @ViewBuilder
+        func detachedTask(_ task: @escaping () async -> Void) -> some View {
+            self.task {
+                Task.detached(priority: .userInitiated) {
+                    await task()
+                }
             }
         }
     }
-}
 #endif

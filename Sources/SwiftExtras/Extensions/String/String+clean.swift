@@ -11,11 +11,11 @@
 
 import Foundation
 
-extension String {
+public extension String {
     /// Strips diacritics from the string
     /// - Returns: String without diacritics
-    public func clean() -> Self {
-        return self.folding(
+    func clean() -> Self {
+        folding(
             options: .diacriticInsensitive,
             locale: .current
         )

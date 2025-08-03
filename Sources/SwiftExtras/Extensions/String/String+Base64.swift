@@ -11,14 +11,14 @@
 
 import Foundation
 
-extension String {
+public extension String {
     /// Base64 encode
     ///
     /// Encode the string to base64
     ///
     /// - Returns: Encoded string
-    public func base64Encoded() -> String? {
-        return data(using: .utf8)?.base64EncodedString()
+    func base64Encoded() -> String? {
+        data(using: .utf8)?.base64EncodedString()
     }
 
     /// Base64 decode
@@ -26,7 +26,7 @@ extension String {
     /// Decode the base64 string
     ///
     /// - Returns: Decoded string
-    public func base64Decoded() -> String? {
+    func base64Decoded() -> String? {
         guard let data = Data(base64Encoded: self) else {
             print("Unable to decode base64 string \"\(self)\"")
             return nil
@@ -39,9 +39,8 @@ extension String {
     /// Decode the base64 (url) string
     ///
     /// - Returns: Decoded string
-    public func base64UrlDecode() -> String? {
-        var base64 = self
-            .replacingOccurrences(of: "-", with: "+")
+    func base64UrlDecode() -> String? {
+        var base64 = replacingOccurrences(of: "-", with: "+")
             .replacingOccurrences(of: "_", with: "/")
         let length = Double(base64.lengthOfBytes(using: String.Encoding.utf8))
         let requiredLength = 4 * ceil(length / 4.0)

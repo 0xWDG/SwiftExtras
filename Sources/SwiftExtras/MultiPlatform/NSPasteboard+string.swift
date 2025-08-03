@@ -10,18 +10,18 @@
 //
 
 #if os(macOS)
-import AppKit
+    import AppKit
 
-extension NSPasteboard {
-    /// get/set the string contents of the pasteboard.
-    /// - Note: This is a wrapper around `setString(_:forType:)` and `string(forType:)`.
-    public var string: String? {
-        get { string(forType: .string) }
-        set {
-            clearContents()
-            guard let newValue else { return }
-            setString(newValue, forType: .string)
+    public extension NSPasteboard {
+        /// get/set the string contents of the pasteboard.
+        /// - Note: This is a wrapper around `setString(_:forType:)` and `string(forType:)`.
+        var string: String? {
+            get { string(forType: .string) }
+            set {
+                clearContents()
+                guard let newValue else { return }
+                setString(newValue, forType: .string)
+            }
         }
     }
-}
 #endif

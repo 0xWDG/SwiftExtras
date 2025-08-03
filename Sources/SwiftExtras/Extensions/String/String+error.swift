@@ -19,11 +19,10 @@ public extension String {
     /// Sometimes you just want to throw an arbitrary error message.
     /// This extension adds `LocalizedError` conformance to `String` in order to allow that.
     var failureReason: String? { self }
-
 }
 
 #if swift(>=5.9)
-extension String: @retroactive LocalizedError { }
+    extension String: @retroactive LocalizedError {}
 #else
-extension String: LocalizedError { }
+    extension String: LocalizedError {}
 #endif

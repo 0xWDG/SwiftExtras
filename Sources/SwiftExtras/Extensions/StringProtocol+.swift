@@ -11,14 +11,14 @@
 
 import Foundation
 
-extension StringProtocol {
+public extension StringProtocol {
     /// Capitalize the first letter of a string
-    public var firstUppercased: String {
-        return prefix(1).uppercased() + dropFirst()
+    var firstUppercased: String {
+        prefix(1).uppercased() + dropFirst()
     }
 
     /// Capitalize the first letter of a string
-    public var firstCapitalized: String {
-        return prefix(1).capitalized + dropFirst()
+    var firstCapitalized: String {
+        prefix(1).capitalized + dropFirst()
     }
 }

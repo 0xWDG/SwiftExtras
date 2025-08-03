@@ -20,7 +20,7 @@ infix operator =~
 ///   - regex: against regular expression
 /// - Returns: true if found, otherwise false
 public func =~ (string: String, regex: String) -> Bool {
-    return string.range(
+    string.range(
         of: regex,
         options: .regularExpression,
         range: nil,
@@ -37,5 +37,5 @@ infix operator !~
 ///   - regex: against regular expression
 /// - Returns: true if not found, otherwise false
 public func !~ (source: String, pattern: String) -> Bool {
-    return !(source =~ pattern)
+    !(source =~ pattern)
 }
