@@ -20,5 +20,13 @@ extension View {
     public func frame(size: CGFloat) -> some View {
         self.frame(width: size, height: size)
     }
+
+    /// Set a max frame size (HxB)
+    ///
+    /// - Parameter closure: Code need to run
+    /// - Returns: self
+    public func frame(maxSize: CGFloat) -> some View {
+        self.frame(maxWidth: maxSize, maxHeight: maxSize)
+    }
 }
 #endif

@@ -17,6 +17,12 @@ This file contains the changelog of SwiftExtras.
   This property returns the end of the year
 - Added [`Date.time(timeZone:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/time(timezone:))  
   This property returns the time of the date in a specific time zone
+- Added [`View.colorScheme(_:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/colorscheme(_:))  
+  This view modifier sets the color scheme of the view
+- Added [`View.frame(maxSize:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/frames(maxsize:))  
+  This view modifier sets the maximum size of the view
+- Added [`View.frame(size:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/frames(maxsize:))  
+  This view modifier sets the size of the view
 - Added [`.blueColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/bluecolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents a blue button
 - Added [`.redColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/redcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
