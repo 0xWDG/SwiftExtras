@@ -14,17 +14,17 @@ import Foundation
 public extension TimeInterval {
     /// Returns the time interval in years
     var years: Int {
-        Int(self) / 31_536_000
+        Int(self) / 31536000
     }
 
     /// Returns the time interval in months
     var months: Int {
-        Int(self) / 2_592_000
+        Int(self) / 2592000
     }
 
     /// Returns the time interval in weeks
     var weeks: Int {
-        Int(self) / 604_800
+        Int(self) / 604800
     }
 
     /// Returns the time interval in days
@@ -54,17 +54,17 @@ public extension TimeInterval {
 
     /// Returns the time interval in absolute years
     var absoluteYears: Int {
-        Int(abs(self)) / 31_536_000
+        Int(abs(self)) / 31536000
     }
 
     /// Returns the time interval in absolute months
     var absoluteMonths: Int {
-        Int(abs(self)) / 2_592_000
+        Int(abs(self)) / 2592000
     }
 
     /// Returns the time interval in absolute weeks
     var absoluteWeeks: Int {
-        Int(abs(self)) / 604_800
+        Int(abs(self)) / 604800
     }
 
     /// Returns the time interval in absolute days

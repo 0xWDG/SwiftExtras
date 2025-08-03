@@ -73,5 +73,6 @@
     "spacesAroundRangeFormationOperators": false,
     "spacesBeforeEndOfLineComments": 2,
     "tabWidth": 8,
+    "wrapMultilineStatementBraces": false,
     "version": 1
 }

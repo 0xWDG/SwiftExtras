@@ -222,7 +222,7 @@
         private func handleAnimationSequence() async {
             if !automaticEnd { return }
             do {
-                try await Task.sleep(nanoseconds: UInt64(animationTime * 1_000_000_000))
+                try await Task.sleep(nanoseconds: UInt64(animationTime * 1000000000))
                 withAnimation(.easeOut(duration: fadeTime)) {
                     opacity = 0
                 }
