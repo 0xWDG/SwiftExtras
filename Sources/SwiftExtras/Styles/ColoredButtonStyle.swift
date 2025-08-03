@@ -358,11 +358,13 @@
         /// The style uses the system's blue color for the background of the button.
         /// The text color is white when the button is enabled and blue when the button is disabled.
         /// - Returns: A button style that uses the system's blue color.
-        /// /// Example:
+        ///
+        /// Example:
         /// ```swift
         /// Button("Hello World!") {}
         ///     .buttonStyle(.blue)
         /// ```
+        /// - Note: This is a deprecated alias for `blueColor`.
         @available(*, deprecated, renamed: "blueColor")
         public static var blue: ColoredButtonStyle {
             .init(color: .blue)
