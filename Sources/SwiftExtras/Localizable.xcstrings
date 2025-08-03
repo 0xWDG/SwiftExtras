@@ -4640,6 +4640,12 @@
         }
       }
     },
+    "Dark" : {
+
+    },
+    "Dark (disabled)" : {
+
+    },
     "Enter text" : {
       "localizations" : {
         "bg" : {
@@ -5766,6 +5772,9 @@
         }
       }
     },
+    "Hello world" : {
+
+    },
     "Hello World!" : {
       "localizations" : {
         "bg" : {
@@ -6407,6 +6416,12 @@
           }
         }
       }
+    },
+    "Light" : {
+
+    },
+    "Light (disabled)" : {
+
     },
     "Loading" : {
       "localizations" : {

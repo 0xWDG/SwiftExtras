@@ -1,7 +1,53 @@
 # Changelog
 
 This file contains the changelog of SwiftExtras.
-    
+
+### 1.2.5
+- Added [`ConfettiView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/confettiview)  
+  A view that displays confetti.
+- Added [`View.displayConfetti(isActive:colors:automaticEnd:shape:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/displayconfetti(isactive:colors:automaticend:shape:))  
+  A view modifier that displays confetti on the view.
+- Added [`HexShape`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/hexshape)  
+  A shape that represents a hexagon.
+- Renamed [`BlueButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/bluebuttonstyle) to [`ColoredButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/coloredbuttonstyle)
+  A button style that represents a custom button
+- Added [`Date.startOfYear`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/startofyear)  
+  This property returns the start of the year
+- Added [`Date.endOfYear`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/endofyear)  
+  This property returns the end of the year
+- Added [`Date.time(timeZone:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/time(timezone:))  
+  This property returns the time of the date in a specific time zone
+- Added [`.blueColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/bluecolor) to `ButtonStyle`  
+  A button style that represents a blue button
+- Added [`.redColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/redcolor) to `ButtonStyle`  
+  A button style that represents a red button
+- Added [`.orangeColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/orangecolor) to `ButtonStyle`  
+  A button style that represents an orange button
+- Added [`.yellowColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/yellowcolor) to `ButtonStyle`  
+  A button style that represents a yellow button
+- Added [`.greenColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/greencolor) to `ButtonStyle`  
+  A button style that represents a green button
+- Added [`.mintColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/mintcolor) to `ButtonStyle`  
+  A button style that represents a mint button
+- Added [`.tealColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/tealcolor) to `ButtonStyle`  
+  A button style that represents a teal button
+- Added [`.cyanColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/cyancolor) to `ButtonStyle`  
+  A button style that represents a cyan button
+- Added [`.indigoColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/indigocolor) to `ButtonStyle`  
+  A button style that represents an indigo button
+- Added [`.purpleColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/purplecolor) to `ButtonStyle`  
+  A button style that represents a purple button
+- Added [`.pinkColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/pinkcolor) to `ButtonStyle`  
+  A button style that represents a pink button
+- Added [`.brownColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/browncolor) to `ButtonStyle`  
+  A button style that represents a brown button
+- Added [`.whiteColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/whitecolor) to `ButtonStyle`  
+  A button style that represents a white button
+- Added [`.grayColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/graycolor) to `ButtonStyle`  
+  A button style that represents a gray button
+- Added [`.blackColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/blackcolor) to `ButtonStyle`  
+  A button style that represents a black button
+
 ### 1.2.4
 - Added [`IndexedList(data:rowContent:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/indexedlist)  
   A view that displays a list of items with an index.

@@ -81,6 +81,15 @@ extension ButtonStyle where Self == GrayButtonStyle {
         Button("Hello World!") {}
             .buttonStyle(.gray)
             .disabled(true)
+
+        Button("Hello World!") {}
+            .buttonStyle(.gray)
+            .environment(\.colorScheme, .dark)
+
+        Button("Hello World!") {}
+            .buttonStyle(.gray)
+            .environment(\.colorScheme, .dark)
+            .disabled(true)
     }
     .padding()
 }

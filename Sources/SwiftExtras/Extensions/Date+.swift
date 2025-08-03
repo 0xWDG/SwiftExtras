@@ -28,19 +28,7 @@ extension Date {
 
     /// Time in HH:MM format
     public var time: String {
-        let calendar = Calendar.current
-
-        var hour = "\(calendar.component(.hour, from: self))"
-        if hour.count == 1 {
-            hour = "0\(hour)"
-        }
-
-        var minute = "\(calendar.component(.minute, from: self))"
-        if minute.count == 1 {
-            minute.append("0")
-        }
-
-        return "\(hour):\(minute)"
+        time(for: .current)
     }
 
     /// Date in YYYY-MM-DD format
@@ -70,6 +58,30 @@ extension Date {
     /// Year component of the date
     public var year: Int {
         return Calendar.current.component(.year, from: self)
+    }
+
+    /// Start of the current year
+    public var startOfYear: Date {
+        let calendar = Calendar.current
+        var components = calendar.dateComponents([.year], from: self)
+        components.month = 1
+        components.day = 1
+        components.hour = 0
+        components.minute = 0
+        components.second = 0
+        return calendar.date(from: components) ?? Date()
+    }
+
+    /// End of the current year
+    public var endOfYear: Date {
+        let calendar = Calendar.current
+        var components = calendar.dateComponents([.year], from: self)
+        components.month = 12
+        components.day = 31
+        components.hour = 23
+        components.minute = 59
+        components.second = 59
+        return calendar.date(from: components) ?? Date()
     }
 
     /// Weekday name component of the date
@@ -328,5 +340,23 @@ extension Date {
     /// - Returns: `true` if the date is between the two dates, `false` otherwise
     public func isBetween(_ date1: Date, and date2: Date) -> Bool {
         return (min(date1, date2)...max(date1, date2)).contains(self)
+    }
+
+    /// Time in HH:MM format
+    public func time(timeZone: TimeZone = .current) -> String {
+        var calendar = Calendar.current
+        calendar.timeZone = timeZone
+
+        var hour = "\(calendar.component(.hour, from: self))"
+        if hour.count == 1 {
+            hour = "0\(hour)"
+        }
+
+        var minute = "\(calendar.component(.minute, from: self))"
+        if minute.count == 1 {
+            minute.append("0")
+        }
+
+        return "\(hour):\(minute)"
     }
 }
