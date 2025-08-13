@@ -195,7 +195,7 @@
         var fadeTime = 2.0
 
         func body(content: Content) -> some View {
-            if #available(iOS 17.0, macOS 14.0, *) {
+            if #available(iOS 17.0, watchOS 10.0, macOS 14.0, *) {
                 content
                     .overlay(
                         isActive

@@ -466,6 +466,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                 )
             ]
         )
+        .background(Color.random)
     }
 }
 #endif

@@ -23,6 +23,7 @@ import Foundation
 /// Get information about the current running application.
 /// This can be used to get the application name, version number, build number, etc.
 public enum AppInfo {
+    // swiftlint:disable:previous type_body_length
     /// Get application name
     /// - Returns: application name
     public static var appName: String {
@@ -69,6 +70,15 @@ public enum AppInfo {
     /// Is the application running downloaded from TestFlight
     public static var isTestflight: Bool {
         Bundle.main.appStoreReceiptURL?.absoluteString.contains("sandboxReceipt") ?? false
+    }
+
+    /// Is the application running downloaded from TestFlight or locally debugging
+    public static var isDebugBuild: Bool {
+        #if DEBUG
+        true
+        #else
+        Bundle.main.appStoreReceiptURL?.absoluteString.contains("sandboxReceipt") ?? false
+        #endif
     }
 
     /// Is the application an app extension
@@ -281,6 +291,10 @@ public enum AppInfo {
         /// - Returns: Application icon
         public static var appIcon: Image {
             #if canImport(UIKit)
+                if isSwiftUIPreview {
+                    return Image(systemName: "hammer.fill")
+                }
+
                 guard
                     let icons = Bundle.main.object(forInfoDictionaryKey: "CFBundleIcons")
                         as? [String: Any],
@@ -297,6 +311,10 @@ public enum AppInfo {
 
                 return Image(uiImage: uiImage)
             #elseif canImport(AppKit)
+                if isSwiftUIPreview {
+                    return Image(systemName: "hammer.fill")
+                }
+
                 guard
                     let iconFileName = Bundle.main.object(forInfoDictionaryKey: "CFBundleIconName")
                         as? String
