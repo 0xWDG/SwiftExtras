@@ -43,24 +43,8 @@ public struct CardView<Content: View>: View {
 
     public var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    // Custom Content
-                    self.content
-                        .padding(.top, 5)
-                        .padding(.horizontal)
-                        .frame(
-                            maxWidth: .infinity,
-                            alignment: .leading
-                        )
-
-                    // Move everything up
-                    Spacer()
-                }
-            }
-            .toolbar {
-#if !os(watchOS) && !os(tvOS)
-                ToolbarItem(placement: .navigation) {
+            VStack(spacing: 0) {
+                HStack {
                     VStack(alignment: .leading, spacing: 0) {
                         Text(.init(title))
                             .font(.headline)
@@ -72,9 +56,8 @@ public struct CardView<Content: View>: View {
                                 .lineLimit(1)
                         }
                     }
-                }
 
-                ToolbarItem(placement: .primaryAction) {
+                    Spacer()
                     Button {
                         presentationMode.wrappedValue.dismiss()
                     } label: {
@@ -82,14 +65,30 @@ public struct CardView<Content: View>: View {
                     }
                     .keyboardShortcut(.cancelAction)
                 }
-#else
-                Button {
-                    presentationMode.wrappedValue.dismiss()
-                } label: {
-                    self.closeButton
+                .padding(.horizontal, 12)
+                .padding(.top, 10)
+
+                Divider()
+                    .ignoresSafeArea()
+                    .padding(0)
+
+                ScrollView {
+                    VStack(alignment: .leading) {
+                        // Custom Content
+                        self.content
+                            .padding(.top, 5)
+                            .padding(.horizontal)
+                            .frame(
+                                maxWidth: .infinity,
+                                alignment: .leading
+                            )
+
+                        // Move everything up
+                        Spacer()
+                    }
                 }
-#endif
             }
+            .padding(5)
         }
     }
 }

@@ -3,9 +3,11 @@
 This file contains the changelog of SwiftExtras.
 
 ### 1.2.5
-- Added [`ConfettiView`](https://github.com/0xWDG/SwiftExtras/blob/main/Sources/SwiftExtras/SwiftUI/ConfettiView.swift)  
+- Updated [`CardView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/cardview)  
+  for better display on iOS 26.
+- Added [`ConfettiView`](https://github.com/0xWDG/SwiftExtras/blob/main/Sources/SwiftExtras/SwiftUI/ConfettiView.swift)    
   A view that displays confetti.
-- Added [`View.displayConfetti(isActive:colors:automaticEnd:shape:animationTime:fadeTime:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/displayconfetti(isactive:colors:automaticend:shape:animationtime:fadetime:))  
+- Added [`View.displayConfetti(isActive:colors:automaticEnd:shape:animationTime:fadeTime:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/displayconfetti(isactive:colors:automaticend:shape:animationtime:fadetime:))    
   A view modifier that displays confetti on the view.
 - Added [`HexShape`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/hexshape)  
   A shape that represents a hexagon.
@@ -185,7 +187,7 @@ This file contains the changelog of SwiftExtras.
   Since it is now available in SwiftUI
 - Removed `TransparentBlurView`
   Since it is now available in SwiftUI
-- Improved color of close button in `CardView`  
+- Improved color of close button in [`CardView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/cardview)  
   To make it more visible
 - Added [`LimitedTextField`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/limitedtextfield)  
   A text field that limits the number of characters
