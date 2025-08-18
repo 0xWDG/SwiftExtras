@@ -7,11 +7,11 @@ This file contains the changelog of SwiftExtras.
   for better display on iOS 26.
 - Added [`ConfettiView`](https://github.com/0xWDG/SwiftExtras/blob/main/Sources/SwiftExtras/SwiftUI/ConfettiView.swift)    
   A view that displays confetti.
-- Added [`Image.asNativeImage`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/image/asnativeimage)  
+- Added [`Image.asNativeImage`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/image/asnativeimage)  
   A property that returns the platform native image.
-- Added [`Image.removeBackground()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/image/removebackground)  
+- Added [`Image.removeBackground()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/image/removebackground)  
   A method that removes the background from the image.
-- Added [`PlatformImage.removeBackground()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/image/removebackground)  
+- Added [`PlatformImage.removeBackground()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appkit/nsimage/removebackground())  
   A method that removes the background from the platform image.
 - Added [`View.displayConfetti(isActive:colors:automaticEnd:shape:animationTime:fadeTime:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/displayconfetti(isactive:colors:automaticend:shape:animationtime:fadetime:))    
   A view modifier that displays confetti on the view.
