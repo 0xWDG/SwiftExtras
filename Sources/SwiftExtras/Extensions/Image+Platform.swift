@@ -25,6 +25,22 @@ extension Image {
         self.init(uiImage: platformImage)
         #endif
     }
+
+    /// Get the platform native image
+    /// 
+    /// This property is available on all platforms that support SwiftUI.
+    ///
+    /// - Returns: The platform native image, or nil if the image could not be rendered
+    @MainActor
+    public var asNativeImage: PlatformImage? {
+        let renderer = ImageRenderer(content: self)
+        renderer.scale = 1.0
+        #if os(macOS)
+        return renderer.nsImage
+        #else
+        return renderer.uiImage
+        #endif
+    }
 }
 
 #if swift(>=5.9)

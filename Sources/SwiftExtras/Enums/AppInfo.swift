@@ -17,6 +17,9 @@ import Foundation
 #if canImport(LocalAuthentication)
     import LocalAuthentication
 #endif
+#if canImport(Darwin)
+    import Darwin
+#endif
 
 /// AppInfo
 ///
@@ -169,6 +172,18 @@ public enum AppInfo {
             ProcessInfo.processInfo.isiOSAppOnMac
         #else
             false
+        #endif
+    }
+
+    static var isDebuggerAttached: Bool {
+        #if canImport(Darwin)
+            var info = kinfo_proc()
+            var mib = [CTL_KERN, KERN_PROC, KERN_PROC_PID, getpid()]
+            var size = MemoryLayout<kinfo_proc>.stride
+            sysctl(&mib, u_int(mib.count), &info, &size, nil, 0)
+            return (info.kp_proc.p_flag & P_TRACED) != 0
+        #else
+            return false
         #endif
     }
 
@@ -386,3 +401,4 @@ public struct SEAppInfoAppStoreResult: Decodable {
     /// App Version number
     public let version: String
 }
+// swiftlint:disable:this file_length

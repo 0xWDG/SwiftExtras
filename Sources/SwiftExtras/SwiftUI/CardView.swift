@@ -24,7 +24,11 @@ public struct CardView<Content: View>: View {
     let subtitle: String?
     let content: Content
 
-    public init(title: String, subtitle: String? = nil, @ViewBuilder content: () -> Content) {
+    public init(
+        title: String,
+        subtitle: String? = nil,
+        @ViewBuilder content: () -> Content
+    ) {
         self.title = title
         self.subtitle = subtitle
         self.content = content()
@@ -32,9 +36,8 @@ public struct CardView<Content: View>: View {
 
     var closeButton: some View {
         Image(systemName: "xmark.circle.fill")
-            .foregroundColor(.gray)
             .font(.system(size: 26))
-            .opacity(0.75)
+            .foregroundColor(.gray.opacity(0.50))
             .accessibility(label: Text("Close"))
             .accessibility(hint: Text("Tap to close the screen"))
             .accessibility(addTraits: .isButton)
@@ -58,15 +61,25 @@ public struct CardView<Content: View>: View {
                     }
 
                     Spacer()
-                    Button {
-                        presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        self.closeButton
+                    if #available(iOS 26, watchOS 26, macOS 26, *) {
+                        Button(role: .cancel) {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+#if !os(watchOS)
+                        .keyboardShortcut(.cancelAction)
+#endif
+                    } else {
+                        Button {
+                            presentationMode.wrappedValue.dismiss()
+                        } label: {
+                            self.closeButton
+                        }
+#if !os(watchOS)
+                        .keyboardShortcut(.cancelAction)
+#endif
                     }
-                    .keyboardShortcut(.cancelAction)
                 }
-                .padding(.horizontal, 12)
-                .padding(.top, 10)
+                .padding(12)
 
                 Divider()
                     .ignoresSafeArea()
