@@ -34,7 +34,7 @@ public struct CardView<Content: View>: View {
         self.content = content()
     }
 
-    var closeButton: some View {
+    var closeButtonImage: some View {
         Image(systemName: "xmark.circle.fill")
             .font(.system(size: 26))
             .foregroundColor(.gray.opacity(0.50))
@@ -42,6 +42,38 @@ public struct CardView<Content: View>: View {
             .accessibility(hint: Text("Tap to close the screen"))
             .accessibility(addTraits: .isButton)
             .accessibility(removeTraits: .isImage)
+    }
+
+    @ViewBuilder
+    public var closeButton: some View {
+#if canImport(FoundationModels)
+        if #available(iOS 26.0, *) {
+            Button(role: .cancel) {
+                presentationMode.wrappedValue.dismiss()
+            }
+#if !os(watchOS)
+            .keyboardShortcut(.cancelAction)
+#endif
+        } else {
+            Button {
+                presentationMode.wrappedValue.dismiss()
+            } label: {
+                self.closeButtonImage
+            }
+    #if !os(watchOS)
+            .keyboardShortcut(.cancelAction)
+    #endif
+        }
+#else
+        Button {
+            presentationMode.wrappedValue.dismiss()
+        } label: {
+            self.closeButtonImage
+        }
+#if !os(watchOS)
+        .keyboardShortcut(.cancelAction)
+#endif
+#endif
     }
 
     public var body: some View {
@@ -61,23 +93,7 @@ public struct CardView<Content: View>: View {
                     }
 
                     Spacer()
-                    if #available(iOS 26, watchOS 26, macOS 26, *) {
-                        Button(role: .cancel) {
-                            presentationMode.wrappedValue.dismiss()
-                        }
-#if !os(watchOS)
-                        .keyboardShortcut(.cancelAction)
-#endif
-                    } else {
-                        Button {
-                            presentationMode.wrappedValue.dismiss()
-                        } label: {
-                            self.closeButton
-                        }
-#if !os(watchOS)
-                        .keyboardShortcut(.cancelAction)
-#endif
-                    }
+                    closeButton
                 }
                 .padding(12)
 
