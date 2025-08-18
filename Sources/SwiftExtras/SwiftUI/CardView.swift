@@ -47,7 +47,7 @@ public struct CardView<Content: View>: View {
     @ViewBuilder
     public var closeButton: some View {
 #if canImport(FoundationModels)
-        if #available(iOS 26.0, *) {
+        if #available(iOS 26.0, macOS 26.0, tvOS 26.0, watchOS 26.0, *) {
             Button(role: .cancel) {
                 presentationMode.wrappedValue.dismiss()
             }
