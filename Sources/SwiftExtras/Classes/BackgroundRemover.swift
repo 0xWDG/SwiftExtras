@@ -149,8 +149,9 @@ import SwiftUI
 @available(iOS 17.0, macOS 14.0, *)
 extension Image {
     /// Removes the background from the image.
+    @available(iOS 17.0, macOS 14.0, *)
     @MainActor
-    func removeBackground() -> Image? {
+    public func removeBackground() -> Image? {
         guard let nativeImage = self.asNativeImage else {
             return nil
         }
