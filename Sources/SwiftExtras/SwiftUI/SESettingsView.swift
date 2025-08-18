@@ -177,6 +177,8 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                 customBottomSection()
                 footerSection
             }
+            .scrollContentBackground(.hidden)
+            .background(.ultraThinMaterial)
             .task {
 #if canImport(StoreKit) && !os(watchOS) && !os(tvOS)
                 if appStoreDeveloperURL != nil &&
@@ -213,6 +215,23 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                     .resizable()
                     .cornerRadius(24)
                     .frame(width: 124, height: 124)
+                    .overlay {
+                        if AppInfo.isDebugBuild {
+                            VStack {
+                                Spacer()
+                                HStack {
+                                    Spacer()
+                                    Text("Beta")
+                                        .padding(6)
+                                        .padding(.horizontal, 4)
+                                        .background(
+                                            Capsule()
+                                                .fill(Color.blue.opacity(0.2))
+                                        )
+                                }
+                            }
+                        }
+                    }
 
                 Text(AppInfo.appName)
                     .font(.title)
@@ -453,20 +472,24 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
     NavigationStack {
-        SESettingsView(
-            _changeLog: [
-                .init(version: "0.0.1", text: "Initial version")
-            ],
-            _acknowledgements: [
-                .init(
-                    name: "This Package",
-                    copyright: "Wesley de Groot",
-                    licence: "Licence",
-                    url: "https://wesleydegroot.nl"
+        Text("Test")
+            .sheet(isPresented: .constant(true)) {
+                SESettingsView(
+                    _changeLog: [
+                        .init(version: "0.0.1", text: "Initial version")
+                    ],
+                    _acknowledgements: [
+                        .init(
+                            name: "This Package",
+                            copyright: "Wesley de Groot",
+                            licence: "Licence",
+                            url: "https://wesleydegroot.nl"
+                        )
+                    ]
                 )
-            ]
-        )
-        .background(Color.random)
+                .presentationDetents([.medium, .large])
+//                .background(Color.random)
+            }
     }
 }
 #endif
