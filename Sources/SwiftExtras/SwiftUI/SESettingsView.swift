@@ -177,8 +177,6 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                 customBottomSection()
                 footerSection
             }
-            .scrollContentBackground(.hidden)
-            .background(.ultraThinMaterial)
             .task {
 #if canImport(StoreKit) && !os(watchOS) && !os(tvOS)
                 if appStoreDeveloperURL != nil &&
