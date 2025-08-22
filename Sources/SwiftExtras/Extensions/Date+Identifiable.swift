@@ -13,22 +13,18 @@ import Foundation
 
 #if swift(>=5.9)
 extension Date: @retroactive Identifiable {
-    public typealias ID = Int // swiftlint:disable:this type_name
-
-    /// The identifier of the string.
+    /// The identifier of the date.
     ///
-    /// This is a hash value of the string to make String conform to Identifiable.
+    /// This is a hash value of the description to make Date conform to Identifiable.
     public var id: Int {
         return self.description.hashValue
     }
 }
 #else
 extension Date: Identifiable {
-    public typealias ID = Int // swiftlint:disable:this type_name
-
-    /// The identifier of the string.
+    /// The identifier of the date.
     ///
-    /// This is a hash value of the string to make String conform to Identifiable.
+    /// This is a hash value of the description to make Date conform to Identifiable.
     public var id: Int {
         return self.description.hashValue
     }

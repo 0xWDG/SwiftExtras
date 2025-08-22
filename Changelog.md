@@ -31,6 +31,14 @@ This file contains the changelog of SwiftExtras.
   This view modifier sets the maximum size of the view
 - Added [`View.frame(size:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/frames(maxsize:))  
   This view modifier sets the size of the view
+- Added [`AppInfo.getShortcutItem`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/getshortcutitem)  
+  Get the shortcut item for the app
+- Added [`View.task(delay:action:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/view/task(delay:action:)).  
+  A view modifier that performs a task after a delay.
+- Added [`URL.isReachable()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/url/isreachable())  
+  Checks if a URL is reachable.
+- Added [`URL.isReachable(completion:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/url/isreachable(completion:))  
+  Checks if a URL is reachable.
 - Added [`.blueColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/bluecolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents a blue button
 - Added [`.redColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/redcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  

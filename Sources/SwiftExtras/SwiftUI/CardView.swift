@@ -37,7 +37,7 @@ public struct CardView<Content: View>: View {
     var closeButtonImage: some View {
         Image(systemName: "xmark.circle.fill")
             .font(.system(size: 26))
-            .foregroundColor(.gray.opacity(0.50))
+            .foregroundColor(.gray.opacity(0.4))
             .accessibility(label: Text("Close"))
             .accessibility(hint: Text("Tap to close the screen"))
             .accessibility(addTraits: .isButton)
@@ -46,25 +46,6 @@ public struct CardView<Content: View>: View {
 
     @ViewBuilder
     public var closeButton: some View {
-#if canImport(FoundationModels)
-        if #available(iOS 26.0, macOS 26.0, tvOS 26.0, watchOS 26.0, *) {
-            Button(role: .cancel) {
-                presentationMode.wrappedValue.dismiss()
-            }
-#if !os(watchOS)
-            .keyboardShortcut(.cancelAction)
-#endif
-        } else {
-            Button {
-                presentationMode.wrappedValue.dismiss()
-            } label: {
-                self.closeButtonImage
-            }
-    #if !os(watchOS)
-            .keyboardShortcut(.cancelAction)
-    #endif
-        }
-#else
         Button {
             presentationMode.wrappedValue.dismiss()
         } label: {
@@ -72,7 +53,6 @@ public struct CardView<Content: View>: View {
         }
 #if !os(watchOS)
         .keyboardShortcut(.cancelAction)
-#endif
 #endif
     }
 

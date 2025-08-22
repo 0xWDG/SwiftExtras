@@ -14,8 +14,6 @@ import SwiftUI
 
 #if swift(>=5.9)
 extension Color: @retroactive Identifiable {
-    public typealias ID = Int // swiftlint:disable:this type_name
-
     /// The identifier of the color.
     ///
     /// This is a random hash value to make Color conform to Identifiable.
@@ -25,8 +23,6 @@ extension Color: @retroactive Identifiable {
 }
 #else
 extension Color: Identifiable {
-    public typealias ID = Int // swiftlint:disable:this type_name
-
     /// The identifier of the color.
     ///
     /// This is a random hash value to make Color conform to Identifiable.

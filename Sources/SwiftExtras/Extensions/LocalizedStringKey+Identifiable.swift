@@ -14,22 +14,18 @@ import SwiftUI
 
 #if swift(>=5.9)
 extension LocalizedStringKey: @retroactive Identifiable {
-    public typealias ID = Int // swiftlint:disable:this type_name
-
-    /// The identifier of the color.
+    /// The identifier of the localized string key.
     ///
-    /// This is a random hash value to make Color conform to Identifiable.
+    /// This is a random hash value to make LocalizedStringKey conform to Identifiable.
     public var id: Int {
         return self.stringKey?.hashValue ?? UUID().hashValue
     }
 }
 #else
 extension LocalizedStringKey: Identifiable {
-    public typealias ID = Int // swiftlint:disable:this type_name
-
-    /// The identifier of the color.
+    /// The identifier of the localized string key.
     ///
-    /// This is a random hash value to make Color conform to Identifiable.
+    /// This is a random hash value to make LocalizedStringKey conform to Identifiable.
     public var id: Int {
         return self.stringKey?.hashValue ?? UUID().hashValue
     }

@@ -165,8 +165,7 @@
             "xtwitter": SocialIcons.xtwitter,
             "youtube": SocialIcons.youtube,
             "youtubeFill": SocialIcons.youtubeFill,
-            "x": SocialIcons.x,
-            // swiftlint:disable:previous trailing_comma
+            "x": SocialIcons.x
         ]
     }
 

@@ -467,28 +467,36 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
 }
 
 #if DEBUG
+private struct SESettingsDemo: View {
+    @Binding var isPresented: Bool
+
+    var body: some View {
+        SESettingsView(
+            _changeLog: [
+                .init(version: "0.0.1", text: "Initial version")
+            ],
+            _acknowledgements: [
+                .init(
+                    name: "This Package",
+                    copyright: "Wesley de Groot",
+                    licence: "Licence",
+                    url: "https://wesleydegroot.nl"
+                )
+            ],
+            topContent: {
+                Toggle("Open Sheet", isOn: $isPresented)
+            }
+        )
+    }
+}
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
-    NavigationStack {
-        Text("Test")
-            .sheet(isPresented: .constant(true)) {
-                SESettingsView(
-                    _changeLog: [
-                        .init(version: "0.0.1", text: "Initial version")
-                    ],
-                    _acknowledgements: [
-                        .init(
-                            name: "This Package",
-                            copyright: "Wesley de Groot",
-                            licence: "Licence",
-                            url: "https://wesleydegroot.nl"
-                        )
-                    ]
-                )
-                .presentationDetents([.medium, .large])
-//                .background(Color.random)
-            }
-    }
+    @Previewable @State var isPresented: Bool = false
+
+    SESettingsDemo(isPresented: $isPresented)
+        .sheet(isPresented: $isPresented) {
+            SESettingsDemo(isPresented: $isPresented)
+        }
 }
 #endif
 #endif

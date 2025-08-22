@@ -377,7 +377,7 @@
             let colors: [Color] = [
                 .blue, .red, .orange, .yellow, .green, .mint, .teal,
                 .cyan, .indigo, .purple, .pink, .brown, .white, .gray,
-                .black,  // swiftlint:disable:this trailing_comma
+                .black
             ]
 
             VStack {
