@@ -15,6 +15,7 @@ import SwiftUI
 /// Carousel View
 ///
 /// This view displays a horizontal scrolling carousel of images.
+@available(macOS 14, *)
 public struct CarouselView: View {
     /// Current tab index
     @State private var currentTabIndex = 0
@@ -31,6 +32,7 @@ public struct CarouselView: View {
     }
 
     /// View body
+
     public var body: some View {
         TabView(selection: $currentTabIndex) {
             ForEach(items.indices, id: \.self) { index in
@@ -48,23 +50,23 @@ public struct CarouselView: View {
                     .padding(.all, 8)
 
                 HStack(spacing: 0) {
-                    Button {
+                    VStack { Color.clear }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .contentShape(Rectangle())
+                    .background(.clear.opacity(0.4))
+                    .onTapGesture {
                         currentTabIndex -= 1
-                    } label: {
-                        Color.clear
                     }
-                    .frame(maxWidth: .infinity)
-                    .contentShape(Rectangle())
-                    .background(.clear.opacity(0.4))
+                    .accessibilityAddTraits(.isButton)
 
-                    Button {
-                        currentTabIndex += 1
-                    } label: {
-                        Color.clear
-                    }
+                    VStack { Color.clear }
                     .contentShape(Rectangle())
-                    .frame(maxWidth: .infinity)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(.clear.opacity(0.4))
+                    .onTapGesture {
+                        currentTabIndex += 1
+                    }
+                    .accessibilityAddTraits(.isButton)
                 }
             }
         }
