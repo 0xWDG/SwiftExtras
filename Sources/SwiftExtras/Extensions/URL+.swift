@@ -9,7 +9,7 @@
 //  MIT License
 //
 
-import SwiftUI
+import Foundation
 
 extension URL {
     /// Check if the URL is reachable by performing a HEAD request.
