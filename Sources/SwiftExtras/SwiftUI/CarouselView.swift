@@ -39,7 +39,9 @@ public struct CarouselView: View {
                 .tag(index)
             }
         }
+#if !os(macOS)
         .tabViewStyle(.page(indexDisplayMode: .never))
+#endif
         .overlay {
             VStack(spacing: 0) {
                 stepper
