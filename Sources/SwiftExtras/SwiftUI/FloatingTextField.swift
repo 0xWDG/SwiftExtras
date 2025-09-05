@@ -71,7 +71,7 @@ public struct FloatingTextField: View {
                 .foregroundColor(Color.accentColor)
                 .scaleEffect(shouldPlaceHolderMove ? 1.0 : 1.2)
                 .animation(Animation.easeInOut(duration: 0.4), value: shouldPlaceHolderMove)
-                .background(Color(UIColor.systemBackground))
+                .background(Color.systemBackground)
                 .padding(
                     shouldPlaceHolderMove
                     ? EdgeInsets(top: 0, leading: shouldDrawBox ? 15 : -4, bottom: 50, trailing: 0)
