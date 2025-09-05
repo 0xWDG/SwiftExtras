@@ -7,6 +7,7 @@
 //
 //  https://github.com/0xWDG/SwiftExtras
 //  MIT License
+//
 
 import Foundation
 #if canImport(UIKit)

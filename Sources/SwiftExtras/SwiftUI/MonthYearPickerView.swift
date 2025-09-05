@@ -7,7 +7,7 @@
 //
 //  https://github.com/0xWDG/SwiftExtras
 //  MIT License
-///
+//
 
 import Foundation
 

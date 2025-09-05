@@ -350,7 +350,11 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
 #if !os(tvOS)
                                 .controlSize(.small)
 #endif
-                            Text("Fetching logs...", bundle: Bundle.module)
+
+                            Text("Fetching logs", bundle: Bundle.module)
+                                .lineLimit(1)
+                                .allowsTightening(true)
+                                .minimumScaleFactor(0.3)
                         }
                     }
                 }

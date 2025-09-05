@@ -5150,7 +5150,11 @@
         }
       }
     },
+    "Fetching logs" : {
+
+    },
     "Fetching logs..." : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {

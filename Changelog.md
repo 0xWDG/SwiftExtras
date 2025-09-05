@@ -6,7 +6,10 @@ This file contains the changelog of SwiftExtras.
 - Updated [`CardView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/cardview)  
   for better display on iOS 26.
 - Added [`ConfettiView`](https://github.com/0xWDG/SwiftExtras/blob/main/Sources/SwiftExtras/SwiftUI/ConfettiView.swift)    
-  A view that displays confetti.
+- Added [`CarouselView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/carouselview)    
+  A view that displays a carousel of images.
+- Added [`FloatingTextField`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/floatingtextfield)  
+  A text field where the label floats above the content.
 - Added [`Image.asNativeImage`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/image/asnativeimage)  
   A property that returns the platform native image.
 - Added [`Image.removeBackground()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/image/removebackground)  

@@ -121,7 +121,7 @@ public struct MultiSelectPickerView<PickerLabel: View, SelectionLabel: View>: Vi
                 sourceItems: items,
                 selectedItems: $selectedItems) {
                     Text("Pick your items")
-                } selectionLabel: { item in
+            } selectionLabel: { item in
                     Label(item, systemImage: item)
             }
         }
