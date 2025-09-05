@@ -10,6 +10,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 extension URL {
     /// Check if the URL is reachable by performing a HEAD request.
