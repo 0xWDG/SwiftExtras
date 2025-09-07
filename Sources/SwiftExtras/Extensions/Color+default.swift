@@ -365,7 +365,7 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.systemYellow)
 #else
-#if os(watchOS)
+#if os(iOS)
         return Color(UIColor.systemYellow)
 #else
         return Color(UIColor.yellow)
@@ -378,7 +378,7 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.systemGray)
 #else
-#if os(watchOS)
+#if os(iOS)
         return Color(UIColor.systemGray)
 #else
         return Color(UIColor.gray)
@@ -391,7 +391,7 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.systemGray)
 #else
-#if os(watchOS)
+#if os(iOS)
         return Color(UIColor.systemGray2)
 #else
         return Color(UIColor.gray)
@@ -404,7 +404,7 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.systemGray)
 #else
-#if os(watchOS)
+#if os(iOS)
         return Color(UIColor.systemGray3)
 #else
         return Color(UIColor.gray)
@@ -417,7 +417,7 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.systemGray)
 #else
-#if os(watchOS)
+#if os(iOS)
         return Color(UIColor.systemGray4)
 #else
         return Color(UIColor.gray)
@@ -430,7 +430,7 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.systemGray)
 #else
-#if os(watchOS)
+#if os(iOS)
         return Color(UIColor.systemGray5)
 #else
         return Color(UIColor.gray)

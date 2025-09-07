@@ -11,15 +11,28 @@
 
 #if canImport(SwiftUI)
 import SwiftUI
+
+#if canImport(CachedAsyncImage)
+import CachedAsyncImage
+#endif
+
 /// Carousel View
 ///
 /// This view displays a horizontal scrolling carousel of images.
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 public struct CarouselView: View {
     /// Current tab index
     @State private var currentTabIndex = 0
+
+    /// Screen width & height
+    @State private var width: CGFloat = .infinity
+
     /// Images to display
-    private var items: [Image]
+    private var items: [Image]?
+    private var urls: [URL]?
+    private var count: Int {
+        items?.count ?? urls?.count ?? 0
+    }
 
     /// Carousel View
     ///
@@ -30,14 +43,44 @@ public struct CarouselView: View {
         self.items = items
     }
 
-    /// View body
+    /// Carousel View
+    ///
+    /// This view displays a horizontal scrolling carousel of images.
+    ///
+    /// - Parameter items: An array of images to display in the carousel.
+    public init(urls: [URL]) {
+        self.urls = urls
+    }
 
+    /// View body
     public var body: some View {
         TabView(selection: $currentTabIndex) {
-            ForEach(items.indices, id: \.self) { index in
-                items[index]
-                    .resizable()
-                .tag(index)
+            if let items {
+                ForEach(items.indices, id: \.self) { index in
+                    items[index]
+                        .resizable()
+                        .tag(index)
+                }
+            } else if let urls {
+                ForEach(urls.indices, id: \.self) { index in
+#if canImport(CachedAsyncImage)
+                    AsyncImage(url: urls[index]) {
+                        $0.resizable()
+                    } placeholder: {
+                        ProgressView()
+                            .controlSize(.large)
+                    }
+                    .tag(index)
+#else
+                    CachedAsyncImage(url: urls[index]) {
+                        $0.resizable()
+                    } placeholder: {
+                        ProgressView()
+                            .controlSize(.large)
+                    }
+                    .tag(index)
+#endif
+                }
             }
         }
 #if !os(macOS)
@@ -70,20 +113,26 @@ public struct CarouselView: View {
                     .accessibilityAddTraits(.isButton)
                 }
             }
+            .onGeometryChange(for: CGFloat.self) { proxy in
+                proxy.size.width
+            } action: { newValue in
+                width = newValue
+            }
         }
+        .frame(width: width, height: width)
         .accessibilityIdentifier("CarouselView")
         .onChange(of: currentTabIndex, perform: { _ in
-            if currentTabIndex == items.count {
+            if currentTabIndex == count {
                 currentTabIndex = 0
             } else if currentTabIndex == -1 {
-                currentTabIndex = items.count - 1
+                currentTabIndex = count - 1
             }
         })
     }
 
     var stepper: some View {
         HStack(spacing: 8) {
-            ForEach(0 ..< items.count, id: \.self) { index in
+            ForEach(0..<count, id: \.self) { index in
                 RoundedRectangle(cornerRadius: 2)
                     .fill(
                         currentTabIndex == index
@@ -115,8 +164,16 @@ public struct CarouselView: View {
             ])
             .background(Color.red)
             .frame(width: 300, height: 300)
-
             Spacer()
+        }
+
+        Form {
+            Section {
+                CarouselView(items: [
+                    .init(systemName: "star"),
+                    .init(systemName: "rainbow")
+                ])
+            }
         }
     }
 }
