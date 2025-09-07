@@ -29,7 +29,11 @@ public struct CarouselView: View {
 
     /// Images to display
     private var items: [Image]?
+
+    /// URLs to load
     private var urls: [URL]?
+
+    /// Items
     private var count: Int {
         items?.count ?? urls?.count ?? 0
     }
