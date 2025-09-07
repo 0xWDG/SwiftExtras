@@ -64,7 +64,7 @@ public struct CarouselView: View {
             } else if let urls {
                 ForEach(urls.indices, id: \.self) { index in
 #if canImport(CachedAsyncImage)
-                    AsyncImage(url: urls[index]) {
+                    CachedAsyncImage(url: urls[index]) {
                         $0.resizable()
                     } placeholder: {
                         ProgressView()
@@ -72,7 +72,7 @@ public struct CarouselView: View {
                     }
                     .tag(index)
 #else
-                    CachedAsyncImage(url: urls[index]) {
+                    AsyncImage(url: urls[index]) {
                         $0.resizable()
                     } placeholder: {
                         ProgressView()
