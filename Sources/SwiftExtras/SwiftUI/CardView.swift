@@ -51,7 +51,7 @@ public struct CardView<Content: View>: View {
         } label: {
             self.closeButtonImage
         }
-#if !os(watchOS)
+#if !os(watchOS) && !os(tvOS)
         .keyboardShortcut(.cancelAction)
 #endif
     }

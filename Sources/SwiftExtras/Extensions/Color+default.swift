@@ -9,7 +9,7 @@
 //  MIT License
 //
 
-#if !os(watchOS) && canImport(SwiftUI) && (canImport(AppKit) || canImport(UIKit))
+#if canImport(SwiftUI) && (canImport(AppKit) || canImport(UIKit))
 import SwiftUI
 
 #if canImport(AppKit)
@@ -24,7 +24,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.labelColor)
 #else
+#if os(watchOS)
+        return Color(UIColor.white)
+#else
         return Color(UIColor.label)
+#endif
 #endif
     }
 
@@ -33,7 +37,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.secondaryLabelColor)
 #else
+#if os(watchOS)
+        return Color(UIColor.gray)
+#else
         return Color(UIColor.secondaryLabel)
+#endif
 #endif
     }
 
@@ -42,7 +50,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.tertiaryLabelColor)
 #else
+#if os(watchOS)
+        return Color(UIColor.gray)
+#else
         return Color(UIColor.tertiaryLabel)
+#endif
 #endif
     }
 
@@ -51,18 +63,25 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.quaternaryLabelColor)
 #else
+#if os(watchOS)
+        return Color(UIColor.gray)
+#else
         return Color(UIColor.quaternaryLabel)
+#endif
 #endif
     }
 
     // MARK: Fill Colors
-#if !os(tvOS)
     /// An overlay fill color for thin and small shapes.
     public static var systemFill: Color {
 #if os(macOS)
         return Color(NSColor.windowFrameTextColor)
 #else
+#if os(iOS)
         return Color(UIColor.systemFill)
+#else
+        return Color(UIColor.black)
+#endif
 #endif
     }
 
@@ -71,7 +90,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.windowFrameTextColor)
 #else
+#if os(iOS)
         return Color(UIColor.secondarySystemFill)
+#else
+        return Color(UIColor.black)
+#endif
 #endif
     }
 
@@ -80,7 +103,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.windowFrameTextColor)
 #else
+#if os(iOS)
         return Color(UIColor.tertiarySystemFill)
+#else
+        return Color(UIColor.black)
+#endif
 #endif
     }
 
@@ -89,7 +116,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.windowFrameTextColor)
 #else
+#if os(iOS)
         return Color(UIColor.quaternarySystemFill)
+#else
+        return Color(UIColor.black)
+#endif
 #endif
     }
 
@@ -99,7 +130,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.placeholderTextColor)
 #else
+#if os(watchOS)
+        return Color(UIColor.gray)
+#else
         return Color(UIColor.placeholderText)
+#endif
 #endif
     }
 
@@ -109,7 +144,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.windowBackgroundColor)
 #else
+#if os(iOS)
         return Color(UIColor.systemBackground)
+#else
+        return Color(UIColor.black)
+#endif
 #endif
     }
 
@@ -118,7 +157,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.windowBackgroundColor)
 #else
+#if os(iOS)
         return Color(UIColor.secondarySystemBackground)
+#else
+        return Color(UIColor.black)
+#endif
 #endif
     }
 
@@ -127,7 +170,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.windowBackgroundColor)
 #else
+#if os(iOS)
         return Color(UIColor.tertiarySystemBackground)
+#else
+        return Color(UIColor.black)
+#endif
 #endif
     }
 
@@ -136,7 +183,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.windowBackgroundColor)
 #else
+#if os(iOS)
         return Color(UIColor.systemGroupedBackground)
+#else
+        return Color(UIColor.black)
+#endif
 #endif
     }
 
@@ -145,7 +196,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.windowBackgroundColor)
 #else
+#if os(iOS)
         return Color(UIColor.secondarySystemGroupedBackground)
+#else
+        return Color(UIColor.black)
+#endif
 #endif
     }
 
@@ -154,17 +209,24 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.windowBackgroundColor)
 #else
+#if os(iOS)
         return Color(UIColor.tertiarySystemGroupedBackground)
+#else
+        return Color(UIColor.black)
+#endif
 #endif
     }
-#endif
 
     /// The color for thin borders or divider lines that allows some underlying content to be visible.
     public static var separator: Color {
 #if os(macOS)
         return Color(NSColor.separatorColor)
 #else
+#if os(watchOS)
+        return Color(UIColor.white)
+#else
         return Color(UIColor.separator)
+#endif
 #endif
     }
 
@@ -173,7 +235,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.separatorColor).opacity(1)
 #else
+#if os(watchOS)
+        return Color(UIColor.clear)
+#else
         return Color(UIColor.opaqueSeparator)
+#endif
 #endif
     }
 
@@ -182,7 +248,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.linkColor)
 #else
+#if os(watchOS)
+        return Color(UIColor.blue)
+#else
         return Color(UIColor.link)
+#endif
 #endif
     }
 
@@ -191,7 +261,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.systemBlue)
 #else
+#if os(watchOS)
+        return Color(UIColor.blue)
+#else
         return Color(UIColor.systemBlue)
+#endif
 #endif
     }
 
@@ -200,7 +274,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.systemGreen)
 #else
+#if os(watchOS)
+        return Color(UIColor.green)
+#else
         return Color(UIColor.systemGreen)
+#endif
 #endif
     }
 
@@ -209,7 +287,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.systemIndigo)
 #else
+#if os(watchOS)
+        return Color(UIColor.blue)
+#else
         return Color(UIColor.systemIndigo)
+#endif
 #endif
     }
 
@@ -218,7 +300,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.systemOrange)
 #else
+#if os(watchOS)
+        return Color(UIColor.orange)
+#else
         return Color(UIColor.systemOrange)
+#endif
 #endif
     }
 
@@ -227,7 +313,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.systemPink)
 #else
+#if os(watchOS)
+        return Color(UIColor.blue)
+#else
         return Color(UIColor.systemPink)
+#endif
 #endif
     }
 
@@ -236,7 +326,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.systemPurple)
 #else
+#if os(watchOS)
+        return Color(UIColor.purple)
+#else
         return Color(UIColor.systemPurple)
+#endif
 #endif
     }
 
@@ -245,7 +339,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.systemRed)
 #else
+#if os(watchOS)
+        return Color(UIColor.red)
+#else
         return Color(UIColor.systemRed)
+#endif
 #endif
     }
 
@@ -254,7 +352,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.systemTeal)
 #else
+#if os(watchOS)
+        return Color(UIColor.green)
+#else
         return Color(UIColor.systemTeal)
+#endif
 #endif
     }
 
@@ -263,7 +365,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.systemYellow)
 #else
+#if os(watchOS)
         return Color(UIColor.systemYellow)
+#else
+        return Color(UIColor.yellow)
+#endif
 #endif
     }
 
@@ -272,17 +378,24 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.systemGray)
 #else
+#if os(watchOS)
         return Color(UIColor.systemGray)
+#else
+        return Color(UIColor.gray)
+#endif
 #endif
     }
 
-#if !os(tvOS)
     /// A second-level shade of gray that adapts to the environment.
     public static var systemGray2: Color {
 #if os(macOS)
         return Color(NSColor.systemGray)
 #else
+#if os(watchOS)
         return Color(UIColor.systemGray2)
+#else
+        return Color(UIColor.gray)
+#endif
 #endif
     }
 
@@ -291,7 +404,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.systemGray)
 #else
+#if os(watchOS)
         return Color(UIColor.systemGray3)
+#else
+        return Color(UIColor.gray)
+#endif
 #endif
     }
 
@@ -300,7 +417,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.systemGray)
 #else
+#if os(watchOS)
         return Color(UIColor.systemGray4)
+#else
+        return Color(UIColor.gray)
+#endif
 #endif
     }
 
@@ -309,7 +430,11 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.systemGray)
 #else
+#if os(watchOS)
         return Color(UIColor.systemGray5)
+#else
+        return Color(UIColor.gray)
+#endif
 #endif
     }
 
@@ -318,9 +443,12 @@ extension Color {
 #if os(macOS)
         return Color(NSColor.systemGray)
 #else
+#if os(iOS)
         return Color(UIColor.systemGray6)
+#else
+        return Color(UIColor.gray)
+#endif
 #endif
     }
-#endif
 }
 #endif

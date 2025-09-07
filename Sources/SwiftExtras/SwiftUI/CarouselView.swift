@@ -11,7 +11,6 @@
 
 #if canImport(SwiftUI)
 import SwiftUI
-
 /// Carousel View
 ///
 /// This view displays a horizontal scrolling carousel of images.
@@ -43,6 +42,8 @@ public struct CarouselView: View {
         }
 #if !os(macOS)
         .tabViewStyle(.page(indexDisplayMode: .never))
+#else
+        .toolbar(.hidden, for: .automatic)
 #endif
         .overlay {
             VStack(spacing: 0) {

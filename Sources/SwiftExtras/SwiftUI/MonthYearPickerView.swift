@@ -72,7 +72,7 @@ public struct MonthYearPickerView: View {
                         .tag(month)
                 }
             }
-#if os(macOS) || os(watchOS)
+#if os(macOS) || os(watchOS) || os(tvOS)
             .pickerStyle(.inline)
 #else
             .pickerStyle(.wheel)
@@ -83,7 +83,7 @@ public struct MonthYearPickerView: View {
                     Text(verbatim: "\(year)").tag(year)
                 }
             }
-#if os(macOS) || os(watchOS)
+#if os(macOS) || os(watchOS) || os(tvOS)
             .pickerStyle(.inline)
 #else
             .pickerStyle(.wheel)

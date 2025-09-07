@@ -20,7 +20,7 @@ import UIKit
 import AppKit
 #endif
 
-@available(iOS 17.0, macOS 14.0, *)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, *)
 class BackgroundRemoverHelper {
     enum Errors: Error {
         /// Failed to unwrap the image.
@@ -132,10 +132,16 @@ class BackgroundRemoverHelper {
             throw Errors.failedToCreateCIImage
         }
 #else
+#if os(tvOS)
+        guard let cgImage = image.cgImage else {
+            throw Errors.failedToCreateCIImage
+        }
+#else
         // macOS: Create a CIImage from the NSImage
         guard let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) else {
             throw Errors.failedToCreateCIImage
         }
+#endif
         let ciImage = CIImage(cgImage: cgImage)
 #endif
 
@@ -146,7 +152,7 @@ class BackgroundRemoverHelper {
 
 #if canImport(SwiftUI)
 import SwiftUI
-@available(iOS 17.0, macOS 14.0, *)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, *)
 extension Image {
     /// Removes the background from the image.
     @available(iOS 17.0, macOS 14.0, *)
@@ -166,7 +172,7 @@ extension Image {
 #if canImport(UIKit) || canImport(AppKit)
 extension PlatformImage {
     /// Removes the background from the image.
-    @available(iOS 17.0, macOS 14.0, *)
+    @available(iOS 17.0, macOS 14.0, tvOS 17.0, *)
     public func removeBackground() -> PlatformImage? {
         return try? BackgroundRemoverHelper().parse(image: self)
     }

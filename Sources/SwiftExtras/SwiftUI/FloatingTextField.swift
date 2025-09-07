@@ -54,7 +54,9 @@ public struct FloatingTextField: View {
     public var body: some View {
         ZStack(alignment: .leading) {
             TextField(isEditing ? "" : placeHolderText, text: $text, onEditingChanged: { (edit) in
+#if !os(macOS)
                 isEditing = edit
+#endif
             })
             .foregroundColor(Color.primary)
             .animation(Animation.easeInOut(duration: 0.4), value: EdgeInsets())
@@ -64,6 +66,7 @@ public struct FloatingTextField: View {
             .overlay {
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(lineWidth: shouldDrawBox ? (isEditing ? 1 : 0) : 0)
+                    .foregroundStyle(Color.placeholderText)
             }
 
             // Floating Placeholder

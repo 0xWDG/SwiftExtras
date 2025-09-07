@@ -5476,6 +5476,9 @@
         }
       }
     },
+    "Go to the %lld image." : {
+
+    },
     "Hello world" : {
 
     },
