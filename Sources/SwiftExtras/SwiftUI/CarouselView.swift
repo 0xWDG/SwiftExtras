@@ -20,9 +20,6 @@ public struct CarouselView: View {
     /// Current tab index
     @State private var currentTabIndex = 0
 
-    /// Screen width & height
-    @State private var width: CGFloat = 500
-
     /// Images to display
     private var items: [Image]?
 
@@ -54,73 +51,90 @@ public struct CarouselView: View {
 
     /// View body
     public var body: some View {
-        TabView(selection: $currentTabIndex) {
-            if let items {
-                ForEach(items.indices, id: \.self) { index in
-                    items[index]
-                        .resizable()
+        GeometryReader { proxy in
+            let size = proxy.size
+            let square = max(0, min(size.width, size.height == 0 ? size.width : size.height))
+
+            TabView(selection: $currentTabIndex) {
+                if let items {
+                    ForEach(items.indices, id: \.self) { index in
+                        items[index]
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: square, height: square)
+                            .clipped()
+                            .tag(index)
+                    }
+                } else if let urls {
+                    ForEach(urls.indices, id: \.self) { index in
+                        AsyncImage(url: urls[index]) {
+                            $0.resizable()
+                                .scaledToFill()
+                        } placeholder: {
+                            ProgressView()
+                                .controlSize(.large)
+                        }
+                        .frame(width: square, height: square)
+                        .clipped()
                         .tag(index)
-                }
-            } else if let urls {
-                ForEach(urls.indices, id: \.self) { index in
-                    AsyncImage(url: urls[index]) {
-                        $0.resizable()
-                    } placeholder: {
-                        ProgressView()
-                            .controlSize(.large)
                     }
-                    .tag(index)
+                } else {
+                    Color.clear
+                        .frame(width: square, height: square)
+                        .tag(0)
                 }
             }
-        }
 #if !os(macOS)
-        .tabViewStyle(.page(indexDisplayMode: .never))
+            .tabViewStyle(.page(indexDisplayMode: .never))
 #else
-        .toolbar(.hidden, for: .automatic)
+            .toolbar(.hidden, for: .automatic)
 #endif
-        .overlay {
-            VStack(spacing: 0) {
-                if itemCount > 1 {
-                    stepper
-                        .padding(.all, 8)
-                }
-
-                HStack(spacing: 0) {
-                    VStack { Color.clear }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .contentShape(Rectangle())
-                    .background(.clear.opacity(0.4))
-                    .onTapGesture {
-                        currentTabIndex -= 1
+            .overlay {
+                VStack(spacing: 0) {
+                    if itemCount > 1 {
+                        stepper
+                            .padding(.all, 8)
                     }
-                    .accessibilityAddTraits(.isButton)
 
-                    VStack { Color.clear }
-                    .contentShape(Rectangle())
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(.clear.opacity(0.4))
-                    .onTapGesture {
-                        currentTabIndex += 1
+                    HStack(spacing: 0) {
+                        VStack { Color.clear }
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .contentShape(Rectangle())
+                            .background(.clear.opacity(0.4))
+                            .onTapGesture {
+                                guard itemCount > 0 else { return }
+                                currentTabIndex -= 1
+                            }
+                            .accessibilityAddTraits(.isButton)
+
+                        VStack { Color.clear }
+                            .contentShape(Rectangle())
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(.clear.opacity(0.4))
+                            .onTapGesture {
+                                guard itemCount > 0 else { return }
+                                currentTabIndex += 1
+                            }
+                            .accessibilityAddTraits(.isButton)
                     }
-                    .accessibilityAddTraits(.isButton)
                 }
             }
-            .onGeometryChange(for: CGFloat.self) { proxy in
-                proxy.size.width
-            } action: { newValue in
-                width = newValue
-            }
+            .frame(width: square, height: square, alignment: .center)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            .accessibilityIdentifier("CarouselView")
+            .onChange(of: currentTabIndex, perform: { _ in
+                guard itemCount > 0 else {
+                    currentTabIndex = 0
+                    return
+                }
+                if currentTabIndex >= itemCount {
+                    currentTabIndex = 0
+                } else if currentTabIndex < 0 {
+                    currentTabIndex = itemCount - 1
+                }
+            })
         }
-        .frame(width: width, height: width)
-        .frame(maxWidth: .infinity)
-        .accessibilityIdentifier("CarouselView")
-        .onChange(of: currentTabIndex, perform: { _ in
-            if currentTabIndex == itemCount {
-                currentTabIndex = 0
-            } else if currentTabIndex == -1 {
-                currentTabIndex = itemCount - 1
-            }
-        })
+        .aspectRatio(1, contentMode: .fit)
     }
 
     var stepper: some View {
