@@ -12,10 +12,6 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
-#if canImport(CachedAsyncImage)
-import CachedAsyncImage
-#endif
-
 /// Carousel View
 ///
 /// This view displays a horizontal scrolling carousel of images.
@@ -34,7 +30,7 @@ public struct CarouselView: View {
     private var urls: [URL]?
 
     /// Items
-    private var count: Int {
+    private var itemCount: Int {
         items?.count ?? urls?.count ?? 0
     }
 
@@ -67,15 +63,6 @@ public struct CarouselView: View {
                 }
             } else if let urls {
                 ForEach(urls.indices, id: \.self) { index in
-#if canImport(CachedAsyncImage)
-                    CachedAsyncImage(url: urls[index]) {
-                        $0.resizable()
-                    } placeholder: {
-                        ProgressView()
-                            .controlSize(.large)
-                    }
-                    .tag(index)
-#else
                     AsyncImage(url: urls[index]) {
                         $0.resizable()
                     } placeholder: {
@@ -83,7 +70,6 @@ public struct CarouselView: View {
                             .controlSize(.large)
                     }
                     .tag(index)
-#endif
                 }
             }
         }
@@ -94,8 +80,10 @@ public struct CarouselView: View {
 #endif
         .overlay {
             VStack(spacing: 0) {
-                stepper
-                    .padding(.all, 8)
+                if itemCount != 0 {
+                    stepper
+                        .padding(.all, 8)
+                }
 
                 HStack(spacing: 0) {
                     VStack { Color.clear }
@@ -123,20 +111,23 @@ public struct CarouselView: View {
                 width = newValue
             }
         }
-        .frame(width: width, height: width)
+        .frame(
+            width: width,
+            height: width == .infinity ? 500 : width
+        )
         .accessibilityIdentifier("CarouselView")
         .onChange(of: currentTabIndex, perform: { _ in
-            if currentTabIndex == count {
+            if currentTabIndex == itemCount {
                 currentTabIndex = 0
             } else if currentTabIndex == -1 {
-                currentTabIndex = count - 1
+                currentTabIndex = itemCount - 1
             }
         })
     }
 
     var stepper: some View {
         HStack(spacing: 8) {
-            ForEach(0..<count, id: \.self) { index in
+            ForEach(0..<itemCount, id: \.self) { index in
                 RoundedRectangle(cornerRadius: 2)
                     .fill(
                         currentTabIndex == index
@@ -179,6 +170,7 @@ public struct CarouselView: View {
                 ])
             }
         }
+        .tint(Color.red)
     }
 }
 #endif
