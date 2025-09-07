@@ -452,3 +452,4 @@ extension Color {
     }
 }
 #endif
+// swiftlint:disable:this file_length

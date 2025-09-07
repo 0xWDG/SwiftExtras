@@ -23,21 +23,21 @@ import SwiftUI
 struct ConfettiView<ConfettiShape: View>: View {
     /// The number of confetti pieces to display.
     var count: Int = 50
-    
+
     /// An array of colors for the confetti pieces.
     var colors: [Color]
-    
+
     /// The shape of the confetti pieces, which can be any SwiftUI view.
     var shape: ConfettiShape
-    
+
     /// The y-position of the confetti pieces.
     @State var yPosition: CGFloat = 0
-    
+
     /// The size of the view, used to determine the bounds for positioning confetti pieces.
     /// This is initialized to a large size to ensure confetti can be positioned anywhere within the view.
     /// It is updated dynamically based on the view's actual size.
     @State var viewSize: CGSize = .init(width: 1000, height: 1000)
-    
+
     /// Initializes a new `ConfettiView` with the specified colors and shape.
     /// - Parameters:
     ///   - colors: An array of colors for the confetti pieces. Defaults to a set of vibrant colors.
@@ -55,7 +55,7 @@ struct ConfettiView<ConfettiShape: View>: View {
         self.colors = colors
         self.shape = shape
     }
-    
+
     /// The body of the view that contains the confetti animation.
     /// It uses a `ZStack` to layer the confetti pieces on top of each other,
     /// and positions them randomly within the view's bounds.
@@ -64,7 +64,7 @@ struct ConfettiView<ConfettiShape: View>: View {
             Color
                 .clear
                 .saveSize(in: $viewSize)
-            
+
             ForEach(0..<count, id: \.self) { _ in
                 Confetti(colors: colors, shape: shape)
                     .position(
@@ -79,7 +79,7 @@ struct ConfettiView<ConfettiShape: View>: View {
             yPosition = CGFloat.random(in: 0...viewSize.width)
         }
     }
-    
+
     /// A view that represents a single confetti piece.
     /// It animates with a 3D rotation effect and falls down the screen.
     /// The confetti piece can be customized with different colors and shapes.
@@ -91,30 +91,30 @@ struct ConfettiView<ConfettiShape: View>: View {
         /// The state that controls the animation of the confetti piece.
         /// It starts as false and becomes true when the view appears, triggering the animation.
         @State private var animate = false
-        
+
         /// The speed of the confetti piece's rotation around the x-axis.
         /// This is a random value between 0.7 and 2 seconds, which determines
         @State private var xSpeed = Double.random(in: 0.7...2)
-        
+
         /// The speed of the confetti piece's rotation around the z-axis.
         /// This is a random value between 1 and 2 seconds, which determines how fast
         /// the confetti rotates around the z-axis.
         @State private var zSpeed = Double.random(in: 1...2)
-        
+
         /// The anchor point for the z-axis rotation, which is a random value between 0 and 1.
         /// This value is rounded to ensure it is a valid anchor point.
         /// It determines the point around which the confetti rotates in 3D space.
         @State private var anchor = CGFloat.random(in: 0...1).rounded()
-        
+
         /// The colors of the confetti piece, which are randomly selected from the provided array.
         /// If the array is empty, it defaults to a blue color.
         var colors: [Color]
-        
+
         /// The shape of the confetti piece, which can be any SwiftUI view.
         /// This allows for flexibility in the design of the confetti piece.
         /// Defaults to a rectangle shape.
         var shape: ConfettiShape
-        
+
         /// Initializes a new `Confetti` view with the specified colors and shape.
         /// - Parameters:
         ///   - colors: An array of colors for the confetti piece.
@@ -123,7 +123,7 @@ struct ConfettiView<ConfettiShape: View>: View {
             self.colors = colors
             self.shape = shape
         }
-        
+
         /// The body of the view that represents a single confetti piece.
         var body: some View {
             shape
@@ -168,16 +168,16 @@ struct ConfettiModifier<ConfettiShape: View>: ViewModifier {
             }
         }
     }
-    
+
     /// An array of colors for the confetti pieces.
     var colors: [Color]
-    
+
     /// A flag that determines whether the confetti animation should automatically end after a set duration.
     var automaticEnd: Bool = true
-    
+
     /// The shape of the confetti pieces, which can be any SwiftUI view.
     var shape: ConfettiShape
-    
+
     /// The opacity of the confetti animation, which starts at 1.0 and fades out to 0.
     /// When the opacity reaches 0, the `isActive` binding is set to false
     @State private var opacity = 1.0 {
@@ -187,13 +187,13 @@ struct ConfettiModifier<ConfettiShape: View>: ViewModifier {
             }
         }
     }
-    
+
     /// The duration of the confetti animation.
     var animationTime = 3.0
-    
+
     /// The duration of the fade-out effect after the confetti animation ends.
     var fadeTime = 2.0
-    
+
     func body(content: Content) -> some View {
         if #available(iOS 17.0, watchOS 10.0, macOS 14.0, tvOS 17.0, *) {
             content
@@ -218,7 +218,7 @@ struct ConfettiModifier<ConfettiShape: View>: ViewModifier {
                 }
         }
     }
-    
+
     private func handleAnimationSequence() async {
         if !automaticEnd { return }
         do {
@@ -268,7 +268,7 @@ extension View {
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
     @Previewable @State var isActive = false
-    
+
     VStack {
         Text("Hello world")
     }
