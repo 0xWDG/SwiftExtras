@@ -21,7 +21,7 @@ public struct CarouselView: View {
     @State private var currentTabIndex = 0
 
     /// Screen width & height
-    @State private var width: CGFloat = .infinity
+    @State private var width: CGFloat = 500
 
     /// Images to display
     private var items: [Image]?
@@ -80,7 +80,7 @@ public struct CarouselView: View {
 #endif
         .overlay {
             VStack(spacing: 0) {
-                if itemCount != 0 {
+                if itemCount > 1 {
                     stepper
                         .padding(.all, 8)
                 }
@@ -111,10 +111,8 @@ public struct CarouselView: View {
                 width = newValue
             }
         }
-        .frame(
-            width: width,
-            height: width == .infinity ? 500 : width
-        )
+        .frame(width: width, height: width)
+        .frame(maxWidth: .infinity)
         .accessibilityIdentifier("CarouselView")
         .onChange(of: currentTabIndex, perform: { _ in
             if currentTabIndex == itemCount {
