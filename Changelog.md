@@ -2,6 +2,10 @@
 
 This file contains the changelog of SwiftExtras.
 
+### 1.2.6
+- Added [`.accentColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/accentcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
+  A button style that represents an accent color button
+
 ### 1.2.5
 - Updated [`CardView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/cardview)  
   for better display on iOS 26.

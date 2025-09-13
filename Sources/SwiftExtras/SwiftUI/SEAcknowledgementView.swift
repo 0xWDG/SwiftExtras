@@ -34,7 +34,9 @@ public struct SEAcknowledgementView: View {
                                     openURL(url)
                                 } label: {
                                     Image(systemName: "safari")
-                                        .accessibilityLabel(Text("Open in web browser"))
+                                        .accessibilityLabel(
+                                            Text("Open in web browser")
+                                        )
                                 }
                             }
                     } label: {
@@ -49,7 +51,9 @@ public struct SEAcknowledgementView: View {
                 }
             }
         }
-        .navigationTitle(Text("Acknowledgements", bundle: Bundle.module))
+        .navigationTitle(
+            Text("Acknowledgements", bundle: Bundle.module)
+        )
 #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
 #endif

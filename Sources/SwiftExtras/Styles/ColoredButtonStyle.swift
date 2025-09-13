@@ -337,6 +337,22 @@
             .init(color: .primary)
         }
 
+        /// A button style that uses the system's accent color.
+        ///
+        /// The style uses the system's accent color for the background of the button.
+        /// The text color is white when the button is enabled and primary when the button is disabled.
+        ///
+        /// - Returns: A button style that uses the system's primary color.
+        ///
+        /// Example:
+        /// ```swift
+        /// Button("Hello World!") {}
+        ///     .buttonStyle(.accentColor)
+        /// ```
+        public static var accentColor: ColoredButtonStyle {
+            .init(color: .accentColor)
+        }
+
         /// A button style that uses the system's secondary color.
         ///
         /// The style uses the system's secondary color for the background of the button.

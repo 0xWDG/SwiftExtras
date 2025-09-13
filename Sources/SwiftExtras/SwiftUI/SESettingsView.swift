@@ -220,11 +220,12 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                                 HStack {
                                     Spacer()
                                     Text("Beta")
+                                        .foregroundStyle(.white)
                                         .padding(6)
                                         .padding(.horizontal, 4)
                                         .background(
                                             Capsule()
-                                                .fill(Color.blue.opacity(0.2))
+                                                .fill(Color.accentColor)
                                         )
                                 }
                             }
