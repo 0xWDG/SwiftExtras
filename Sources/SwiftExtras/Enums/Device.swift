@@ -45,6 +45,7 @@ public enum Device {
     }
 
     /// Device screen size
+    /// - Note: On macOS, this returns the size of the main screen or `.zero` if no screen is available.
     public static var size: CGSize {
 #if os(iOS) || os(tvOS) || os(visionOS)
         return UIScreen.main.bounds.size
