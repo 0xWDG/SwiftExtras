@@ -25,10 +25,11 @@ extension View {
     /// ```
     ///
     /// - Parameter task: Task to run
+    /// - Parameter priority: Priority of the task
     /// - Returns: self
-    public func detachedTask(_ task: @escaping () async -> Void) -> some View {
+    public func detachedTask(priority: TaskPriority = .background, _ task: @escaping () async -> Void) -> some View {
         self.task {
-            Task.detached(priority: .userInitiated) {
+            Task.detached(priority: priority) {
                 await task()
             }
         }
