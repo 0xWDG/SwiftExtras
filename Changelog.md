@@ -5,7 +5,7 @@ This file contains the changelog of SwiftExtras.
 ### 1.2.6
 - Added [`.accentColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/accentcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents an accent color button
-- Added [`CGSize.device`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/coregraphics/cgsize/device)  
+- Added [`CGSize.device`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/corefoundation/cgsize/device)  
   A property that returns the size of the device screen
 - Added [`Device.size`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/device/size). 
   A property that returns the size of the device screen
