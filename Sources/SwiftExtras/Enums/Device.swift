@@ -13,6 +13,9 @@ import Foundation
 #if canImport(UIKit)
 import UIKit
 #endif
+#if canImport(AppKit)
+import AppKit
+#endif
 
 /// Device information
 ///
@@ -41,8 +44,19 @@ public enum Device {
         ProcessInfo.processInfo.operatingSystemVersionString
     }
 
+    /// Device screen size
+    public static var size: CGSize {
+#if os(iOS) || os(tvOS) || os(visionOS)
+        return UIScreen.main.bounds.size
+#elseif os(macOS)
+        return NSScreen.main?.frame.size ?? .zero
+#else
+        return .zero
+#endif
+    }
+
     /// Are we running on Carplay?
-    var isCarplay: Bool {
+    public static var isCarplay: Bool {
 #if canImport(UIKit) && os(iOS)
         if #available(iOS 16, *) {
             return UIApplication.shared.connectedScenes.filter {
@@ -54,44 +68,44 @@ public enum Device {
             }.count >= 1
         }
 #else
-    return false
+        return false
 #endif
-}
+    }
 
 #if canImport(UIKit) && !os(watchOS)
-/// The device name (e.g., "John’s iPhone")
-static var deviceName: String {
-    UIDevice.current.name
-}
+    /// The device name (e.g., "John’s iPhone")
+    static var deviceName: String {
+        UIDevice.current.name
+    }
 
-/// The system name (e.g., "iOS")
-static var deviceSystemName: String { UIDevice.current.systemName }
+    /// The system name (e.g., "iOS")
+    static var deviceSystemName: String { UIDevice.current.systemName }
 
-/// The unique vendor identifier (IDFV)
-static var deviceIdentifierForVendor: String { UIDevice.current.identifierForVendor?.uuidString ?? "No ID" }
+    /// The unique vendor identifier (IDFV)
+    static var deviceIdentifierForVendor: String { UIDevice.current.identifierForVendor?.uuidString ?? "No ID" }
 
-/// Detect if the device is an iPad
-static var isiPad: Bool { UIDevice.current.userInterfaceIdiom == .pad }
+    /// Detect if the device is an iPad
+    static var isiPad: Bool { UIDevice.current.userInterfaceIdiom == .pad }
 
-/// Detect if the device is an iPhone
-static var isiPhone: Bool { UIDevice.current.userInterfaceIdiom == .phone }
+    /// Detect if the device is an iPhone
+    static var isiPhone: Bool { UIDevice.current.userInterfaceIdiom == .phone }
 
 #if !os(tvOS)
-/// The current battery level (0.0 to 1.0)
-static var deviceBatteryLevel: Float { UIDevice.current.batteryLevel }
+    /// The current battery level (0.0 to 1.0)
+    static var deviceBatteryLevel: Float { UIDevice.current.batteryLevel }
 
-/// The current battery state (charging, full, unplugged)
-static var deviceBatteryState: UIDevice.BatteryState { UIDevice.current.batteryState }
+    /// The current battery state (charging, full, unplugged)
+    static var deviceBatteryState: UIDevice.BatteryState { UIDevice.current.batteryState }
 
 #if !os(visionOS) || os(iOS)
-/// The device’s orientation (portrait, landscape, etc.)
-static var deviceOrientation: UIDeviceOrientation { UIDevice.current.orientation }
+    /// The device’s orientation (portrait, landscape, etc.)
+    static var deviceOrientation: UIDeviceOrientation { UIDevice.current.orientation }
 
-/// Detect if the device is in portrait mode
-static var isPortraitMode: Bool { UIDevice.current.orientation.isPortrait }
+    /// Detect if the device is in portrait mode
+    static var isPortraitMode: Bool { UIDevice.current.orientation.isPortrait }
 
-/// Detect if the device is in landscape mode
-static var isLandscapeMode: Bool { UIDevice.current.orientation.isLandscape }
+    /// Detect if the device is in landscape mode
+    static var isLandscapeMode: Bool { UIDevice.current.orientation.isLandscape }
 #endif
 #endif
 #endif

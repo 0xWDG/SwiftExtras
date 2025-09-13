@@ -7,6 +7,8 @@ This file contains the changelog of SwiftExtras.
   A button style that represents an accent color button
 - Added [`CGSize.device`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/coregraphics/cgsize/device)  
   A property that returns the size of the device screen
+- Added [`Device.size`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/device/size). 
+  A property that returns the size of the device screen
 - Added [`PlatformImage.toImageData()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/platformimage/toimagedata())  
   A method that converts a platform image to image data
 - Added [`Image.toImageData()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/image/toimagedata())  
