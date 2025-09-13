@@ -5,6 +5,16 @@ This file contains the changelog of SwiftExtras.
 ### 1.2.6
 - Added [`.accentColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/accentcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
   A button style that represents an accent color button
+- Added [`CGSize.device`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/coregraphics/cgsize/device)  
+  A property that returns the size of the device screen
+- Added [`PlatformImage.toImageData()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/platformimage/toimagedata())  
+  A method that converts a platform image to image data
+- Added [`Image.toImageData()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/image/toimagedata())  
+  A method that converts a SwiftUI image to image data
+- Added [`View.snapshot(size:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/snapshot(size:))  
+  A method that takes a snapshot of the view and returns a platform image
+- Added [`View.snapshot(name:size:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/snapshot(name:size:))  
+  A method that takes a snapshot of the view and returns a platform image
 
 ### 1.2.5
 - Updated [`CardView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/cardview)  
