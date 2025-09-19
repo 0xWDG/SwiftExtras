@@ -11,6 +11,7 @@
 //
 
 #if canImport(SwiftUI)
+import SwiftUI
 
 extension View {
     /// Performs an action when the view first appears.
