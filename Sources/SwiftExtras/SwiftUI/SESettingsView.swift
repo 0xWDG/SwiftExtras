@@ -88,7 +88,8 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
     ///   - OSLogSubsystem: The subsystem for your OS-Logs (nil = hidden), no value = AppBundle
     ///   - changeLog: Changelog
     ///   - acknowledgements: Acknowledgements to mention
-    ///   - content: Additional content
+    ///   - topContent: Custom top content
+    ///   - bottomContent: Custom bottom content
     public init(
         createdBy: String? = nil,
         privacyPolicyURL: URL? = nil,
