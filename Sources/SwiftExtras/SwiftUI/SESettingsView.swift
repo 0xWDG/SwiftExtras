@@ -457,6 +457,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
         VStack(alignment: .leading) {
             Text(
                 "\(AppInfo.appName) \(AppInfo.isDebugBuild ? "(Debug)" : "(AppStore)"), version: \(AppInfo.versionNumber), build: \(AppInfo.buildNumber).",
+                // swiftlint:disable:previous line_length
                 bundle: Bundle.module
             )
 
