@@ -15,7 +15,6 @@ import SwiftUI
 extension Color {
     /// Creates a Color from a PlatformColor
     /// - Parameter color: The PlatformColor to create the Color from.
-    /// - Returns: A Color that represents the given PlatformColor.
     public init(_ color: PlatformColor) {
 #if canImport(UIKit)
         self.init(uiColor: color)
@@ -30,7 +29,6 @@ extension Color {
     /// - Parameters:
     ///   - light: The color to use in light mode.
     ///   - dark: The color to use in dark mode.
-    /// - Returns: A Color that adapts to the current user interface style.
     public init(light: Color, dark: Color) {
 #if canImport(UIKit)
 #if os(watchOS)

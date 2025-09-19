@@ -21,10 +21,10 @@
         ///     .colorScheme(.dark)
         ///  ```
         ///
-        /// - Parameter closure: Code need to run
+        /// - Parameter colorScheme: The color scheme to set (light or dark).
         /// - Returns: self
-        public func colorScheme(colorSheme: ColorScheme) -> some View {
-            self.environment(\.colorScheme, colorSheme)
+        public func colorScheme(colorScheme: ColorScheme) -> some View {
+            self.environment(\.colorScheme, colorScheme)
         }
     }
 

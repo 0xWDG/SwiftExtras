@@ -300,7 +300,6 @@ extension Date {
     ///   - year: The desired year
     ///   - month: The desired month
     ///   - day: The desired day
-    /// - Returns: A `Date` object
     public init(year: Int, month: Int, day: Int) {
         let calendar = Calendar(identifier: .gregorian)
         var dateComponents = DateComponents()
@@ -319,7 +318,6 @@ extension Date {
     ///   - hour: The desired hour
     ///   - minute: The desired minute
     ///   - second: The desired second
-    /// - Returns: A `Date` object
     public init(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int = 0) {
         let calendar = Calendar(identifier: .gregorian)
         var dateComponents = DateComponents()

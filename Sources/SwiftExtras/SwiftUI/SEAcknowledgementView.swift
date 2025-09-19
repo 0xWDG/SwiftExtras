@@ -78,7 +78,7 @@ public struct SEAcknowledgementView: View {
     /// Initialize a new change log view.
     ///
     /// - Parameters:
-    ///   - changeLog: The change log entries to display.
+    ///   - entries: The change log entries to display.
     public init(entries: [SEAcknowledgement]) {
         self.entries = Set(entries)
 

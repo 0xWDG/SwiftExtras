@@ -15,7 +15,7 @@ import SwiftUI
 extension View {
     /// Set a frame size (HxB)
     ///
-    /// - Parameter closure: Code need to run
+    /// - Parameter size: The size to set for both width and height.
     /// - Returns: self
     public func frame(size: CGFloat) -> some View {
         self.frame(width: size, height: size)
@@ -23,7 +23,7 @@ extension View {
 
     /// Set a max frame size (HxB)
     ///
-    /// - Parameter closure: Code need to run
+    /// - Parameter maxSize: The max size to set for both width and height.
     /// - Returns: self
     public func frame(maxSize: CGFloat) -> some View {
         self.frame(maxWidth: maxSize, maxHeight: maxSize)

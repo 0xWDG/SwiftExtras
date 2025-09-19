@@ -32,7 +32,6 @@ extension URL {
     /// Check if the URL is reachable by performing a HEAD request.
     /// - Parameters:
     ///   - completion: A closure that is called with the result of the request.
-    /// - Returns: A Boolean value indicating whether the URL is reachable.
     public func isReachable(completion: @escaping (Bool) -> Void) {
         var request = URLRequest(url: self)
         request.httpMethod = "HEAD"
