@@ -115,7 +115,7 @@ public struct MultiSelectPickerView<PickerLabel: View, SelectionLabel: View>: Vi
     @Previewable @State var selectedItems: [String] = []
     var items = ["star", "person", "rainbow"]
 
-    NavigationView {
+    NavigationStack {
         List {
             MultiSelectPickerView(
                 sourceItems: items,

@@ -57,7 +57,7 @@ public struct CardView<Content: View>: View {
     }
 
     public var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 0) {
                 HStack {
                     VStack(alignment: .leading, spacing: 0) {
