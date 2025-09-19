@@ -87,6 +87,19 @@ extension TimeInterval {
         return Int(abs(self)) % 60
     }
 
+    /// Returns the time interval as HH:MM:SS
+    public var stringValue: String {
+        guard self > 0 && self < Double.infinity else {
+            return "unknown"
+        }
+        let time = NSInteger(self)
+        let seconds = time % 60
+        let minutes = (time / 60) % 60
+        let hours = (time / 3600)
+
+        return String(format: "%0.2d:%0.2d:%0.2d", hours, minutes, seconds)
+    }
+
 #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS) || os(macOS)
     /// Returns the time interval in relative time
     public var timeString: String {

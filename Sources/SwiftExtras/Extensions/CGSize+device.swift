@@ -15,6 +15,9 @@ import Foundation
 #if canImport(UIKit)
 import UIKit
 #endif
+#if canImport(WatchKit)
+import WatchKit
+#endif
 #if canImport(AppKit)
 import AppKit
 #endif
@@ -27,6 +30,10 @@ extension CGSize {
         return UIScreen.main.bounds.size
         #elseif os(macOS)
         return NSScreen.main?.frame.size ?? .zero
+        #elseif os(watchOS) && canImport(WatchKit)
+        return WKInterfaceDevice.current().screenBounds.size
+        #else
+        return .zero
         #endif
     }
 }

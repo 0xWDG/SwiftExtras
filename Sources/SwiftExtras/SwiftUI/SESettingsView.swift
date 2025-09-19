@@ -213,6 +213,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                     .resizable()
                     .cornerRadius(24)
                     .frame(width: 124, height: 124)
+#if !DEBUG
                     .overlay {
                         if AppInfo.isDebugBuild {
                             VStack {
@@ -231,6 +232,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                             }
                         }
                     }
+#endif
 
                 Text(AppInfo.appName)
                     .font(.title)
@@ -454,12 +456,14 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
     var footerSection: some View {
         VStack(alignment: .leading) {
             Text(
-                "\(AppInfo.appName) version: \(AppInfo.versionNumber), build: \(AppInfo.buildNumber)",
+                "\(AppInfo.appName) \(AppInfo.isDebugBuild ? "(Debug)" : "(AppStore)"), version: \(AppInfo.versionNumber), build: \(AppInfo.buildNumber).",
                 bundle: Bundle.module
             )
+
             if let createdBy {
                 HStack(spacing: 2) {
-                    Text("Created by", bundle: Bundle.module)
+                    Text("Created by", bundle: Bundle.module) +
+                    Text(" ") +
                     Text(.init(createdBy))
                 }
             }
