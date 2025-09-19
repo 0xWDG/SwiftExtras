@@ -24,7 +24,6 @@ public struct WStack: Layout {
     /// A layout that arranges its children in a horizontal stack, wrapping to the next line when the width is exceeded.
     /// 
     /// - Parameter spacing: The spacing between the items in the stack.
-    /// - Returns: A new `WHStack` instance.
     public init(spacing: CGFloat = 8) {
         self.spacing = spacing
     }

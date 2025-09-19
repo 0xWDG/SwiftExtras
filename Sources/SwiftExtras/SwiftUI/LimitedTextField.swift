@@ -23,6 +23,7 @@ public struct LimitedTextField: View {
    /// Initializes a `LimitedTextFieldWithCounter` view.
    ///
    /// - Parameters:
+   ///   - title: The title for the text field.
    ///   - text: A binding to the `String` value representing the text input.
    ///   - characterLimit: The maximum number of characters allowed.
    public init(_ title: LocalizedStringKey, text: Binding<String>, characterLimit: Int) {

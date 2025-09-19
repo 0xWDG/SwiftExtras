@@ -53,7 +53,7 @@ public extension PlatformViewRepresentable where UIViewType == PlatformViewType 
     /// Update the platform view.
     ///
     /// - Parameters:
-    ///   - platformView: The platform view instance.
+    ///   - uiView: The platform view instance.
     ///   - context: SwiftUI context.
     ///
     /// This is equivalent to `updateUIView` on UIKit platforms and `updateNSView` on AppKit platforms.
@@ -76,7 +76,7 @@ public extension PlatformViewRepresentable where NSViewType == PlatformViewType 
     /// Update the platform view.
     ///
     /// - Parameters:
-    ///   - platformView: The platform view instance.
+    ///   - nsView: The platform view instance.
     ///   - context: SwiftUI context.
     ///
     /// This is equivalent to `updateUIView` on UIKit platforms and `updateNSView` on AppKit platforms.

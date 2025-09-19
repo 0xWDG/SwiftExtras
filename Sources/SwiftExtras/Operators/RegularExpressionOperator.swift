@@ -16,12 +16,12 @@ infix operator =~
 
 /// Regular expression infix operator (Matching)
 /// - Parameters:
-///   - string: String to be checked
-///   - regex: against regular expression
+///   - source: String to be checked
+///   - pattern: against regular expression
 /// - Returns: true if found, otherwise false
-public func =~ (string: String, regex: String) -> Bool {
-    return string.range(
-        of: regex,
+public func =~ (source: String, pattern: String) -> Bool {
+    return source.range(
+        of: pattern,
         options: .regularExpression,
         range: nil,
         locale: nil
@@ -33,8 +33,8 @@ infix operator !~
 
 /// Regular expression infix operator (inverse matching)
 /// - Parameters:
-///   - string: String to be checked
-///   - regex: against regular expression
+///   - source: String to be checked
+///   - pattern: against regular expression
 /// - Returns: true if not found, otherwise false
 public func !~ (source: String, pattern: String) -> Bool {
     return !(source =~ pattern)

@@ -44,7 +44,7 @@ public struct CarouselView: View {
     ///
     /// This view displays a horizontal scrolling carousel of images.
     ///
-    /// - Parameter items: An array of images to display in the carousel.
+    /// - Parameter urls: An array of image URLs to display in the carousel.
     public init(urls: [URL]) {
         self.urls = urls
     }
