@@ -5,6 +5,8 @@ This file contains the changelog of SwiftExtras.
 ### 1.2.7
 - Added [`View.onNotification(name:perform:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/onnotification(name:perform:))  
   A view modifier that listens for a notification and performs an action when the notification is received.
+- Added [`View.onChange(of:after:perform:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/onchange(of:after:perform:))  
+  A view modifier that listens for changes to a value and performs an action after the change.
 
 ### 1.2.6
 - Added [`.accentColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/accentcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
