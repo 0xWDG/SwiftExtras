@@ -92,7 +92,7 @@ extension TimeInterval {
         guard self > 0 && self < Double.infinity else {
             return "unknown"
         }
-        let time = NSInteger(self)
+        let time = Int(self)
         let seconds = time % 60
         let minutes = (time / 60) % 60
         let hours = (time / 3600)
