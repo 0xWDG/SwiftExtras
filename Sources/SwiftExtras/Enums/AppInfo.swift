@@ -131,7 +131,7 @@ public enum AppInfo {
     }
 
     /// Detects if running in Xcode SwiftUI Preview mode
-    static var isSwiftUIPreview: Bool {
+    public static var isSwiftUIPreview: Bool {
 #if DEBUG
         ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
 #else
@@ -140,7 +140,7 @@ public enum AppInfo {
     }
 
     /// Detects if UI Tests are running
-    static var isUITesting: Bool {
+    public static var isUITesting: Bool {
 #if DEBUG
         ProcessInfo.processInfo.arguments.contains("UI_TESTING")
 #else
@@ -149,7 +149,7 @@ public enum AppInfo {
     }
 
     /// Detects if Unit Tests are running
-    static var isUnitTesting: Bool {
+    public static var isUnitTesting: Bool {
 #if DEBUG
         NSClassFromString("XCTestCase") != nil
 #else
@@ -158,7 +158,7 @@ public enum AppInfo {
     }
 
     /// Detects if Low Power Mode is enabled
-    static var isLowPowerModeActive: Bool {
+    public static var isLowPowerModeActive: Bool {
 #if os(iOS) || os(watchOS)
         ProcessInfo.processInfo.isLowPowerModeEnabled
 #else
@@ -167,7 +167,7 @@ public enum AppInfo {
     }
 
     /// Detects if running an iOS app on Mac
-    static var isRunningiOSAppOnMac: Bool {
+    public static var isRunningiOSAppOnMac: Bool {
 #if os(iOS)
         ProcessInfo.processInfo.isiOSAppOnMac
 #else
@@ -175,7 +175,8 @@ public enum AppInfo {
 #endif
     }
 
-    static var isDebuggerAttached: Bool {
+    /// Is a debugger attached to the process
+    public static var isDebuggerAttached: Bool {
 #if canImport(Darwin)
         var info = kinfo_proc()
         var mib = [CTL_KERN, KERN_PROC, KERN_PROC_PID, getpid()]
@@ -185,6 +186,24 @@ public enum AppInfo {
 #else
         return false
 #endif
+    }
+
+    /// open settings page
+    public static func openSettings() {
+        #if os(iOS) || os(tvOS) || os(visionOS)
+        if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+            openURL(settingsURL)
+        }
+        #endif
+    }
+
+    /// open notification settings page
+    public static func openNotificationSettings() {
+        #if os(iOS) || os(tvOS) || os(visionOS)
+        if let settingsURL = URL(string: UIApplication.openNotificationSettingsURLString) {
+            openURL(settingsURL)
+        }
+        #endif
     }
 
     /// Get the AppStore information of the application

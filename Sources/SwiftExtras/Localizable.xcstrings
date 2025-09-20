@@ -209,6 +209,9 @@
         }
       }
     },
+    ":)" : {
+
+    },
     "%@" : {
       "localizations" : {
         "af" : {
@@ -1060,6 +1063,9 @@
           }
         }
       }
+    },
+    "9:41" : {
+
     },
     "About the developer" : {
       "localizations" : {
@@ -2234,6 +2240,9 @@
           }
         }
       }
+    },
+    "Ask me later" : {
+
     },
     "At time of event" : {
       "comment" : "At time of event",
@@ -4353,6 +4362,9 @@
           }
         }
       }
+    },
+    "Continue" : {
+
     },
     "Created by" : {
       "localizations" : {
@@ -6682,6 +6694,9 @@
         }
       }
     },
+    "Go to Settings" : {
+
+    },
     "Go to the %lld image." : {
       "localizations" : {
         "ar" : {
@@ -6889,6 +6904,9 @@
           }
         }
       }
+    },
+    "Hello" : {
+
     },
     "Hello world" : {
       "localizations" : {
@@ -7098,6 +7116,9 @@
         }
       }
     },
+    "Hello World" : {
+
+    },
     "Hello World!" : {
       "localizations" : {
         "ar" : {
@@ -7305,6 +7326,9 @@
           }
         }
       }
+    },
+    "Hi" : {
+
     },
     "Initial version" : {
       "localizations" : {
@@ -9725,6 +9749,9 @@
         }
       }
     },
+    "Now" : {
+
+    },
     "OK" : {
       "localizations" : {
         "af" : {
@@ -11751,6 +11778,9 @@
         }
       }
     },
+    "Stay connected with\npush notifications" : {
+
+    },
     "Tap to close the screen" : {
       "localizations" : {
         "af" : {
@@ -12283,6 +12313,15 @@
     },
     "Test %lld." : {
       "shouldTranslate" : false
+    },
+    "Toggle" : {
+
+    },
+    "We will send you push notifications to keep you updated on the latest news and updates." : {
+
+    },
+    "Welcome to %@!" : {
+
     },
     "𝕏/Twitter" : {
       "localizations" : {
@@ -12904,6 +12943,9 @@
           }
         }
       }
+    },
+    "You've got a message" : {
+
     }
   },
   "version" : "1.0"

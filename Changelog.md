@@ -9,6 +9,14 @@ This file contains the changelog of SwiftExtras.
   A view modifier that listens for changes to a value and performs an action after the change.
 - Added [`View.onFirstAppear(perform:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/onfirstappear(perform:))  
   A view modifier that performs an action the first time the view appears.
+- Added [`NotificationView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/notificationview)  
+  A view that displays a notification.
+- Added [`View.notification(title:message:onClick:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/notification(title:message:onclick:))  
+  A view modifier that displays a notification on the view.
+- Added [`NotificationOnboarding`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/notificationonboarding)  
+  A view that displays an onboarding screen for notifications.
+- Added [`View.notificationOnboarding(isPresented:title:content:notificationTitle:notificationContent:primaryButtonTitle:secondaryButtonTitle:onPermissionChange:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/notificationonboarding(ispresented:title:content:notificationtitle:notificationcontent:primarybuttontitle:secondarybuttontitle:onpermissionchange:))  
+  A view modifier that displays an onboarding screen for notifications on the view.
 
 ### 1.2.6
 - Added [`.accentColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/accentcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
