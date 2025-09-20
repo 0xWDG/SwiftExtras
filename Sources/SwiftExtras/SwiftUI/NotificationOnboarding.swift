@@ -57,7 +57,7 @@ public struct NotificationOnboarding: View {
         notificationContent: LocalizedStringKey = "Welcome to \(AppInfo.appName)!",
         primaryButtonTitle: LocalizedStringKey = "Continue",
         secondaryButtonTitle: LocalizedStringKey = "Ask me later",
-        onPermissionChange: @escaping (_ isApproved: Bool) -> Void = { _ in },
+        onPermissionChange: @escaping (_ isApproved: Bool) -> Void = { _ in }
     ) {
         self.title = title
         self.content = content
