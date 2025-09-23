@@ -1,5 +1,5 @@
 //
-//  SESettingsView.swift
+//  Onboarding.swift
 //  SwiftExtras
 //
 //  Created by Wesley de Groot on 2025-02-09.
@@ -24,10 +24,12 @@ private struct OnboardingItem: Identifiable {
 }
 
 /// Onboarding Coordinator
-private class OnboardingCoordinator: ObservableObject {
-    @Published var items: [OnboardingItem] = []
-    @Published var overlayWindow: PlatformWindow?
-    @Published var isOnboardingFinished: Bool = false
+@available(iOS 17.0, *)
+@Observable
+private class OnboardingCoordinator {
+    var items: [OnboardingItem] = []
+    var overlayWindow: PlatformWindow?
+    var isOnboardingFinished: Bool = false
 
     /// Ordered-Items
     var orderedItems: [OnboardingItem] {
@@ -98,7 +100,7 @@ public struct Onboarding<Content: View>: View {
     fileprivate var coordinator = OnboardingCoordinator()
     public var body: some View {
         content
-            .environmentObject(coordinator)
+            .environment(coordinator)
             .task {
                 if !isOnboarded {
                     await beginOnboarding()
@@ -107,6 +109,7 @@ public struct Onboarding<Content: View>: View {
             }
             .onChange(of: coordinator.isOnboardingFinished) { _, newValue in
                 if newValue {
+                    print("IS FINISHED!")
                     isOnboarded = true
                     finishedOnboarding()
                     hideWindow()
@@ -144,7 +147,7 @@ public struct Onboarding<Content: View>: View {
                 }
 
                 let hostController = UIHostingController(
-                    rootView: OverlayWindowView(snapshot: snapshot).environmentObject(coordinator)
+                    rootView: OverlayWindowView(snapshot: snapshot).environment(coordinator)
                 )
                 hostController.view.backgroundColor = .clear
                 coordinator.overlayWindow?.rootViewController = hostController
@@ -167,6 +170,7 @@ extension View {
     ///   - cornerRadius: The corner radius of the highlighted item. (default is 35)
     ///   - content: The content view to display in the Onboarding overlay.
     /// - Returns: A view with the Onboarding item modifier applied.
+    @available(iOS 17, *)
     @ViewBuilder public func onboardingItem<Content: View>(
         _ position: Int,
         cornerRadius: CGFloat = 35,
@@ -184,12 +188,14 @@ extension View {
 }
 
 /// Onboarding Item-Setter
+@available(iOS 17.0, *)
 private struct OnboardingItemSetter<ContentView: View>: ViewModifier {
     var position: Int
     var cornerRadius: CGFloat
     @ViewBuilder var onboardingContent: ContentView
 
-    @EnvironmentObject var coordinator: OnboardingCoordinator
+    @Environment(OnboardingCoordinator.self) var coordinator
+
     func body(content: Content) -> some View {
         content
             .onGeometryChange(for: CGRect.self) {
@@ -215,7 +221,7 @@ private struct OnboardingItemSetter<ContentView: View>: ViewModifier {
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 private struct OverlayWindowView: View {
     var snapshot: UIImage
-    @EnvironmentObject var coordinator: OnboardingCoordinator
+    @Environment(OnboardingCoordinator.self) var coordinator
     /// View Properties
     @State private var animate: Bool = false
     @State private var currentIndex: Int = 0
@@ -358,6 +364,7 @@ private struct OverlayWindowView: View {
         withAnimation(.easeInOut(duration: 0.25), completionCriteria: .removed) {
             animate = false
         } completion: {
+            print("Close window")
             coordinator.isOnboardingFinished = true
         }
     }
@@ -406,7 +413,7 @@ extension View {
         NavigationStack {
             Form {
                 Text("Item 1")
-                    .onboardingItem(1) {
+                    .onboardingItem(0) {
                         Text("Test item 1")
                     }
                 Text("Item 2")

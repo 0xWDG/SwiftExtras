@@ -1067,6 +1067,9 @@
     "9:41" : {
 
     },
+    "123" : {
+
+    },
     "About the developer" : {
       "localizations" : {
         "af" : {
@@ -10827,6 +10830,9 @@
         }
       }
     },
+    "Previous" : {
+
+    },
     "Privacy Policy" : {
       "localizations" : {
         "af" : {
@@ -11471,6 +11477,9 @@
         }
       }
     },
+    "RESET" : {
+
+    },
     "Selected" : {
       "localizations" : {
         "af" : {
@@ -11792,6 +11801,9 @@
           }
         }
       }
+    },
+    "Skip" : {
+
     },
     "Skip Tutorial" : {
 

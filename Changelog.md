@@ -21,6 +21,8 @@ This file contains the changelog of SwiftExtras.
   A view that displays an onboarding screen.
 - Added [`View.onboardingItem(position:cornerRadius:content:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/onboardingitem(position:cornerradius:content:))  
   A view modifier that marks the views you want to highlight in an onboarding sequence.
+- Added [`View.onboarding(steps:currentStep:index:skipable:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/onboarding(steps:currentstep:index:skipable:))  
+  A view modifier that displays an onboarding sequence on the view.
 
 ### 1.2.6
 - Added [`.accentColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/accentcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
