@@ -6694,6 +6694,9 @@
         }
       }
     },
+    "Finish" : {
+
+    },
     "Go to Settings" : {
 
     },
@@ -7537,6 +7540,15 @@
           }
         }
       }
+    },
+    "Item 1" : {
+
+    },
+    "Item 2" : {
+
+    },
+    "Item 3" : {
+
     },
     "Licensed under %@" : {
       "localizations" : {
@@ -9749,6 +9761,9 @@
         }
       }
     },
+    "Next" : {
+
+    },
     "Now" : {
 
     },
@@ -11778,6 +11793,9 @@
         }
       }
     },
+    "Skip Tutorial" : {
+
+    },
     "Stay connected with\npush notifications" : {
 
     },
@@ -12313,6 +12331,15 @@
     },
     "Test %lld." : {
       "shouldTranslate" : false
+    },
+    "Test item 1" : {
+
+    },
+    "Test item 2" : {
+
+    },
+    "Test item 3" : {
+
     },
     "Toggle" : {
 

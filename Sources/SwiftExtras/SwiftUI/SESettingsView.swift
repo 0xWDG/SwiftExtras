@@ -500,6 +500,7 @@ private struct SESettingsDemo: View {
         )
     }
 }
+
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
     @Previewable @State var isPresented: Bool = false

@@ -41,7 +41,6 @@ extension View {
         let image = NSImage(size: size)
         image.addRepresentation(bitmapRep)
         return image
-
         #else
         fatalError("snapshot() is not implemented for this platform.")
         #endif

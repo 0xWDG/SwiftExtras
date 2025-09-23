@@ -39,6 +39,15 @@ public typealias PlatformColor = UIColor
     /// `UIViewController/NSViewController` alias for platform-agnostic code.
     public typealias PlatformViewController = UIViewController
 
+    /// `UIWindow/NSWindow` alias for platform-agnostic code.
+    public typealias PlatformWindow = UIWindow
+
+    /// `UIHostingView/NSHostingView` alias for platform-agnostic code.
+    public typealias PlatformHostingView = UIView
+
+    /// `UIHostingController/NSHostingController` alias for platform-agnostic code.
+    public typealias PlatformHostingController = UIHostingController
+
     /// `UIViewControllerRepresentable/NSViewControllerRepresentable` alias for platform-agnostic code.
     public typealias PlatformViewControllerRepresentable = UIViewControllerRepresentable
 
@@ -91,6 +100,15 @@ public typealias PlatformView = NSView
 
 /// `UIViewController/NSViewController` alias for platform-agnostic code.
 public typealias PlatformViewController = NSViewController
+
+/// `UIWindow/NSWindow` alias for platform-agnostic code.
+public typealias PlatformWindow = NSWindow
+
+/// `UIHostingView/NSHostingView` alias for platform-agnostic code.
+public typealias PlatformHostingView = NSHostingView
+
+/// `UIHostingController/NSHostingController` alias for platform-agnostic code.
+public typealias PlatformHostingController = NSHostingController
 
 /// `UIViewControllerRepresentable/NSViewControllerRepresentable` alias for platform-agnostic code.
 public typealias PlatformViewControllerRepresentable = NSViewControllerRepresentable
