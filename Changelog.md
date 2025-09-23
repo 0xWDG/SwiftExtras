@@ -17,6 +17,10 @@ This file contains the changelog of SwiftExtras.
   A view that displays an onboarding screen for notifications.
 - Added [`View.notificationOnboarding(isPresented:title:content:notificationTitle:notificationContent:primaryButtonTitle:secondaryButtonTitle:onPermissionChange:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/notificationonboarding(ispresented:title:content:notificationtitle:notificationcontent:primarybuttontitle:secondarybuttontitle:onpermissionchange:))  
   A view modifier that displays an onboarding screen for notifications on the view.
+- Added [`Onboarding`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/onboarding)  
+  A view that displays an onboarding screen.
+- Added [`View.onboardingItem(position:cornerRadius:content:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/onboardingitem(position:cornerradius:content:))  
+  A view modifier that marks the views you want to highlight in an onboarding sequence.
 
 ### 1.2.6
 - Added [`.accentColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/accentcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
