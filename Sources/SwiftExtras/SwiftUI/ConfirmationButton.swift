@@ -51,17 +51,12 @@ public struct ConfirmationButton: View {
             isPresented: $confirmationShown,
             titleVisibility: visibility
         ) {
-            Button(
-                LocalizedStringKey(stringLiteral: "Yes"),
-                role: .destructive
-            ) {
+            Button("Yes", role: .destructive) {
                 withAnimation {
                     action()
                 }
             }
-            Button(
-                LocalizedStringKey(stringLiteral: "No")
-            ) {
+            Button("No") {
                 withAnimation {
                     confirmationShown.toggle()
                 }
