@@ -51,7 +51,6 @@ extension View {
             }
             .frame(height: 40)
 
-
             Text("I'm adaptive text")
                 .adaptiveColor()
         }
