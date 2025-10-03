@@ -47,7 +47,7 @@ public struct ConfirmationButton: View {
         }
         .foregroundStyle(.red)
         .confirmationDialog(
-            LocalizedStringResource(stringLiteral: "Are you sure?"),
+            Text(LocalizedStringResource(stringLiteral: "Are you sure?")),
             isPresented: $confirmationShown,
             titleVisibility: visibility
         ) {
