@@ -19,7 +19,7 @@ public struct ConfirmationButton: View {
     @State var confirmationShown: Bool = false
 
     var action: () -> Void
-    var label: LocalizedStringResource
+    var label: LocalizedStringKey
     var role: ButtonRole
     var visibility: Visibility
 
@@ -30,7 +30,7 @@ public struct ConfirmationButton: View {
     ///   - titleVisibility: The visibility of the dialog's title. The default-
     ///   - action: The action to perform when the button is confirmed.
     public init(
-        _ label: LocalizedStringResource,
+        _ label: LocalizedStringKey,
         role: ButtonRole = .destructive,
         titleVisibility: Visibility = .automatic,
         action: @escaping @MainActor () -> Void
