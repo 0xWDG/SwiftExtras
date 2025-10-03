@@ -47,12 +47,12 @@ public struct ConfirmationButton: View {
         }
         .foregroundStyle(.red)
         .confirmationDialog(
-            Text(LocalizedStringResource(stringLiteral: "Are you sure?")),
+            Text(LocalizedStringKey(stringLiteral: "Are you sure?")),
             isPresented: $confirmationShown,
             titleVisibility: visibility
         ) {
             Button(
-                LocalizedStringResource(stringLiteral: "Yes"),
+                LocalizedStringKey(stringLiteral: "Yes"),
                 role: .destructive
             ) {
                 withAnimation {
@@ -60,7 +60,7 @@ public struct ConfirmationButton: View {
                 }
             }
             Button(
-                LocalizedStringResource(stringLiteral: "No")
+                LocalizedStringKey(stringLiteral: "No")
             ) {
                 withAnimation {
                     confirmationShown.toggle()
