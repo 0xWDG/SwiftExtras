@@ -25,6 +25,10 @@ This file contains the changelog of SwiftExtras.
   A view modifier that displays an onboarding sequence on the view.
 - Added [`View.adaptiveColor(_:or:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/adaptivecolor(_:or:))  
   A view modifier that sets the color of the view based on the current background color.
+- Made [`Color`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color) conform to `Codable`  
+  To make it easier to save colors
+- Added [`ConfirmationButton`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/confirmationbutton)  
+  A button that shows a confirmation alert before performing an action.
 
 ### 1.2.6
 - Added [`.accentColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/accentcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
