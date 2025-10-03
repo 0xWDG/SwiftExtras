@@ -150,22 +150,22 @@ extension View {
     ZStack {
         VStack {
             NotificationView(
-                title: "Hi",
-                message: "Hello"
+                title: "Test",
+                message: "Test"
             )
             .frame(maxWidth: .infinity)
             Spacer()
         }
 
-        Text("Hello World")
+        Text("Hello World!")
     }
 }
 
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview("View Extension") {
-    Text("Hello World")
-        .notification(title: "Test", message: ":)", onClick: {
-            print("OK")
+    Text("Hello World!")
+        .notification(title: "Test", message: "Test", onClick: {
+            print("Test")
         })
 }
 #endif

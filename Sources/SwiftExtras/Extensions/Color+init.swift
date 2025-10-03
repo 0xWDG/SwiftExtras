@@ -69,5 +69,15 @@ extension Color {
         }))
 #endif
     }
+
+    /// Creates a Color from RGB values.
+    /// - Parameters:
+    ///   - red: The red component of the color object.
+    ///   - green: The green component of the color object.
+    ///   - blue: The blue component of the color object.
+    ///   - alpha: The opacity value of the color object.
+    public init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+        self.init(PlatformColor(red: red, green: green, blue: blue, alpha: alpha))
+    }
 }
 #endif

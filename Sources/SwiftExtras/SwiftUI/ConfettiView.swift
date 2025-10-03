@@ -270,7 +270,7 @@ extension View {
     @Previewable @State var isActive = false
 
     VStack {
-        Text("Hello world")
+        Text("Hello world!")
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .task {

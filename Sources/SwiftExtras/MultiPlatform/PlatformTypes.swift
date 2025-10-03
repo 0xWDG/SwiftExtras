@@ -146,7 +146,6 @@ public extension NSImage {
     /// Get the CGImage representation of the image.
     var cgImage: CGImage? { self.cgImage(forProposedRect: nil, context: nil, hints: nil) }
 }
-
 #endif // os(macOS)
 
 #if swift(>=6.0)

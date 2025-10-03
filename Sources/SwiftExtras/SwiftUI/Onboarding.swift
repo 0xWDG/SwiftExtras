@@ -350,7 +350,7 @@ private struct OverlayWindowView: View {
             .padding(.leading, currentIndex > 0 ? -45 : 0)
 
             Button(action: closeWindow) {
-                Text("Skip Tutorial")
+                Text("Skip")
                     .font(.callout)
                     .underline()
             }
@@ -414,15 +414,15 @@ extension View {
             Form {
                 Text("Item 1")
                     .onboardingItem(0) {
-                        Text("Test item 1")
+                        Text("Item 1")
                     }
                 Text("Item 2")
                     .onboardingItem(2) {
-                        Text("Test item 2")
+                        Text("Item 2")
                     }
                 Text("Item 3")
                     .onboardingItem(3) {
-                        Text("Test item 3")
+                        Text("Item 3")
                     }
             }
         }

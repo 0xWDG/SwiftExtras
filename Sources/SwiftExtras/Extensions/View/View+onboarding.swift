@@ -144,11 +144,12 @@ public struct OnboardingStep: Identifiable {
     ]
 
     VStack {
-        Text("123")
+        Text("Test")
             .onboarding(steps: steps, currentStep: $step, index: 0, skipable: true)
-        Text("123")
+        Text("Test")
             .onboarding(steps: steps, currentStep: $step, index: 1)
-        Text("123")
+
+        Text("Test")
             .onboarding(steps: steps, currentStep: $step, index: 2)
 
         Button("RESET") {
