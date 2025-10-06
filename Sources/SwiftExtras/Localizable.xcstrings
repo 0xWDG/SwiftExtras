@@ -15114,7 +15114,11 @@
         }
       }
     },
+    "Ok" : {
+
+    },
     "OK" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
