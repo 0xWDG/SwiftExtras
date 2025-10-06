@@ -44,10 +44,12 @@ extension View {
     /// }
     /// ```
     ///
-    /// - Parameter transforation: The transform to apply to the source `View`.
+    /// - Parameter body: The transform to apply to the source `View`.
     /// - Returns: the modified `View`.
-    @ViewBuilder public func modify<Content: View>(_ transforation: (Self) -> Content) -> some View {
-        transforation(self)
+    public func modify<ModifiedContent: View>(
+        @ViewBuilder body: (_ content: Self) -> ModifiedContent
+    ) -> ModifiedContent {
+        body(self)
     }
 }
 #endif

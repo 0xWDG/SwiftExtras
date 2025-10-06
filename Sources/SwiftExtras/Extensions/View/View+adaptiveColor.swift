@@ -35,7 +35,7 @@ extension View {
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
     VStack {
-        Text("This is a test")
+        Text("Hello World!")
             .adaptiveColor()
 
         ZStack {
@@ -51,7 +51,7 @@ extension View {
             }
             .frame(height: 40)
 
-            Text("I'm adaptive text")
+            Text("Hello World!")
                 .adaptiveColor()
         }
     }

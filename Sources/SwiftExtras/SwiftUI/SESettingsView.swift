@@ -241,7 +241,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                 if let createdBy {
                     HStack(spacing: 2) {
                         Text("Created by", bundle: Bundle.module)
-                        Text(.init(createdBy))
+                        Text(verbatim: .init(createdBy))
                     }
                 }
             }
@@ -465,8 +465,8 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
             if let createdBy {
                 HStack(spacing: 2) {
                     Text("Created by", bundle: Bundle.module) +
-                    Text(" ") +
-                    Text(.init(createdBy))
+                    Text(verbatim: " ") +
+                    Text(verbatim: .init(createdBy))
                 }
             }
         }

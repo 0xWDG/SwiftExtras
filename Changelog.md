@@ -29,6 +29,12 @@ This file contains the changelog of SwiftExtras.
   To make it easier to save colors
 - Added [`ConfirmationButton`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/confirmationbutton)  
   A button that shows a confirmation alert before performing an action.
+- Added [`Collection.second`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/collection/second)  
+  A property that returns the second element of a collection.
+- Added [`Collection.third`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/collection/third)  
+  A property that returns the third element of a collection.
+- Added [`Collection.penultimate`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/collection/penultimate)  
+  A property that returns the second last element of a collection.
 
 ### 1.2.6
 - Added [`.accentColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/accentcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  

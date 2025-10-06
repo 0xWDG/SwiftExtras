@@ -48,5 +48,20 @@ extension Collection {
     public subscript(safe index: Index) -> Element? {
         indices.contains(index) ? self[index] : nil
     }
+
+    /// Second element
+    public var second: Element? {
+        self[safe: index(startIndex, offsetBy: 1)]
+    }
+
+    /// Third element
+    public var third: Element? {
+        self[safe: index(startIndex, offsetBy: 2)]
+    }
+
+    /// Second last element
+    public var penultimate: Element? {
+        self[safe: index(endIndex, offsetBy: -2)]
+    }
 }
 #endif

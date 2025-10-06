@@ -27,12 +27,12 @@ public struct ConfirmationButton: View {
     /// - Parameters:
     ///   - label: The label of the button.
     ///   - role: The button's role.
-    ///   - titleVisibility: The visibility of the dialog's title. The default-
+    ///   - titleVisibility: The visibility of the dialog's title. The default value is visible
     ///   - action: The action to perform when the button is confirmed.
     public init(
         _ label: LocalizedStringKey,
         role: ButtonRole = .destructive,
-        titleVisibility: Visibility = .automatic,
+        titleVisibility: Visibility = .visible,
         action: @escaping @MainActor () -> Void
     ) {
         self.action = action
@@ -47,7 +47,7 @@ public struct ConfirmationButton: View {
         }
         .foregroundStyle(.red)
         .confirmationDialog(
-            Text(LocalizedStringKey(stringLiteral: "Are you sure?")),
+            Text(label),
             isPresented: $confirmationShown,
             titleVisibility: visibility
         ) {
@@ -56,7 +56,8 @@ public struct ConfirmationButton: View {
                     action()
                 }
             }
-            Button("No") {
+
+            Button("No", role: .cancel) {
                 withAnimation {
                     confirmationShown.toggle()
                 }

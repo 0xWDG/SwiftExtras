@@ -23,9 +23,11 @@ public struct SEChangeLogView: View {
         List {
             ForEach(changeLog) { changeLogEntry in
                 Section {
-                    Text(.init(changeLogEntry.text))
+                    Text(verbatim: .init(changeLogEntry.text))
                 } header: {
-                    Text(.init("Version \(changeLogEntry.version)"))
+                    Text("Version", bundle: Bundle.module) +
+                    Text(" ") +
+                    Text(.init(changeLogEntry.version))
                 }
 
             }

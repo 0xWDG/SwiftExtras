@@ -31,11 +31,13 @@ extension Date {
         time(timeZone: .current)
     }
 
-    /// Date in YYYY-MM-DD format
+    /// Date in YYYY-MM-DD format (zero-padded, sortable)
     public var yyyymmdd: String {
         let calendar = Calendar.current
-        return "\(calendar.component(.year, from: self))-\(calendar.component(.month, from: self))-\(calendar.component(.day, from: self))"
-        // swiftlint:disable:previous line_length
+        let year = calendar.component(.year, from: self)
+        let month = calendar.component(.month, from: self)
+        let day = calendar.component(.day, from: self)
+        return String(format: "%04d-%02d-%02d", year, month, day)
     }
 
     /// Date in DD-MM-YYYY format
@@ -358,3 +360,4 @@ extension Date {
         return "\(hour):\(minute)"
     }
 }
+
