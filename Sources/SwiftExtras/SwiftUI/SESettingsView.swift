@@ -340,7 +340,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                 } label: {
                     HStack {
                         Label {
-                            Text("Feedback", bundle: Bundle.main)
+                            Text("Feedback", bundle: Bundle.module)
                         } icon: {
                             Image(systemName: "pencil.and.ellipsis.rectangle")
                                 .accessibilityHidden(true)

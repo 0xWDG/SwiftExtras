@@ -1289,24 +1289,23 @@
         }
       }
     },
+    "🚀" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🚀"
+          }
+        }
+      },
+      "shouldTranslate" : false
+    },
     "0.0.1" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "0.0.1"
-          }
-        }
-      },
-      "shouldTranslate" : false
-    },
-    "1.0.0" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "1.0.0"
           }
         }
       },
@@ -3566,6 +3565,17 @@
           }
         }
       }
+    },
+    "Auto stop" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auto stop"
+          }
+        }
+      },
+      "shouldTranslate" : false
     },
     "before" : {
       "comment" : "before",
@@ -9663,328 +9673,6 @@
         }
       }
     },
-    "Hello world!" : {
-      "localizations" : {
-        "af" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hallo wêreld!"
-          }
-        },
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "مرحبًا بالعالم!"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Здравей, свят!"
-          }
-        },
-        "bn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "হ্যালো বিশ্ব!"
-          }
-        },
-        "ca" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hola món!"
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ahoj světe!"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hej verden!"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hallo Welt!"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Γειά σου, κόσμε!"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hello world!"
-          }
-        },
-        "en-AU" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hello world!"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hello world!"
-          }
-        },
-        "en-IN" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hello world!"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "¡Hola mundo!"
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "¡Hola mundo!"
-          }
-        },
-        "es-US" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "¡Hola, mundo!"
-          }
-        },
-        "fa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "سلام دنیا!"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hei maailma!"
-          }
-        },
-        "fil" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kamusta, mundo!"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bonjour le monde !"
-          }
-        },
-        "fr-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bonjour le monde !"
-          }
-        },
-        "ga" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dia dhuit, a dhomhan!"
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "שלום עולם!"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "नमस्ते दुनिया!"
-          }
-        },
-        "hr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pozdrav, svijete!"
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Helló, világ!"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Halo dunia!"
-          }
-        },
-        "is" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Halló heimur!"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ciao mondo!"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "こんにちは、世界！"
-          }
-        },
-        "jv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Halo, donya!"
-          }
-        },
-        "kk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сәлем, әлем!"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "안녕하세요, 세계!"
-          }
-        },
-        "lb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Moien Welt!"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hai dunia!"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hei, verden!"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hallo wereld!"
-          }
-        },
-        "pa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ਹੈਲੋ ਦੁਨਿਆ!"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Witaj, świecie!"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Olá, mundo!"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Olá, mundo!"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Salut, lume!"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Привет, мир!"
-          }
-        },
-        "sk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ahoj, svet!"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hej världen!"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "สวัสดีชาวโลก!"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Merhaba dünya!"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Привіт, світе!"
-          }
-        },
-        "ur" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ہیلو دنیا!"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Xin chào, thế giới!"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "你好，世界！"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "哈囉，世界！"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "哈囉，世界！"
-          }
-        }
-      }
-    },
     "Hello World!" : {
       "localizations" : {
         "af" : {
@@ -15115,27 +14803,23 @@
       }
     },
     "Ok" : {
-
-    },
-    "OK" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Goed"
+            "value" : "OK"
           }
         },
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "نعم"
+            "value" : "موافق"
           }
         },
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "добре"
+            "value" : "ОК"
           }
         },
         "bn" : {
@@ -15165,19 +14849,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Okay"
+            "value" : "OK"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Καλά"
+            "value" : "Εντάξει"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "OK"
+            "value" : "Ok"
           }
         },
         "en-AU" : {
@@ -15219,43 +14903,43 @@
         "fa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "باشه"
+            "value" : "تأیید"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kunnossa"
+            "value" : "OK"
           }
         },
         "fil" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "OK"
+            "value" : "Ayos"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "D'accord"
+            "value" : "OK"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "D'accord"
+            "value" : "OK"
           }
         },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "OK"
+            "value" : "Ceart go leor"
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "בְּסֵדֶר"
+            "value" : "אוקיי"
           }
         },
         "hi" : {
@@ -15285,7 +14969,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "allt í lagi"
+            "value" : "Í lagi"
           }
         },
         "it" : {
@@ -15303,13 +14987,13 @@
         "jv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "OK"
+            "value" : "Oke"
           }
         },
         "kk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Жарайды"
+            "value" : "ОК"
           }
         },
         "ko" : {
@@ -15321,7 +15005,7 @@
         "lb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ok"
+            "value" : "OK"
           }
         },
         "ms" : {
@@ -15339,13 +15023,13 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ok"
+            "value" : "OK"
           }
         },
         "pa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ਠੀਕ ਹੈ"
+            "value" : "ਠੀਕ"
           }
         },
         "pl" : {
@@ -15357,7 +15041,7 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "OK"
+            "value" : "Ok"
           }
         },
         "pt-PT" : {
@@ -15405,7 +15089,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Добре"
+            "value" : "Гаразд"
           }
         },
         "ur" : {
@@ -15417,19 +15101,19 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "OK"
+            "value" : "Đồng ý"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "好的"
+            "value" : "确定"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "好的"
+            "value" : "確定"
           }
         },
         "zh-HK" : {
@@ -18015,6 +17699,17 @@
           }
         }
       }
+    },
+    "Show confetti" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show confetti"
+          }
+        }
+      },
+      "shouldTranslate" : false
     },
     "Skip" : {
       "localizations" : {

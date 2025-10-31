@@ -150,7 +150,5 @@ public extension NSImage {
 
 #if swift(>=6.0)
 extension PlatformImage: @unchecked @retroactive Sendable { }
-#else
-extension PlatformImage: @unchecked Sendable { }
 #endif
 #endif

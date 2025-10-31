@@ -15,7 +15,7 @@ extension Int {
     /// Convert Int to Currency
     ///
     /// - Returns: String
-    public func toCurrency(digits: Int = 2) -> String {
+    public func toCurrency(digits: Int = 0) -> String {
         let formatter = NumberFormatter()
         formatter.locale = Locale.current
         formatter.numberStyle = .currency

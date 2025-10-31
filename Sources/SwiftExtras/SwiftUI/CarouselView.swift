@@ -97,8 +97,10 @@ public struct CarouselView: View {
                     }
 
                     HStack(spacing: 0) {
-                        VStack { Color.clear }
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        Color
+                            .clear
+                            .contentShape(Rectangle())
+                            .frame(maxWidth: 25, maxHeight: .infinity)
                             .contentShape(Rectangle())
                             .background(.clear.opacity(0.4))
                             .onTapGesture {
@@ -107,9 +109,12 @@ public struct CarouselView: View {
                             }
                             .accessibilityAddTraits(.isButton)
 
-                        VStack { Color.clear }
+                        Spacer()
+
+                        Color
+                            .clear
                             .contentShape(Rectangle())
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .frame(maxWidth: 25, maxHeight: .infinity)
                             .background(.clear.opacity(0.4))
                             .onTapGesture {
                                 guard itemCount > 0 else { return }
@@ -146,6 +151,7 @@ public struct CarouselView: View {
                         ? Color.accentColor
                         : .gray.opacity(0.3)
                     )
+                    .contentShape(Rectangle())
                     .frame(maxWidth: .infinity)
                     .frame(height: 6)
                     .onTapGesture {

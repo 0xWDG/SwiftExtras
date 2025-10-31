@@ -31,7 +31,7 @@ public enum AppInfo {
     /// - Returns: application name
     public static var appName: String {
         if let dictionary = Bundle.main.infoDictionary,
-           let dName = dictionary["CFBundleDisplayName"] as? String {
+           let dName = dictionary["xCFBundleDisplayName"] as? String {
             return dName
         }
 

@@ -203,7 +203,7 @@ struct ConfettiModifier<ConfettiShape: View>: ViewModifier {
                     : nil
                 )
                 .sensoryFeedback(.success, trigger: isActive)
-                .task {
+                .task(id: isActive) {
                     await handleAnimationSequence()
                 }
         } else {
@@ -213,20 +213,18 @@ struct ConfettiModifier<ConfettiShape: View>: ViewModifier {
                     ? ConfettiView(colors: colors, shape: shape).opacity(opacity)
                     : nil
                 )
-                .task {
+                .task(id: isActive) {
                     await handleAnimationSequence()
                 }
         }
     }
 
     private func handleAnimationSequence() async {
-        if !automaticEnd { return }
-        do {
-            try await Task.sleep(nanoseconds: UInt64(animationTime * 1_000_000_000))
-            withAnimation(.easeOut(duration: fadeTime)) {
-                opacity = 0
-            }
-        } catch {}
+        if !automaticEnd || !isActive { return }
+        try? await Task.sleep(nanoseconds: UInt64(animationTime * 1_000_000_000))
+        withAnimation(.easeOut(duration: fadeTime)) {
+            opacity = 0
+        }
     }
 }
 
@@ -268,15 +266,17 @@ extension View {
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
     @Previewable @State var isActive = false
-
+    @Previewable @State var autoStop = true
     VStack {
-        Text("Hello world!")
+        Toggle("Auto stop", isOn: $autoStop)
+        Button("Show confetti") {
+            isActive = true
+        }
+        .disabled(isActive)
     }
+    .padding()
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .task {
-        isActive.toggle()
-    }
-    .displayConfetti(isActive: $isActive, automaticEnd: false)
+    .displayConfetti(isActive: $isActive, automaticEnd: autoStop, shape: Text("🚀"))
 }
 #endif
 #endif
