@@ -51,95 +51,87 @@ public struct CarouselView: View {
 
     /// View body
     public var body: some View {
-        GeometryReader { proxy in
-            let size = proxy.size
-            let square = max(0, min(size.width, size.height == 0 ? size.width : size.height))
-
-            TabView(selection: $currentTabIndex) {
-                if let items {
-                    ForEach(items.indices, id: \.self) { index in
-                        items[index]
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: square, height: square)
-                            .clipped()
-                            .tag(index)
-                    }
-                } else if let urls {
-                    ForEach(urls.indices, id: \.self) { index in
-                        AsyncImage(url: urls[index]) {
-                            $0.resizable()
-                                .scaledToFill()
-                        } placeholder: {
-                            ProgressView()
-                                .controlSize(.large)
-                        }
-                        .frame(width: square, height: square)
+        TabView(selection: $currentTabIndex) {
+            if let items {
+                ForEach(items.indices, id: \.self) { index in
+                    items[index]
+                        .resizable()
+                        .frame(maxWidth: .infinity)
                         .clipped()
                         .tag(index)
-                    }
-                } else {
-                    Color.clear
-                        .frame(width: square, height: square)
-                        .tag(0)
                 }
+            } else if let urls {
+                ForEach(urls.indices, id: \.self) { index in
+                    AsyncImage(url: urls[index]) {
+                        $0
+                            .resizable()
+                    } placeholder: {
+                        ProgressView()
+                            .controlSize(.large)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .clipped()
+                    .tag(index)
+                }
+            } else {
+                Color
+                    .clear
+                    .frame(maxWidth: .infinity)
+                    .tag(0)
             }
-#if !os(macOS)
-            .tabViewStyle(.page(indexDisplayMode: .never))
-#else
-            .toolbar(.hidden, for: .automatic)
-#endif
-            .overlay {
-                VStack(spacing: 0) {
-                    if itemCount > 1 {
-                        stepper
-                            .padding(.all, 8)
-                    }
-
-                    HStack(spacing: 0) {
-                        Color
-                            .clear
-                            .contentShape(Rectangle())
-                            .frame(maxWidth: 25, maxHeight: .infinity)
-                            .contentShape(Rectangle())
-                            .background(.clear.opacity(0.4))
-                            .onTapGesture {
-                                guard itemCount > 0 else { return }
-                                currentTabIndex -= 1
-                            }
-                            .accessibilityAddTraits(.isButton)
-
-                        Spacer()
-
-                        Color
-                            .clear
-                            .contentShape(Rectangle())
-                            .frame(maxWidth: 25, maxHeight: .infinity)
-                            .background(.clear.opacity(0.4))
-                            .onTapGesture {
-                                guard itemCount > 0 else { return }
-                                currentTabIndex += 1
-                            }
-                            .accessibilityAddTraits(.isButton)
-                    }
-                }
-            }
-            .frame(width: square, height: square, alignment: .center)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-            .accessibilityIdentifier("CarouselView")
-            .onChange(of: currentTabIndex, perform: { _ in
-                guard itemCount > 0 else {
-                    currentTabIndex = 0
-                    return
-                }
-                if currentTabIndex >= itemCount {
-                    currentTabIndex = 0
-                } else if currentTabIndex < 0 {
-                    currentTabIndex = itemCount - 1
-                }
-            })
         }
-        .aspectRatio(1, contentMode: .fit)
+#if !os(macOS)
+        .tabViewStyle(.page(indexDisplayMode: .never))
+#else
+        .toolbar(.hidden, for: .automatic)
+#endif
+        .overlay {
+            VStack(spacing: 0) {
+                if itemCount > 1 {
+                    stepper
+                        .padding(.all, 8)
+                }
+
+                HStack(spacing: 0) {
+                    Color
+                        .clear
+                        .contentShape(Rectangle())
+                        .frame(maxWidth: 25, maxHeight: .infinity)
+                        .contentShape(Rectangle())
+                        .background(.clear.opacity(0.4))
+                        .onTapGesture {
+                            guard itemCount > 0 else { return }
+                            currentTabIndex -= 1
+                        }
+                        .accessibilityAddTraits(.isButton)
+
+                    Spacer()
+
+                    Color
+                        .clear
+                        .contentShape(Rectangle())
+                        .frame(maxWidth: 25, maxHeight: .infinity)
+                        .background(.clear.opacity(0.4))
+                        .onTapGesture {
+                            guard itemCount > 0 else { return }
+                            currentTabIndex += 1
+                        }
+                        .accessibilityAddTraits(.isButton)
+                }
+            }
+        }
+        .accessibilityIdentifier("CarouselView")
+        .onChange(of: currentTabIndex, perform: { _ in
+            guard itemCount > 0 else {
+                currentTabIndex = 0
+                return
+            }
+            if currentTabIndex >= itemCount {
+                currentTabIndex = 0
+            } else if currentTabIndex < 0 {
+                currentTabIndex = itemCount - 1
+            }
+        })
     }
 
     var stepper: some View {
@@ -175,8 +167,7 @@ public struct CarouselView: View {
                 .init(systemName: "star"),
                 .init(systemName: "rainbow")
             ])
-            .background(Color.red)
-            .frame(width: 300, height: 300)
+            .frame(width: 300, height: 450)
             Spacer()
         }
 
@@ -186,6 +177,7 @@ public struct CarouselView: View {
                     .init(systemName: "star"),
                     .init(systemName: "rainbow")
                 ])
+                .aspectRatio(contentMode: .fit)
             }
         }
         .tint(Color.red)
