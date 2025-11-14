@@ -100,7 +100,7 @@ public struct CarouselView: View {
                     Color
                         .clear
                         .contentShape(Rectangle())
-                        .frame(maxWidth: 25, maxHeight: .infinity)
+                        .frame(maxWidth: 50, maxHeight: .infinity)
                         .contentShape(Rectangle())
                         .background(.clear.opacity(0.4))
                         .onTapGesture {
@@ -114,7 +114,7 @@ public struct CarouselView: View {
                     Color
                         .clear
                         .contentShape(Rectangle())
-                        .frame(maxWidth: 25, maxHeight: .infinity)
+                        .frame(maxWidth: 50, maxHeight: .infinity)
                         .background(.clear.opacity(0.4))
                         .onTapGesture {
                             guard itemCount > 0 else { return }
