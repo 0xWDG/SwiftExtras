@@ -24,6 +24,9 @@ public struct SEChangeLogEntry: Identifiable {
     /// The version number for this entry.
     public var version: String
 
+    /// The version number for this entry.
+    public var date: String?
+
     /// The changelog for this entry.
     public var text: String
 
@@ -32,9 +35,22 @@ public struct SEChangeLogEntry: Identifiable {
     ///
     /// - Parameters:
     ///   - version: The version number for this entry.
+    ///   - date: The date it is update is made.
+    ///   - text: The changelog for this entry.
+    public init(version: String, date: String, text: LocalizedStringKey) {
+        self.version = version
+        self.date = date
+        self.text = text.stringValue
+    }
+
+    /// Initialize a new change log entry.
+    ///
+    /// - Parameters:
+    ///   - version: The version number for this entry.
     ///   - text: The changelog for this entry.
     public init(version: String, text: LocalizedStringKey) {
         self.version = version
+        self.date = nil
         self.text = text.stringValue
     }
     #else
@@ -42,9 +58,22 @@ public struct SEChangeLogEntry: Identifiable {
     ///
     /// - Parameters:
     ///   - version: The version number for this entry.
+    ///   - date: The date it is update is made.
     ///   - text: The changelog for this entry.
-    public init(version: String, text: String) {
+    public init(version: String, date: String, text: String) {
         self.version = version
+        self.date = date
+        self.text = text
+    }
+
+    /// Initialize a new change log entry.
+    ///
+    /// - Parameters:
+    ///   - version: The version number for this entry.
+    ///   - text: The changelog for this entry.
+    public init(version: String, date: String, text: String) {
+        self.version = version
+        self.date = date
         self.text = text
     }
     #endif

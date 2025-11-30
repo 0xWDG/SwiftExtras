@@ -15,6 +15,31 @@ import FoundationNetworking
 #endif
 
 extension URL {
+    /// Initialize if there might be a scheme provided
+    /// if this fails the function will try the `https` scheme.
+    ///
+    /// - Prameter safeString: The string which may contains a scheme.
+    public init?(safeString urlString: String) {
+        if urlString.contains("://") {
+            self.init(string: urlString)
+        } else {
+            self.init(string: "https://\(urlString)")
+        }
+    }
+
+    /// Is the URL valid for being a website (contains a scheme and host)
+    public var isWebURL: Bool {
+        // Check if we have a scheme (before ://)
+        self.scheme != nil &&
+        // Check if we have a host
+        self.host() != nil
+    }
+
+    /// Is the URL valid for being a website (contains a scheme and host)
+    public var isValid: Bool {
+        self.isWebURL
+    }
+
     /// Check if the URL is reachable by performing a HEAD request.
     /// - Returns: A Boolean value indicating whether the URL is reachable.
     public func isReachable() async -> Bool {
@@ -22,7 +47,7 @@ extension URL {
         request.httpMethod = "HEAD"
 
         do {
-            let (_, response) = try await URLSession.shared.data(for: request)
+            let (_, response) = try await URLSession.ignoreCertificateErrors.data(for: request)
             return (response as? HTTPURLResponse)?.statusCode == 200
         } catch {
             return false
@@ -35,7 +60,7 @@ extension URL {
     public func isReachable(completion: @escaping (Bool) -> Void) {
         var request = URLRequest(url: self)
         request.httpMethod = "HEAD"
-        URLSession.shared.dataTask(with: request) { _, response, _ in
+        URLSession.ignoreCertificateErrors.dataTask(with: request) { _, response, _ in
             completion((response as? HTTPURLResponse)?.statusCode == 200)
         }
         .resume()

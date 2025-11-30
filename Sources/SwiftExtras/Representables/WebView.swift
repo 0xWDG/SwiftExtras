@@ -30,11 +30,11 @@ import OSLog
 /// WebView(html: "<html><body><h1>Hello World!</h1></body></html>")
 /// ```
 ///
-public struct WebView: PlatformViewRepresentableType {
+public struct WebView: PlatformViewRepresentable {
     #if canImport(OSLog)
     let logger = Logger(default: true)
     #endif
-    let url: URL
+    var url: URL
     let onLoad: ((WKWebView, WKNavigation) -> Void)?
     let onError: ((WKWebView, WKNavigation, Error) -> Void)?
     let html: String?
@@ -84,7 +84,7 @@ public struct WebView: PlatformViewRepresentableType {
         onError: ((WKWebView, WKNavigation, Error) -> Void)? = nil
     ) {
         let tempURL: URL = .cachesDirectory
-            .appendingPathComponent("\(UUID().uuidString).html")
+            .appendingPathComponent("SE_TEMP_HTML.html")
         self.url = tempURL
         self.html = html
 
@@ -104,38 +104,25 @@ public struct WebView: PlatformViewRepresentableType {
         self.onError = onError
     }
 
-#if canImport(UIKit)
-    public func makeUIView(context: Context) -> WKWebView {
+    public func makePlatformView(context: Context) -> WKWebView {
         webView.navigationDelegate = context.coordinator
+        #if os(iOS)
         webView.isOpaque = false
         webView.backgroundColor = .clear
         webView.scrollView.backgroundColor = .clear
+        #else
+        webView.setValue(false, forKey: "drawsBackground")
+        #endif
         return webView
     }
 
-    public func updateUIView(_ webView: WKWebView, context: Context) {
+    public func updatePlatformView(_ platformView: WKWebView, context: Context) {
         if url.isFileURL {
             webView.loadFileURL(url, allowingReadAccessTo: url)
         } else {
             webView.load(URLRequest(url: url))
         }
     }
-#endif
-
-#if canImport(AppKit)
-    public func makeNSView(context: Context) -> some NSView {
-        webView.navigationDelegate = context.coordinator
-        return webView
-    }
-
-    public func updateNSView(_ nsView: NSViewType, context: Context) {
-        if url.isFileURL {
-            webView.loadFileURL(url, allowingReadAccessTo: url)
-        } else {
-            webView.load(URLRequest(url: url))
-        }
-    }
-#endif
 
     public func makeCoordinator() -> Coordinator {
         Coordinator(self)

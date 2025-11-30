@@ -455,25 +455,14 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
     }
 
     var footerSection: some View {
-        VStack(alignment: .leading) {
+        Section {} footer: {
             Text(
                 "\(AppInfo.appName) \(AppInfo.isDebugBuild ? "(Debug)" : "(AppStore)"), version: \(AppInfo.versionNumber), build: \(AppInfo.buildNumber).",
                 // swiftlint:disable:previous line_length
                 bundle: Bundle.module
             )
-
-            if let createdBy {
-                HStack(spacing: 2) {
-                    Text("Created by", bundle: Bundle.module) +
-                    Text(verbatim: " ") +
-                    Text(.init(createdBy))
-                }
-            }
         }
-        .listRowBackground(Color.clear)
-#if !os(watchOS) && !os(tvOS)
-        .listRowSeparator(.hidden)
-#endif
+        .padding(.top, -25)
     }
 }
 
@@ -484,7 +473,11 @@ private struct SESettingsDemo: View {
     var body: some View {
         SESettingsView(
             _changeLog: [
-                .init(version: "0.0.1", text: "Initial version")
+                .init(
+                    version: "0.0.1",
+                    date: "\(Date.now.ddmmyyyy)",
+                    text: "Initial version"
+                )
             ],
             _acknowledgements: [
                 .init(

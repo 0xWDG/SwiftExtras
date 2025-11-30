@@ -35,6 +35,22 @@ This file contains the changelog of SwiftExtras.
   A property that returns the third element of a collection.
 - Added [`Collection.penultimate`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/collection/penultimate)  
   A property that returns the second last element of a collection.
+- Added [`CopyableLabeledContent`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/copyablelabeledcontent)  
+  A labeled content view that can be copied to the clipboard.
+- Added `PlatformColor` extensions  
+  A collection of extensions for `PlatformColor` to make it easier to use in Swift (see [`UIColor`](https://developer.apple.com/documentation/uikit/uicolor)).
+- Added [`URL.init(safeString:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/url/initsafestring:)  
+  A failable initializer that creates a URL from a string, returning nil if the string is not a valid URL.
+- Added [`URL.isValid`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/url/isvalid)  
+  A property that checks if the URL is valid.
+- Added [`URL.isWebURL`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/url/isweburl)  
+  A property that checks if the URL is a web URL (http or https).
+- Fixed a bug in `WebView`  
+  Where the web view would not load a html string on macOS.
+- Added [`SEChangeLogEntry(version:date:changes:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/sechangelogentry/init(version:date:changes:))  
+  A struct that represents a changelog entry.
+- Fixed a layout issue in [`SESettingsView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/sesettingsview)  
+  The footer text was not aligned properly.
 
 ### 1.2.6
 - Added [`.accentColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/accentcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  

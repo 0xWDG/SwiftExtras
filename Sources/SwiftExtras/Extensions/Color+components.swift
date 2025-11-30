@@ -68,8 +68,19 @@ extension Color {
     }
 
     /// Get HEX string
+    /// - Returns a string representation of the color in HEX format.
+    public var hex: String {
+        String(
+            format: "#%02x%02x%02x",
+            Int(components.red * 255),
+            Int(components.green * 255),
+            Int(components.blue * 255)
+        )
+    }
+
+    /// Get HEX string
     /// - Returns a string representation of the color in HEXi format.
-    var hex: String {
+    public var hex8: String {
         String(
             format: "#%02x%02x%02x%02x",
             Int(components.red * 255),

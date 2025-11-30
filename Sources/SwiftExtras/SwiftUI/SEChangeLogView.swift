@@ -25,11 +25,22 @@ public struct SEChangeLogView: View {
                 Section {
                     Text(.init(changeLogEntry.text))
                 } header: {
-                    Text("Version", bundle: Bundle.module) +
-                    Text(" ") +
-                    Text(.init(changeLogEntry.version))
-                }
+                    HStack {
+                        Group {
+                            Text("Version", bundle: Bundle.module) +
+                            Text(" ") +
+                            Text(.init(changeLogEntry.version))
+                        }
+                        .lineLimit(1)
 
+                        if let date = changeLogEntry.date {
+                            Spacer()
+
+                            Text(date)
+                                .lineLimit(1)
+                        }
+                    }
+                }
             }
         }
         .navigationTitle(Text("Changelog", bundle: Bundle.module))
@@ -52,7 +63,11 @@ public struct SEChangeLogView: View {
 #Preview {
     NavigationStack {
         SEChangeLogView(changeLog: [
-            .init(version: "1.0.0", text: "Initial version")
+            .init(
+                version: "1.0.0",
+                date: "\(Date.now.ddmmyyyy)",
+                text: "Initial version"
+            )
         ])
     }
 }

@@ -13,7 +13,7 @@
 import SwiftUI
 
 /// Make your sections colapsable like `DisclosureGroup`
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, visionOS 1.0, *)
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public struct DisclosureSection<Content: View, Label: View>: View {
     @State private var isExpanded: Bool = false
 
@@ -76,33 +76,37 @@ public struct DisclosureSection<Content: View, Label: View>: View {
     }
 
     public var body: some View {
-        Section(isExpanded: $isExpanded) {
-            self.content()
-        } header: {
-                Button {
-                    withAnimation {
-                        self.isExpanded.toggle()
+        if #available(iOS 17.0, macOS 14.0, visionOS 1.0, *) {
+            Section(isExpanded: $isExpanded) {
+                self.content()
+            } header: {
+                    Button {
+                        withAnimation {
+                            self.isExpanded.toggle()
+                        }
+                    } label: {
+                        HStack {
+                            label()
+                            Spacer()
+                            Image(systemName: "chevron.forward")
+                                .frame(width: 6)
+                                .font(.footnote.weight(.bold))
+                                .foregroundStyle(Color.accentColor)
+                                .animation(.smooth, value: self.isExpanded)
+                                .rotationEffect(Angle(degrees: angle))
+                                .accessibilityLabel(self.isExpanded ? "Collapse" : "Expand")
+                        }
                     }
-                } label: {
-                    HStack {
-                        label()
-                        Spacer()
-                        Image(systemName: "chevron.forward")
-                            .frame(width: 6)
-                            .font(.footnote.weight(.bold))
-                            .foregroundStyle(Color.accentColor)
-                            .animation(.smooth, value: self.isExpanded)
-                            .rotationEffect(Angle(degrees: angle))
-                            .accessibilityLabel(self.isExpanded ? "Collapse" : "Expand")
-                    }
-                }
-                .buttonStyle(.list)
+                    .buttonStyle(.list)
+            }
+        } else {
+            Section(content: self.content, header: self.label)
         }
     }
 }
 
 #if DEBUG
-@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 #Preview {
     Form {
         DisclosureSection("Custom Disclosure Section") {
