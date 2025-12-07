@@ -1290,7 +1290,6 @@
       }
     },
     "🚀" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2279,7 +2278,6 @@
       }
     },
     "All Social icons" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -3569,7 +3567,6 @@
       }
     },
     "Auto stop" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -6779,7 +6776,6 @@
       }
     },
     "Custom Disclosure Section" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -7102,7 +7098,6 @@
       }
     },
     "Dark" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -7425,7 +7420,6 @@
       }
     },
     "Dark (disabled)" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -7748,7 +7742,6 @@
       }
     },
     "Enter text" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -10003,7 +9996,6 @@
       }
     },
     "Hello World!" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -10648,7 +10640,6 @@
       }
     },
     "Item 1" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -10971,7 +10962,6 @@
       }
     },
     "Item 2" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -11294,7 +11284,6 @@
       }
     },
     "Item 3" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -11939,7 +11928,6 @@
       }
     },
     "Light" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -12262,7 +12250,6 @@
       }
     },
     "Light (disabled)" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -12585,7 +12572,6 @@
       }
     },
     "Light mode" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -16105,7 +16091,6 @@
       }
     },
     "Pick your items" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -17394,7 +17379,6 @@
       }
     },
     "RESET" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -18039,7 +18023,6 @@
       }
     },
     "Show confetti" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -19017,7 +19000,6 @@
       }
     },
     "Test" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -19343,7 +19325,6 @@
       "shouldTranslate" : false
     },
     "Toggle" : {
-      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
