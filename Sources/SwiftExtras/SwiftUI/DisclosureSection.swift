@@ -47,6 +47,29 @@ public struct DisclosureSection<Content: View, Label: View>: View {
         self.label = { Text(titleKey) }
     }
 
+    /// Initializes a `DisclosureSection` with a localized title and content.
+    ///
+    /// - Parameters:
+    ///   - titleKey: The localized key for the section title.
+    ///   - isExpanded: Is the section expanded
+    ///   - content: A closure that returns the content to be displayed when the section is expanded.
+    ///
+    /// **Example:**
+    /// ```swift
+    /// DisclosureSection("Account Settings") {
+    ///     // Content to be displayed when the section is expanded
+    /// }
+    /// ```
+    public init<S>(
+        _ titleKey: S,
+        isExpanded: Bool = false,
+        @ViewBuilder content: @escaping () -> Content
+    ) where S: StringProtocol, Label == Text {
+        self.content = content
+        self.isExpanded = isExpanded
+        self.label = { Text(titleKey) }
+    }
+
     /// Initializes a `DisclosureSection` with custom label, content, and footer.
     ///
     /// - Parameters:

@@ -6776,6 +6776,7 @@
       }
     },
     "Custom Disclosure Section" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
