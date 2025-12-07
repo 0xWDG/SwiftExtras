@@ -19,15 +19,15 @@ extension Image {
     ///
     /// - Parameter platformImage: The PlatformImage to create the Image from
     public init(platformImage: PlatformImage) {
-        #if os(macOS)
+#if os(macOS)
         self.init(nsImage: platformImage)
-        #else
+#else
         self.init(uiImage: platformImage)
-        #endif
+#endif
     }
 
     /// Get the platform native image
-    /// 
+    ///
     /// This property is available on all platforms that support SwiftUI.
     ///
     /// - Returns: The platform native image, or nil if the image could not be rendered
@@ -35,11 +35,28 @@ extension Image {
     public var asNativeImage: PlatformImage? {
         let renderer = ImageRenderer(content: self)
         renderer.scale = 1.0
-        #if os(macOS)
+#if os(macOS)
         return renderer.nsImage
-        #else
+#else
         return renderer.uiImage
-        #endif
+#endif
+    }
+
+    /// Make the current image squared
+    ///
+    /// Makes the current image squared by fitting it into a square frame.
+    ///
+    /// - Returns: The squared image view
+    @warn_unqualified_access
+    public func square() -> some View {
+        Rectangle()
+            .aspectRatio(1, contentMode: .fit)
+            .overlay(
+                self
+                    .resizable()
+                    .scaledToFill()
+            )
+            .clipShape(Rectangle())
     }
 }
 

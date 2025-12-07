@@ -51,6 +51,8 @@ This file contains the changelog of SwiftExtras.
   A struct that represents a changelog entry.
 - Fixed a layout issue in [`SESettingsView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/sesettingsview)  
   The footer text was not aligned properly.
+- Added [`Image.square`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/image/square)  
+  A property that returns a square version of the image.
 
 ### 1.2.6
 - Added [`.accentColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/accentcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
