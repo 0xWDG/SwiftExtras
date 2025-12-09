@@ -24,18 +24,19 @@ public class IgnoreSSLErrorsDelegate: NSObject, URLSessionDelegate, URLSessionTa
         _ session: URLSession,
         didReceive challenge: URLAuthenticationChallenge
     ) async -> (URLSession.AuthChallengeDisposition, URLCredential?) {
+#if os(Linux)
+        // Not available on linux.
+        return (.performDefaultHandling, nil)
+#else
         switch challenge.protectionSpace.authenticationMethod {
         case NSURLAuthenticationMethodServerTrust:
-#if os(Linux)
             // No trust APIs on Linux
-            return (.performDefaultHandling, nil)
-#else
             let cred = challenge.protectionSpace.serverTrust.map { URLCredential(trust: $0) }
             return (.useCredential, cred)
-#endif
         default:
             return (.performDefaultHandling, nil)
         }
+#endif
     }
 }
 
