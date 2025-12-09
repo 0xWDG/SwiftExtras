@@ -26,8 +26,13 @@ public class IgnoreSSLErrorsDelegate: NSObject, URLSessionDelegate, URLSessionTa
     ) async -> (URLSession.AuthChallengeDisposition, URLCredential?) {
         switch challenge.protectionSpace.authenticationMethod {
         case NSURLAuthenticationMethodServerTrust:
+#if os(Linux)
+            // No trust APIs on Linux
+            return (.performDefaultHandling, nil)
+#else
             let cred = challenge.protectionSpace.serverTrust.map { URLCredential(trust: $0) }
             return (.useCredential, cred)
+#endif
         default:
             return (.performDefaultHandling, nil)
         }
