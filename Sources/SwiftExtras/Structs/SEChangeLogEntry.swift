@@ -71,9 +71,9 @@ public struct SEChangeLogEntry: Identifiable {
     /// - Parameters:
     ///   - version: The version number for this entry.
     ///   - text: The changelog for this entry.
-    public init(version: String, date: String, text: String) {
+    public init(version: String, text: String) {
         self.version = version
-        self.date = date
+        self.date = nil
         self.text = text
     }
     #endif
