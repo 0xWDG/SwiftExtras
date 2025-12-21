@@ -85,7 +85,7 @@ public enum AppInfo {
     }
 
     /// Is the application an app extension
-    public var isAppExtension: Bool {
+    public static var isAppExtension: Bool {
         return Bundle.main.executablePath?.contains(".appex/") ?? false
     }
 
@@ -302,7 +302,7 @@ public enum AppInfo {
     }
 
     /// URL Schemes
-    public var schemes: [String] {
+    public static var schemes: [String] {
         guard let infoDictionary = Bundle.main.infoDictionary,
               let urlTypes = infoDictionary["CFBundleURLTypes"] as? [AnyObject],
               let urlType = urlTypes.first as? [String: AnyObject],
@@ -315,14 +315,14 @@ public enum AppInfo {
     }
 
     /// Main URL scheme
-    public var mainScheme: String? {
+    public static var mainScheme: String? {
         return schemes.first
     }
 
 #if os(iOS)
     /// Get the shortcut item that was used to launch the app
     /// - Returns: The shortcut item that was used to launch the app, if available
-    public var getShortcutItem: UIApplicationShortcutItem? {
+    public static var getShortcutItem: UIApplicationShortcutItem? {
         for scene in UIApplication.shared.connectedScenes {
             if let windowScene = scene as? UIWindowScene,
                let shortcutItem = windowScene

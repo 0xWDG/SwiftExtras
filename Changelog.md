@@ -71,6 +71,10 @@ This file contains the changelog of SwiftExtras.
   A method that takes a snapshot of the view and returns a platform image
 - Added `priority` parameter to [`View.detachedTask(priority:_:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/detachedtask(priority:_:))  
   A view modifier that performs a detached task
+- Added [`Task.synchronous(priority:operation:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/task/synchronous(priority:operation:))  
+  A method that performs a synchronous task
+- Made more static variables in [`AppInfo`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo) public  
+  To make them accessible from outside the module
 
 ### 1.2.5
 - Updated [`CardView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/cardview)  
