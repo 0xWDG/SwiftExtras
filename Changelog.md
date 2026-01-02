@@ -539,6 +539,9 @@ https://github.com/0xWDG/SwiftExtras/compare/1.1.2...1.1.3
   This function returns a random date in the current month (can not be in the future)
 - Added [`Date.randomInMonth`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/randominmonth)  
   This function returns a random date in the current month (can be in the future)
+- Added [`String.slice(from:to:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/string/slice(from:to:)) to `String`  
+  This function returns a substring from the string
+
 ### 0.1.7
 - visionOS specific fixes.
   Fixes compilation errors on visionOS.
