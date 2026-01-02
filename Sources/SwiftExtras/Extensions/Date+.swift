@@ -406,3 +406,4 @@ extension Date {
         return "\(hour):\(minute)"
     }
 }
+// swiftlint:disable:this file_length
