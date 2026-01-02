@@ -535,7 +535,10 @@ https://github.com/0xWDG/SwiftExtras/compare/1.1.2...1.1.3
   This view modifier adds a pulsating effect to a view
 - Added [`shake(_:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/shake(_:)) to `View`  
   This view modifier adds a shake effect to a view
-
+- Added [`Date.random`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/random)  
+  This function returns a random date in the current month (can not be in the future)
+- Added [`Date.randomInMonth`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/randominmonth)  
+  This function returns a random date in the current month (can be in the future)
 ### 0.1.7
 - visionOS specific fixes.
   Fixes compilation errors on visionOS.
