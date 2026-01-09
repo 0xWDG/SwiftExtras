@@ -113,7 +113,7 @@ public struct MultiSelectPickerView<PickerLabel: View, SelectionLabel: View>: Vi
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
     @Previewable @State var selectedItems: [String] = []
-    var items = ["star", "person", "rainbow"]
+    let items = ["star", "person", "rainbow"]
 
     NavigationStack {
         List {

@@ -40,15 +40,21 @@ extension View {
     ///
     /// - Parameter error: Error message
     /// - Parameter buttonTitle: Button title
+    /// - Parameter action: Action to executr
     ///
     /// - Returns: self
-    public func showError(error: Binding<Error?>, buttonTitle: LocalizedStringKey = "Ok") -> some View {
+    public func showError(
+        error: Binding<Error?>,
+        buttonTitle: LocalizedStringKey = "Ok",
+        action: (() -> Void)? = nil
+    ) -> some View {
         alert(
             error.wrappedValue?.localizedDescription ?? "Unknown error",
             isPresented: .constant(error.wrappedValue != nil)
         ) {
             Button(buttonTitle) {
                 error.wrappedValue = nil
+                action?()
             }
         }
     }

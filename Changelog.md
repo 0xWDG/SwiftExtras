@@ -53,6 +53,8 @@ This file contains the changelog of SwiftExtras.
   The footer text was not aligned properly.
 - Added [`Image.square`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/image/square)  
   A property that returns a square version of the image.
+- Added optional `action:` parameter to [`showAlert(error:buttonTitle:action:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/showalert(error:buttonTitle:action:))  
+  A view modifier that shows an alert on the view if the `error` is not nil.
 
 ### 1.2.6
 - Added [`.accentColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/accentcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
