@@ -64,3 +64,4 @@ iOSInjectionProject/
 
 # Translated files
 .Translate*
+.vscode
