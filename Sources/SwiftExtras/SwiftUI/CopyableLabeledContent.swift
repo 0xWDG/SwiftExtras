@@ -47,7 +47,7 @@ public struct CopyableLabeledContent: View {
         LabeledContent(title) {
             Text(value)
                 .foregroundStyle(.secondary)
-#if !os(watchOS)
+#if !os(watchOS) && !os(tvOS)
                 .contextMenu {
                     Button("Copy", systemImage: "doc.on.clipboard") {
                         PlatformPasteboard.general.string = value

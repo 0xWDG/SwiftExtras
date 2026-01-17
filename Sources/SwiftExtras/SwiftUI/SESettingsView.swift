@@ -254,6 +254,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                     }
                 } icon: {
                     Image(systemName: "square.and.arrow.down.fill")
+                        .accessibilityHidden(true)
                 }
             }
         }
@@ -505,8 +506,6 @@ private struct SESettingsDemo: View {
         )
     }
 }
-
-
 
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {

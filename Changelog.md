@@ -94,6 +94,7 @@ This file contains the changelog of SwiftExtras.
 - Created [`AsyncTask`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/asynctask)  
   A `EmptyView` that performs an asynchronous task.
 - Updated localizations.
+- Fixed build errors for tvOS.
 
 ### 1.2.5
 - Updated [`CardView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/cardview)  

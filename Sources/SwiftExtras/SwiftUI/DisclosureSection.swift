@@ -99,7 +99,7 @@ public struct DisclosureSection<Content: View, Label: View>: View {
     }
 
     public var body: some View {
-        if #available(iOS 17.0, macOS 14.0, visionOS 1.0, watchOS 10, *) {
+        if #available(iOS 17.0, macOS 14.0, visionOS 1.0, tvOS 17.0, watchOS 10, *) {
             Section(isExpanded: $isExpanded) {
                 self.content()
             } header: {
