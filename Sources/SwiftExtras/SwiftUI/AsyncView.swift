@@ -59,7 +59,7 @@ public struct AsyncView<Content: View, Result>: View {
     public init(
         showProgress: Bool = true,
         task: @escaping () async -> Result,
-        @ViewBuilder content: @escaping (Result) -> Content,
+        @ViewBuilder content: @escaping (Result) -> Content
     ) {
         self.task = task
         self.content = content
