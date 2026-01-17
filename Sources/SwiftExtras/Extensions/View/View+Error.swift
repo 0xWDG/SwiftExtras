@@ -68,16 +68,37 @@ extension View {
 /// ```swift
 /// CustomError(message: "This is a custom error message")
 /// ```
-public struct CustomError: Error {
+public struct CustomError: Error, CustomNSError {
     let message: String
+    public let errorCode: Int
+    public let errorDomain: String
+    public var errorUserInfo: [String: Any] {
+        [NSLocalizedDescriptionKey: message]
+    }
 
     /// Create a (custom) error.
     ///
     /// This allows you to create a custom error message.
     ///
     /// - Parameter message: The error message
-    public init(message: String) {
+    /// - Parameter errorCode: The error code
+    /// - Parameter domain: The error domain
+    public init(message: String, errorCode: Int = 1, domain: String = "SwiftExtras.CustomError") {
         self.message = message
+        self.errorCode = errorCode
+        self.errorDomain = domain
+    }
+
+    /// Create a (custom) error.
+    ///
+    /// This allows you to create a custom error message.
+    ///
+    /// - Parameter message: The error message
+    /// - Parameter errorCode: The error code
+    public init(message: LocalizedStringKey, errorCode: Int = 1, domain: String = "SwiftExtras.CustomError") {
+        self.message = message.stringValue
+        self.errorCode = errorCode
+        self.errorDomain = domain
     }
 }
 

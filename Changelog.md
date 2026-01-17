@@ -77,6 +77,23 @@ This file contains the changelog of SwiftExtras.
   A method that performs a synchronous task
 - Made more static variables in [`AppInfo`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo) public  
   To make them accessible from outside the module
+- Renamed [`AppInfo.getReviewURL()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/getreviewurl()) to [`AppInfo.reviewURL`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/reviewurl)  
+  A property that returns the review URL of the app
+- Renamed [`AppInfo.getDeveloperURL()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/getdeveloperurl()) to [`AppInfo.developerURL`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/developerurl)  
+  A property that returns the developer URL of the app
+- Renamed [`AppInfo.isLatestVersion()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/islatestversion()) to [`AppInfo.updateAvailable`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/updateavailable)  
+  A property that checks if the app is the latest version
+- Added [`AppInfo.appStoreVersion`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/appstoreversion)  
+  A property that returns the App Store version of the app
+- Made [`CustomError`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/customerror) conform to `LocalizedError`  
+  To provide a localized description of the error
+- Added `showProgress` parameter to [`AsyncView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/asyncview)  
+  To hide the progress view while loading
+- Added `Update Available` section to [`SESettingsView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/sesettingsview)  
+  To show if an update is available for the app
+- Created [`AsyncTask`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/asynctask)  
+  A `EmptyView` that performs an asynchronous task.
+- Updated localizations.
 
 ### 1.2.5
 - Updated [`CardView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/cardview)  

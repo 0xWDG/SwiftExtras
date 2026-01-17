@@ -32,6 +32,9 @@ public struct AsyncView<Content: View, Result>: View {
     /// View to show if task is finished
     let content: (Result) -> Content
 
+    /// Show progress
+    let showProgress: Bool
+
     /// Result of the task
     @State private var result: Result?
 
@@ -50,14 +53,17 @@ public struct AsyncView<Content: View, Result>: View {
     /// ```
     ///
     /// - Parameters:
+    ///   - showProgress: Should show progress indicator
     ///   - task: Task to execute
     ///   - content: View to show if task is finished
     public init(
+        showProgress: Bool = true,
         task: @escaping () async -> Result,
-        @ViewBuilder content: @escaping (Result) -> Content
+        @ViewBuilder content: @escaping (Result) -> Content,
     ) {
         self.task = task
         self.content = content
+        self.showProgress = showProgress
     }
 
     /// Body of AsyncView
@@ -65,14 +71,18 @@ public struct AsyncView<Content: View, Result>: View {
         if let result = result {
             content(result)
         } else {
-            ProgressView()
-                .onAppear {
-                    Task {
-                        result = await task()
-                    }
+            if showProgress {
+                HStack {
+                    ProgressView()
+                    Text("Loading", bundle: .module)
                 }
+            } else {
+                EmptyView()
+            }
 
-            Text("Loading", bundle: .module)
+            AsyncTask {
+                result = await task()
+            }
         }
     }
 }
@@ -80,14 +90,27 @@ public struct AsyncView<Content: View, Result>: View {
 #if DEBUG
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
-    AsyncView {
-        try? await Task.sleep(for: .seconds(5))
-        return "Loaded"
-    } content: { result in
-        Text("Hello World!")
-        Text(result)
-    }
+    Form {
+        Section("No Progress") {
+            AsyncView(showProgress: false) {
+                try? await Task.sleep(for: .seconds(5))
+                return "Loaded"
+            } content: { result in
+                Text("Hello World!")
+                Text(result)
+            }
+        }
 
+        Section("With Progress") {
+            AsyncView {
+                try? await Task.sleep(for: .seconds(5))
+                return "Loaded"
+            } content: { result in
+                Text("Hello World!")
+                Text(result)
+            }
+        }
+    }
 }
 #endif
 #endif

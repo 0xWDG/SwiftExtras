@@ -59,6 +59,12 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
     @State
     private var developerURL: URL?
 
+    @State
+    private var updateAvailable: Bool = false
+
+    @State
+    private var appStoreVersion: String = ""
+
     // MARK: Custom
     var createdBy: String?
     var privacyPolicyURL: URL?
@@ -142,6 +148,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
         self.twitterHandle = "0xWDG"
         self.blueskyHandle = "0xwdg.bsky.social"
         self.mastodonHandle = "@0xWDG@mastodon.social"
+        self.developerURL = URL(string: "https://apps.apple.com/developer/id602359900")
         self.changeLog = _changeLog
         self.acknowledgments = _acknowledgements
         self.customTopSection = topContent
@@ -172,16 +179,16 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
         NavigationStack {
             Form {
                 headerSection
+                updateAvailableSection
                 customTopSection() // Custom section
                 applicationInfoSection
                 aboutTheDeveloperSection
                 customBottomSection()
                 footerSection
             }
-            .task {
-#if canImport(StoreKit) && !os(watchOS) && !os(tvOS)
-                if appStoreDeveloperURL != nil &&
-                    Int.random(in: 0..<10) == 5 {
+            .onAppear {
+#if canImport(StoreKit) && !os(watchOS) && !os(tvOS) && !DEBUG
+                if appStoreDeveloperURL != nil {
                     requestReview()
                 }
 #endif
@@ -214,26 +221,6 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                     .resizable()
                     .cornerRadius(24)
                     .frame(width: 124, height: 124)
-#if !DEBUG
-                    .overlay {
-                        if AppInfo.isDebugBuild {
-                            VStack {
-                                Spacer()
-                                HStack {
-                                    Spacer()
-                                    Text("Beta")
-                                        .foregroundStyle(.white)
-                                        .padding(6)
-                                        .padding(.horizontal, 4)
-                                        .background(
-                                            Capsule()
-                                                .fill(Color.accentColor)
-                                        )
-                                }
-                            }
-                        }
-                    }
-#endif
 
                 Text(AppInfo.appName)
                     .font(.title)
@@ -250,6 +237,31 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
 #if !os(watchOS) && !os(tvOS)
         .listRowSeparator(.hidden)
 #endif
+    }
+
+    @ViewBuilder
+    var updateAvailableSection: some View {
+        if updateAvailable {
+            Section {
+                Label {
+                    Button {
+                        Task {
+                            await AppInfo.openAppStorePage()
+                        }
+                    } label: {
+                        Text("Update available")
+                        Text("Update now to version \(appStoreVersion)!")
+                    }
+                } icon: {
+                    Image(systemName: "square.and.arrow.down.fill")
+                }
+            }
+        }
+
+        AsyncTask {
+            updateAvailable = await AppInfo.updateAvailable
+            appStoreVersion = await AppInfo.appStoreVersion
+        }
     }
 
     var applicationInfoSection: some View {
@@ -374,7 +386,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
         }
         .task {
             if reviewURL == nil {
-                reviewURL = await AppInfo.getReviewURL()
+                reviewURL = await AppInfo.reviewURL
             }
         }
     }
@@ -449,7 +461,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
         }
         .task {
             if developerURL == nil {
-                developerURL = await AppInfo.getDeveloperURL()
+                developerURL = await AppInfo.developerURL
             }
         }
     }
@@ -493,6 +505,8 @@ private struct SESettingsDemo: View {
         )
     }
 }
+
+
 
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {

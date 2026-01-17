@@ -243,14 +243,16 @@ public enum AppInfo {
 
     /// Get the Review URL of the application
     /// - Returns: URL of the review page in the AppStore
-    public static func getReviewURL() async -> URL? {
-        if let identifier = await AppInfo.appStoreInfo()?.results.first?.trackId,
-           let url = URL(
-            string: "https://itunes.apple.com/app/id\(identifier)?action=write-review") {
-            return url
-        }
+    public static var reviewURL: URL? {
+        get async {
+            if let identifier = await AppInfo.appStoreInfo()?.results.first?.trackId,
+               let url = URL(
+                string: "https://itunes.apple.com/app/id\(identifier)?action=write-review") {
+                return url
+            }
 
-        return nil
+            return nil
+        }
     }
 
     /// Open the AppStore Page for the current app
@@ -267,23 +269,35 @@ public enum AppInfo {
 
     /// Get the URL of the developer page in the AppStore
     /// - Returns: URL of the developer page in the AppStore
-    public static func getDeveloperURL() async -> URL? {
-        if let identifier = await AppInfo.appStoreInfo()?.results.first?.artistId,
-           let url = URL(string: "https://apps.apple.com/developer/id\(identifier)") {
-            return url
-        }
+    public static var developerURL: URL? {
+        get async {
+            if let identifier = await AppInfo.appStoreInfo()?.results.first?.artistId,
+               let url = URL(string: "https://apps.apple.com/developer/id\(identifier)") {
+                return url
+            }
 
-        return nil
+            return nil
+        }
     }
 
     /// Is this the latest version of the app?
     /// - Returns: Boolean indicating if this is the current version
-    public static func isLatestVersion() async -> Bool? {
-        if let version = await AppInfo.appStoreInfo(true)?.results.first?.version {
-            return version > versionNumber
-        }
+    public static var updateAvailable: Bool {
+        get async {
+            if let version = await AppInfo.appStoreInfo(true)?.results.first?.version {
+                UserDefaults.standard.set(version, forKey: "SEAppInfoAppVersion")
+                return version > versionNumber
+            }
 
-        return false
+            return false
+        }
+    }
+
+    /// get the latest version on the appstore
+    public static var appStoreVersion: String {
+        get async {
+            await AppInfo.appStoreInfo()?.results.first?.version ?? "Unknown"
+        }
     }
 
     /// Is the app running tests
