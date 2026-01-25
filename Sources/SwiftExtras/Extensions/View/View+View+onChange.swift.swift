@@ -1,5 +1,4 @@
 //
-//
 //  View+onChange.swift
 //  SwiftExtras
 //
@@ -14,6 +13,25 @@
 import SwiftUI
 
 extension View {
+    /// Adds a debounced onChange handler
+    /// - Parameters:
+    ///   - value: The value to observe
+    ///   - delay: Time in seconds to wait before executing (default 1 second)
+    ///   - action: Closure to execute after the delay
+    public func onChange<Value: Equatable>(
+        of value: Value,
+        after delay: Duration = .seconds(1),
+        perform action: @escaping (Value) -> Void
+    ) -> some View {
+        modifier(
+            DebouncedOnChangeModifier(
+                observedValue: value,
+                delay: Double(delay.components.seconds),
+                action: action
+            )
+        )
+    }
+
     /// Adds a debounced onChange handler
     /// - Parameters:
     ///   - value: The value to observe

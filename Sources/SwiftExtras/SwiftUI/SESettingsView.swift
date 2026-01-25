@@ -176,7 +176,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
     }
 
     public var body: some View {
-        NavigationStack {
+        NavigationViewIfNeeded {
             Form {
                 headerSection
                 updateAvailableSection

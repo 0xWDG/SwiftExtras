@@ -95,6 +95,10 @@ This file contains the changelog of SwiftExtras.
   A `EmptyView` that performs an asynchronous task.
 - Updated localizations.
 - Fixed build errors for tvOS.
+- Added [`NavigationViewIfNeeded`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/navigationviewifneeded)  
+  A view that wraps its content in a `NavigationView` if needed. (Source: https://www.joshholtz.com/blog/2025/02/08/swiftui-navigation-view-if-needed.html)
+- Updated [`SESettingsView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/sesettingsview)  
+  to use [`NavigationViewIfNeeded`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/navigationviewifneeded).
 
 ### 1.2.5
 - Updated [`CardView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/cardview)  
