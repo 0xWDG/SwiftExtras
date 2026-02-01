@@ -88,7 +88,6 @@ public struct NavigationViewIfNeeded<Content: View>: View {
         Group {
             switch status {
             case .unknown:
-                let _ = print("[NVIN] Detect")
                 // This is where we wait for a (hopefully quick) response
                 // if the view is in a navigation view or not
                 Rectangle()
