@@ -55,6 +55,25 @@ This file contains the changelog of SwiftExtras.
   A property that returns a square version of the image.
 - Added optional `action:` parameter to [`showAlert(error:buttonTitle:action:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/showalert(error:buttonTitle:action:))  
   A view modifier that shows an alert on the view if the `error` is not nil.
+- Updated localizations.
+- Fixed build errors for tvOS.
+- Added [`NavigationViewIfNeeded`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/navigationviewifneeded)  
+  A view that wraps its content in a `NavigationView` if needed. (Source: https://www.joshholtz.com/blog/2025/02/08/swiftui-navigation-view-if-needed.html)
+- Updated [`SESettingsView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/sesettingsview)  
+  to use [`NavigationViewIfNeeded`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/navigationviewifneeded).
+- Fixed typo in [`ColoredButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/coloredbuttonstyle)  
+  Changed `colorSheme` to `colorScheme`.
+- Updated [`DisclosureSection`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/disclosuresection)  
+  to respect the disabled state.
+- Updated [`DisclosureSection.init(isExpanded:content:label:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/disclosuresection/init(isExpanded:content:label:))  
+  to make it more readable and Swift like.
+ - Added `.dialogSeverity(.critical)` to [`.showError(error:buttonTitle:action:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/showerror(error:buttontitle:action:))  
+   To show critical alerts on macOS.
+- Added support for optional bindings, you can now use `$optionalString ?? "Default Value"` in text fields and other views that require a binding.
+- Added [`Binding.init(for:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/binding/init(for:))  
+  A failable initializer that creates a read-only Binding for an optional source.
+- Added [`Optional.isNilOrEmpty`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/optional/isnilorempty)  
+  A property that checks if an optional string is nil or empty.
 
 ### 1.2.6
 - Added [`.accentColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/accentcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
@@ -93,23 +112,6 @@ This file contains the changelog of SwiftExtras.
   To show if an update is available for the app
 - Created [`AsyncTask`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/asynctask)  
   A `EmptyView` that performs an asynchronous task.
-- Updated localizations.
-- Fixed build errors for tvOS.
-- Added [`NavigationViewIfNeeded`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/navigationviewifneeded)  
-  A view that wraps its content in a `NavigationView` if needed. (Source: https://www.joshholtz.com/blog/2025/02/08/swiftui-navigation-view-if-needed.html)
-- Updated [`SESettingsView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/sesettingsview)  
-  to use [`NavigationViewIfNeeded`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/navigationviewifneeded).
-- Fixed typo in [`ColoredButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/coloredbuttonstyle)  
-  Changed `colorSheme` to `colorScheme`.
-- Updated [`DisclosureSection`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/disclosuresection)  
-  to respect the disabled state.
-- Updated [`DisclosureSection.init(isExpanded:content:label:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/disclosuresection/init(isExpanded:content:label:))  
-  to make it more readable and Swift like.
- - Added `.dialogSeverity(.critical)` to [`.showError(error:buttonTitle:action:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/showerror(error:buttontitle:action:))  
-   To show critical alerts on macOS.
-- Added support for optional bindings, you can now use `$optionalString ?? "Default Value"` in text fields and other views that require a binding.
-- Added [`Binding.init(for:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/binding/init(for:))  
-  A failable initializer that creates a read-only Binding for an optional source.
 
 ### 1.2.5
 - Updated [`CardView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/cardview)  

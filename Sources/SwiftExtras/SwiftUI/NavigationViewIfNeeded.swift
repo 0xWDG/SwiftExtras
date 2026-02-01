@@ -85,36 +85,39 @@ public struct NavigationViewIfNeeded<Content: View>: View {
 
     /// Body of NavigationViewIfNeeded
     public var body: some View {
-        switch status {
-        case .unknown:
-            // This is where we wait for a (hopefully quick) response
-            // if the view is in a navigation view or not
-            Rectangle()
-                .frame(width: 0, height: 0)
-                .toolbar {
-                    // Zero-sized detection view:
-                    ZeroFrameDetectionView { isInNav in
-                        // The first time we know the answer, store it
-                        if status == .unknown {
-                            status = isInNav ? .inNav : .notInNav
+        Group {
+            switch status {
+            case .unknown:
+                let _ = print("[NVIN] Detect")
+                // This is where we wait for a (hopefully quick) response
+                // if the view is in a navigation view or not
+                Rectangle()
+                    .frame(width: 0, height: 0)
+                    .toolbar {
+                        // Zero-sized detection view:
+                        ZeroFrameDetectionView { isInNav in
+                            // The first time we know the answer, store it
+                            if status == .unknown {
+                                status = isInNav ? .inNav : .notInNav
+                            }
                         }
                     }
-                }
-        // If the view is in a navigation view, show the content directly
-        case .inNav:
-            content
-        // If the view is not in a navigation view, wrap it in a navigation
-        case .notInNav:
-            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
-                // Using NavigationStack is best generic solution if only need
-                // to show a toolbar
-                // NavigatonStack toolbars combine nicely in parent NavigationView
-                NavigationStack {
-                    content
-                }
-            } else {
-                NavigationView {
-                    content
+                // If the view is in a navigation view, show the content directly
+            case .inNav:
+                content
+                // If the view is not in a navigation view, wrap it in a navigation
+            case .notInNav:
+                if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                    // Using NavigationStack is best generic solution if only need
+                    // to show a toolbar
+                    // NavigatonStack toolbars combine nicely in parent NavigationView
+                    NavigationStack {
+                        content
+                    }
+                } else {
+                    NavigationView {
+                        content
+                    }
                 }
             }
         }

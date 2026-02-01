@@ -2,7 +2,7 @@
 //  Binding+onChange.swift
 //  SwiftExtras
 //
-//  Created by Wesley de Groot on 2025-01-10.
+//  Created by Wesley de Groot on 2026-02-01.
 //  https://wesleydegroot.nl
 //
 //  https://github.com/0xWDG/SwiftExtras
@@ -15,7 +15,7 @@ import SwiftUI
 public extension Binding {
     /// Create a read-only Binding for an optional source
     ///
-    /// - Example usage:
+    /// Example usage:
     /// ```swift
     /// Binding(for: myOptionalValue?)
     /// ```

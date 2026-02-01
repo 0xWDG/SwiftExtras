@@ -2,7 +2,7 @@
 //  Binding+optional.swift
 //  SwiftExtras
 //
-//  Created by Wesley de Groot on 2025-01-10.
+//  Created by Wesley de Groot on 2026-02-01.
 //  https://wesleydegroot.nl
 //
 //  https://github.com/0xWDG/SwiftExtras
@@ -15,7 +15,7 @@ import SwiftUI
 public extension Binding {
     /// Provides a binding that unwraps an optional binding, providing a default value if the optional is nil.
     ///
-    /// - Usage Example:
+    /// Example usage:
     /// ```swift
     /// @State var optionalString: String?
     /// var body: some View {

@@ -17,7 +17,7 @@ public extension Binding {
     ///
     /// This operator allows you to execute code when a `Binding` value changes.
     ///
-    /// Usage:
+    /// Example usage:
     /// ```swift
     /// @State private var text = ""
     ///
