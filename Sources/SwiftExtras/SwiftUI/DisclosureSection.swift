@@ -15,6 +15,8 @@ import SwiftUI
 /// Make your sections colapsable like `DisclosureGroup`
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public struct DisclosureSection<Content: View, Label: View>: View {
+    @Environment(\.isEnabled) var isEnabled
+
     @State private var isExpanded: Bool = false
 
     private var angle: Double {
@@ -73,8 +75,8 @@ public struct DisclosureSection<Content: View, Label: View>: View {
     /// Initializes a `DisclosureSection` with custom label, content, and footer.
     ///
     /// - Parameters:
-    ///   - content: A closure that returns the content to be displayed when the section is expanded.
     ///   - isExpanded: Is the section expanded
+    ///   - content: A closure that returns the content to be displayed when the section is expanded.
     ///   - label: A closure that returns the custom label view.
     ///
     /// **Example:**
@@ -89,8 +91,8 @@ public struct DisclosureSection<Content: View, Label: View>: View {
     /// }
     /// ```
     public init(
-        @ViewBuilder content: @escaping () -> Content,
         isExpanded: Bool = false,
+        @ViewBuilder content: @escaping () -> Content,
         @ViewBuilder label: @escaping () -> Label
     ) {
         self.content = content
@@ -100,27 +102,30 @@ public struct DisclosureSection<Content: View, Label: View>: View {
 
     public var body: some View {
         if #available(iOS 17.0, macOS 14.0, visionOS 1.0, tvOS 17.0, watchOS 10, *) {
-            Section(isExpanded: $isExpanded) {
-                self.content()
-            } header: {
-                    Button {
-                        withAnimation {
-                            self.isExpanded.toggle()
-                        }
-                    } label: {
-                        HStack {
-                            label()
-                            Spacer()
-                            Image(systemName: "chevron.forward")
-                                .frame(width: 6)
-                                .font(.footnote.weight(.bold))
-                                .foregroundStyle(Color.accentColor)
-                                .animation(.smooth, value: self.isExpanded)
-                                .rotationEffect(Angle(degrees: angle))
-                                .accessibilityLabel(self.isExpanded ? "Collapse" : "Expand")
-                        }
+            Section(isExpanded: $isExpanded, content: self.content) {
+                Button {
+                    withAnimation {
+                        self.isExpanded.toggle()
                     }
-                    .buttonStyle(.list)
+                } label: {
+                    HStack {
+                        label()
+                        Spacer()
+                        Image(systemName: "chevron.forward")
+                            .frame(width: 6)
+                            .font(.footnote.weight(.bold))
+                            .foregroundStyle(
+                                isEnabled ? Color.accentColor : Color.gray
+                            )
+                            .animation(.smooth, value: self.isExpanded)
+                            .rotationEffect(Angle(degrees: angle))
+                            .accessibilityLabel(
+                                self.isExpanded ? "Collapse" : "Expand"
+                            )
+                    }
+                }
+                .buttonStyle(.list)
+                .disabled(false)
             }
         } else {
             Section(content: self.content, header: self.label)

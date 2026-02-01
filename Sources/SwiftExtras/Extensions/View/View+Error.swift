@@ -43,6 +43,7 @@ extension View {
     /// - Parameter action: Action to executr
     ///
     /// - Returns: self
+    @ViewBuilder
     public func showError(
         error: Binding<Error?>,
         buttonTitle: LocalizedStringKey = "Ok",
@@ -57,6 +58,9 @@ extension View {
                 action?()
             }
         }
+#if os(macOS)
+        .dialogSeverity(.critical)
+#endif
     }
 }
 

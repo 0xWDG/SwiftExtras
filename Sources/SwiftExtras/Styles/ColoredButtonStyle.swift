@@ -30,7 +30,7 @@
         private var isEnabled
 
         @Environment(\.colorScheme)
-        private var colorSheme
+        private var colorScheme
 
         var color: Color
 

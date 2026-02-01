@@ -99,6 +99,15 @@ This file contains the changelog of SwiftExtras.
   A view that wraps its content in a `NavigationView` if needed. (Source: https://www.joshholtz.com/blog/2025/02/08/swiftui-navigation-view-if-needed.html)
 - Updated [`SESettingsView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/sesettingsview)  
   to use [`NavigationViewIfNeeded`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/navigationviewifneeded).
+- Fixed typo in [`ColoredButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/coloredbuttonstyle)  
+  Changed `colorSheme` to `colorScheme`.
+- Updated [`DisclosureSection`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/disclosuresection)  
+  to respect the disabled state.
+- Updated [`DisclosureSection.init(isExpanded:content:label:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/disclosuresection/init(isExpanded:content:label:))  
+  to make it more readable and Swift like.
+ - Added `.dialogSeverity(.critical)` to [`.showError(error:buttonTitle:action:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/showerror(error:buttontitle:action:))  
+   To show critical alerts on macOS.
+- Added support for optional bindings, you can now use `$optionalString ?? "Default Value"` in text fields and other views that require a binding.
 
 ### 1.2.5
 - Updated [`CardView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/cardview)  

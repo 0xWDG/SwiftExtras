@@ -26,6 +26,21 @@ extension Image {
 #endif
     }
 
+    /// Create an Image from a PlatformImage
+    ///
+    /// This initializer is available on all platforms that support SwiftUI.
+    ///
+    /// - Parameter data: The image to create the image from
+    public init?(data: Data) {
+#if os(macOS)
+        guard let native = PlatformImage(data: data) else { return nil }
+        self.init(nsImage: native)
+#else
+        guard let native = PlatformImage(data: data) else { return nil }
+        self.init(uiImage: native)
+#endif
+    }
+
     /// Get the platform native image
     ///
     /// This property is available on all platforms that support SwiftUI.
@@ -80,3 +95,4 @@ extension PlatformImage: Identifiable {
 }
 #endif
 #endif
+
