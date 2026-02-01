@@ -108,6 +108,8 @@ This file contains the changelog of SwiftExtras.
  - Added `.dialogSeverity(.critical)` to [`.showError(error:buttonTitle:action:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/showerror(error:buttontitle:action:))  
    To show critical alerts on macOS.
 - Added support for optional bindings, you can now use `$optionalString ?? "Default Value"` in text fields and other views that require a binding.
+- Added [`Binding.init(for:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/binding/init(for:))  
+  A failable initializer that creates a read-only Binding for an optional source.
 
 ### 1.2.5
 - Updated [`CardView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/cardview)  

@@ -28,7 +28,7 @@ public extension Binding {
     ///   - lhs: The optional binding to unwrap.
     ///   - rhs: The default value to use if the optional is nil.
     /// - Returns: A binding to the unwrapped value or the default value.
-    static func ??(lhs: Binding<Optional<Value>>, rhs: Value) -> Binding<Value> {
+    static func ?? (lhs: Binding<Value?>, rhs: Value) -> Binding<Value> {
         Binding {
             lhs.wrappedValue ?? rhs
         } set: {
