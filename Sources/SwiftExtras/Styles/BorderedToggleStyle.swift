@@ -70,7 +70,7 @@ extension ToggleStyle where Self == BorderedToggleStyle {
     ///     .toggleStyle(.bordered)
     /// ```
     public static var bordered: BorderedToggleStyle {
-        .init(backgroundColor: .tertiarySystemGroupedBackground)
+        .init(backgroundColor: .tertiarySystemGroupedBackground.opacity(0.7))
     }
 
     /// A toggle style that uses a border around the toggle.
