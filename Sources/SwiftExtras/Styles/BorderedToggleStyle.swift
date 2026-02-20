@@ -23,13 +23,17 @@ import SwiftUI
 /// ```
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 public struct BorderedToggleStyle: ToggleStyle {
+    let color: Color
+
+    public init(backgroundColor: Color = .primary) {
+        self.color = backgroundColor
+    }
     /// Creates a bordered toggle style.
     ///
     /// - Parameter configuration: The configuration of the toggle.
     /// - Returns: A bordered toggle style.
     public func makeBody(configuration: Configuration) -> some View {
         let symbol = configuration.isOn ? "checkmark.circle.fill" : "circle"
-
         Button(
             action: {
                 configuration.isOn.toggle()
@@ -43,7 +47,7 @@ public struct BorderedToggleStyle: ToggleStyle {
                 }
             }
         )
-        .buttonStyle(.gray)
+        .buttonStyle(.colored(color: color))
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .strokeBorder(
@@ -65,7 +69,22 @@ extension ToggleStyle where Self == BorderedToggleStyle {
     /// Toggle("Hello World!", isOn: .constant(true))
     ///     .toggleStyle(.bordered)
     /// ```
-    public static var bordered: BorderedToggleStyle { .init() }
+    public static var bordered: BorderedToggleStyle {
+        .init(backgroundColor: .tertiarySystemGroupedBackground)
+    }
+
+    /// A toggle style that uses a border around the toggle.
+    ///
+    /// The style uses a ``ColoredButtonStyle`` button style and a border around the toggle.
+    ///
+    /// Example:
+    /// ```swift
+    /// Toggle("Hello World!", isOn: .constant(true))
+    ///     .toggleStyle(.bordered(.red))
+    /// ```
+    public static func bordered(_ backgroundColor: Color = .gray) -> BorderedToggleStyle {
+        .init(backgroundColor: backgroundColor)
+    }
 }
 
 #if DEBUG

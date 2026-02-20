@@ -19,29 +19,22 @@ public struct SEAcknowledgementView: View {
     /// The change log entries to display.
     public var entries: Set<SEAcknowledgement>
 
+    @State private var selectedEntry: SEAcknowledgement?
+    @State private var showEntry = false
+
     /// The body of the view.
     public var body: some View {
         List {
             ForEach(entries.sorted(by: { $0.name < $1.name })) { entry in
-                if let string = entry.url,
-                   let url = URL(string: string) {
+                if entry.url != nil {
 #if canImport(WebKit)
-                    NavigationLink {
-                        WebView(url: url)
-                            .navigationTitle(entry.name)
-                            .toolbar {
-                                Button {
-                                    openURL(url)
-                                } label: {
-                                    Image(systemName: "safari")
-                                        .accessibilityLabel(
-                                            Text("Open in web browser")
-                                        )
-                                }
-                            }
+                    Button {
+                        selectedEntry = entry
+                        showEntry = true
                     } label: {
                         label(for: entry)
                     }
+                    .buttonStyle(.plain)
                     .id(UUID())
 #else
                     label(for: entry)
@@ -57,6 +50,26 @@ public struct SEAcknowledgementView: View {
 #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
 #endif
+        .navigationDestination(isPresented: $showEntry) {
+#if canImport(WebKit)
+            if let selectedEntry,
+               let string = selectedEntry.url,
+               let url = URL(string: string) {
+                WebView(url: url)
+                    .navigationTitle(selectedEntry.name)
+                    .toolbar {
+                        Button {
+                            openURL(url)
+                        } label: {
+                            Image(systemName: "safari")
+                                .accessibilityLabel(
+                                    Text("Open in web browser")
+                                )
+                        }
+                    }
+            }
+#endif
+        }
     }
 
     /// Create a label for a given change log entry.

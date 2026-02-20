@@ -229,6 +229,23 @@ extension Color {
             Int(self.blueValue * 255)
         )
     }
+
+    /// Luminance per WCAG using rgb components
+    public var luminance: Double {
+        func transform(_ value: Double) -> Double {
+            return value <= 0.03928 ? value / 12.92 : pow((value + 0.055) / 1.055, 2.4)
+        }
+        let redLumiance = transform(self.redValue)
+        let greenLumiance = transform(self.greenValue)
+        let blueLumiance = transform(self.blueValue)
+
+        if redValue == greenValue, greenValue == blueValue, self != .black {
+            print("Unable to decode this color!")
+        }
+
+        // Rec. 709 luminance formula
+        return 0.2126 * redLumiance + 0.7152 * greenLumiance + 0.0722 * blueLumiance
+    }
 }
 
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
@@ -243,22 +260,19 @@ extension Color.Resolved {
     /// Get the red value of a color
     /// - Returns the red value of the color as a CGFloat.
     public var redValue: CGFloat {
-        let val = self.cgColor.components?[0] ?? 0
-        return Double(round(1000 * (val * 255)) / 1000)
+        return CGFloat(red)
     }
 
     /// Get the green value of a color
     /// - Returns the green value of the color as a CGFloat.
     public var greenValue: CGFloat {
-        let val = self.cgColor.components?[1] ?? 0
-        return Double(round(1000 * (val * 255)) / 1000)
+        return CGFloat(green)
     }
 
     /// Get the blue value of a color
     /// - Returns the blue value of the color as a CGFloat.
     public var blueValue: CGFloat {
-        let val = self.cgColor.components?[2] ?? 0
-        return Double(round(1000 * (val * 255)) / 1000)
+        return CGFloat(blue)
     }
 
     /// Get the alpha value of a color
@@ -276,6 +290,22 @@ extension Color.Resolved {
             Int(self.greenValue * 255),
             Int(self.blueValue * 255)
         )
+    }
+
+    /// Luminance per WCAG using sRGB components (0-1).
+    public var luminance: Double {
+        func transform(_ value: Double) -> Double {
+            return value <= 0.03928 ? value / 12.92 : pow((value + 0.055) / 1.055, 2.4)
+        }
+        let redLumiance = transform(Double(self.red))
+        let greenLumiance = transform(Double(self.green))
+        let blueLumiance = transform(Double(self.blue))
+
+        print("Red: \(self.red), Green: \(self.green), Blue: \(self.blue)")
+        print("luminance: \(0.2126 * redLumiance + 0.7152 * greenLumiance + 0.0722 * blueLumiance)")
+
+        // Rec. 709 luminance formula
+        return 0.2126 * redLumiance + 0.7152 * greenLumiance + 0.0722 * blueLumiance
     }
 }
 #endif

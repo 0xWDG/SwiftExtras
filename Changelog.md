@@ -112,6 +112,10 @@ This file contains the changelog of SwiftExtras.
   To show if an update is available for the app
 - Created [`AsyncTask`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/asynctask)  
   A `EmptyView` that performs an asynchronous task.
+- Added [`Color.luminance`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/luminance)  
+  A property that returns the luminance of the color
+- Fix `Color.resolved.redValue`, `Color.resolved.greenValue`, `Color.resolved.blueValue`, and `Color.resolved.alphaValue`  
+  To return the correct values for colors created with a dynamic provider.
 
 ### 1.2.5
 - Updated [`CardView`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/cardview)  
