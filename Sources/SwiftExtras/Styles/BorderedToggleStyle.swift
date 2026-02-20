@@ -25,7 +25,7 @@ import SwiftUI
 public struct BorderedToggleStyle: ToggleStyle {
     let color: Color
 
-    public init(backgroundColor: Color = .primary) {
+    public init(backgroundColor: Color = .tertiarySystemGroupedBackground.opacity(0.7)) {
         self.color = backgroundColor
     }
     /// Creates a bordered toggle style.
@@ -82,7 +82,9 @@ extension ToggleStyle where Self == BorderedToggleStyle {
     /// Toggle("Hello World!", isOn: .constant(true))
     ///     .toggleStyle(.bordered(.red))
     /// ```
-    public static func bordered(_ backgroundColor: Color = .gray) -> BorderedToggleStyle {
+    public static func bordered(
+        _ backgroundColor: Color = .tertiarySystemGroupedBackground.opacity(0.7)
+    ) -> BorderedToggleStyle {
         .init(backgroundColor: backgroundColor)
     }
 }
