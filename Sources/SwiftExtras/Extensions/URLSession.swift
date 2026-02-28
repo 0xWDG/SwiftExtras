@@ -43,8 +43,13 @@ public class IgnoreSSLErrorsDelegate: NSObject, URLSessionDelegate, URLSessionTa
 extension URLSession {
     /// A URLSession that ignores SSL certificate errors.
     public static let ignoreCertificateErrors: URLSession = {
-        URLSession(
-            configuration: URLSessionConfiguration.default,
+        let sessionConfig = URLSessionConfiguration.default
+        sessionConfig.timeoutIntervalForRequest = 15.0
+        sessionConfig.timeoutIntervalForResource = 30.0
+        let session = URLSession(configuration: sessionConfig)
+
+        return URLSession(
+            configuration: sessionConfig,
             delegate: IgnoreSSLErrorsDelegate(),
             delegateQueue: nil
         )
@@ -52,7 +57,12 @@ extension URLSession {
 
     /// A URLSession that ignores SSL certificate errors.
     public static let unsafe: URLSession = {
-        URLSession(
+        let sessionConfig = URLSessionConfiguration.default
+        sessionConfig.timeoutIntervalForRequest = 15.0
+        sessionConfig.timeoutIntervalForResource = 30.0
+        let session = URLSession(configuration: sessionConfig)
+
+        return URLSession(
             configuration: URLSessionConfiguration.default,
             delegate: IgnoreSSLErrorsDelegate(),
             delegateQueue: nil

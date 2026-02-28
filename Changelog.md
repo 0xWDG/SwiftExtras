@@ -82,6 +82,8 @@ This file contains the changelog of SwiftExtras.
   An initializer that creates a color from a hex string.
 - Added [`Image.centerCropped`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/image/centercropped)  
   A property that returns a center cropped version of the image.
+- Fixed [`Date.time(timeZone:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/time(timezone:))  
+  To return the correct time for the date in a specific time zone. Reported by JB for [Calendo](https://wesleydegroot.nl/apps/calendo)
 
 ### 1.2.6
 - Added [`.accentColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/accentcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  

@@ -400,7 +400,7 @@ extension Date {
 
         var minute = "\(calendar.component(.minute, from: self))"
         if minute.count == 1 {
-            minute.append("0")
+            minute = "0\(minute)"
         }
 
         return "\(hour):\(minute)"
