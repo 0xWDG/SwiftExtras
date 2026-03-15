@@ -10,4 +10,3 @@
 //
 //  Float-specific extensions. The `clean` property is available on all
 //  BinaryFloatingPoint types via the extension in Double+.swift.
-
