@@ -22,32 +22,38 @@ public struct ConfirmationButton: View {
     var label: LocalizedStringKey
     var role: ButtonRole
     var visibility: Visibility
+    var confirmationText: LocalizedStringKey?
+    var systemImage: String?
 
     /// Creates a new ConfirmationButton.
     /// - Parameters:
     ///   - label: The label of the button.
     ///   - role: The button's role.
-    ///   - titleVisibility: The visibility of the dialog's title. The default value is visible
+    ///   - titleVisibility: The visibility of the dialog's title. The default value is visible.
+    ///   - confirmationText: The confirmation text, defaults to label.
+    ///   - systemImage: The systemImage for the button, default: disabled.
     ///   - action: The action to perform when the button is confirmed.
     public init(
         _ label: LocalizedStringKey,
         role: ButtonRole = .destructive,
         titleVisibility: Visibility = .visible,
+        confirmationText: LocalizedStringKey? = nil,
+        systemImage: String? = nil,
         action: @escaping @MainActor () -> Void
     ) {
         self.action = action
         self.label = label
         self.role = role
         self.visibility = titleVisibility
+        self.confirmationText = confirmationText
+        self.systemImage = systemImage
     }
 
     public var body: some View {
-        Button(label, role: role) {
-            confirmationShown.toggle()
-        }
+        button
         .foregroundStyle(.red)
         .confirmationDialog(
-            Text(label),
+            Text(confirmationText ?? label),
             isPresented: $confirmationShown,
             titleVisibility: visibility
         ) {
@@ -61,6 +67,19 @@ public struct ConfirmationButton: View {
                 withAnimation {
                     confirmationShown.toggle()
                 }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var button: some View {
+        if let systemImage {
+            Button(label, systemImage: systemImage, role: role) {
+                confirmationShown.toggle()
+            }
+        } else {
+            Button(label, role: role) {
+                confirmationShown.toggle()
             }
         }
     }
