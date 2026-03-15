@@ -1,5 +1,5 @@
 //
-//  Error+errorCode.swift
+//  Float.swift
 //  SwiftExtras
 //
 //  Created by Wesley de Groot on 2025-07-19.
@@ -8,12 +8,6 @@
 //  https://github.com/0xWDG/SwiftExtras
 //  MIT License
 //
+//  Float-specific extensions. The `clean` property is available on all
+//  BinaryFloatingPoint types via the extension in Double+.swift.
 
-import Foundation
-
-extension Float {
-    /// Remove any decimals
-    public var clean: String {
-       return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
-    }
-}

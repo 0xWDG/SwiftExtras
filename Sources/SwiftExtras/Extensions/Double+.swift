@@ -19,9 +19,20 @@ extension Double {
     public func convert(_ originalUnit: UnitLength, to convertedUnit: UnitLength) -> Double {
         return Measurement(value: self, unit: originalUnit).converted(to: convertedUnit).value
     }
+}
 
-    /// Remove any decimals
+extension BinaryFloatingPoint {
+    /// Strips trailing decimal zeros, returning a clean string representation.
+    ///
+    /// Returns an integer-formatted string when the fractional part is zero,
+    /// otherwise returns the default string representation.
+    ///
+    /// Example usage:
+    /// ```swift
+    /// (3.0 as Double).clean  // "3"
+    /// (3.14 as Float).clean  // "3.14"
+    /// ```
     public var clean: String {
-       return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
+        truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", Double(self)) : String(Double(self))
     }
 }

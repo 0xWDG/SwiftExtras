@@ -261,6 +261,12 @@
             "value" : " "
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " "
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -578,6 +584,12 @@
           }
         },
         "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        },
+        "si" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@"
@@ -905,6 +917,12 @@
             "value" : "%1$@ %2$@, version: %3$@, build: %4$@."
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@, අනුවාදය: %3$@, ඉදිකිරීම: %4$@."
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1227,6 +1245,12 @@
             "value" : "%lld символов осталось"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld අකුරු ඉතුරු ඇත"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1544,6 +1568,12 @@
           }
         },
         "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🚀"
+          }
+        },
+        "si" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "🚀"
@@ -1882,6 +1912,12 @@
             "value" : "9:41"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "9:41"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2202,6 +2238,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "О разработчике"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "සංවර්ධකයා ගැන"
           }
         },
         "sk" : {
@@ -2526,6 +2568,12 @@
             "value" : "Благодарности"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ඇගයීම්"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2846,6 +2894,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Все иконки соцсетей"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "සියලු සමාජ චිහ්න"
           }
         },
         "sk" : {
@@ -3170,6 +3224,12 @@
             "value" : "Информация о приложении"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "යෙදුම් තොරතුරු"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3490,6 +3550,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Напомни позже"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "පසුව අසන්න"
           }
         },
         "sk" : {
@@ -3815,6 +3881,12 @@
             "value" : "Во время события"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "සිදුවීමේ වේලාවේ"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4135,6 +4207,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Автоостановка"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ස්වයං නවත්වීම"
           }
         },
         "sk" : {
@@ -4458,6 +4536,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "до"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "පෙර"
           }
         },
         "sk" : {
@@ -5081,6 +5165,12 @@
             "value" : "История изменений"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "වෙනස් කළ සටහන"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5401,6 +5491,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Закрыть"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "වසන්න"
           }
         },
         "sk" : {
@@ -5725,6 +5821,12 @@
             "value" : "Свернуть"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "කුඩා කරන්න"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6045,6 +6147,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Продолжить"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ඉදිරියට"
           }
         },
         "sk" : {
@@ -6369,6 +6477,12 @@
             "value" : "Копировать"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "පිටපත් කරන්න"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6689,6 +6803,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Создан"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "නිර්මාණය කළේ"
           }
         },
         "sk" : {
@@ -7013,6 +7133,12 @@
             "value" : "Создано %@"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ විසින් නිර්මාණය කරන ලදී"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7071,652 +7197,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "由 %@ 創建"
-          }
-        }
-      }
-    },
-    "Dark" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "af" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Donker"
-          }
-        },
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "غامق"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тъмен"
-          }
-        },
-        "bn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "অন্ধকার"
-          }
-        },
-        "ca" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fosc"
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tmavý"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mørk"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dunkel"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Σκούρο"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dark"
-          }
-        },
-        "en-AU" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dark"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dark"
-          }
-        },
-        "en-IN" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dark"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Oscuro"
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Oscuro"
-          }
-        },
-        "es-US" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Oscuro"
-          }
-        },
-        "fa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "تاریک"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tumma"
-          }
-        },
-        "fil" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Madilim"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sombre"
-          }
-        },
-        "fr-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sombre"
-          }
-        },
-        "ga" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dorcha"
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "כהה"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "डार्क"
-          }
-        },
-        "hr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tamno"
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sötét"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gelap"
-          }
-        },
-        "is" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dökkt"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scuro"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ダーク"
-          }
-        },
-        "jv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Peteng"
-          }
-        },
-        "kk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Қараңғы"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "다크"
-          }
-        },
-        "lb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dunkel"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gelap"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mørk"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Donker"
-          }
-        },
-        "pa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ਹਨੇਰਾ"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ciemny"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Escuro"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Escuro"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Întunecat"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тёмная"
-          }
-        },
-        "sk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tmavý"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mörk"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "มืด"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Koyu"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Темна"
-          }
-        },
-        "ur" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "تاریک"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tối"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "深色"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "深色"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "深色"
-          }
-        }
-      }
-    },
-    "Dark (disabled)" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "af" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Donker (uitgeskakel)"
-          }
-        },
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "غامق (معطّل)"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тъмен (изключено)"
-          }
-        },
-        "bn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "অন্ধকার (অকার্যকর)"
-          }
-        },
-        "ca" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fosc (desactivat)"
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tmavý (zakázáno)"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mørk (deaktiveret)"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dunkel (deaktiviert)"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Σκούρο (απενεργοποιημένο)"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dark (disabled)"
-          }
-        },
-        "en-AU" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dark (disabled)"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dark (disabled)"
-          }
-        },
-        "en-IN" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dark (disabled)"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Oscuro (desactivado)"
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Oscuro (desactivado)"
-          }
-        },
-        "es-US" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Oscuro (desactivado)"
-          }
-        },
-        "fa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "تاریک (غیرفعال)"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tumma (pois käytöstä)"
-          }
-        },
-        "fil" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Madilim (hindi pinagana)"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sombre (désactivé)"
-          }
-        },
-        "fr-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sombre (désactivé)"
-          }
-        },
-        "ga" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dorcha (díghníomhachtaithe)"
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "כהה (מושבת)"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "डार्क (अक्षम)"
-          }
-        },
-        "hr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tamno (onemogućeno)"
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sötét (letiltva)"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gelap (dinonaktifkan)"
-          }
-        },
-        "is" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dökkt (óvirkt)"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scuro (disattivato)"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ダーク（無効）"
-          }
-        },
-        "jv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Peteng (dipatèni)"
-          }
-        },
-        "kk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Қараңғы (өшірулі)"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "다크(사용 불가)"
-          }
-        },
-        "lb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dunkel (deaktivéiert)"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gelap (dinonaktifkan)"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mørk (deaktivert)"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Donker (uitgeschakeld)"
-          }
-        },
-        "pa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ਹਨੇਰਾ (ਨਿਸ਼ਕ੍ਰਿਯ)"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ciemny (wyłączony)"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Escuro (desativado)"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Escuro (desativado)"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Întunecat (dezactivat)"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тёмная (отключено)"
-          }
-        },
-        "sk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tmavý (deaktivovaný)"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mörk (inaktiverad)"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "มืด (ปิดใช้งาน)"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Koyu (devre dışı)"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Темна (вимкнено)"
-          }
-        },
-        "ur" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "تاریک (غیر فعال)"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tối (đã tắt)"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "深色（已禁用）"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "深色 (停用)"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "深色 (停用)"
           }
         }
       }
@@ -7979,6 +7459,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Введи текст"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "පෙළ ඇතුලත් කරන්න"
           }
         },
         "sk" : {
@@ -8303,6 +7789,12 @@
             "value" : "Развернуть"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "විස්තාර කරන්න"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8623,6 +8115,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Обратная связь"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ප්‍රතිචාර"
           }
         },
         "sk" : {
@@ -8947,6 +8445,12 @@
             "value" : "Загружаю логи"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ලොග් ගෙන එමින්"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9267,6 +8771,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Готово"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "නිම කරන්න"
           }
         },
         "sk" : {
@@ -9591,6 +9101,12 @@
             "value" : "Перейти в Настройки"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "සැකසුම් වෙත යන්න"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9911,6 +9427,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Перейти к изображению №%lld."
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld වන රූපයට යන්න."
           }
         },
         "sk" : {
@@ -10235,6 +9757,12 @@
             "value" : "Привет, мир!"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "හෙලෝ වර්ල්ඩ්!"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10555,6 +10083,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Начальная версия"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "මුල් අනුවාදය"
           }
         },
         "sk" : {
@@ -10879,6 +10413,12 @@
             "value" : "Элемент 1"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "අයිතම 1"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11199,6 +10739,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Элемент 2"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "අයිතම 2"
           }
         },
         "sk" : {
@@ -11523,6 +11069,12 @@
             "value" : "Элемент 3"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "අයිතම 3"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11845,6 +11397,12 @@
             "value" : "Лицензировано по %@"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ යටතේ බලපත්‍ර ලැබී ඇත"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11903,652 +11461,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "根據 %@ 授權"
-          }
-        }
-      }
-    },
-    "Light" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "af" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lig"
-          }
-        },
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "فاتح"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Светъл"
-          }
-        },
-        "bn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "হালকা"
-          }
-        },
-        "ca" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Clar"
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Světlý"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lys"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hell"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ανοιχτό"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Light"
-          }
-        },
-        "en-AU" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Light"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Light"
-          }
-        },
-        "en-IN" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Light"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Claro"
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Claro"
-          }
-        },
-        "es-US" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Claro"
-          }
-        },
-        "fa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "روشن"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vaalea"
-          }
-        },
-        "fil" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Maliwanag"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Clair"
-          }
-        },
-        "fr-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Clair"
-          }
-        },
-        "ga" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Éadrom"
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "בהיר"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "लाइट"
-          }
-        },
-        "hr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Svijetlo"
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Világos"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Terang"
-          }
-        },
-        "is" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ljóst"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chiaro"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ライト"
-          }
-        },
-        "jv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Terang"
-          }
-        },
-        "kk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Жарық"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "라이트"
-          }
-        },
-        "lb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Liicht"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cerah"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lys"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Licht"
-          }
-        },
-        "pa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ਹਲਕਾ"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jasny"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Claro"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Claro"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deschis"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Светлая"
-          }
-        },
-        "sk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Svetlý"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ljus"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "สว่าง"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Açık"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Світла"
-          }
-        },
-        "ur" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "روشن"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sáng"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "浅色"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "淺色"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "淺色"
-          }
-        }
-      }
-    },
-    "Light (disabled)" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "af" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lig (uitgeskakel)"
-          }
-        },
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "فاتح (معطّل)"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Светъл (изключено)"
-          }
-        },
-        "bn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "হালকা (অকার্যকর)"
-          }
-        },
-        "ca" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Clar (desactivat)"
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Světlý (zakázáno)"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lys (deaktiveret)"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hell (deaktiviert)"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ανοιχτό (απενεργοποιημένο)"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Light (disabled)"
-          }
-        },
-        "en-AU" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Light (disabled)"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Light (disabled)"
-          }
-        },
-        "en-IN" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Light (disabled)"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Claro (desactivado)"
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Claro (desactivado)"
-          }
-        },
-        "es-US" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Claro (desactivado)"
-          }
-        },
-        "fa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "روشن (غیرفعال)"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vaalea (pois käytöstä)"
-          }
-        },
-        "fil" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Maliwanag (hindi pinagana)"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Clair (désactivé)"
-          }
-        },
-        "fr-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Clair (désactivé)"
-          }
-        },
-        "ga" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Éadrom (díghníomhachtaithe)"
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "בהיר (מושבת)"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "लाइट (अक्षम)"
-          }
-        },
-        "hr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Svijetlo (onemogućeno)"
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Világos (letiltva)"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Terang (dinonaktifkan)"
-          }
-        },
-        "is" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ljóst (óvirkt)"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chiaro (disattivato)"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ライト（無効）"
-          }
-        },
-        "jv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Terang (dipatèni)"
-          }
-        },
-        "kk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Жарық (өшірулі)"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "라이트(사용 불가)"
-          }
-        },
-        "lb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Liicht (deaktivéiert)"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cerah (dinonaktifkan)"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lys (deaktivert)"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Licht (uitgeschakeld)"
-          }
-        },
-        "pa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ਹਲਕਾ (ਨਿਸ਼ਕ੍ਰਿਯ)"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jasny (wyłączony)"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Claro (desativado)"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Claro (desativado)"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deschis (dezactivat)"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Светлая (отключено)"
-          }
-        },
-        "sk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Svetlý (deaktivovaný)"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ljus (inaktiverad)"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "สว่าง (ปิดใช้งาน)"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Açık (devre dışı)"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Світла (вимкнено)"
-          }
-        },
-        "ur" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "روشن (غیر فعال)"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sáng (đã tắt)"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "浅色（已禁用）"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "淺色 (停用)"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "淺色 (停用)"
           }
         }
       }
@@ -12811,6 +11723,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Светлый режим"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "සැහැල්ලු ක්‍රමය"
           }
         },
         "sk" : {
@@ -13133,6 +12051,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Загрузка"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "පූරණය වෙමින්..."
           }
         },
         "sk" : {
@@ -13756,6 +12680,12 @@
             "value" : "Месяц"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "මාසය"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14076,6 +13006,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Больше приложений от разработчика"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "සංවර්ධකයාගෙන් තවත් යෙදුම්"
           }
         },
         "sk" : {
@@ -14400,6 +13336,12 @@
             "value" : "Далее"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ඊළඟ"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14720,6 +13662,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нет"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "නැහැ"
           }
         },
         "sk" : {
@@ -15044,6 +13992,12 @@
             "value" : "Нет прогресса"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ප්‍රගති නැත"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15364,6 +14318,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сейчас"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "දැන්"
           }
         },
         "sk" : {
@@ -15688,6 +14648,12 @@
             "value" : "ОК"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "හරි"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16008,6 +14974,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Открыть в веб-браузере"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "වෙබ් බ්‍රව්සරයෙන් විවෘත කරන්න"
           }
         },
         "sk" : {
@@ -16332,6 +15304,12 @@
             "value" : "Открыть лист"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ශීට් විවෘත කරන්න"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16652,6 +15630,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Выбери элементы"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ඔබේ අයිතම තෝරන්න"
           }
         },
         "sk" : {
@@ -16976,6 +15960,12 @@
             "value" : "Назад"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "පෙර"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17296,6 +16286,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Политика конфиденциальности"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "පෞද්ගලිකත්ව ප්‍රතිපත්තිය"
           }
         },
         "sk" : {
@@ -17620,6 +16616,12 @@
             "value" : "Оценить приложение"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "යෙදුම ශ්‍රේණිගත කරන්න"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17940,6 +16942,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "СБРОС"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "යළි සකසන්න"
           }
         },
         "sk" : {
@@ -18264,6 +17272,12 @@
             "value" : "Выбранный"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "තෝරාගත්"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18584,6 +17598,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Показать конфетти"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "කොන්ෆෙටි පෙන්වන්න"
           }
         },
         "sk" : {
@@ -18908,6 +17928,12 @@
             "value" : "Пропустить"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "මඟහරිනු"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19228,6 +18254,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Оставайся на связи с\npush-уведомлениями"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "පුෂ් නිවේදනයන් මඟින්\nසම්බන්ධව සිටින්න"
           }
         },
         "sk" : {
@@ -19552,6 +18584,12 @@
             "value" : "Нажми, чтобы закрыть экран"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "තිරය වසා දැමීමට ටැප් කරන්න"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19872,6 +18910,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Тест"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "පරීක්ෂා"
           }
         },
         "sk" : {
@@ -20199,6 +19243,12 @@
             "value" : "Переключить"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "පෙරළන්න"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20519,6 +19569,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Доступно обновление"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "නවීකරණයක් ලබාගත හැක"
           }
         },
         "sk" : {
@@ -20843,6 +19899,12 @@
             "value" : "Обнови сейчас до версии %@!"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "දැන් %@ සංස්කරණයට නවීකරණය කරන්න!"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21163,6 +20225,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Версия"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "සංස්කරණය"
           }
         },
         "sk" : {
@@ -21487,6 +20555,12 @@
             "value" : "Мы будем отправлять тебе push-уведомления, чтобы сообщать о последних новостях и обновлениях."
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "අපි නවතම පුවත් හා යාවත්කාලීන කිරීම් පිළිබඳව ඔබට දැනුම් දීමට පුෂ් දැනුම්දීම් යවන්නෙමු."
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21809,6 +20883,12 @@
             "value" : "Добро пожаловать в %@!"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ආයුබෝවන් %@!"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22129,6 +21209,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "С прогрессом"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ප්‍රගති සමඟ"
           }
         },
         "sk" : {
@@ -22752,6 +21838,12 @@
             "value" : "Год"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "වසර"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23074,6 +22166,12 @@
             "value" : "Да"
           }
         },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ඔව්"
+          }
+        },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23394,6 +22492,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "У тебя новое сообщение"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ඔබට පණිවුඩයක් ලැබී ඇත"
           }
         },
         "sk" : {

@@ -12,6 +12,15 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Applies the WCAG piecewise gamma expansion to a sRGB channel value.
+///
+/// Used internally by `Color.luminance` and `Color.Resolved.luminance`.
+/// - Parameter value: A linearised sRGB component (0–1 scale).
+/// - Returns: The gamma-expanded linear light value.
+private func wcagLinearize(_ value: Double) -> Double {
+    value <= 0.03928 ? value / 12.92 : pow((value + 0.055) / 1.055, 2.4)
+}
+
 extension Color {
     /// Get the red value of a color
     /// - Returns the red value of the color as a CGFloat.
@@ -232,16 +241,9 @@ extension Color {
 
     /// Luminance per WCAG using rgb components
     public var luminance: Double {
-        func transform(_ value: Double) -> Double {
-            return value <= 0.03928 ? value / 12.92 : pow((value + 0.055) / 1.055, 2.4)
-        }
-        let redLumiance = transform(self.redValue)
-        let greenLumiance = transform(self.greenValue)
-        let blueLumiance = transform(self.blueValue)
-
-        if redValue == greenValue, greenValue == blueValue, self != .black {
-            print("Unable to decode this color!")
-        }
+        let redLumiance = wcagLinearize(self.redValue)
+        let greenLumiance = wcagLinearize(self.greenValue)
+        let blueLumiance = wcagLinearize(self.blueValue)
 
         // Rec. 709 luminance formula
         return 0.2126 * redLumiance + 0.7152 * greenLumiance + 0.0722 * blueLumiance
@@ -294,15 +296,9 @@ extension Color.Resolved {
 
     /// Luminance per WCAG using sRGB components (0-1).
     public var luminance: Double {
-        func transform(_ value: Double) -> Double {
-            return value <= 0.03928 ? value / 12.92 : pow((value + 0.055) / 1.055, 2.4)
-        }
-        let redLumiance = transform(Double(self.red))
-        let greenLumiance = transform(Double(self.green))
-        let blueLumiance = transform(Double(self.blue))
-
-        print("Red: \(self.red), Green: \(self.green), Blue: \(self.blue)")
-        print("luminance: \(0.2126 * redLumiance + 0.7152 * greenLumiance + 0.0722 * blueLumiance)")
+        let redLumiance = wcagLinearize(Double(self.red))
+        let greenLumiance = wcagLinearize(Double(self.green))
+        let blueLumiance = wcagLinearize(Double(self.blue))
 
         // Rec. 709 luminance formula
         return 0.2126 * redLumiance + 0.7152 * greenLumiance + 0.0722 * blueLumiance

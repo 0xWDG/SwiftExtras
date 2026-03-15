@@ -21,6 +21,14 @@ extension View {
         self.frame(width: size, height: size)
     }
 
+    /// Set a frame size (HxB)
+    ///
+    /// - Parameter size: The size to set for both width and height.
+    /// - Returns: self
+    public func frame(size: CGSize) -> some View {
+        self.frame(width: size.width, height: size.height)
+    }
+
     /// Set a max frame size (HxB)
     ///
     /// - Parameter maxSize: The max size to set for both width and height.
