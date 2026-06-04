@@ -1643,6 +1643,7 @@
       }
     },
     "0.0.1" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -9831,6 +9832,7 @@
       }
     },
     "Initial version" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -15055,6 +15057,7 @@
       }
     },
     "Open Sheet" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {

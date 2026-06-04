@@ -84,6 +84,8 @@ This file contains the changelog of SwiftExtras.
   A property that returns a center cropped version of the image.
 - Fixed [`Date.time(timeZone:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/time(timezone:))  
   To return the correct time for the date in a specific time zone. Reported by JB for [Calendo](https://wesleydegroot.nl/apps/calendo)
+- Added [`AutoEquatable`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/autoequatable) protocol.  
+  A protocol that automatically synthesizes `Equatable` conformance for types that conform to it.
 
 ### 1.2.6
 - Added [`.accentColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/accentcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  

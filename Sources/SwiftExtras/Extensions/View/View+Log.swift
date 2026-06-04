@@ -29,5 +29,33 @@ extension View {
         closure()
         return self
     }
+
+    /// Debug print
+    ///
+    /// This enables:
+    ///  ```swift
+    ///  SomeSwiftUIView()
+    ///     .debugPrint("Some debug info")
+    ///  ```
+    ///  - Parameter item: Item to print
+    /// - Returns: self
+    public func debugPrint(_ item: Any) -> some View {
+        print(item)
+        return self
+    }
+
+    /// Debug print with closure
+    ///
+    /// This enables:
+    ///  ```swift
+    ///  SomeSwiftUIView()
+    ///     .printValues { "My debug info: \(someVariable)" }
+    ///  ```
+    ///  - Parameter closure: Code need to run, the result will be printed
+    /// - Returns: self
+    public func printValues(_ closure: () -> Any) -> some View {
+        print(closure())
+        return self
+    }
 }
 #endif
