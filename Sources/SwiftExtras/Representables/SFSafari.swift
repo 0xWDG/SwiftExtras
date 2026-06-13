@@ -17,10 +17,15 @@ import UIKit
 /// Make a Safari View for SwiftUI
 @available(iOS 14.0, *)
 public struct SafariView: UIViewControllerRepresentable {
+    /// The UIKit view-controller type represented by this SwiftUI view.
     public typealias UIViewControllerType = SFSafariViewController
 
+    /// The URL string displayed by the Safari view controller.
     @Binding public var urlString: String
 
+    /// Creates a Safari view bound to a URL.
+    ///
+    /// - Parameter url: The URL to display.
     public init(url: Binding<URL>) {
         _urlString = Binding(get: {
             return url.wrappedValue.absoluteString
@@ -29,10 +34,17 @@ public struct SafariView: UIViewControllerRepresentable {
         })
     }
 
+    /// Creates a Safari view bound to a URL string.
+    ///
+    /// - Parameter url: The URL string to display.
     public init(url: Binding<String>) {
         _urlString = url
     }
 
+    /// Creates the Safari view controller used by SwiftUI.
+    ///
+    /// - Parameter context: Context supplied by SwiftUI.
+    /// - Returns: A Safari view controller configured for the bound URL.
     public func makeUIViewController(
         context: UIViewControllerRepresentableContext<SafariView>
     ) -> SFSafariViewController {
@@ -50,6 +62,11 @@ public struct SafariView: UIViewControllerRepresentable {
         return safariViewController
     }
 
+    /// Updates the represented Safari view controller.
+    ///
+    /// - Parameters:
+    ///   - safariViewController: The Safari view controller managed by SwiftUI.
+    ///   - context: Context supplied by SwiftUI.
     public func updateUIViewController(
         _ safariViewController: SFSafariViewController,
         context: UIViewControllerRepresentableContext<SafariView>

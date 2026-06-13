@@ -26,16 +26,32 @@ public struct SEAcknowledgementView: View {
     public var body: some View {
         List {
             ForEach(entries.sorted(by: { $0.name < $1.name })) { entry in
-                if entry.url != nil {
+                if let string = entry.url,
+                   let url = URL(string: string) {
 #if canImport(WebKit)
-                    Button {
-                        selectedEntry = entry
-                        showEntry = true
+                    NavigationLink {
+                        WebView(url: url)
+                            .navigationTitle(entry.name)
+                            .toolbar {
+                                Button {
+                                    openURL(url)
+                                } label: {
+                                    Image(systemName: "safari")
+                                        .accessibilityLabel(
+                                            Text("Open in web browser")
+                                        )
+                                }
+                            }
+                            .modify {
+                                if #available(iOS 26, *) {
+                                    $0.navigationSubtitle(string)
+                                } else {
+                                    $0
+                                }
+                            }
                     } label: {
                         label(for: entry)
                     }
-                    .buttonStyle(.plain)
-                    .id(UUID())
 #else
                     label(for: entry)
 #endif
@@ -50,26 +66,6 @@ public struct SEAcknowledgementView: View {
 #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
 #endif
-        .navigationDestination(isPresented: $showEntry) {
-#if canImport(WebKit)
-            if let selectedEntry,
-               let string = selectedEntry.url,
-               let url = URL(string: string) {
-                WebView(url: url)
-                    .navigationTitle(selectedEntry.name)
-                    .toolbar {
-                        Button {
-                            openURL(url)
-                        } label: {
-                            Image(systemName: "safari")
-                                .accessibilityLabel(
-                                    Text("Open in web browser")
-                                )
-                        }
-                    }
-            }
-#endif
-        }
     }
 
     /// Create a label for a given change log entry.
@@ -95,7 +91,9 @@ public struct SEAcknowledgementView: View {
     public init(entries: [SEAcknowledgement]) {
         self.entries = Set(entries)
 
-        if entries.contains(where: { $0.name == "SwiftExtras" }) == false {
+        if entries.contains(
+            where: { $0.name == "SwiftExtras" }
+        ) == false {
             self.entries.insert(
                 .init(
                     name: "SwiftExtras",
@@ -106,7 +104,9 @@ public struct SEAcknowledgementView: View {
             )
         }
 
-        if entries.contains(where: { $0.name == "OSLogViewer" }) == false {
+        if entries.contains(
+            where: { $0.name == "OSLogViewer" }
+        ) == false {
             self.entries.insert(
                 .init(
                     name: "OSLogViewer",
@@ -124,7 +124,11 @@ public struct SEAcknowledgementView: View {
 #Preview {
     NavigationStack {
         SEAcknowledgementView(entries: [
-            .init(name: "Test", copyright: "Creator", licence: "MIT")
+            .init(
+                name: "Test",
+                copyright: "Creator",
+                licence: "MIT"
+            )
         ])
     }
 }

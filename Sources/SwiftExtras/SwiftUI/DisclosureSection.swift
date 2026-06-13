@@ -45,7 +45,7 @@ public struct DisclosureSection<Content: View, Label: View>: View {
         @ViewBuilder content: @escaping () -> Content
     ) where Label == Text {
         self.content = content
-        self.isExpanded = isExpanded
+        self._isExpanded = State(initialValue: isExpanded)
         self.label = { Text(titleKey) }
     }
 
@@ -68,7 +68,7 @@ public struct DisclosureSection<Content: View, Label: View>: View {
         @ViewBuilder content: @escaping () -> Content
     ) where S: StringProtocol, Label == Text {
         self.content = content
-        self.isExpanded = isExpanded
+        self._isExpanded = State(initialValue: isExpanded)
         self.label = { Text(titleKey) }
     }
 
@@ -96,7 +96,7 @@ public struct DisclosureSection<Content: View, Label: View>: View {
         @ViewBuilder label: @escaping () -> Label
     ) {
         self.content = content
-        self.isExpanded = isExpanded
+        self._isExpanded = State(initialValue: isExpanded)
         self.label = label
     }
 

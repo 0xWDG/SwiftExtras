@@ -16,6 +16,10 @@ import SwiftUI
 public struct PulsatingEffect: ViewModifier {
     @State private var scale: CGFloat = 1.0
 
+    /// Applies a repeating scale animation to the supplied content.
+    ///
+    /// - Parameter content: The content to animate.
+    /// - Returns: The content with a pulsating scale effect applied.
     public func body(content: Content) -> some View {
         content
             .scaleEffect(scale)

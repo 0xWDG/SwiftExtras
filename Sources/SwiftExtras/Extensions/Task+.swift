@@ -22,7 +22,7 @@ extension Task where Failure == Error {
     ) {
         let semaphore = DispatchSemaphore(value: 0)
 
-        Task(priority: priority) {
+        _ = Task(priority: priority) {
             defer { semaphore.signal() }
             return try await operation()
         }

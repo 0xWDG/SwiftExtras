@@ -35,5 +35,21 @@ public extension Binding {
             lhs.wrappedValue = $0
         }
     }
+
+    /// Create a read-only Binding for an optional source
+    ///
+    /// Example usage:
+    /// ```swift
+    /// Binding(for: myOptionalValue?)
+    /// ```
+    ///
+    /// - Parameter source: optional source value
+    /// - Returns: read-only Binding
+    init<T>(for source: T?) where Value == T? {
+        self.init(
+            get: { source },
+            set: { _, _ in }
+        )
+    }
 }
 #endif

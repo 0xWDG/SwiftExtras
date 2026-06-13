@@ -14,6 +14,9 @@ import Foundation
 import FoundationNetworking
 #endif
 
+/// A URL session delegate that accepts server-trust authentication challenges.
+///
+/// Use this delegate only when certificate validation is intentionally disabled.
 public class IgnoreSSLErrorsDelegate: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
     /// urlSession(_:didReceive:completionHandler:) - Ignore SSL certificate errors
     /// - Parameters:

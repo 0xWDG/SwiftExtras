@@ -287,7 +287,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                     Label {
                         Text("Acknowledgements", bundle: Bundle.module)
                     } icon: {
-                        Image(systemName: "paperclip")
+                        Image(systemName: "hands.clap")
                             .accessibilityHidden(true)
                     }
                 }

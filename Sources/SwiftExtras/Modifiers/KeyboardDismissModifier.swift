@@ -14,6 +14,10 @@ import SwiftUI
 
 /// A modifier to dismiss the keyboard when tapping outside a text field.
 public struct KeyboardDismissModifier: ViewModifier {
+    /// Adds a tap gesture that dismisses the current first responder.
+    ///
+    /// - Parameter content: The content to modify.
+    /// - Returns: The content with keyboard dismissal behavior applied.
     public func body(content: Content) -> some View {
         content
             .onTapGesture {
