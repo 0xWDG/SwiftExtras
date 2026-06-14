@@ -12,12 +12,11 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
-/// Custom LabeledContent view with copy-to-clipboard functionality
-/// - Parameters:
-///   - title: The title of the labeled content
-///   - value: The value to be displayed and copied
+/// A labeled value that provides a copy-to-clipboard context-menu action.
 public struct CopyableLabeledContent: View {
+    /// The label displayed for the value.
     public let title: String
+    /// The displayed value and text copied to the clipboard.
     public let value: String
 
     /// Initializes a new instance of `CopyableLabeledContent`
@@ -42,7 +41,7 @@ public struct CopyableLabeledContent: View {
         self.value = value
     }
 
-    /// View body for the custom labeled content
+    /// The labeled value and its copy action.
     public var body: some View {
         LabeledContent(title) {
             Text(value)

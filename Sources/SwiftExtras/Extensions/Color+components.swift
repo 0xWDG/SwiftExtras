@@ -23,35 +23,31 @@ private func wcagLinearize(_ value: Double) -> Double {
 
 extension Color {
     /// Get the red value of a color
-    /// - Returns the red value of the color as a CGFloat.
+    /// - Returns: The normalized red component.
     public var redValue: CGFloat {
-        let val = self.cgColor?.components?[0] ?? 0
-        return Double(round(1000 * (val * 255)) / 1000)
+        components.red
     }
 
     /// Get the green value of a color
-    /// - Returns the green value of the color as a CGFloat.
+    /// - Returns: The normalized green component.
     public var greenValue: CGFloat {
-        let val = self.cgColor?.components?[1] ?? 0
-        return Double(round(1000 * (val * 255)) / 1000)
+        components.green
     }
 
     /// Get the blue value of a color
-    /// - Returns the blue value of the color as a CGFloat.
+    /// - Returns: The normalized blue component.
     public var blueValue: CGFloat {
-        let val = self.cgColor?.components?[2] ?? 0
-        return Double(round(1000 * (val * 255)) / 1000)
+        components.blue
     }
 
     /// Get the alpha value of a color
-    /// - Returns the alpha value of the color as a CGFloat.
+    /// - Returns: The normalized alpha component.
     public var alphaValue: CGFloat {
-        let val = self.cgColor?.components?[3] ?? 0
-        return Double(round(1000 * (val * 255)) / 1000)
+        components.opacity
     }
 
     /// Get the hex value of a color
-    /// - Returns a string representation of the color in hex format.
+    /// - Returns: The normalized red, green, blue, and opacity components.
     public var components: (red: CGFloat, green: CGFloat, blue: CGFloat, opacity: CGFloat) {
         // swiftlint:disable:previous large_tuple
         var redValue: CGFloat = 0
@@ -65,19 +61,22 @@ extension Color {
             return (0, 0, 0, 0)
         }
         #elseif canImport(AppKit)
-        NSColor(self).getRed(&redValue, green: &greenValue, blue: &blueValue, alpha: &alphaValue)
+        guard let color = NSColor(self).usingColorSpace(.sRGB) else {
+            return (0, 0, 0, 0)
+        }
+        color.getRed(&redValue, green: &greenValue, blue: &blueValue, alpha: &alphaValue)
         #endif
 
         return (
-            Double(round(1000 * (redValue * 255)) / 1000),
-            Double(round(1000 * (greenValue * 255)) / 1000),
-            Double(round(1000 * (blueValue * 255)) / 1000),
-            Double(round(1000 * (alphaValue * 255)) / 1000)
+            redValue,
+            greenValue,
+            blueValue,
+            alphaValue
         )
     }
 
     /// Get HEX string
-    /// - Returns a string representation of the color in HEX format.
+    /// - Returns: A six-digit hexadecimal RGB string.
     public var hex: String {
         String(
             format: "#%02x%02x%02x",
@@ -88,7 +87,7 @@ extension Color {
     }
 
     /// Get HEX string
-    /// - Returns a string representation of the color in HEXi format.
+    /// - Returns: An eight-digit hexadecimal RGBA string.
     public var hex8: String {
         String(
             format: "#%02x%02x%02x%02x",
@@ -100,25 +99,24 @@ extension Color {
     }
 
     /// Get RGB string
-    /// - Returns a string representation of the color in RGB format.
+    /// - Returns: An RGB functional-notation string.
     public func rgbString() -> String {
         let components = self.components
         return "rgb(\(Int(components.red)), \(Int(components.green)), \(Int(components.blue)))"
     }
 
     /// Get HSB string
-    /// - Returns a string representation of the color in HSB format.
+    /// - Returns: An HSB functional-notation string.
     public func hsbString() -> String {
-        let components = self.components
-
         // RGB to HSB
-        let max = Swift.max(self.redValue, self.greenValue, self.blueValue)
-        let min = Swift.min(self.redValue, self.greenValue, self.blueValue)
+        let components = self.components
+        let max = Swift.max(components.red, components.green, components.blue)
+        let min = Swift.min(components.red, components.green, components.blue)
 
         let delta = max - min
         var hue: CGFloat = 0
         var saturation: CGFloat = 0
-        var brightness: CGFloat = 0
+        let brightness = max
 
         if delta != 0 {
             if max == components.red {
@@ -135,16 +133,15 @@ extension Color {
                 hue += 360
             }
 
-            brightness = max == 0 ? 0 : delta / max
         }
 
         saturation = max == 0 ? 0 : delta / max
 
-        return "hsb(\(Int(hue)), \(Int(saturation)), \(Int(brightness)))"
+        return "hsb(\(Int(hue)), \(Int(saturation * 100)), \(Int(brightness * 100)))"
     }
 
     /// Get HSL string
-    /// - Returns a string representation of the color in HSL format.
+    /// - Returns: An HSL functional-notation string.
     public func hslString() -> String {
         let components = self.components
 
@@ -177,11 +174,11 @@ extension Color {
             saturation = lightness > 0.5 ? delta / (2 - max - min) : delta / (max + min)
         }
 
-        return "hsl(\(Int(hue)), \(Int(saturation)), \(Int(lightness)))"
+        return "hsl(\(Int(hue)), \(Int(saturation * 100)), \(Int(lightness * 100)))"
     }
 
     /// Get XYZ string
-    /// - Returns a string representation of the color in XYZ format.
+    /// - Returns: An XYZ functional-notation string.
     public func xyzString() -> String {
         let components = self.components
 
@@ -206,7 +203,7 @@ extension Color {
     }
 
     /// Get LAB string
-    /// - Returns a string representation of the color in LAB format.
+    /// - Returns: A LAB functional-notation string.
     public func labString() -> String {
         let components = self.components
 
@@ -253,35 +250,34 @@ extension Color {
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 extension Color.Resolved {
     /// Get the hex value of a color
-    /// - Returns a string representation of the color in hex format.
+    /// - Returns: A hexadecimal representation of the resolved color.
     public var hex: String {
         let description = String(describing: self.description)
         return String(description.dropLast(2))
     }
 
     /// Get the red value of a color
-    /// - Returns the red value of the color as a CGFloat.
+    /// - Returns: The normalized red component.
     public var redValue: CGFloat {
         return CGFloat(red)
     }
 
     /// Get the green value of a color
-    /// - Returns the green value of the color as a CGFloat.
+    /// - Returns: The normalized green component.
     public var greenValue: CGFloat {
         return CGFloat(green)
     }
 
     /// Get the blue value of a color
-    /// - Returns the blue value of the color as a CGFloat.
+    /// - Returns: The normalized blue component.
     public var blueValue: CGFloat {
         return CGFloat(blue)
     }
 
     /// Get the alpha value of a color
-    /// - Returns the alpha value of the color as a CGFloat.
+    /// - Returns: The normalized alpha component.
     public var alphaValue: CGFloat {
-        let val = self.cgColor.components?[3] ?? 0
-        return Double(round(1000 * (val * 255)) / 1000)
+        CGFloat(opacity)
     }
 
     /// Get the (6) hex color from the current

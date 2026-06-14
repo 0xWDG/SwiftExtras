@@ -13,7 +13,59 @@
 import Testing
 @testable import SwiftExtras
 
-@Test func example() async throws {
-    // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+#if canImport(SwiftUI)
+import SwiftUI
+
+@Test func malformedColorPayloadThrows() {
+    let malformed = Data(#""1;0;0""#.utf8)
+    #expect(throws: DecodingError.self) {
+        try JSONDecoder().decode(Color.self, from: malformed)
+    }
 }
+
+@Test func legacyColorPayloadIsNormalized() throws {
+    let legacy = Data(#""255;128;0;255""#.utf8)
+    let color = try JSONDecoder().decode(Color.self, from: legacy)
+    let components = color.components
+
+    #expect(abs(components.red - 1) < 0.001)
+    #expect(abs(components.green - (128.0 / 255.0)) < 0.001)
+    #expect(abs(components.blue) < 0.001)
+    #expect(abs(components.opacity - 1) < 0.001)
+}
+
+@Test func normalizedColorPayloadRoundTrips() throws {
+    let original = Color(red: 0.25, green: 0.5, blue: 0.75, alpha: 0.8)
+    let data = try JSONEncoder().encode(original)
+    let decoded = try JSONDecoder().decode(Color.self, from: data)
+
+    #expect(approximatelyEqual(decoded.components.red, 0.25))
+    #expect(approximatelyEqual(decoded.components.green, 0.5))
+    #expect(approximatelyEqual(decoded.components.blue, 0.75))
+    #expect(approximatelyEqual(decoded.components.opacity, 0.8))
+}
+
+@Test func kMeansSingleClusterAveragesAllChannels() {
+    let result = kMeansCluster(
+        colors: [.init(red: 1, green: 0, blue: 0), .init(red: 0, green: 0, blue: 1)],
+        clusters: 1,
+        iterations: 1
+    )
+
+    let components = result[0].components
+    #expect(abs(components.red - 0.5) < 0.001)
+    #expect(abs(components.green) < 0.001)
+    #expect(abs(components.blue - 0.5) < 0.001)
+}
+
+@Test func kMeansHandlesInvalidAndLargeClusterCounts() {
+    #expect(kMeansCluster(colors: [], clusters: 2).isEmpty)
+    #expect(kMeansCluster(colors: [.red], clusters: 0).isEmpty)
+    #expect(kMeansCluster(colors: [.red, .blue], clusters: 4, iterations: 0).count == 4)
+}
+
+private func approximatelyEqual(_ lhs: CGFloat, _ rhs: CGFloat) -> Bool {
+    abs(lhs - rhs) < 0.001
+}
+#endif
 #endif

@@ -18,13 +18,13 @@ import SwiftUI
 /// It displays a list of items, each with a checkbox that allows you to select or deselect it.
 public struct MultiSelectView<Label: View>: View {
     /// The list of all items to read from
-    @State var sourceItems: [String]
+    private let sourceItems: [String]
 
     /// The values we want to track
-    @Binding var selectedItems: [String]
+    @Binding private var selectedItems: [String]
 
     /// The label for each item
-    var label: (_ item: String) -> Label?
+    private let label: (_ item: String) -> Label?
 
     /// MultiSelectPickerView
     ///

@@ -16,12 +16,19 @@ import SwiftUI
 public struct ShakeEffect: GeometryEffect {
     var amount: CGFloat = 10
     var shakes: Int = 3
+    /// The animation progress used to calculate the horizontal offset.
     public var animatableData: CGFloat
 
+    /// Creates a shake effect at the specified animation progress.
+    /// - Parameter animatableData: The animation progress used to calculate the shake offset.
     public init(animatableData: CGFloat) {
         self.animatableData = animatableData
     }
 
+    /// Returns the horizontal translation for the current animation progress.
+    ///
+    /// - Parameter size: The size of the modified view.
+    /// - Returns: A projection transform that applies the shake offset.
     public func effectValue(size: CGSize) -> ProjectionTransform {
         ProjectionTransform(
             CGAffineTransform(

@@ -15,10 +15,9 @@ import FoundationNetworking
 #endif
 
 extension URL {
-    /// Initialize if there might be a scheme provided
-    /// if this fails the function will try the `https` scheme.
+    /// Creates a URL, adding the `https` scheme when one is not provided.
     ///
-    /// - Prameter safeString: The string which may contains a scheme.
+    /// - Parameter urlString: The URL string, which may already contain a scheme.
     public init?(safeString urlString: String) {
         if urlString.contains("://") {
             self.init(string: urlString)

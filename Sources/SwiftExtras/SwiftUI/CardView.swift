@@ -12,9 +12,7 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
-/// Card View
-///
-/// This view to represent a `CardView` like Apple is using in Maps, Find My, etc.
+/// A dismissible card that displays a title, optional subtitle, and custom content.
 @available(macOS 11.0, *, iOS 14, *)
 public struct CardView<Content: View>: View {
     // To dismiss this screen using the button.
@@ -24,6 +22,12 @@ public struct CardView<Content: View>: View {
     let subtitle: String?
     let content: Content
 
+    /// Creates a card view.
+    ///
+    /// - Parameters:
+    ///   - title: The card's title.
+    ///   - subtitle: Optional supporting text displayed below the title.
+    ///   - content: A view builder that creates the card's scrollable content.
     public init(
         title: String,
         subtitle: String? = nil,
@@ -44,6 +48,7 @@ public struct CardView<Content: View>: View {
             .accessibility(removeTraits: .isImage)
     }
 
+    /// A button that dismisses the current presentation.
     @ViewBuilder
     public var closeButton: some View {
         Button {
@@ -56,6 +61,7 @@ public struct CardView<Content: View>: View {
 #endif
     }
 
+    /// The card's title bar and scrollable content.
     public var body: some View {
         NavigationStack {
             VStack(spacing: 0) {

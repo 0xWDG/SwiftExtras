@@ -51,17 +51,18 @@ extension Collection {
 
     /// Second element
     public var second: Element? {
-        self[safe: index(startIndex, offsetBy: 1)]
+        index(startIndex, offsetBy: 1, limitedBy: endIndex).flatMap { self[safe: $0] }
     }
 
     /// Third element
     public var third: Element? {
-        self[safe: index(startIndex, offsetBy: 2)]
+        index(startIndex, offsetBy: 2, limitedBy: endIndex).flatMap { self[safe: $0] }
     }
 
     /// Second last element
     public var penultimate: Element? {
-        self[safe: index(endIndex, offsetBy: -2)]
+        guard !isEmpty else { return nil }
+        return index(endIndex, offsetBy: -2, limitedBy: startIndex).flatMap { self[safe: $0] }
     }
 }
 #endif

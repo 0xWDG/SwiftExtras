@@ -25,6 +25,8 @@ import SwiftUI
 public struct BorderedToggleStyle: ToggleStyle {
     let color: Color
 
+    /// Creates a bordered toggle style.
+    /// - Parameter backgroundColor: The color displayed behind the toggle.
     public init(backgroundColor: Color = .tertiarySystemGroupedBackground.opacity(0.7)) {
         self.color = backgroundColor
     }

@@ -12,15 +12,12 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
-/// AsyncView
-///
-/// AsyncView accepts a async task and renders the result
-/// of the task in the body.
+/// A view that runs an asynchronous task and renders its result.
 ///
 /// Example:
 /// ```swift
 /// AsyncView {
-///     return await myAsynchronusTask()
+///     return await myAsynchronousTask()
 /// } content: { response in
 ///     Text("Response: \(response)")
 /// }
@@ -38,24 +35,21 @@ public struct AsyncView<Content: View, Result>: View {
     /// Result of the task
     @State private var result: Result?
 
-    /// AsyncView
-    ///
-    /// AsyncView accepts a async task and renders the result
-    /// of the task in the body.
+    /// Creates a view that runs an asynchronous task and renders its result.
     ///
     /// Example:
     /// ```swift
     /// AsyncView {
-    ///     return await myAsynchronusTask()
+    ///     return await myAsynchronousTask()
     /// } content: { response in
     ///     Text("Response: \(response)")
     /// }
     /// ```
     ///
     /// - Parameters:
-    ///   - showProgress: Should show progress indicator
-    ///   - task: Task to execute
-    ///   - content: View to show if task is finished
+    ///   - showProgress: Whether to display a progress indicator while the task runs.
+    ///   - task: The asynchronous task to execute.
+    ///   - content: A view builder that renders the task result.
     public init(
         showProgress: Bool = true,
         task: @escaping () async -> Result,
@@ -80,7 +74,9 @@ public struct AsyncView<Content: View, Result>: View {
                 EmptyView()
             }
 
-            AsyncTask {
+            Color.clear
+                .frame(width: 0, height: 0)
+                .task {
                 result = await task()
             }
         }

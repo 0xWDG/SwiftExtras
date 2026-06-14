@@ -14,14 +14,14 @@ import SwiftUI
 
 extension PlatformColor {
     /// Get the hex value of a color
-    /// - Returns a string representation of the color in hex format.
+    /// - Returns: A string representation of the color in hexadecimal format.
     public var hex: String {
         let description = String(describing: self.description)
         return String(description.dropLast(2))
     }
 
     /// RGB Hex value of a color
-    /// - Returns a string representation of the color in hex format.
+    /// - Returns: A string representation of the color in hexadecimal format.
     public var rgbHex: String {
         return String(
             format: "#%02x%02x%02x",
@@ -32,7 +32,7 @@ extension PlatformColor {
     }
 
     /// Get the red value of a color
-    /// - Returns the red value of the color as a CGFloat.
+    /// - Returns: The normalized red component.
     public var redValue: CGFloat {
 #if os(macOS)
         return self.redComponent
@@ -43,7 +43,7 @@ extension PlatformColor {
     }
 
     /// Get the green value of a color
-    /// - Returns the green value of the color as a CGFloat.
+    /// - Returns: The normalized green component.
     public var greenValue: CGFloat {
 #if os(macOS)
         return self.greenComponent
@@ -54,7 +54,7 @@ extension PlatformColor {
     }
 
     /// Get the blue value of a color
-    /// - Returns the blue value of the color as a CGFloat.
+    /// - Returns: The normalized blue component.
     public var blueValue: CGFloat {
 #if os(macOS)
         return self.blueComponent
@@ -65,7 +65,7 @@ extension PlatformColor {
     }
 
     /// Get the alpha value of a color
-    /// - Returns the alpha value of the color as a CGFloat.
+    /// - Returns: The normalized alpha component.
     public var alphaValue: CGFloat {
 #if os(macOS)
         return self.alphaComponent

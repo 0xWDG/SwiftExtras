@@ -30,44 +30,66 @@ import SwiftUI
 public func kMeansCluster(colors: [Color], clusters: Int, iterations: Int = 10) -> [Color] {
     guard !colors.isEmpty, clusters > 0 else { return [] }
 
-    // Initialize random centroids
-    var centroids = (0 ..< clusters).map { _ in
-        colors.randomElement()!
-        // swiftlint:disable:previous force_unwrapping
+    let points = colors.map {
+        let components = $0.components
+        return (
+            red: Double(components.red),
+            green: Double(components.green),
+            blue: Double(components.blue),
+            opacity: Double(components.opacity)
+        )
     }
+    var centroids = (0..<clusters).map { points[$0 % points.count] }
 
-    for _ in 0..<iterations {
-        var clusterArray = Array(repeating: [Color](), count: clusters)
+    for _ in 0..<max(iterations, 0) {
+        var sums = Array(
+            repeating: (red: 0.0, green: 0.0, blue: 0.0, count: 0),
+            count: clusters
+        )
 
-        // Assign each color to the closest centroid
-        for color in colors {
-            let distances = centroids.map {
-                pow(color.redValue - $0.redValue, 2) +
-                pow(color.redValue - $0.greenValue, 2) +
-                pow(color.redValue - $0.blueValue, 2)
+        for point in points {
+            var closestIndex = 0
+            var closestDistance = Double.greatestFiniteMagnitude
+
+            for (index, centroid) in centroids.enumerated() {
+                let redDistance = point.red - centroid.red
+                let greenDistance = point.green - centroid.green
+                let blueDistance = point.blue - centroid.blue
+                let distance = redDistance * redDistance
+                    + greenDistance * greenDistance
+                    + blueDistance * blueDistance
+
+                if distance < closestDistance {
+                    closestDistance = distance
+                    closestIndex = index
+                }
             }
 
-            guard let distance = distances.enumerated().min(by: { $0.element < $1.element }) else {
+            sums[closestIndex].red += point.red
+            sums[closestIndex].green += point.green
+            sums[closestIndex].blue += point.blue
+            sums[closestIndex].count += 1
+        }
+
+        for index in centroids.indices {
+            let sum = sums[index]
+            guard sum.count > 0 else {
+                centroids[index] = points[index % points.count]
                 continue
             }
 
-            clusterArray[distance.offset].append(color)
-        }
-
-        // Update centroids
-        centroids = clusterArray.map { cluster in
-            guard !cluster.isEmpty else {
-                return centroids.randomElement()!
-                // swiftlint:disable:previous force_unwrapping
-            }
-
-            let red = cluster.map { $0.redValue }.reduce(0, +) / Double(cluster.count)
-            let green = cluster.map { $0.greenValue }.reduce(0, +) / Double(cluster.count)
-            let blue = cluster.map { $0.blueValue }.reduce(0, +) / Double(cluster.count)
-            return .init(.displayP3, red: red, green: green, blue: blue)
+            let count = Double(sum.count)
+            centroids[index] = (
+                red: sum.red / count,
+                green: sum.green / count,
+                blue: sum.blue / count,
+                opacity: 1
+            )
         }
     }
 
-    return centroids
+    return centroids.map {
+        Color(.sRGB, red: $0.red, green: $0.green, blue: $0.blue)
+    }
 }
 #endif

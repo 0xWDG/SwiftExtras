@@ -76,6 +76,7 @@ public struct NotificationOnboarding: View {
         return false
     }
 
+    /// The notification permission explanation and actions.
     public var body: some View {
         ZStack {
             ZStack {
@@ -168,6 +169,10 @@ public struct NotificationOnboarding: View {
                 onPermissionChange(false)
             }
         }
+        .task(id: askPermission) {
+            guard askPermission else { return }
+            await pulseArrow()
+        }
         .interactiveDismissDisabled()
     }
 
@@ -241,11 +246,17 @@ public struct NotificationOnboarding: View {
     }
 
     private func pulseArrow() async {
-        withAnimation(.spring(duration: 1).repeatForever()) {
-            arrowY = Bool.random() ? 0 : 2
+        while !Task.isCancelled {
+            withAnimation(.spring(duration: 1)) {
+                arrowY = arrowY == 0 ? 2 : 0
+            }
+
+            do {
+                try await Task.sleep(for: .milliseconds(500))
+            } catch {
+                return
+            }
         }
-        try? await Task.sleep(for: .milliseconds(500))
-        await pulseArrow()
     }
 
     private func askNotificationPermission() {
@@ -258,7 +269,6 @@ public struct NotificationOnboarding: View {
 
             withAnimation(.linear(duration: 0.3)) {
                 showArrow = true
-                Task { await pulseArrow() }
             }
 
 #if !targetEnvironment(simulator)

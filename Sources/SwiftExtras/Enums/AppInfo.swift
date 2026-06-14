@@ -65,7 +65,7 @@ public enum AppInfo {
         return "0"
     }
 
-    /// Application Bundle Indentifier
+    /// The application's bundle identifier.
     public static var bundleIdentifier: String {
         Bundle.main.bundleIdentifier ?? "Unknown"
     }

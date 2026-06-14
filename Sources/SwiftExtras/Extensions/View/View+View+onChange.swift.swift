@@ -26,7 +26,7 @@ extension View {
         modifier(
             DebouncedOnChangeModifier(
                 observedValue: value,
-                delay: Double(delay.components.seconds),
+                delay: delay,
                 action: action
             )
         )
@@ -45,7 +45,7 @@ extension View {
         modifier(
             DebouncedOnChangeModifier(
                 observedValue: value,
-                delay: delay,
+                delay: .seconds(delay),
                 action: action
             )
         )
@@ -55,26 +55,18 @@ extension View {
 // MARK: - Modifier
 private struct DebouncedOnChangeModifier<Value: Equatable>: ViewModifier {
     let observedValue: Value
-    let delay: TimeInterval
+    let delay: Duration
     let action: (Value) -> Void
-
-    @State private var workItem: DispatchWorkItem?
 
     func body(content: Content) -> some View {
         content
-            .onChange(of: observedValue) { newValue in
-                workItem?.cancel()
-
-                let task = DispatchWorkItem {
-                    action(newValue)
+            .task(id: observedValue) {
+                do {
+                    try await Task.sleep(for: delay)
+                    action(observedValue)
+                } catch {
+                    // A new value or disappearing view cancels the pending action.
                 }
-
-                workItem = task
-
-                DispatchQueue.main.asyncAfter(
-                    deadline: .now() + delay,
-                    execute: task
-                )
             }
     }
 }

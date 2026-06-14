@@ -49,6 +49,7 @@ public struct ConfirmationButton: View {
         self.systemImage = systemImage
     }
 
+    /// The button and its confirmation dialog.
     public var body: some View {
         button
         .foregroundStyle(.red)

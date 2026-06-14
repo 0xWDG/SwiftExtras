@@ -16,18 +16,14 @@ import Compression
 #endif
 
 extension Data {
-    /// Data as hexidecimal string
-    ///
-    /// Data as hexidecimal string representation
+    /// A lowercase hexadecimal representation of the data.
     public var hexString: String {
         return self.map({
             return String(format: "%02hhx", $0)
         }).joined()
     }
 
-    /// Data as string (utf8)
-    ///
-    /// Data as string representation
+    /// A UTF-8 string representation of the data, or `nil` when decoding fails.
     public var stringValue: String? {
         return String(data: self, encoding: .utf8)
     }
@@ -41,16 +37,14 @@ extension Data {
         algorithm: compression_algorithm
     )
 
-    /// (de)compression
-    ///
-    /// Perform the (de)compression
+    /// Performs a streaming compression or decompression operation.
     ///
     /// - Parameters:
-    ///   - config: Configuration
-    ///   - source: Source ponter
-    ///   - sourceSize: Source size
-    ///   - preload: Data (leave empty)
-    /// - Returns: (de)Compress data
+    ///   - config: The compression operation and algorithm.
+    ///   - source: A pointer to the source bytes.
+    ///   - sourceSize: The number of source bytes.
+    ///   - preload: Data to prepend to the result.
+    /// - Returns: The processed data, or `nil` if compression fails.
     fileprivate func perform(
         config: Config,
         source: UnsafePointer<UInt8>,
@@ -117,9 +111,8 @@ extension Data {
     /// let compressed = data?.deflate()
     /// ```
     ///
-    /// - note: Fixed at compression level 5 (best trade off between speed and time)
-    ///
-    /// - returns: raw deflated data according to [RFC-1951](https://tools.ietf.org/html/rfc1951).
+    /// - Note: The Compression framework chooses the compression level.
+    /// - Returns: Raw deflated data according to [RFC 1951](https://www.rfc-editor.org/rfc/rfc1951), or `nil` on failure.
     public func deflate() -> Data? {
         return self.withUnsafeBytes { (rawBufferPtr: UnsafeRawBufferPointer) -> Data? in
             guard let baseAddress = rawBufferPtr.baseAddress else {
@@ -152,10 +145,9 @@ extension Data {
     /// let decompressed = compressed?.inflate()
     /// ```
     ///
-    /// - note: Self is expected to be a raw deflate, \
-    /// stream according to [RFC-1951](https://tools.ietf.org/html/rfc1951).
-    ///
-    /// - returns: uncompressed data
+    /// - Note: The receiver must contain a raw deflate stream according to
+    ///   [RFC 1951](https://www.rfc-editor.org/rfc/rfc1951).
+    /// - Returns: The uncompressed data, or `nil` when decompression fails.
     public func inflate() -> Data? {
         return self.withUnsafeBytes { (rawBufferPtr: UnsafeRawBufferPointer) -> Data? in
             guard let baseAddress = rawBufferPtr.baseAddress else {

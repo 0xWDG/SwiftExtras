@@ -12,18 +12,36 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
-/// This extension makes Color conform to Codable.
-/// It encodes the color as a string in the format "red;green;blue;alpha".
-/// It decodes the color from a string in the same format.
+/// Adds a semicolon-delimited `Codable` representation to `Color`.
+///
+/// New values use normalized red, green, blue, and alpha components. Decoding
+/// also accepts legacy component values in the `0...255` range.
 extension Color: @retroactive Codable {
     /// Initializes a Color from a decoder.
     /// - Parameter decoder: The decoder to read data from.
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let colorString = try container.decode(String.self)
-        let components = colorString.split(separator: ";").map { CGFloat(Double($0) ?? 0) }
+        let rawComponents = colorString.split(separator: ";", omittingEmptySubsequences: false)
 
-        self.init(red: components[0], green: components[1], blue: components[2], alpha: components[3])
+        let components = rawComponents.compactMap { Double($0) }
+        guard rawComponents.count == 4,
+              components.count == 4,
+              components.allSatisfy({ $0.isFinite && (0...255).contains($0) }) else {
+            throw DecodingError.dataCorruptedError(
+                in: container,
+                debugDescription: "Expected four finite color components separated by semicolons."
+            )
+        }
+
+        // Values produced before normalized component encoding were in the 0...255 range.
+        let divisor = components.contains(where: { $0 > 1 }) ? 255.0 : 1.0
+        self.init(
+            red: components[0] / divisor,
+            green: components[1] / divisor,
+            blue: components[2] / divisor,
+            alpha: components[3] / divisor
+        )
     }
 
     /// Encodes the Color to an encoder.
@@ -35,10 +53,12 @@ extension Color: @retroactive Codable {
     }
 }
 
-/// This extension makes Color conform to RawRepresentable.
-/// It encodes the color as a base64 string of its archived PlatformColor representation.
-/// It decodes the color from a base64 string of its archived PlatformColor representation.
+/// Adds a Base64-encoded archived platform-color representation to `Color`.
 extension Color: @retroactive RawRepresentable {
+    /// Creates a color from a Base64-encoded archived platform color.
+    ///
+    /// Invalid or unsupported values produce `.black`.
+    /// - Parameter rawValue: The Base64-encoded archived platform color.
     public init?(rawValue: String) {
         guard let data = Data(base64Encoded: rawValue) else {
             self = .black
@@ -56,6 +76,7 @@ extension Color: @retroactive RawRepresentable {
         }
     }
 
+    /// A Base64-encoded archive of the platform color, or an empty string if archiving fails.
     public var rawValue: String {
         do {
             let data = try NSKeyedArchiver.archivedData(

@@ -17,9 +17,10 @@ import SwiftUI
 /// This operator allows you to use the nil-coalescing operator `??` with `Binding`.
 /// This is useful when you want to provide a default value for a `Binding` that wraps an optional value.
 ///
-/// - Parameter lhs: Optional binding value
-/// - Parameter rhs: Value if the optional binding value is nil
-/// - Returns: Binding
+/// - Parameters:
+///   - lhs: A binding whose wrapped value is optional.
+///   - rhs: The fallback value to use while the wrapped value is `nil`.
+/// - Returns: A nonoptional binding that writes changes back to `lhs`.
 public func ?? <T>(lhs: Binding<T?>, rhs: T) -> Binding<T> {
     Binding(
         get: { lhs.wrappedValue ?? rhs },

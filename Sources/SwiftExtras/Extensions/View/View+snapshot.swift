@@ -46,11 +46,14 @@ extension View {
         #endif
     }
 
-    /// Captures a snapshot of the current view and save it to the desktiop.
-    /// - Parameter name: Image name
-    /// - Parameter size: The desired size of the snapshot. Defaults to the device's screen size.
-    /// - Returns: A `PlatformImage` representing the snapshot of the view.
-    /// - Note: This function is only available on iOS, tvOS, visionOS, and macOS.
+    /// Captures a snapshot and, in a simulator build, saves it to the desktop.
+    ///
+    /// The filename includes the app name, supplied name, and snapshot dimensions.
+    /// - Parameters:
+    ///   - name: The name to include in the generated PNG filename.
+    ///   - size: The desired size of the snapshot. Defaults to the device's screen size.
+    /// - Returns: The unchanged view, allowing this helper to be used in a view chain.
+    /// - Note: The snapshot is written only when running in a simulator.
     @available(iOS 13.0, tvOS 13.0, visionOS 1.0, macOS 10.15, *)
     @discardableResult
     public func snapshot(name: String, size: CGSize = .device) -> some View {

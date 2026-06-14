@@ -20,7 +20,7 @@ public struct LimitedTextField: View {
 
    let characterLimit: Int
 
-   /// Initializes a `LimitedTextFieldWithCounter` view.
+   /// Creates a limited text field with a remaining-character counter.
    ///
    /// - Parameters:
    ///   - title: The title for the text field.
@@ -32,6 +32,7 @@ public struct LimitedTextField: View {
       self.characterLimit = characterLimit
    }
 
+   /// The text field and remaining-character counter.
    public var body: some View {
       VStack(alignment: .trailing, spacing: 4) {
          TextField(self.title, text: self.$text)

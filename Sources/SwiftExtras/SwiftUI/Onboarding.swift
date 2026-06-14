@@ -98,6 +98,7 @@ public struct Onboarding<Content: View>: View {
     }
 
     fileprivate var coordinator = OnboardingCoordinator()
+    /// The app content with the onboarding coordinator installed.
     public var body: some View {
         content
             .environment(coordinator)
@@ -243,9 +244,9 @@ private struct OverlayWindowView: View {
                         Rectangle()
                             .fill(.black.opacity(0.5))
                             .reverseMask(alignment: .topLeading) {
-                                if !orderedItems.isEmpty {
-                                    let maskLocation = orderedItems[currentIndex].maskLocation
-                                    let cornerRadius = orderedItems[currentIndex].cornerRadius
+                                if let currentItem = orderedItems[safe: currentIndex] {
+                                    let maskLocation = currentItem.maskLocation
+                                    let cornerRadius = currentItem.cornerRadius
 
                                     RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
                                         .frame(width: maskLocation.width, height: maskLocation.height)
@@ -302,12 +303,10 @@ private struct OverlayWindowView: View {
         // swiftlint:disable:previous function_body_length
         VStack(spacing: 10) {
             ZStack {
-                ForEach(orderedItems) { info in
-                    if currentIndex == orderedItems.firstIndex(where: { $0.id == info.id }) {
-                        info.view
-                            .transition(.blurReplace)
-                            .environment(\.colorScheme, .dark)
-                    }
+                if let currentItem = orderedItems[safe: currentIndex] {
+                    currentItem.view
+                        .transition(.blurReplace)
+                        .environment(\.colorScheme, .dark)
                 }
             }
             .frame(height: 70)
@@ -375,7 +374,8 @@ private struct OverlayWindowView: View {
 }
 
 extension View {
-    /// Snapshoting the screen
+    /// Captures the current key window.
+    /// - Returns: An image of the key window, or `nil` when no key window is available.
     fileprivate func snapshotScreen() -> UIImage? {
         if let snaposhotView = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.keyWindow {
             let renderer: UIGraphicsImageRenderer = UIGraphicsImageRenderer(size: snaposhotView.bounds.size)

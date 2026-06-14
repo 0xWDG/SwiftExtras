@@ -88,7 +88,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
     ///   - createdBy: Your name (supports markdown)
     ///   - privacyPolicyURL: Privacy policy URL.
     ///   - supportEmail: Your support email
-    ///   - twitterHandle: Your Twitter / X dandle
+    ///   - twitterHandle: Your Twitter/X handle.
     ///   - blueskyHandle: Your Bluesky handle
     ///   - mastodonHandle: Your Mastodon handle
     ///   - OSLogSubsystem: The subsystem for your OS-Logs (nil = hidden), no value = AppBundle
@@ -175,6 +175,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
         """
     }
 
+    /// The application settings and support information.
     public var body: some View {
         NavigationStack {
             Form {

@@ -26,16 +26,14 @@ struct EnvironmentWrapperIsEnabled<Content: View>: View {
 }
 
 extension Text {
-    /// Make the foreground gradient
-    ///
-    /// Create a gradient for the foreground of the text.
+    /// Applies a linear gradient to the text foreground.
     ///
     /// - Parameters:
-    ///   - colors: Colors
-    ///   - startPoint: Startpoint
-    ///   - endPoint: End point
-    ///   - always: Does it need to ignore an disabled state
-    /// - Returns: self
+    ///   - colors: The colors in the gradient.
+    ///   - startPoint: The gradient's starting point.
+    ///   - endPoint: The gradient's ending point.
+    ///   - always: Whether to apply the gradient while the text is disabled.
+    /// - Returns: Text with a linear-gradient foreground when enabled or requested.
     @ViewBuilder
     public func foregroundLinearGradient(
         colors: [Color] = [.red, .blue, .green, .yellow],

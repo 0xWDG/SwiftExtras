@@ -260,11 +260,9 @@ extension Date {
     /// - Parameter range: The range of dates
     /// - Returns: A random date in the range
     public static func random(in range: Range<Date>) -> Date {
-        Date(
-            timeIntervalSinceNow: .random(
-                in: range.lowerBound.timeIntervalSinceNow...range.upperBound.timeIntervalSinceNow
-            )
-        )
+        Date(timeIntervalSince1970: .random(
+            in: range.lowerBound.timeIntervalSince1970..<range.upperBound.timeIntervalSince1970
+        ))
     }
 
     /// Random date in the current month (can not be in the future)
@@ -275,10 +273,10 @@ extension Date {
     /// - Returns: A random date in the range
     public static var random: Date {
         let calendar = Calendar.current
-        let today = Date()
+        let today = Date.now
 
         // Generate a random day within the current day and the first day of the month
-        let randomDay = Int.random(in: 1 ..< Date().day)
+        let randomDay = Int.random(in: 1...today.day)
 
         // Create the date with the random day
         var components = calendar.dateComponents([.year, .month], from: today)
@@ -287,7 +285,7 @@ extension Date {
         components.minute = Int.random(in: 0...59)
         components.second = Int.random(in: 0...59)
 
-        return calendar.date(from: components) ?? Date()
+        return calendar.date(from: components) ?? today
     }
 
     /// Random date in the current month (can be in the future)
@@ -298,10 +296,11 @@ extension Date {
     /// - Returns: A random date in the range
     public static var randomInMonth: Date {
         let calendar = Calendar.current
-        let today = Date()
+        let today = Date.now
 
         // Generate a random day within the current day and the first day of the month
-        let randomDay = Int.random(in: calendar.range(of: .day, in: .month, for: today) ?? 1 ..< Date().day)
+        let dayRange = calendar.range(of: .day, in: .month, for: today) ?? 1..<2
+        let randomDay = Int.random(in: dayRange)
 
         // Create the date with the random day
         var components = calendar.dateComponents([.year, .month], from: today)
@@ -310,7 +309,7 @@ extension Date {
         components.minute = Int.random(in: 0...59)
         components.second = Int.random(in: 0...59)
 
-        return calendar.date(from: components) ?? Date()
+        return calendar.date(from: components) ?? today
     }
 
     /// End of the day

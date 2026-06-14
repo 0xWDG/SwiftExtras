@@ -12,34 +12,38 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
-/// View for running an async task, and display no content
+/// A view that runs an asynchronous task without displaying content.
 ///
 /// Example:
 /// ```swift
 /// AsyncTask {
-///     await myAsynchronusTask()
+///     await myAsynchronousTask()
 /// }
 /// ```
 /// 
 public struct AsyncTask: View {
-    /// View for running an async task, and display no content
+    private let task: () async -> Void
+
+    /// Creates a view that runs an asynchronous task without displaying content.
     ///
     /// Example:
     /// ```swift
     /// AsyncTask {
-    ///     await myAsynchronusTask()
+    ///     await myAsynchronousTask()
     /// }
     /// ```
     /// 
-    /// - Parameter perform: The async task to run
+    /// - Parameter task: The asynchronous task to run.
     public init(perform task: @escaping () async -> Void) {
-        Task {
-            await task()
-        }
+        self.task = task
     }
 
+    /// An empty view that starts the task when it appears.
     public var body: some View {
         EmptyView()
+            .task {
+                await task()
+            }
     }
 }
 #endif

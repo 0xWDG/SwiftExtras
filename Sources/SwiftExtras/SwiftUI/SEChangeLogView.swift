@@ -19,6 +19,7 @@ public struct SEChangeLogView: View {
     /// The change log entries to display.
     public var changeLog: [SEChangeLogEntry]
 
+    /// The list of change-log entries.
     public var body: some View {
         List {
             ForEach(changeLog) { changeLogEntry in

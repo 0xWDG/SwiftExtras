@@ -38,11 +38,11 @@ extension View {
     ///     }
     /// ```
     ///
-    /// - Parameter error: Error message
-    /// - Parameter buttonTitle: Button title
-    /// - Parameter action: Action to executr
-    ///
-    /// - Returns: self
+    /// - Parameters:
+    ///   - error: A binding to the error to present. The binding is cleared when the alert is dismissed.
+    ///   - buttonTitle: The localized title of the dismissal button.
+    ///   - action: An optional action to execute after dismissing the alert.
+    /// - Returns: A view that presents an alert while `error` contains a value.
     @ViewBuilder
     public func showError(
         error: Binding<Error?>,
@@ -74,8 +74,11 @@ extension View {
 /// ```
 public struct CustomError: Error, CustomNSError {
     let message: String
+    /// The application-specific error code.
     public let errorCode: Int
+    /// The domain that identifies the source of the error.
     public let errorDomain: String
+    /// User-facing metadata containing the localized error message.
     public var errorUserInfo: [String: Any] {
         [NSLocalizedDescriptionKey: message]
     }
@@ -84,9 +87,10 @@ public struct CustomError: Error, CustomNSError {
     ///
     /// This allows you to create a custom error message.
     ///
-    /// - Parameter message: The error message
-    /// - Parameter errorCode: The error code
-    /// - Parameter domain: The error domain
+    /// - Parameters:
+    ///   - message: The error message.
+    ///   - errorCode: The application-specific error code.
+    ///   - domain: The domain that identifies the source of the error.
     public init(message: String, errorCode: Int = 1, domain: String = "SwiftExtras.CustomError") {
         self.message = message
         self.errorCode = errorCode
@@ -97,8 +101,10 @@ public struct CustomError: Error, CustomNSError {
     ///
     /// This allows you to create a custom error message.
     ///
-    /// - Parameter message: The error message
-    /// - Parameter errorCode: The error code
+    /// - Parameters:
+    ///   - message: The localized error message.
+    ///   - errorCode: The application-specific error code.
+    ///   - domain: The domain that identifies the source of the error.
     public init(message: LocalizedStringKey, errorCode: Int = 1, domain: String = "SwiftExtras.CustomError") {
         self.message = message.stringValue
         self.errorCode = errorCode

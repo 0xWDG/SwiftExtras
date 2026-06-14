@@ -11,7 +11,7 @@
 
 import Foundation
 
-/// SwiftExtras Acknoledgement Entry
+/// An acknowledgement entry for display in `SEAcknowledgementView`.
 ///
 /// Acknowledgement entry for use in the `SEAcknowledgementView`.
 public struct SEAcknowledgement: Identifiable, Hashable {

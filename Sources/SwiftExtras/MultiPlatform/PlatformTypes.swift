@@ -55,13 +55,13 @@ public typealias PlatformColor = UIColor
     public typealias PlatformViewRepresentableType = UIViewRepresentable
 
     /// `UIWindowScene` alias for platform-agnostic code.
-    /// - note: Since AppKit doesn't have the concept of window scenes, \
+    /// - Note: Since AppKit doesn't have the concept of window scenes, \
     /// this is aliased to `NSScreen` when building a native macOS target.
     public typealias PlatformWindowScene = UIWindowScene
 
     #if !os(visionOS)
         /// `UIScreen/NSScreen` alias for platform-agnostic code.
-        /// - note: `UIScreen` is not available on visionOS.
+        /// - Note: `UIScreen` is not available on visionOS.
         public typealias PlatformScreen = UIScreen
     #endif
 #endif
@@ -114,16 +114,16 @@ public typealias PlatformHostingController = NSHostingController
 public typealias PlatformViewControllerRepresentable = NSViewControllerRepresentable
 
 /// `UIViewRepresentable/NSViewRepresentable` alias for platform-agnostic code.
-/// - note: You may adopt the ``PlatformViewRepresentable`` protocol \
+/// - Note: You may adopt the ``PlatformViewRepresentable`` protocol \
 /// in order to use a single implementation for both UIKit and AppKit platforms.
 public typealias PlatformViewRepresentableType = NSViewRepresentable
 
 /// `UIScreen/NSScreen` alias for platform-agnostic code.
-/// - note: `UIScreen` is not available on visionOS.
+/// - Note: `UIScreen` is not available on visionOS.
 public typealias PlatformScreen = NSScreen
 
 /// `UIWindowScene` alias for platform-agnostic code.
-/// - note: Since AppKit doesn't have the concept of window scenes, \
+/// - Note: Since AppKit doesn't have the concept of window scenes, \
 /// this is aliased to `NSScreen` when building a native macOS target.
 public typealias PlatformWindowScene = NSScreen
 

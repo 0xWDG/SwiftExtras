@@ -12,7 +12,7 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
-/// Make your sections colapsable like `DisclosureGroup`
+/// A section that can expand and collapse like a `DisclosureGroup`.
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public struct DisclosureSection<Content: View, Label: View>: View {
     @Environment(\.isEnabled) var isEnabled
@@ -100,6 +100,7 @@ public struct DisclosureSection<Content: View, Label: View>: View {
         self.label = label
     }
 
+    /// The section header and conditionally visible content.
     public var body: some View {
         if #available(iOS 17.0, macOS 14.0, visionOS 1.0, tvOS 17.0, watchOS 10, *) {
             Section(isExpanded: $isExpanded, content: self.content) {
