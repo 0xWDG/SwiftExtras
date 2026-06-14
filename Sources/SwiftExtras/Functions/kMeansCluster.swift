@@ -28,6 +28,7 @@ import SwiftUI
 /// - Returns: An array of colors representing the cluster centroids.
 /// - Note: This implementation uses the Euclidean distance in RGB space to determine the distance between colors.
 public func kMeansCluster(colors: [Color], clusters: Int, iterations: Int = 10) -> [Color] {
+    // swiftlint:disable:previous function_body_length
     guard !colors.isEmpty, clusters > 0 else { return [] }
 
     let points = colors.map {
@@ -43,7 +44,7 @@ public func kMeansCluster(colors: [Color], clusters: Int, iterations: Int = 10) 
 
     for _ in 0..<max(iterations, 0) {
         var sums = Array(
-            repeating: (red: 0.0, green: 0.0, blue: 0.0, count: 0),
+            repeating: (red: 0.0, green: 0.0, blue: 0.0, pointCount: 0),
             count: clusters
         )
 
@@ -68,17 +69,17 @@ public func kMeansCluster(colors: [Color], clusters: Int, iterations: Int = 10) 
             sums[closestIndex].red += point.red
             sums[closestIndex].green += point.green
             sums[closestIndex].blue += point.blue
-            sums[closestIndex].count += 1
+            sums[closestIndex].pointCount += 1
         }
 
         for index in centroids.indices {
             let sum = sums[index]
-            guard sum.count > 0 else {
+            guard sum.pointCount > 0 else {
                 centroids[index] = points[index % points.count]
                 continue
             }
 
-            let count = Double(sum.count)
+            let count = Double(sum.pointCount)
             centroids[index] = (
                 red: sum.red / count,
                 green: sum.green / count,

@@ -77,8 +77,8 @@ public struct AsyncView<Content: View, Result>: View {
             Color.clear
                 .frame(width: 0, height: 0)
                 .task {
-                result = await task()
-            }
+                    result = await task()
+                }
         }
     }
 }

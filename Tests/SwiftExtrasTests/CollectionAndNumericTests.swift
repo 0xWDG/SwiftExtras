@@ -1,3 +1,14 @@
+//
+//  CollectionAndNumericTests.swift
+//  SwiftExtras
+//
+//  Created by Wesley de Groot on 2026-06-14.
+//  https://wesleydegroot.nl
+//
+//  https://github.com/0xWDG/SwiftExtras
+//  MIT License
+//
+
 import Foundation
 import Testing
 @testable import SwiftExtras

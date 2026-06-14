@@ -112,7 +112,8 @@ extension Data {
     /// ```
     ///
     /// - Note: The Compression framework chooses the compression level.
-    /// - Returns: Raw deflated data according to [RFC 1951](https://www.rfc-editor.org/rfc/rfc1951), or `nil` on failure.
+    /// - Returns: Raw deflated data according to
+    ///   [RFC 1951](https://www.rfc-editor.org/rfc/rfc1951), or `nil` on failure.
     public func deflate() -> Data? {
         return self.withUnsafeBytes { (rawBufferPtr: UnsafeRawBufferPointer) -> Data? in
             guard let baseAddress = rawBufferPtr.baseAddress else {
