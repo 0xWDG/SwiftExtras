@@ -54,7 +54,7 @@ import SwiftUI
 ///   The primary action is executed immediately when the button is clicked.
 ///   Opening the menu exposes both the primary and secondary actions.
 @available(iOS 13.0, macOS 10.15, tvOS 17.0, *)
-struct SplitActionButton<CustomLabel: View>: View {
+public struct SplitActionButton<CustomLabel: View>: View {
     let primaryTitle: LocalizedStringKey
     let primarySystemImage: String?
     let secondaryTitle: LocalizedStringKey
@@ -76,7 +76,7 @@ struct SplitActionButton<CustomLabel: View>: View {
     ///   - primaryAction: The action performed when the button is clicked.
     ///   - secondaryAction: The action performed when the secondary menu item is
     ///     selected.
-    init(
+    public init(
         primaryTitle: LocalizedStringKey = "Primary activity",
         primarySystemImage: String? = nil,
         secondaryTitle: LocalizedStringKey = "Secondary activity",
@@ -106,7 +106,7 @@ struct SplitActionButton<CustomLabel: View>: View {
     ///   - secondaryAction: The action performed when the secondary menu item is
     ///     selected.
     ///   - label: A custom view used as the visible button label.
-    init(
+    public init(
         primaryTitle: LocalizedStringKey = "Primary activity",
         primarySystemImage: String? = nil,
         secondaryTitle: LocalizedStringKey = "Secondary activity",
@@ -124,7 +124,8 @@ struct SplitActionButton<CustomLabel: View>: View {
         self.customLabel = label()
     }
 
-    var body: some View {
+    /// The content and behavior of the split-action button.
+    public var body: some View {
         Menu {
             menuBuilder(
                 title: primaryTitle,
