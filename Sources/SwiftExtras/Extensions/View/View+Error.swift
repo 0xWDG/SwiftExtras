@@ -72,7 +72,7 @@ extension View {
 /// ```swift
 /// CustomError(message: "This is a custom error message")
 /// ```
-public struct CustomError: Error, CustomNSError {
+public struct CustomError: Error, CustomNSError, Equatable {
     let message: String
     /// The application-specific error code.
     public let errorCode: Int

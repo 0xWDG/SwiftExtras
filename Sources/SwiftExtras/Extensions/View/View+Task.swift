@@ -27,7 +27,10 @@ extension View {
     /// - Parameter task: Task to run
     /// - Parameter priority: Priority of the task
     /// - Returns: self
-    public func detachedTask(priority: TaskPriority = .background, _ task: @escaping () async -> Void) -> some View {
+    public func detachedTask(
+        priority: TaskPriority = .background,
+        _ task: @escaping () async -> Void
+    ) -> some View {
         self.task {
             Task.detached(priority: priority) {
                 await task()
@@ -43,7 +46,27 @@ extension View {
     ///   - action: The asynchronous action to execute.
     public func task(
         delay: ContinuousClock.Duration,
-        action: @Sendable @escaping () async -> Void
+        _ action: @Sendable @escaping () async -> Void
+    ) -> some View {
+        self.task {
+            do {
+                try await Task.sleep(for: delay)
+                await action()
+            } catch {
+                // do nothing
+            }
+        }
+    }
+
+    /// Executes the given action after the specified delay unless
+    /// the task is cancelled.
+    ///
+    /// - Parameters:
+    ///   - delay: The duration to wait before executing the task.
+    ///   - action: The asynchronous action to execute.
+    public func task(
+        after delay: ContinuousClock.Duration,
+        _ action: @Sendable @escaping () async -> Void
     ) -> some View {
         self.task {
             do {

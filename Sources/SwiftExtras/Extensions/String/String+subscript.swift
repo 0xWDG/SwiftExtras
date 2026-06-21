@@ -25,17 +25,13 @@ extension String {
     /// - Parameter bounds: The range that will be used to find the substring.
     /// - Returns: The substring corresponding to the specified range.
     public subscript (bounds: CountableClosedRange<Int>) -> String {
-        let start = index(startIndex, offsetBy: bounds.lowerBound)
-
-        let end = index(
-            startIndex,
-            offsetBy: (self.count <= bounds.upperBound ? bounds.upperBound : self.count) - 1
-        )
-
-        // If self is empty, then do nothing with it.
         if self.isEmpty {
             return self
         }
+
+        let start = index(startIndex, offsetBy: bounds.lowerBound)
+        let upperBound = Swift.min(bounds.upperBound, self.count - 1)
+        let end = index(startIndex, offsetBy: upperBound)
 
         return String(self[start...end])
     }

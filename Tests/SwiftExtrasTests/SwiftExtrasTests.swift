@@ -64,6 +64,52 @@ import SwiftUI
     #expect(kMeansCluster(colors: [.red, .blue], clusters: 4, iterations: 0).count == 4)
 }
 
+@Test func customErrorEqualityUsesStoredValues() {
+    let first = CustomError(message: "Network failed", errorCode: 2, domain: "SwiftExtras.Tests")
+    let duplicate = CustomError(message: "Network failed", errorCode: 2, domain: "SwiftExtras.Tests")
+    let changedMessage = CustomError(message: "Request timed out", errorCode: 2, domain: "SwiftExtras.Tests")
+    let changedCode = CustomError(message: "Network failed", errorCode: 3, domain: "SwiftExtras.Tests")
+    let changedDomain = CustomError(message: "Network failed", errorCode: 2, domain: "SwiftExtras.Other")
+
+    #expect(first == duplicate)
+    #expect(first != changedMessage)
+    #expect(first != changedCode)
+    #expect(first != changedDomain)
+}
+
+@Test func customErrorProvidesNSErrorAndLocalizedMetadata() {
+    let error = CustomError(message: "Network failed", errorCode: 42, domain: "SwiftExtras.Tests")
+    let nsError = error as NSError
+
+    #expect(error.errorDomain == "SwiftExtras.Tests")
+    #expect(error.errorCode == 42)
+    #expect(error.errorDescription == "Network failed")
+    #expect(error.errorUserInfo[NSLocalizedDescriptionKey] as? String == "Network failed")
+    #expect(nsError.code == 42)
+    #expect(nsError.userInfo[NSLocalizedDescriptionKey] as? String == "Network failed")
+}
+
+@Test func localizedStringKeyStringValueFallsBackToKey() {
+    let key: LocalizedStringKey = "SwiftExtras.Test.Key"
+
+    #expect(key.stringValue == "SwiftExtras.Test.Key")
+}
+
+@Test func colorHexAndLuminanceUseNormalizedComponents() {
+    let color = Color(red: 1, green: 0.5, blue: 0, opacity: 0.25)
+    let components = color.components
+
+    #expect(abs(components.red - 1) < 0.001)
+    #expect(abs(components.green - 0.5) < 0.001)
+    #expect(abs(components.blue) < 0.001)
+    #expect(abs(components.opacity - 0.25) < 0.001)
+    #expect(color.hex == "#ff7f00")
+    #expect(color.hex8 == "#ff7f003f")
+    #expect(color.hex6 == "#ff7f00")
+    #expect(Color.black.luminance == 0)
+    #expect(abs(Color.white.luminance - 1) < 0.001)
+}
+
 private func approximatelyEqual(_ lhs: CGFloat, _ rhs: CGFloat) -> Bool {
     abs(lhs - rhs) < 0.001
 }

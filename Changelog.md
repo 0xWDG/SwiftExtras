@@ -86,6 +86,9 @@ This file contains the changelog of SwiftExtras.
   To return the correct time for the date in a specific time zone. Reported by JB for [Calendo](https://wesleydegroot.nl/apps/calendo)
 - Added [`AutoEquatable`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/autoequatable) protocol.  
   A protocol that automatically synthesizes `Equatable` conformance for types that conform to it.
+- Added [`SplitActionButton`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/splitactionbutton)  
+  A button that has a primary action and a secondary action.
+- Fixed a building issue on Xcode 27
 
 ### 1.2.6
 - Added [`.accentColor`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle/accentcolor) to [`ButtonStyle`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftui/buttonstyle)  
