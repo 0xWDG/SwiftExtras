@@ -7202,6 +7202,9 @@
         }
       }
     },
+    "Custom Publish Label" : {
+
+    },
     "Enter text" : {
       "localizations" : {
         "af" : {
@@ -16030,6 +16033,9 @@
         }
       }
     },
+    "Primary activity" : {
+
+    },
     "Privacy Policy" : {
       "localizations" : {
         "af" : {
@@ -16357,6 +16363,9 @@
           }
         }
       }
+    },
+    "Publish" : {
+
     },
     "Rate the app" : {
       "localizations" : {
@@ -17013,6 +17022,12 @@
           }
         }
       }
+    },
+    "Save as Draft" : {
+
+    },
+    "Secondary activity" : {
+
     },
     "Selected" : {
       "localizations" : {

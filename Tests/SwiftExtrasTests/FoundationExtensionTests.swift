@@ -34,6 +34,7 @@ import Testing
 }
 #endif
 
+#if os(iOS) || os(macOS) || os(tvOS) || os(watchOS)
 @Test func userDefaultsSubscriptsReadWriteAndRemoveValues() throws {
     let suiteName = "SwiftExtrasTests.UserDefaults.\(UUID().uuidString)"
     let defaults = try #require(UserDefaults(suiteName: suiteName))
@@ -58,6 +59,7 @@ import Testing
     #expect(removedName == nil)
     #expect(!removedFlag)
 }
+#endif
 
 @Test func errorCodeReturnsNSErrorCode() {
     let error: Error = NSError(domain: "SwiftExtrasTests", code: 404)
