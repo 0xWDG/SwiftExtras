@@ -18,6 +18,7 @@ struct FloatingSafeAreaBar<InsetContent: View>: ViewModifier {
 
     @ViewBuilder
     func body(content: Content) -> some View {
+        #if compiler(>=6.2)
         if #available(iOS 26, macOS 26, tvOS 26, watchOS 26, *) {
             content.safeAreaBar(edge: .bottom) {
                 insetContent()
@@ -45,6 +46,28 @@ struct FloatingSafeAreaBar<InsetContent: View>: ViewModifier {
                     }
             }
         }
+        #else
+        content.safeAreaInset(edge: .bottom) {
+            insetContent()
+                .modifier(CardStyle())
+                .background {
+                    Rectangle()
+                        .fill(.ultraThinMaterial)
+                        .mask(
+                            VStack(spacing: 0) {
+                                LinearGradient(
+                                    colors: [.clear, .black],
+                                    startPoint: .top,
+                                    endPoint: .bottom
+                                )
+                                .frame(height: 30)
+                                Color.black
+                            }
+                        )
+                        .ignoresSafeArea()
+                }
+        }
+        #endif
     }
 }
 
