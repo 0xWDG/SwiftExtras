@@ -59,15 +59,24 @@ struct ToastPresenter: ViewModifier {
 private extension View {
     @ViewBuilder
     func toastBackground(_ tint: Color?) -> some View {
+#if compiler(>=6.2)
         if #available(iOS 26, macOS 26, tvOS 26, watchOS 26, *) {
-            glassEffect(.regular.tint(tint))
+            self.glassEffect(.regular.tint(tint))
         } else {
-            background(
-                RoundedRectangle(cornerRadius: 12, style: .continuous)
-                    .fill(tint ?? Color.secondarySystemBackground)
-                    .shadow(color: .black.opacity(0.16), radius: 12, y: 4)
-            )
+            toastFallbackBackground(tint)
         }
+#else
+        toastFallbackBackground(tint)
+#endif
+    }
+
+    @ViewBuilder
+    private func toastFallbackBackground(_ tint: Color?) -> some View {
+        background(
+            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                .fill(tint ?? Color.secondarySystemBackground)
+                .shadow(color: .black.opacity(0.16), radius: 12, y: 4)
+        )
     }
 }
 
