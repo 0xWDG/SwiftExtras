@@ -13,7 +13,8 @@
 import SwiftUI
 
 extension Notification.Name {
-    static let ubiquitousStorageDidChange = Notification.Name("UbiquitousStorage.didChange")
+    /// Notification posted when a value in `UbiquitousStorage` changes.
+    public static let ubiquitousStorageDidChange = Notification.Name("UbiquitousStorage.didChange")
 }
 
 private enum UbiquitousStorageNotificationUserInfoKey {
