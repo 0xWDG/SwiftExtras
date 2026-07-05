@@ -243,7 +243,11 @@ extension UbiquitousStorage where Value == Color {
 
 extension NSUbiquitousKeyValueStore {
     /// Returns the integer stored for `key`, or `defaultValue` when the key is absent.
-    func intValue(forKey key: String, default defaultValue: Int) -> Int {
+    ///
+    /// - Parameters:
+    ///   - key: The key used to retrieve the value from iCloud's key-value store.
+    ///   - defaultValue: The default value to return when the key is absent.
+    public func intValue(forKey key: String, default defaultValue: Int) -> Int {
         object(forKey: key) != nil ? Int(longLong(forKey: key)) : defaultValue
     }
 }
