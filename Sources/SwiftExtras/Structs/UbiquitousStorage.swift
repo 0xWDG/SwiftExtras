@@ -9,7 +9,7 @@
 //  MIT License
 //
 
-#if canImport(SwiftUI) || os(iOS) || os(macOS) || os(tvOS) || os(watchOS) || os(VisionOS)
+#if canImport(SwiftUI) || os(iOS) || os(macOS) || os(tvOS) || os(watchOS) || os(visionOS)
 import SwiftUI
 
 extension Notification.Name {

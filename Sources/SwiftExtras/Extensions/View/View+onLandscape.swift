@@ -34,7 +34,7 @@ extension View {
             self
         }
 #elseif os(visionOS)
-        self // VisionOS is always landscape at default
+        self // visionOS is always landscape at default
 #else
         transform(self)
 #endif
@@ -60,7 +60,7 @@ extension View {
             self
         }
 #elseif os(visionOS)
-        transform(self) // VisionOS is always landscape at default
+        transform(self) // visionOS is always landscape at default
 #else
         self
 #endif
