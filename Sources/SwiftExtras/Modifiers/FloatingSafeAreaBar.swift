@@ -10,6 +10,7 @@
 //
 // Taken from:
 //  https://codakuma.com/floating-safe-area-bar/
+
 #if canImport(SwiftUI)
 import SwiftUI
 
