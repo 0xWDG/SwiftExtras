@@ -21,7 +21,7 @@ extension String {
     /// - Parameter query: The search string to test against.
     /// - Returns: `true` when all characters of `query` occur in the receiver in
     ///   order; `false` otherwise.
-    func fuzzyMatches(_ query: String) -> Bool {
+    public func fuzzyMatches(_ query: String) -> Bool {
         guard !query.isEmpty else { return true }
 
         let selfChars = Array(self.lowercased())
