@@ -30,7 +30,7 @@ struct LongPressButtonStyle: PrimitiveButtonStyle {
     ///
     /// Example usage:
     /// ```swift
-    /// Text("Long Press Me")
+    /// Button("Long Press Me") { print("Short pressed") }
     ///     .buttonStyle(LongPressButtonStyle(longPressAction: { print("Long pressed!") }))
     /// ```
     func makeBody(configuration: Configuration) -> some View {
@@ -63,7 +63,7 @@ struct LongPressModifier: ViewModifier {
     ///
     /// Example usage:
     /// ```swift
-    /// Text("Long Press Me")
+    /// Button("Long Press Me") { print("Short pressed") }
     ///     .buttonStyle(LongPressButtonStyle(longPressAction: { print("Long pressed!") }))
     /// ```
     func body(content: Content) -> some View {
@@ -89,4 +89,16 @@ extension View {
         modifier(LongPressModifier(longPressAction: action))
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    VStack {
+        Button("Long Press Me") { print("Short pressed") }
+             .buttonStyle(
+                LongPressButtonStyle(longPressAction: { print("Long pressed!") })
+             )
+    }
+}
+#endif
 #endif

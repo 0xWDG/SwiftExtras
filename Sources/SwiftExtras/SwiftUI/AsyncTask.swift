@@ -20,7 +20,8 @@ import SwiftUI
 ///     await myAsynchronousTask()
 /// }
 /// ```
-/// 
+///
+@available(*, deprecated, message: "This does not work as intended, and will be removed soon")
 public struct AsyncTask: View {
     private let task: () async -> Void
 

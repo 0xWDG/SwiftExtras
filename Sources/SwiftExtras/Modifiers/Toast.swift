@@ -110,8 +110,14 @@ extension View {
 #if DEBUG
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
-    Text("Hello World!")
-        .toast(isPresented: .constant(true), message: "This is a toast message")
+    Form {
+        Text("Hello World!")
+    }
+    .toast(
+        isPresented: .constant(true),
+        systemImageName: "star",
+        message: "This is a toast message"
+    )
 }
 #endif
 #endif

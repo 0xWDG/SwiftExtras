@@ -248,6 +248,17 @@ extension Date {
         return days
     }
 
+    /// Create a date from a string in the format "YYYY-MM-DD"
+    /// - Parameter yyyymmdd: The date string in the format "YYYY-MM-DD"
+    public init?(yyyymmdd: String) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        guard let date = formatter.date(from: yyyymmdd) else {
+            return nil
+        }
+        self = date
+    }
+
     /// Start of the day
     public var startOfDay: Date {
         Calendar.current.startOfDay(for: self)

@@ -2,7 +2,7 @@
 //  LabeledTextField.swift
 //  SwiftExtras
 //
-//  Created by Wesley de Groot on 2025-02-09.
+//  Created by Wesley de Groot on 2025-09-05.
 //  https://wesleydegroot.nl
 //
 //  https://github.com/0xWDG/SwiftExtras
@@ -12,60 +12,92 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
-/// A SwiftUI view that displays a text field with a floating label.
+/// Labeled text field.
+///
+/// A LabeledTextField is a custom text field that displays a floating placeholder
+/// when the user is editing the field or when there is text present.
 public struct LabeledTextField: View {
-    private var title: String
+    /// The text value of the text field.
+    @Binding private var text: String
+    /// Whether the text field is currently being edited.
+    @State private var isEditing = false
+    /// The placeholder (label) text for the text field.
+    private let placeHolderText: String
+    /// Should the text field draw a box around it?
+    private let shouldDrawBox: Bool
 
-    @Binding
-    private var text: String
-
-    @FocusState
-    private var isActive: Bool
-
-    /// Initializes a new instance of `LabeledTextField`.
-    /// - Parameters:
-    ///   - title: The label text to display when the text field is empty.
-    ///   - text: A binding to the text value of the text field.
-    public init(_ title: String, text: Binding<String>) {
-        self.title = title
-        self._text = text
+    // Should the placeholder move?
+    private var shouldPlaceHolderMove: Bool {
+        isEditing || !text.isEmpty
     }
 
+    /// Labeled text field.
+    ///
+    /// A LabeledTextField is a custom text field that displays a floating placeholder
+    /// when the user is editing the field or when there is text present.
+    /// 
+    /// - Parameters:
+    ///   - label: The placeholder text for the text field.
+    ///   - text: A binding to the text value of the text field.
+    ///   - shouldDrawBorder: A Boolean value indicating whether to draw a border around the text field.
+    public init(
+        _ label: String,
+        text: Binding<String>,
+        shouldDrawBorder: Bool = false
+    ) {
+        self._text = text
+        self.placeHolderText = label
+        self.shouldDrawBox = shouldDrawBorder
+    }
+
+    /// The view body
     public var body: some View {
         ZStack(alignment: .leading) {
-            TextField(isActive ? "" : title, text: $text)
-                .padding(.leading)
-                .frame(maxWidth: .infinity)
-                .frame(height: 55)
-                .focused($isActive)
-                .accessibilityLabel(title)
-                .background(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.accentColor, lineWidth: 1)
-                )
-
-            if isActive {
-                Text(title)
-                    .padding(.horizontal)
-                    .offset(y: (isActive || !text.isEmpty) ? -50 : 0)
-                    .foregroundStyle(isActive ? .secondary : .secondary)
-                    .animation(.spring, value: isActive)
-                    .accessibilityHidden(true)
+            TextField(isEditing ? "" : placeHolderText, text: $text, onEditingChanged: { (edit) in
+#if !os(macOS)
+                isEditing = edit
+#endif
+            })
+            .foregroundColor(Color.primary)
+            .animation(Animation.easeInOut(duration: 0.4), value: EdgeInsets())
+            .frame(alignment: .leading)
+            .padding(shouldDrawBox ? .all : .vertical)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .overlay {
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(lineWidth: shouldDrawBox ? (isEditing ? 1 : 0) : 0)
+                    .foregroundStyle(Color.placeholderText)
             }
+
+            // Floating Placeholder
+            Text(isEditing ? " " + placeHolderText + " " : "")
+                .foregroundColor(Color.accentColor)
+                .scaleEffect(shouldPlaceHolderMove ? 1.0 : 1.2)
+                .animation(Animation.easeInOut(duration: 0.4), value: shouldPlaceHolderMove)
+                .background(Color.systemBackground)
+                .padding(
+                    shouldPlaceHolderMove
+                    ? EdgeInsets(top: 0, leading: shouldDrawBox ? 15 : -4, bottom: 50, trailing: 0)
+                    : EdgeInsets(top: 0, leading: shouldDrawBox ? 15 : 0, bottom: 0, trailing: 0)
+                )
         }
-        .padding(.top, isActive ? 50 : 0)
-        .animation(.easeInOut, value: isActive)
+        .frame(height: 50)
     }
 }
 
 #if DEBUG
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
-   @Previewable @State var previewText = ""
+    @Previewable @State var text = ""
+    Form {
+        LabeledTextField("Label", text: .constant(""))
+        LabeledTextField("Label", text: .constant("Test"))
+        LabeledTextField("Label", text: $text)
 
-   Form {
-      LabeledTextField("Enter text", text: $previewText)
-   }
+        LabeledTextField("Label", text: .constant(""), shouldDrawBorder: true)
+        LabeledTextField("Label", text: .constant("Test"), shouldDrawBorder: true)
+        LabeledTextField("Label", text: $text, shouldDrawBorder: true)
+    }
 }
 #endif
 #endif

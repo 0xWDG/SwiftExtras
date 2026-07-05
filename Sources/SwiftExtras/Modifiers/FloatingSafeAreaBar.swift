@@ -14,6 +14,7 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 struct FloatingSafeAreaBar<InsetContent: View>: ViewModifier {
     @ViewBuilder let insetContent: () -> InsetContent
 
@@ -92,6 +93,7 @@ extension View {
     /// Adds a floating safe area bar to the view.
     /// - Parameter insetContent: A closure that returns the content to be displayed in the floating safe area bar
     /// - Returns: A view with a floating safe area bar added to it
+    @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
     public func floatingSafeAreaBar<InsetContent: View>(
         @ViewBuilder insetContent: @escaping () -> InsetContent
     ) -> some View {

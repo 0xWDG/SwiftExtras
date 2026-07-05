@@ -93,4 +93,34 @@ public func gravatarAvatarImage(
 
     return image
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    @Previewable @State var image: Image?
+
+    Form {
+        Section("Async await") {
+            if let image {
+                image
+            }
+        }
+        .task {
+            image = try? await gravatarAvatarImage(
+                emailAddress: "email@wesleydegroot.nl"
+            )
+        }
+
+        Section("With AsyncView") {
+            AsyncView {
+                try? await gravatarAvatarImage(
+                    emailAddress: "email@wesleydegroot.nl"
+                )
+            } content: { image in
+                image
+            }
+        }
+    }
+}
+#endif
 #endif

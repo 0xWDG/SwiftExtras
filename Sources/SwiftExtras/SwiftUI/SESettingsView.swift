@@ -194,6 +194,10 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                 }
 #endif
             }
+            .task {
+                updateAvailable = await AppInfo.updateAvailable
+                appStoreVersion = await AppInfo.appStoreVersion
+            }
             .buttonStyle(.list)
             .foregroundStyle(Color.primary)
             .formStyle(.grouped)
@@ -258,11 +262,6 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
                         .accessibilityHidden(true)
                 }
             }
-        }
-
-        AsyncTask {
-            updateAvailable = await AppInfo.updateAvailable
-            appStoreVersion = await AppInfo.appStoreVersion
         }
     }
 
