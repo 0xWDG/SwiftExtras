@@ -397,8 +397,32 @@ public enum AppInfo {
 #endif
     }
 
+    /// Get device type
+    public static var deviceType: String {
+#if os(iOS)
+        UIDevice.current.userInterfaceIdiom == .pad ? "iPad" : "iPhone"
+#elseif os(macOS)
+        "Mac"
+#elseif os(visionOS)
+        "Vision Pro"
+#elseif os(tvOS)
+        "Apple TV"
+#elseif os(watchOS)
+        "Apple Watch"
+#else
+        "Unknown"
+#endif
+    }
+
+    /// Is the app currently under review?
+    public static var isUnderReview: Bool {
+        // if CFNETWORK_DIAGNOSTICS and CFNETWORK_HAR_LOGGING are set, the app is under review
+        let env = ProcessInfo.processInfo.environment
+        return env["CFNETWORK_DIAGNOSTICS"] != nil && env["CFNETWORK_HAR_LOGGING"] != nil
+    }
+
     /// Get the SF Symbol for the current device
-    public static var deviceType: Image {
+    public static var deviceTypeSymbol: Image {
 #if os(iOS)
         Image(systemName: UIDevice.current.userInterfaceIdiom == .pad ? "ipad" : "iphone")
 #elseif os(macOS)

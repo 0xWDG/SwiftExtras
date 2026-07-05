@@ -3,6 +3,34 @@
 This file contains the changelog of SwiftExtras.
 
 ### 1.2.8
+- Added [`AppInfo.deviceType`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/devicetype)  
+  A property that returns the current device type as a string.
+- Renamed `AppInfo.deviceType` symbol image to [`AppInfo.deviceTypeSymbol`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/devicetypesymbol)  
+  To separate the string device type from the SF Symbol image.
+- Added [`AppInfo.isUnderReview`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/isunderreview)  
+  A property that checks whether the current app version is still under App Store review.
+- Added [`View.onChange(anyOf:initial:_:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/onchange(anyof:initial:_:))  
+  A view modifier that listens for changes to any of multiple equatable values.
+- Fixed the [`View+onChange.swift`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/onchange(anyof:initial:_:)) source filename.
+- Added [`Color.complementary`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/complementary), [`Color.contrast`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/contrast), and [`Color.contrast(threshold:bright:dark:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/color/contrast(threshold:bright:dark:))  
+  SwiftUI helpers for deriving complementary colors and readable foreground colors from a background color.
+- Added [`tutorialSpotlight`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/tutorialspotlight) and [`tutorialSpotlightSource(id:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/tutorialspotlightsource(id:))  
+  SwiftUI spotlight onboarding modifiers based on anchor preferences and a declarative cutout overlay.
+- Added [`View.toast(isPresented:duration:systemImageName:message:tint:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/toast(ispresented:duration:systemimagename:message:tint:))  
+  A view modifier that displays an auto-dismissing toast message with optional SF Symbol and tint.
+- Added [`AnyCodable`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/anycodable)  
+  A type-erased `Codable` wrapper for encoding and decoding values without knowing their concrete type.
+- Added [`gravatarAvatarImage(emailAddress:size:defaultImage:rating:session:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/gravataravatarimage(emailaddress:size:defaultimage:rating:session:))  
+  A public async function that fetches a SwiftUI `Image` from a Gravatar email avatar.
+- Added [`LabeledTextField`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/labeledtextfield)  
+  A labeled SwiftUI text field with an accessible floating label.
+- Fixed build errors in [`AnyCodable`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/anycodable), [`View.onChange(anyOf:initial:_:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/onchange(anyof:initial:_:)), [`View.toast(isPresented:duration:systemImageName:message:tint:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/toast(ispresented:duration:systemimagename:message:tint:)), and [`LabeledTextField`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/labeledtextfield).
+- Updated [`View.toast(isPresented:duration:systemImageName:message:tint:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/toast(ispresented:duration:systemimagename:message:tint:))  
+  Uses Liquid Glass on supported OS versions and a compatible fallback background on older OS versions.
+- Added [`View.shimmer()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/shimmer)  
+  A simple SwiftUI shimmer effect for loading placeholders.
+- Added [`Dynamic`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/dynamic)  
+  A lightweight Objective-C dynamic lookup wrapper for classes, properties, and selector calls.
 
 ### 1.2.7
 - Added [`View.onNotification(name:perform:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/onnotification(name:perform:))  

@@ -1,6 +1,6 @@
 //
 //
-//  View+onFirstAppear.swift
+//  View+onboarding.swift
 //  SwiftExtras
 //
 //  Created by Wesley de Groot on 2025-09-23.
@@ -40,55 +40,77 @@ struct OnboardingModifier: ViewModifier {
     let skipable: Bool
 
     func body(content: Content) -> some View {
-        ZStack {
-            content
-                .overlay {
-                    if currentStep == stepIndex {
-                        Color
-                            .accentColor
-                            .padding(10)
-                            .border(Color.accentColor, width: 2)
-                            .popover(isPresented: .constant(true)) {
-                                VStack {
-//                                    Text("\(currentStep+1)/\(steps.count)")
-//                                        .font(.caption2)
-//                                        .frame(maxWidth: .infinity, alignment: .trailing)
-
-                                    Text(steps[currentStep].text)
-
-                                    Spacer(minLength: 20)
-                                    HStack {
-                                        Button("Previous") {
-                                            currentStep -= 1
-                                        }
-                                        .disabled(currentStep == 0)
-                                        Spacer(minLength: 40)
-
-                                        if skipable {
-                                            Button("Skip") {
-                                                currentStep = steps.count
-                                            }
-                                            Spacer(minLength: 40)
-                                        }
-
-                                        if (currentStep + 1) == steps.count {
-                                            Button("Finish") {
-                                                currentStep += 1
-                                            }
-                                        } else {
-                                            Button("Next") {
-                                                currentStep += 1
-                                            }
-                                        }
-                                    }
-                                }
-                                .padding()
-                                .presentationCompactAdaptation(.popover)
-                                .interactiveDismissDisabled()
-                            }
+        content
+            .overlay {
+                if currentStep == stepIndex {
+                    RoundedRectangle(cornerRadius: 8, style: .continuous)
+                        .stroke(Color.accentColor, lineWidth: 2)
+                        .padding(-10)
+                        .allowsHitTesting(false)
+                        .accessibilityHidden(true)
+                }
+            }
+            .matchedPopoverSource(id: stepIndex, anchor: .bottom)
+            .matchedPopover(
+                selection: popoverSelection,
+                anchor: { _ in .bottom },
+                dismissOnBackgroundTap: false,
+                popover: { index in
+                    if steps.indices.contains(index) {
+                        popoverContent(for: index)
                     }
                 }
+            )
+    }
+
+    private var popoverSelection: Binding<Int?> {
+        Binding {
+            currentStep == stepIndex && steps.indices.contains(currentStep) ? stepIndex : nil
+        } set: { newValue in
+            if let newValue {
+                currentStep = newValue
+            }
         }
+    }
+
+    @ViewBuilder
+    private func popoverContent(for index: Int) -> some View {
+        VStack {
+            Text(steps[index].text)
+
+            Spacer(minLength: 20)
+
+            HStack {
+                Button("Previous") {
+                    currentStep -= 1
+                }
+                .disabled(currentStep == 0)
+                .accessibilityLabel("Previous onboarding step")
+
+                Spacer(minLength: 40)
+
+                if skipable {
+                    Button("Skip") {
+                        currentStep = steps.count
+                    }
+                    .accessibilityLabel("Skip onboarding")
+
+                    Spacer(minLength: 40)
+                }
+
+                Button((currentStep + 1) == steps.count ? "Finish" : "Next") {
+                    currentStep += 1
+                }
+                .accessibilityLabel(
+                    (currentStep + 1) == steps.count ? "Finish onboarding" : "Next onboarding step"
+                )
+            }
+        }
+        .padding()
+        .background(.regularMaterial, in: .rect(cornerRadius: 12))
+        .shadow(radius: 12)
+        .padding()
+        .accessibilityElement(children: .contain)
     }
 }
 

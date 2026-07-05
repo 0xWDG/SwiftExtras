@@ -110,6 +110,29 @@ import SwiftUI
     #expect(abs(Color.white.luminance - 1) < 0.001)
 }
 
+@Test func colorComplementaryInvertsRGBAndPreservesOpacity() {
+    let color = Color(red: 0.25, green: 0.5, blue: 0.75, opacity: 0.8)
+    let complementary = color.complementary.components
+
+    #expect(approximatelyEqual(complementary.red, 0.75))
+    #expect(approximatelyEqual(complementary.green, 0.5))
+    #expect(approximatelyEqual(complementary.blue, 0.25))
+    #expect(approximatelyEqual(complementary.opacity, 0.8))
+}
+
+@Test func colorContrastUsesPerceivedLuminanceThreshold() {
+    #expect(Color(red: 0.2, green: 0.2, blue: 0.2).contrast.hex == Color.black.hex)
+    #expect(Color(red: 0.9, green: 0.9, blue: 0.9).contrast.hex == Color.white.hex)
+
+    let lowLuminanceContrast = Color(red: 0.4, green: 0.4, blue: 0.4)
+        .contrast(threshold: 0.5, bright: .red, dark: .blue)
+    let highLuminanceContrast = Color(red: 0.6, green: 0.6, blue: 0.6)
+        .contrast(threshold: 0.5, bright: .red, dark: .blue)
+
+    #expect(lowLuminanceContrast.hex == Color.blue.hex)
+    #expect(highLuminanceContrast.hex == Color.red.hex)
+}
+
 private func approximatelyEqual(_ lhs: CGFloat, _ rhs: CGFloat) -> Bool {
     abs(lhs - rhs) < 0.001
 }

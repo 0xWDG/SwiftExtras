@@ -236,6 +236,39 @@ extension Color {
         )
     }
 
+    /// Get a complementary color.
+    ///
+    /// The red, green, and blue components are inverted while preserving opacity.
+    public var complementary: Color {
+        let components = self.components
+
+        return Color(
+            red: 1.0 - components.red,
+            green: 1.0 - components.green,
+            blue: 1.0 - components.blue,
+            alpha: components.opacity
+        )
+    }
+
+    /// Get a black or white contrast color using perceived luminance.
+    public var contrast: Color {
+        self.contrast(threshold: 0.55)
+    }
+
+    /// Get a contrast color using perceived luminance.
+    ///
+    /// - Parameters:
+    ///   - threshold: The luminance threshold used to choose between `dark` and `bright`.
+    ///   - bright: The color returned when luminance is equal to or above `threshold`.
+    ///   - dark: The color returned when luminance is below `threshold`.
+    /// - Returns: `dark` for colors below the threshold; otherwise `bright`.
+    public func contrast(threshold: CGFloat = 0.65, bright: Color = .white, dark: Color = .black) -> Color {
+        let components = self.components
+        let luminance = (components.red * 0.299) + (components.green * 0.587) + (components.blue * 0.114)
+
+        return luminance < threshold ? dark : bright
+    }
+
     /// Luminance per WCAG using rgb components
     public var luminance: Double {
         let redLumiance = wcagLinearize(self.redValue)
