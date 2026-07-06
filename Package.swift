@@ -17,6 +17,10 @@ let package = Package(
         .library(
             name: "SwiftExtras",
             targets: ["SwiftExtras"]
+        ),
+        .executable(
+            name: "SwiftExtrasScreenshots",
+            targets: ["SwiftExtrasScreenshots"]
         )
     ],
     dependencies: [
@@ -38,6 +42,11 @@ let package = Package(
         .testTarget(
             name: "SwiftExtrasTests",
             dependencies: ["SwiftExtras"]
+        ),
+        .executableTarget(
+            name: "SwiftExtrasScreenshots",
+            dependencies: ["SwiftExtras"],
+            path: "Tools/SwiftExtrasScreenshots"
         )
     ]
 )
