@@ -9,6 +9,7 @@
 //  MIT License
 //
 
+#if canImport(AppKit)
 import AppKit
 import SwiftExtras
 import SwiftUI
@@ -109,7 +110,10 @@ enum ScreenshotGenerator {
                             secondaryTitle: "Schedule",
                             secondarySystemImage: "calendar",
                             primaryAction: { },
-                            secondaryAction: { }
+                            secondaryAction: { },
+                            label: {
+                                Label("Custom", systemImage: "sparkles")
+                            }
                         )
                         .buttonStyle(.bordered)
                     }
@@ -369,3 +373,4 @@ private func date(year: Int, month: Int) -> Date {
 
     return date
 }
+#endif
