@@ -92,7 +92,6 @@ public struct CardView<Content: View>: View {
                         // Custom Content
                         self.content
                             .padding(.top, 5)
-                            .padding(.horizontal)
                             .frame(
                                 maxWidth: .infinity,
                                 alignment: .leading

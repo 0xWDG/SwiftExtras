@@ -1314,6 +1314,7 @@
       }
     },
     "🚀" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -2638,6 +2639,7 @@
       }
     },
     "All Social icons" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -3951,6 +3953,7 @@
       }
     },
     "Auto stop" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -7202,10 +7205,8 @@
         }
       }
     },
-    "Custom Publish Label" : {
-
-    },
     "Enter text" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -8845,6 +8846,9 @@
         }
       }
     },
+    "Finish onboarding" : {
+
+    },
     "Go to Settings" : {
       "localizations" : {
         "af" : {
@@ -9502,6 +9506,7 @@
       }
     },
     "Hello World!" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -9830,6 +9835,7 @@
       }
     },
     "Initial version" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -10158,6 +10164,7 @@
       }
     },
     "Item 1" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -10486,6 +10493,7 @@
       }
     },
     "Item 2" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -10814,6 +10822,7 @@
       }
     },
     "Item 3" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -11470,6 +11479,7 @@
       }
     },
     "Light mode" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -13408,6 +13418,9 @@
         }
       }
     },
+    "Next onboarding step" : {
+
+    },
     "No" : {
       "localizations" : {
         "af" : {
@@ -13737,6 +13750,7 @@
       }
     },
     "No Progress" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -15378,6 +15392,7 @@
       }
     },
     "Pick your items" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -16033,6 +16048,9 @@
         }
       }
     },
+    "Previous onboarding step" : {
+
+    },
     "Primary activity" : {
 
     },
@@ -16364,9 +16382,6 @@
         }
       }
     },
-    "Publish" : {
-
-    },
     "Rate the app" : {
       "localizations" : {
         "af" : {
@@ -16696,6 +16711,7 @@
       }
     },
     "RESET" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -17022,9 +17038,6 @@
           }
         }
       }
-    },
-    "Save as Draft" : {
-
     },
     "Secondary activity" : {
 
@@ -17358,6 +17371,7 @@
       }
     },
     "Show confetti" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -18012,6 +18026,9 @@
           }
         }
       }
+    },
+    "Skip onboarding" : {
+
     },
     "Stay connected with\npush notifications" : {
       "localizations" : {
@@ -18670,6 +18687,7 @@
       }
     },
     "Test" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -18997,10 +19015,8 @@
         }
       }
     },
-    "Test %lld." : {
-      "shouldTranslate" : false
-    },
     "Toggle" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -20969,6 +20985,7 @@
       }
     },
     "With Progress" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
