@@ -38,7 +38,6 @@ let package = Package(
             dependencies: [
                 .product(name: "OSLogViewer", package: "OSLogViewer")
             ],
-            exclude: ["SwiftExtras.docc"],
             resources: [
                 .process("Assets.xcassets"),
                 .process("Localizable.xcstrings")
@@ -50,8 +49,7 @@ let package = Package(
         ),
         .target(
             name: "SwiftExtrasScreenshotTesting",
-            dependencies: ["SwiftExtras"],
-            exclude: ["SwiftExtrasScreenshotTesting.docc"]
+            dependencies: ["SwiftExtras"]
         ),
         .executableTarget(
             name: "SwiftExtrasScreenshots",

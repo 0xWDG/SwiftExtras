@@ -22,6 +22,7 @@ This file contains the changelog of SwiftExtras.
   Present custom SwiftUI content independently from the source view in Picture in Picture.
 - Improved cross-platform compatibility for `Flow`, island toasts, and Picture in Picture across supported Apple platforms.
 - Updated `Scripts/test-all-platforms.sh` to run Linux tests with Apple container instead of Docker, skip Apple platform builds when their SDK is not installed, and disable those builds in CI.
+- Restored the DocC catalogs to their Swift package targets so the Custom Views documentation and screenshot-testing guide are included in generated documentation.
 - Fixed Linux compilation and test portability for bundle metadata, dictionary raw values, test detection, relative-date tests, platform images, and web URL validation.
 
 ### 1.2.8
