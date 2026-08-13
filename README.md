@@ -90,6 +90,7 @@ The screenshot assets are shared with the DocC catalog and can be refreshed with
 | View | iOS Screenshot |
 | --- | --- |
 | CardView | ![CardView on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/card-view-ios.png) |
+| BorderBeamEffect | ![Border beam modifier on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/border-beam-modifier-ios.png) |
 | CarouselView | ![CarouselView on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/carousel-view-ios.png) |
 | ConfirmationButton | ![ConfirmationButton on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/confirmation-button-ios.png) |
 | DisclosureSection | ![DisclosureSection on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/disclosure-section-ios.png) |
@@ -104,6 +105,8 @@ The screenshot assets are shared with the DocC catalog and can be refreshed with
 | SEAcknowledgementView | ![SEAcknowledgementView on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/se-acknowledgement-view-ios.png) |
 | SEChangeLogView | ![SEChangeLogView on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/se-changelog-view-ios.png) |
 | SplitActionButton | ![SplitActionButton on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/split-action-button-ios.png) |
+| StickySection | ![StickySection on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/sticky-section-ios.png) |
+| VerificationField | ![VerificationField on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/verification-field-ios.png) |
 | WStack | ![WStack on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/wstack-ios.png) |
 
 

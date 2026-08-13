@@ -198,7 +198,7 @@ enum ScreenshotGenerator {
 
     @available(macOS 14, iOS 17, *)
     private static var modernSpecs: [ScreenshotSpec] {
-        [
+        var specs: [ScreenshotSpec] = [
             .init(name: "month-year-picker-view", size: .init(width: 620, height: 360)) {
                 ExampleFrame(title: "MonthYearPickerView") {
                     MonthYearPickerView(
@@ -259,8 +259,24 @@ enum ScreenshotGenerator {
             },
             .init(name: "shimmer-modifier", size: .init(width: 393, height: 360)) {
                 ShimmerExample()
+            },
+            .init(name: "border-beam-modifier", size: .init(width: 393, height: 360)) {
+                BorderBeamExample()
+            },
+            .init(name: "sticky-section", size: .init(width: 393, height: 480)) {
+                StickySectionExample()
             }
         ]
+
+        #if os(iOS)
+        specs.append(
+            .init(name: "verification-field", size: .init(width: 393, height: 300)) {
+                VerificationFieldExample()
+            }
+        )
+        #endif
+
+        return specs
     }
 
 }

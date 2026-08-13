@@ -221,4 +221,79 @@ struct ShimmerExample: View {
         }
     }
 }
+
+@available(macOS 14, iOS 17, *)
+struct BorderBeamExample: View {
+    var body: some View {
+        ExampleFrame(title: "Border beam on iOS") {
+            VStack(alignment: .leading, spacing: 18) {
+                Label("Ready to publish", systemImage: "checkmark.seal.fill")
+                    .font(.headline)
+
+                Text("The animated gradient highlights the edge without obscuring content.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(24)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(.black, in: RoundedRectangle(cornerRadius: 20))
+            .foregroundStyle(.white)
+            .borderBeam(
+                border: .purple,
+                hidesFadedBorder: false,
+                beam: [.cyan, .blue, .purple, .pink],
+                beamBlur: 10
+            )
+            .accessibilityElement(children: .combine)
+        }
+    }
+}
+
+@available(macOS 14, iOS 17, *)
+struct StickySectionExample: View {
+    var body: some View {
+        ExampleFrame(title: "Sticky section on iOS") {
+            ScrollView {
+                StickySection {
+                    VStack(alignment: .leading, spacing: 14) {
+                        ForEach(1...5, id: \.self) { item in
+                            Label("Recent activity \(item)", systemImage: "clock.arrow.circlepath")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                    }
+                } header: {
+                    Text("Project activity")
+                        .font(.title2.bold())
+                        .accessibilityAddTraits(.isHeader)
+                } minimizedHeader: {
+                    Text("Activity")
+                        .font(.headline)
+                        .accessibilityAddTraits(.isHeader)
+                }
+            }
+        }
+    }
+}
+
+#if os(iOS)
+@available(iOS 17, *)
+struct VerificationFieldExample: View {
+    @State private var code = "284"
+
+    var body: some View {
+        ExampleFrame(title: "Verification field on iOS") {
+            Text("Enter the six-digit code")
+                .font(.headline)
+
+            VerificationField(type: .six, value: $code) { value in
+                value.count == 6 ? .valid : .typing
+            }
+
+            Text("Codes can be entered automatically or pasted from the clipboard.")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+        }
+    }
+}
+#endif
 #endif

@@ -20,6 +20,7 @@ This file contains the changelog of SwiftExtras.
   An original sample-buffer-based Picture in Picture implementation that can render a SwiftUI view using the system Picture in Picture experience.
 - Added [`View.pictureInPicture(isPresented:content:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/pictureinpicture(ispresented:content:))
   Present custom SwiftUI content independently from the source view in Picture in Picture.
+- Added the `borderBeam` modifier, `StickySection`, customizable text-field edit-menu actions, and `VerificationField`, including iOS screenshots and DocC examples for their visual states.
 - Improved cross-platform compatibility for `Flow`, island toasts, and Picture in Picture across supported Apple platforms.
 - Updated `Scripts/test-all-platforms.sh` to run Linux tests with Apple container instead of Docker, skip Apple platform builds when their SDK is not installed, and disable those builds in CI.
 - Restored the DocC catalogs to their Swift package targets so the Custom Views documentation and screenshot-testing guide are included in generated documentation.

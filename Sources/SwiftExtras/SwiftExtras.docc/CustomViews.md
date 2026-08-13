@@ -16,6 +16,18 @@ Use these compact iOS examples as a visual reference for the SwiftExtras SwiftUI
 
 ![MonthYearPickerView example on iOS](month-year-picker-view-ios.png)
 
+`VerificationField` displays one visual slot per verification-code digit,
+supports one-time-code autofill and paste, and reports asynchronous validation
+state.
+
+![VerificationField example on iOS](verification-field-ios.png)
+
+```swift
+VerificationField(type: .six, value: $code) { code in
+    await account.validate(code) ? .valid : .invalid
+}
+```
+
 ## Selection
 
 `MultiSelectView` displays selectable rows with visible selected-state indicators.
@@ -58,6 +70,24 @@ Use these compact iOS examples as a visual reference for the SwiftExtras SwiftUI
 
 ![WStack example on iOS](wstack-ios.png)
 
+``StickySection`` keeps its header visible while its content collapses in a
+vertical scroll view. Supply both a full header and a compact header for the
+pinned state.
+
+![StickySection example on iOS](sticky-section-ios.png)
+
+```swift
+ScrollView {
+    StickySection {
+        ActivityList()
+    } header: {
+        Text("Recent activity")
+    } minimizedHeader: {
+        Text("Activity")
+    }
+}
+```
+
 ## Lists
 
 `IndexedList` groups rows by first letter and displays an index rail for fast navigation.
@@ -79,6 +109,36 @@ Use these compact iOS examples as a visual reference for the SwiftExtras SwiftUI
 ![NotificationView example on iOS](notification-view-ios.png)
 
 ## Modifiers
+
+### Border Beam
+
+Use ``SwiftUICore/View/borderBeam(border:hidesFadedBorder:beam:beamBlur:cornerRadius:isEnabled:)``
+to draw an animated gradient around a rounded view. The beam becomes stationary
+when Reduce Motion is enabled.
+
+![Border beam modifier on iOS](border-beam-modifier-ios.png)
+
+```swift
+Text("Continue")
+    .padding()
+    .borderBeam(hidesFadedBorder: false)
+```
+
+### Text Field Edit Menus
+
+On iOS 16 and later, use `TextField.menu(showSuggestions:actions:)` to add
+actions to a single-line field's edit menu. Use
+`TextField.menuForTextFieldAxis(showSuggestions:actions:)` for an axis-based
+multiline field.
+
+```swift
+TextField("Message", text: $message)
+    .menu(showSuggestions: $includesSystemActions) {
+        TextFieldAction(title: "Uppercase") { range, textField in
+            // Transform the selected range.
+        }
+    }
+```
 
 ### Scroll Tracking
 
