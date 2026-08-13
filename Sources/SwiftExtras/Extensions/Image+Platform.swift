@@ -94,4 +94,16 @@ extension PlatformImage: Identifiable {
     }
 }
 #endif
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, *)
+#Preview("Square Image") {
+    Image(systemName: "photo.fill")
+        .square()
+        .foregroundStyle(.blue)
+        .frame(width: 180)
+        .accessibilityLabel("Square photo placeholder")
+        .padding()
+}
+#endif
 #endif

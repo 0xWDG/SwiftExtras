@@ -67,4 +67,17 @@ extension View {
     }
 }
 
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Orientation Modifiers") {
+    VStack {
+        Text("Landscape transformation")
+            .onLandscape { $0.foregroundStyle(.blue) }
+
+        Text("Portrait transformation")
+            .onPortrait { $0.foregroundStyle(.purple) }
+    }
+    .padding()
+}
+#endif
 #endif

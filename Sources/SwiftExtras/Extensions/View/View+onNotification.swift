@@ -28,4 +28,13 @@ extension View {
         }
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Notification Observer") {
+    Label("Listening for preview notifications", systemImage: "bell")
+        .onNotification(name: Notification.Name("SwiftExtrasPreviewNotification")) { _ in }
+        .padding()
+}
+#endif
 #endif

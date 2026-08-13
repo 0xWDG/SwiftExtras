@@ -10,6 +10,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 #if canImport(SwiftUI)
 import SwiftUI
@@ -19,6 +22,14 @@ import LocalAuthentication
 #endif
 #if canImport(Darwin)
 import Darwin
+#endif
+#if os(macOS)
+import AppKit
+import IOKit
+#elseif os(iOS) || os(tvOS)
+import UIKit
+#elseif os(watchOS)
+import WatchKit
 #endif
 
 /// AppInfo
@@ -453,6 +464,343 @@ public enum AppInfo {
 #endif
     }
 #endif
+}
+
+// MARK: - Signal and environment metadata
+
+public extension AppInfo {
+    /// Accessibility settings available on the current platform.
+    @MainActor
+    static var accessibilityParameters: [String: String] {
+        var parameters: [String: String] = [:]
+
+#if os(iOS) || os(tvOS)
+        parameters["TelemetryDeck.Accessibility.isReduceMotionEnabled"] =
+            "\(UIAccessibility.isReduceMotionEnabled)"
+        parameters["TelemetryDeck.Accessibility.isBoldTextEnabled"] =
+            "\(UIAccessibility.isBoldTextEnabled)"
+        parameters["TelemetryDeck.Accessibility.isInvertColorsEnabled"] =
+            "\(UIAccessibility.isInvertColorsEnabled)"
+        parameters["TelemetryDeck.Accessibility.isDarkerSystemColorsEnabled"] =
+            "\(UIAccessibility.isDarkerSystemColorsEnabled)"
+        parameters["TelemetryDeck.Accessibility.isReduceTransparencyEnabled"] =
+            "\(UIAccessibility.isReduceTransparencyEnabled)"
+        parameters["TelemetryDeck.Accessibility.shouldDifferentiateWithoutColor"] =
+            "\(UIAccessibility.shouldDifferentiateWithoutColor)"
+
+        if !isAppExtension {
+            parameters["TelemetryDeck.Accessibility.preferredContentSizeCategory"] =
+                UIApplication.shared.preferredContentSizeCategory.rawValue
+                    .replacingOccurrences(of: "UICTContentSizeCategory", with: "")
+        }
+#elseif os(macOS)
+        if let preferences = UserDefaults.standard.persistentDomain(
+            forName: "com.apple.universalaccess"
+        ) {
+            parameters["TelemetryDeck.Accessibility.isReduceMotionEnabled"] =
+                "\(preferences["reduceMotion"] as? Bool ?? false)"
+            parameters["TelemetryDeck.Accessibility.isInvertColorsEnabled"] =
+                "\(preferences["InvertColors"] as? Bool ?? false)"
+        }
+#endif
+
+        return parameters
+    }
+
+    /// Whether the app is running in Simulator or was installed through TestFlight.
+    static var isSimulatorOrTestFlight: Bool { isSimulator || isTestFlight }
+
+    /// Whether the app is running in Simulator.
+    static var isSimulator: Bool {
+#if targetEnvironment(simulator)
+        true
+#else
+        false
+#endif
+    }
+
+    /// Whether this is a debug build.
+    static var isDebug: Bool {
+#if DEBUG
+        true
+#else
+        false
+#endif
+    }
+
+    /// Whether this non-debug build was installed through TestFlight.
+    static var isTestFlight: Bool {
+        guard !isDebug, let receiptPath = Bundle.main.appStoreReceiptURL?.path else {
+            return false
+        }
+        return receiptPath.contains("sandboxReceipt")
+    }
+
+    /// Whether the app is a native App Store build.
+    static var isAppStore: Bool {
+#if DEBUG || os(macOS) || targetEnvironment(macCatalyst) || targetEnvironment(simulator)
+        false
+#else
+        !isTestFlight
+#endif
+    }
+
+    /// The operating system name and its full version.
+    static var systemVersion: String {
+        let version = ProcessInfo.processInfo.operatingSystemVersion
+        return "\(platform) \(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
+    }
+
+    /// The operating system name and major version.
+    static var majorSystemVersion: String {
+        "\(platform) \(ProcessInfo.processInfo.operatingSystemVersion.majorVersion)"
+    }
+
+    /// The operating system name, major version, and minor version.
+    static var majorMinorSystemVersion: String {
+        let version = ProcessInfo.processInfo.operatingSystemVersion
+        return "\(platform) \(version.majorVersion).\(version.minorVersion)"
+    }
+
+    /// The bundle's user-facing version string.
+    static var appVersion: String { versionNumber }
+
+    /// The active app extension's extension-point identifier, when applicable.
+    static var extensionIdentifier: String? {
+        let extensionInfo = Bundle.main.infoDictionary?["NSExtension"] as? [String: Any]
+        return extensionInfo?["NSExtensionPointIdentifier"] as? String
+    }
+
+    /// The hardware model identifier reported by the operating system.
+    static var modelName: String {
+#if os(iOS)
+        if ProcessInfo.processInfo.isiOSAppOnMac {
+            var size = 0
+            sysctlbyname("hw.model", nil, &size, nil, 0)
+            var machine = [CChar](repeating: 0, count: size)
+            sysctlbyname("hw.model", &machine, &size, nil, 0)
+            return String(cString: machine)
+        }
+#elseif os(macOS)
+        let service = IOServiceGetMatchingService(
+            kIOMainPortDefault,
+            IOServiceMatching("IOPlatformExpertDevice")
+        )
+        defer { IOObjectRelease(service) }
+
+        if service != 0,
+           let data = IORegistryEntryCreateCFProperty(
+            service,
+            "model" as CFString,
+            kCFAllocatorDefault,
+            0
+           )?.takeRetainedValue() as? Data,
+           let model = String(data: data, encoding: .utf8)?
+            .trimmingCharacters(in: .controlCharacters),
+           !model.isEmpty {
+            return model
+        }
+#endif
+
+        return Device.model
+    }
+
+    /// The architecture for which the app is currently running.
+    static var architecture: String {
+#if arch(x86_64)
+        "x86_64"
+#elseif arch(arm)
+        "arm"
+#elseif arch(arm64)
+        "arm64"
+#elseif arch(i386)
+        "i386"
+#elseif arch(powerpc64)
+        "powerpc64"
+#elseif arch(powerpc64le)
+        "powerpc64le"
+#elseif arch(s390x)
+        "s390x"
+#else
+        "unknown"
+#endif
+    }
+
+    /// The operating system reported by the Swift compilation target.
+    static var operatingSystem: String {
+#if os(macOS)
+        "macOS"
+#elseif os(visionOS)
+        "visionOS"
+#elseif os(iOS)
+        "iOS"
+#elseif os(watchOS)
+        "watchOS"
+#elseif os(tvOS)
+        "tvOS"
+#else
+        "Unknown Operating System"
+#endif
+    }
+
+    /// The actual runtime platform, including Catalyst and iOS apps on Mac.
+    static var platform: String {
+#if os(macOS)
+        "macOS"
+#elseif os(visionOS)
+        "visionOS"
+#elseif os(iOS)
+#if targetEnvironment(macCatalyst)
+        "macCatalyst"
+#else
+        ProcessInfo.processInfo.isiOSAppOnMac ? "isiOSAppOnMac" : "iOS"
+#endif
+#elseif os(watchOS)
+        "watchOS"
+#elseif os(tvOS)
+        "tvOS"
+#else
+        "Unknown Platform"
+#endif
+    }
+
+    /// The target environment: `simulator`, `macCatalyst`, or `native`.
+    static var targetEnvironment: String {
+#if targetEnvironment(simulator)
+        "simulator"
+#elseif targetEnvironment(macCatalyst)
+        "macCatalyst"
+#else
+        "native"
+#endif
+    }
+
+    /// The locale identifier in which the app is running.
+    static var locale: String { Locale.current.identifier }
+
+    /// The current locale's region identifier.
+    static var region: String {
+        Locale.current.region?.identifier
+            ?? Locale.current.identifier.split(whereSeparator: { $0 == "-" || $0 == "_" }).last.map(String.init)
+            ?? "Unknown"
+    }
+
+    /// The language identifier in which the app is running.
+    static var appLanguage: String {
+        Locale.current.language.languageCode?.identifier
+            ?? Locale.current.identifier.split(whereSeparator: { $0 == "-" || $0 == "_" }).first.map(String.init)
+            ?? "Unknown"
+    }
+
+    /// The user's most preferred language identifier.
+    static var preferredLanguage: String {
+        let identifier = Locale.preferredLanguages.first ?? "zz-ZZ"
+        return identifier.split(whereSeparator: { $0 == "-" || $0 == "_" }).first.map(String.init)
+            ?? "zz"
+    }
+
+    /// The user-selected color scheme, or `N/A` where unavailable.
+    @MainActor
+    static var colorScheme: String {
+#if os(iOS) || os(tvOS)
+        switch UIScreen.main.traitCollection.userInterfaceStyle {
+        case .dark: "Dark"
+        case .light: "Light"
+        default: "N/A"
+        }
+#elseif os(macOS)
+        guard let appearance = NSApp?.effectiveAppearance else { return "N/A" }
+        switch appearance.name {
+        case .aqua: return "Light"
+        case .darkAqua: return "Dark"
+        default: return "N/A"
+        }
+#else
+        "N/A"
+#endif
+    }
+
+    /// The user-selected interface layout direction.
+    @MainActor
+    static var layoutDirection: String {
+#if os(iOS) || os(tvOS)
+        guard !isAppExtension else { return "N/A" }
+        return UIApplication.shared.userInterfaceLayoutDirection == .leftToRight
+            ? "leftToRight" : "rightToLeft"
+#elseif os(macOS)
+        guard let application = NSApp else { return "N/A" }
+        return application.userInterfaceLayoutDirection == .leftToRight
+            ? "leftToRight" : "rightToLeft"
+#else
+        return "N/A"
+#endif
+    }
+
+    /// The current screen width in points, or `N/A` when unavailable.
+    @MainActor
+    static var screenResolutionWidth: String {
+#if os(iOS) || os(tvOS)
+        "\(UIScreen.main.bounds.width)"
+#elseif os(watchOS)
+        "\(WKInterfaceDevice.current().screenBounds.width)"
+#elseif os(macOS)
+        NSScreen.main.map { "\($0.frame.width)" } ?? "N/A"
+#else
+        "N/A"
+#endif
+    }
+
+    /// The current screen height in points, or `N/A` when unavailable.
+    @MainActor
+    static var screenResolutionHeight: String {
+#if os(iOS) || os(tvOS)
+        "\(UIScreen.main.bounds.height)"
+#elseif os(watchOS)
+        "\(WKInterfaceDevice.current().screenBounds.height)"
+#elseif os(macOS)
+        NSScreen.main.map { "\($0.frame.height)" } ?? "N/A"
+#else
+        "N/A"
+#endif
+    }
+
+    /// The current screen's scale factor, or `N/A` when unavailable.
+    @MainActor
+    static var screenScaleFactor: String {
+#if os(iOS) || os(tvOS)
+        "\(UIScreen.main.scale)"
+#elseif os(macOS)
+        NSScreen.main.map { "\($0.backingScaleFactor)" } ?? "N/A"
+#else
+        "N/A"
+#endif
+    }
+
+    /// The current device orientation, or `Fixed` on non-rotating platforms.
+    @MainActor
+    static var orientation: String {
+#if os(iOS)
+        switch UIDevice.current.orientation {
+        case .portrait, .portraitUpsideDown: "Portrait"
+        case .landscapeLeft, .landscapeRight: "Landscape"
+        default: "Unknown"
+        }
+#else
+        "Fixed"
+#endif
+    }
+
+    /// The current time zone as a numeric UTC offset, such as `UTC+1` or `UTC-3:30`.
+    static var timeZone: String {
+        let seconds = TimeZone.current.secondsFromGMT()
+        let absoluteSeconds = abs(seconds)
+        let hours = absoluteSeconds / 3_600
+        let minutes = absoluteSeconds / 60 % 60
+        let sign = seconds >= 0 ? "+" : "-"
+        return minutes == 0
+            ? "UTC\(sign)\(hours)"
+            : "UTC\(sign)\(hours):\(String(format: "%02d", minutes))"
+    }
 }
 
 /// AppStore Search Result

@@ -44,6 +44,30 @@ import Testing
     #expect("SwiftExtras".contains("extras", caseSensitive: false))
 }
 
+@Test func stringQuotedEnclosesValueInDoubleQuotationMarks() {
+    #expect("SwiftExtras".quoted == "\"SwiftExtras\"")
+    #expect("".quoted == "\"\"")
+    #expect("Say \"hello\"".quoted == "\"Say \\\"hello\\\"\"")
+    #expect(#"A\B"#.quoted == #""A\\B""#)
+
+    let substring = "Hello, world!".prefix(5)
+    #expect(substring.quoted == "\"Hello\"")
+}
+
+@Test func stringLocalizedErrorUsesItsValueAsErrorMetadata() {
+    let error: any LocalizedError = "Something went wrong"
+
+    #expect(error.errorDescription == "Something went wrong")
+    #expect(error.failureReason == "Something went wrong")
+}
+
+@Test func stringSplitGroupsCharactersAtRequestedSize() {
+    #expect("SwiftExtras".split(every: 5) == ["Swift", "Extra", "s"])
+    #expect("Swift".split(every: 10) == ["Swift"])
+    #expect("".split(every: 3).isEmpty)
+    #expect("👨‍👩‍👧‍👦🙂A".split(every: 1) == ["👨‍👩‍👧‍👦", "🙂", "A"])
+}
+
 @Test func stringSubscriptsReturnExpectedSlices() {
     let value = "SwiftExtras"
 

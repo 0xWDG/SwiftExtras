@@ -82,4 +82,32 @@ extension View {
         modifier(ReadFrameModifier(frame: frame))
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+private struct ReadGeometryPreview: View {
+    @State private var offsetX: CGFloat = 0
+    @State private var frame = CGRect.zero
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Measured example")
+                .padding()
+                .background(.blue.opacity(0.15), in: RoundedRectangle(cornerRadius: 12))
+                .read(offsetX: $offsetX)
+                .read(frame: $frame)
+
+            Text("X: \(offsetX, format: .number.precision(.fractionLength(0)))")
+            Text("Size: \(frame.width, format: .number.precision(.fractionLength(0))) × ")
+                + Text("\(frame.height, format: .number.precision(.fractionLength(0)))")
+        }
+        .padding()
+    }
+}
+
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Read Geometry") {
+    ReadGeometryPreview()
+}
+#endif
 #endif

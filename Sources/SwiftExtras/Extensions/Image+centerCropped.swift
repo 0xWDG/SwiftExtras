@@ -24,4 +24,18 @@ extension Image {
         }
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, *)
+#Preview("Center Cropped Image") {
+    Image(systemName: "mountain.2.fill")
+        .centerCropped()
+        .foregroundStyle(.teal)
+        .frame(width: 240, height: 140)
+        .background(.secondary.opacity(0.12))
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .accessibilityLabel("Center-cropped mountain placeholder")
+        .padding()
+}
+#endif
 #endif

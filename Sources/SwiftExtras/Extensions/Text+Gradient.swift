@@ -69,4 +69,20 @@ extension Text {
         }
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Gradient Text") {
+    VStack {
+        Text("SwiftExtras")
+            .font(.largeTitle.bold())
+            .foregroundLinearGradient(colors: [.purple, .blue, .mint])
+
+        Text("Disabled gradient")
+            .foregroundLinearGradient(always: true)
+            .disabled(true)
+    }
+    .padding()
+}
+#endif
 #endif

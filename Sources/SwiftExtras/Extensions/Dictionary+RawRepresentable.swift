@@ -11,7 +11,6 @@
 
 import Foundation
 
-#if os(iOS) || os(tvOS) || os(watchOS) || os(macOS) || os(visionOS)
 // MARK: - Dictionary+RawRepresentable
 /// This extension allows a Dictionary with String keys and String values to be represented as a raw String value.
 /// It provides an initializer to create a Dictionary from a raw String and a computed property \
@@ -44,4 +43,3 @@ extension Dictionary: @retroactive RawRepresentable where Key == String, Value =
         return result
     }
 }
-#endif

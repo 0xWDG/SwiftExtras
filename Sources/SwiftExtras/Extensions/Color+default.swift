@@ -12,10 +12,10 @@
 #if canImport(SwiftUI) && (canImport(AppKit) || canImport(UIKit))
 import SwiftUI
 
-#if canImport(AppKit)
-import AppKit
-#elseif canImport(UIKit)
+#if canImport(UIKit)
 import UIKit
+#elseif canImport(AppKit)
+import AppKit
 #endif
 
 extension Color {
@@ -451,5 +451,23 @@ extension Color {
 #endif
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Semantic Colors") {
+    VStack(alignment: .leading) {
+        Text("Primary label")
+            .foregroundStyle(Color.label)
+        Text("Secondary label")
+            .foregroundStyle(Color.secondaryLabel)
+        RoundedRectangle(cornerRadius: 12)
+            .fill(Color.secondarySystemBackground)
+            .frame(height: 60)
+            .overlay(Text("Secondary background"))
+    }
+    .padding()
+    .background(Color.systemBackground)
+}
+#endif
 #endif
 // swiftlint:disable:this file_length

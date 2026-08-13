@@ -194,4 +194,38 @@ private extension EnvironmentValues {
         set { self[MatchedPopoverNamespaceKey.self] = newValue }
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, visionOS 1, *)
+private struct MatchedPopoverPreview: View {
+    private enum Item: String, CaseIterable {
+        case account
+        case settings
+    }
+
+    @State private var selection: Item? = .account
+
+    var body: some View {
+        HStack {
+            ForEach(Item.allCases, id: \.self) { item in
+                Button(item.rawValue.capitalized) {
+                    selection = item
+                }
+                .matchedPopoverSource(id: item)
+            }
+        }
+        .padding(80)
+        .matchedPopover(selection: $selection) { item in
+            Text("\(item.rawValue.capitalized) options")
+                .padding()
+                .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
+        }
+    }
+}
+
+@available(iOS 17, macOS 14, visionOS 1, *)
+#Preview("Matched Popover") {
+    MatchedPopoverPreview()
+}
+#endif
 #endif

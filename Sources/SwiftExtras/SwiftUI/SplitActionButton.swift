@@ -178,7 +178,8 @@ public struct SplitActionButton<CustomLabel: View>: View {
     }
 }
 
-@available(iOS 13.0, macOS 10.15, tvOS 17.0, *)
+#if DEBUG
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, *)
 #Preview {
     let emptyFunction: () -> Void = { }
 
@@ -206,5 +207,6 @@ public struct SplitActionButton<CustomLabel: View>: View {
         }
     }
 }
+#endif
 
 #endif

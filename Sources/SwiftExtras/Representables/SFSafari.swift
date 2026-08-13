@@ -77,8 +77,12 @@ public struct SafariView: UIViewControllerRepresentable {
 
 #if DEBUG
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
-#Preview {
-    SafariView(url: .constant(.init(stringLiteral: "https://wesleydegroot.nl")))
+#Preview("Safari Presentation") {
+    ContentUnavailableView(
+        "Safari View",
+        systemImage: "safari",
+        description: Text("Present SafariView at runtime with an HTTP or HTTPS URL.")
+    )
 }
 #endif
 #endif

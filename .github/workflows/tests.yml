@@ -1,4 +1,4 @@
-name: Run tests on Linux and macOS
+name: Run platform tests
 on:
   push:
   workflow_dispatch:
@@ -7,14 +7,13 @@ jobs:
   test_linux:
     if: true
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v3
 
-      - name: Swift test
-        run: swift test
+      - name: Test Linux
+        run: Scripts/test-all-platforms.sh
 
-  test_macos:
+  test_apple_platforms:
     runs-on: macos-15
     # runs-on: macos-latest
     steps:
@@ -30,5 +29,5 @@ jobs:
           echo "Toolchain version"
           swift -version
 
-      - name: Swift test
-        run: swift test
+      - name: Test supported Apple platforms
+        run: SKIP_LINUX=1 Scripts/test-all-platforms.sh

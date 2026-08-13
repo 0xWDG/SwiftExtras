@@ -244,6 +244,8 @@ struct IndexKeyPreferenceKey: PreferenceKey {
     }
 }
 
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
     IndexedList(data: [
         "Wesley", "Carlo", "Uneata", "Anne", "Bram", "Sanne", "Daan", "Lieke", "Milan",
@@ -261,4 +263,5 @@ struct IndexKeyPreferenceKey: PreferenceKey {
         Text(name)
     }
 }
+#endif
 #endif

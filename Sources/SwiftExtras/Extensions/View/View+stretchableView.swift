@@ -60,4 +60,24 @@ extension View {
         }
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Stretchable View") {
+    ScrollView {
+        ZStack {
+            LinearGradient(colors: [.blue, .purple], startPoint: .top, endPoint: .bottom)
+                .accessibilityHidden(true)
+            Text("Pull to stretch")
+                .font(.title.bold())
+                .foregroundStyle(.white)
+        }
+        .frame(height: 220)
+        .stretchableView()
+
+        Text("Preview content")
+            .padding()
+    }
+}
+#endif
 #endif

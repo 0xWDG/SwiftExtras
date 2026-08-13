@@ -112,4 +112,23 @@ extension Color {
         )
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Color Initializers") {
+    HStack {
+        Color(hex: "#5B5BD6")
+            .accessibilityLabel("Hexadecimal indigo color")
+
+        Color(red: 0.2, green: 0.7, blue: 0.4, alpha: 1)
+            .accessibilityLabel("RGB green color")
+
+        Color(light: .yellow, dark: .indigo)
+            .accessibilityLabel("Appearance-aware color")
+    }
+    .frame(height: 100)
+    .clipShape(RoundedRectangle(cornerRadius: 16))
+    .padding()
+}
+#endif
 #endif

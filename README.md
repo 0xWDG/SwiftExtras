@@ -33,7 +33,51 @@ targets: [
 
 ## Update Screenshots
 
-`swift run SwiftExtrasScreenshots`
+Generate the macOS-rendered DocC assets from the repository root:
+
+```shell
+swift run SwiftExtrasScreenshots
+```
+
+To render with UIKit, boot an iOS Simulator, build the generator for the
+simulator, and run the resulting executable:
+
+```shell
+xcodebuild build \
+  -scheme SwiftExtrasScreenshots \
+  -destination 'generic/platform=iOS Simulator' \
+  -derivedDataPath .build/SwiftExtrasScreenshots-iOS \
+  CODE_SIGNING_ALLOWED=NO
+
+xcrun simctl spawn booted \
+  "$PWD/.build/SwiftExtrasScreenshots-iOS/Build/Products/Debug-iphonesimulator/SwiftExtrasScreenshots"
+```
+
+The generator prints its output directory when it finishes. On iOS, screenshots
+are saved under `Documents/SwiftExtrasScreenshots` with an `-ios` filename suffix
+so they can coexist with the desktop assets. Set
+`SWIFT_EXTRAS_SCREENSHOT_OUTPUT` to override the destination with a writable
+path.
+
+To capture localized screenshots of an app that uses SwiftExtras, add the
+`SwiftExtrasScreenshotTesting` product to the app's UI-test target and subclass
+`ScreenshotTestCase`. See the [screenshot testing guide](Sources/SwiftExtrasScreenshotTesting/SwiftExtrasScreenshotTesting.docc/SwiftExtrasScreenshotTesting.md)
+for a complete light/dark, multi-language example.
+
+## Test All Platforms
+
+Run the reusable platform test script from the repository root:
+
+```shell
+Scripts/test-all-platforms.sh
+```
+
+On macOS, the script runs the test suite locally, builds the package for every
+supported Apple platform, and runs the Linux suite using
+[Apple container](https://github.com/apple/container). Start the service with
+`container system start` before running the script. Set `SKIP_LINUX=1` to omit
+the containerized Linux tests, or set `SWIFT_CONTAINER_IMAGE` to select another
+Swift image. On Linux, the script runs `swift test` directly.
 
 ## Custom Views (+ Screenshots)
 

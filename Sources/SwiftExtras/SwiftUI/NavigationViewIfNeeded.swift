@@ -122,4 +122,18 @@ public struct NavigationViewIfNeeded<Content: View>: View {
         }
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Navigation When Needed") {
+    NavigationViewIfNeeded {
+        Text("Navigation content")
+            .navigationTitle("SwiftExtras")
+            .toolbar {
+                Button("Add", systemImage: "plus") { }
+                    .accessibilityHint("Example toolbar action")
+            }
+    }
+}
+#endif
 #endif

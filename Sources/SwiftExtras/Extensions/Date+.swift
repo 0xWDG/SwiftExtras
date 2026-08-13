@@ -12,6 +12,26 @@
 import Foundation
 
 extension Date {
+    /// A localized description of the date relative to the current time.
+    ///
+    /// The description is approximate and generally includes only the most
+    /// significant date or time component, such as “2 hours ago”.
+    public var timeAgo: String {
+        timeAgo(relativeTo: .now)
+    }
+
+    /// Returns a localized description of the date relative to another date.
+    ///
+    /// - Parameter referenceDate: The date against which to describe this date.
+    /// - Returns: A localized relative description, such as “yesterday” or
+    ///   “in 2 hours”.
+    public func timeAgo(relativeTo referenceDate: Date) -> String {
+        let dateRelativeToNow = Date.now.addingTimeInterval(timeIntervalSince(referenceDate))
+        return dateRelativeToNow.formatted(
+            .relative(presentation: .named, unitsStyle: .wide)
+        )
+    }
+
     /// Is the date the current day?
     public var isCurrentDay: Bool {
         Calendar.current.isDate(

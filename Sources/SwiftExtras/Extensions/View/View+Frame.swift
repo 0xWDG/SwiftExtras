@@ -37,4 +37,24 @@ extension View {
         self.frame(maxWidth: maxSize, maxHeight: maxSize)
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Square Frames") {
+    HStack {
+        Color.blue
+            .frame(size: 64)
+            .accessibilityLabel("64 point blue square")
+
+        Color.purple
+            .frame(size: CGSize(width: 96, height: 64))
+            .accessibilityLabel("Purple rectangle")
+
+        Image(systemName: "swift")
+            .frame(maxSize: 80)
+            .accessibilityLabel("Swift")
+    }
+    .padding()
+}
+#endif
 #endif

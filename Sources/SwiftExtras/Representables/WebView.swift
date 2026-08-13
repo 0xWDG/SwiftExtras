@@ -169,7 +169,7 @@ public struct WebView: PlatformViewRepresentable {
 #if DEBUG
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
-    if let url = URL(string: "https://wesleydegroot.nl") {
+    if let url = URL(string: "data:text/html,%3Ch1%3ESwiftExtras%3C%2Fh1%3E%3Cp%3ELocal%20preview%3C%2Fp%3E") {
         WebView(url: url)
     }
 }

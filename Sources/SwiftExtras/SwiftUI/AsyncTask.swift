@@ -47,4 +47,15 @@ public struct AsyncTask: View {
             }
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Async Task") {
+    ContentUnavailableView(
+        "No Visual Content",
+        systemImage: "checkmark.circle",
+        description: Text("AsyncTask intentionally renders an empty view.")
+    )
+}
+#endif
 #endif

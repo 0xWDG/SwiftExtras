@@ -120,4 +120,25 @@ extension CustomError: LocalizedError {
         NSLocalizedString(message, comment: "")
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+private struct ShowErrorPreview: View {
+    @State private var error: Error? = CustomError(message: "The preview operation failed.")
+
+    var body: some View {
+        Button("Show example error") {
+            error = CustomError(message: "The preview operation failed.")
+        }
+        .accessibilityHint("Presents a local example error alert")
+        .showError(error: $error)
+        .padding()
+    }
+}
+
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Error Alert") {
+    ShowErrorPreview()
+}
+#endif
 #endif

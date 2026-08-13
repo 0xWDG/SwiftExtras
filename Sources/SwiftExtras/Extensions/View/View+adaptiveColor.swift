@@ -39,14 +39,12 @@ extension View {
             .adaptiveColor()
 
         ZStack {
-            // Generate a random background
             HStack(spacing: 0) {
-                ForEach(0..<10) { _ in
-                    Color(
-                        red: .random(in: 0...1),
-                        green: .random(in: 0...1),
-                        blue: .random(in: 0...1)
-                    )
+                ForEach(
+                    [Color.red, .orange, .yellow, .green, .blue, .indigo, .purple],
+                    id: \.self
+                ) { color in
+                    color
                 }
             }
             .frame(height: 40)

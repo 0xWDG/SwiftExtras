@@ -126,4 +126,44 @@ public struct Equatables<each T>: Equatable where repeat each T: Equatable {
         self.values = values
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+private struct DebouncedOnChangePreview: View {
+    @State private var value = 25.0
+    @State private var reportedValue = 25.0
+
+    var body: some View {
+        VStack {
+            HStack {
+                Button {
+                    value = max(0, value - 25)
+                } label: {
+                    Image(systemName: "minus")
+                }
+                .accessibilityLabel("Decrease example value")
+
+                Text(value, format: .number.precision(.fractionLength(0)))
+                    .accessibilityLabel("Example value")
+
+                Button {
+                    value = min(100, value + 25)
+                } label: {
+                    Image(systemName: "plus")
+                }
+                .accessibilityLabel("Increase example value")
+            }
+
+            Text("Reported value: \(reportedValue, format: .number.precision(.fractionLength(0)))")
+        }
+        .padding()
+        .onChange(of: value, after: .milliseconds(250)) { reportedValue = $0 }
+    }
+}
+
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Debounced Change") {
+    DebouncedOnChangePreview()
+}
+#endif
 #endif

@@ -129,4 +129,31 @@ extension Color {
         )
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Color Vision Simulations") {
+    let colors: [(String, Color)] = [
+        ("Original", .orange),
+        ("Protanopia", Color.orange.protanopia),
+        ("Deuteranopia", Color.orange.deuteranopia),
+        ("Tritanopia", Color.orange.tritanopia),
+        ("Inverted", Color.orange.inverted)
+    ]
+
+    VStack(alignment: .leading) {
+        ForEach(colors, id: \.0) { name, color in
+            Label {
+                Text(name)
+            } icon: {
+                Circle()
+                    .fill(color)
+                    .frame(width: 32, height: 32)
+                    .accessibilityHidden(true)
+            }
+        }
+    }
+    .padding()
+}
+#endif
 #endif

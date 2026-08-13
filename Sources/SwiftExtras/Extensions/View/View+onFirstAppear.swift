@@ -42,4 +42,27 @@ private struct OnFirstAppearModifier: ViewModifier {
         }
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+private struct OnFirstAppearPreview: View {
+    @State private var didAppear = false
+
+    var body: some View {
+        Label(
+            didAppear ? "First appearance handled" : "Waiting to appear",
+            systemImage: didAppear ? "checkmark.circle.fill" : "circle"
+        )
+        .onFirstAppear {
+            didAppear = true
+        }
+        .padding()
+    }
+}
+
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("First Appearance") {
+    OnFirstAppearPreview()
+}
+#endif
 #endif

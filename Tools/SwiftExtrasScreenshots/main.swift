@@ -9,27 +9,33 @@
 //  MIT License
 //
 
+#if canImport(AppKit) || (os(iOS) && canImport(UIKit))
 #if canImport(AppKit)
 import AppKit
+#elseif os(iOS)
+import UIKit
+#endif
 import SwiftExtras
 import SwiftUI
 
 @main
 enum ScreenshotGenerator {
+    @MainActor
     static func main() throws {
-        let output = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-            .appendingPathComponent("Sources/SwiftExtras/SwiftExtras.docc/Resources")
+        let output = screenshotOutputDirectory
         try FileManager.default.createDirectory(at: output, withIntermediateDirectories: true)
 
         for spec in specs {
             try render(spec, output: output)
         }
+
+        print("Saved \(specs.count) screenshots to \(output.path)")
     }
 
     private static var specs: [ScreenshotSpec] {
         var specs = standardSpecs
 
-        if #available(macOS 14, *) {
+        if #available(macOS 14, iOS 17, *) {
             specs.append(contentsOf: modernSpecs)
         }
 
@@ -93,29 +99,14 @@ enum ScreenshotGenerator {
             },
             .init(name: "split-action-button", size: .init(width: 620, height: 220)) {
                 ExampleFrame(title: "SplitActionButton") {
-                    HStack(spacing: 18) {
-                        SplitActionButton(
-                            primaryTitle: "Publish",
-                            primarySystemImage: "paperplane",
-                            secondaryTitle: "Save Draft",
-                            secondarySystemImage: "doc",
-                            primaryAction: { },
-                            secondaryAction: { }
-                        )
-                        .buttonStyle(.borderedProminent)
+                    ViewThatFits(in: .horizontal) {
+                        HStack(spacing: 18) {
+                            splitActionButtons
+                        }
 
-                        SplitActionButton(
-                            primaryTitle: "Publish",
-                            primarySystemImage: "paperplane",
-                            secondaryTitle: "Schedule",
-                            secondarySystemImage: "calendar",
-                            primaryAction: { },
-                            secondaryAction: { },
-                            label: {
-                                Label("Custom", systemImage: "sparkles")
-                            }
-                        )
-                        .buttonStyle(.bordered)
+                        VStack(alignment: .leading, spacing: 12) {
+                            splitActionButtons
+                        }
                     }
                 }
             }
@@ -133,8 +124,8 @@ enum ScreenshotGenerator {
                             .foregroundStyle(.secondary)
                     }
                 }
-                .frame(width: 620, height: 380)
-                .background(Color(nsColor: .windowBackgroundColor))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(screenshotBackgroundColor)
             },
             .init(name: "disclosure-section", size: .init(width: 620, height: 320)) {
                 ExampleFrame(title: "DisclosureSection") {
@@ -169,7 +160,7 @@ enum ScreenshotGenerator {
                                 .clipShape(Capsule())
                         }
                     }
-                    .frame(width: 500, height: 120, alignment: .topLeading)
+                    .frame(maxWidth: 500, minHeight: 120, alignment: .topLeading)
                 }
             }
         ]
@@ -192,7 +183,7 @@ enum ScreenshotGenerator {
                         .init(version: "1.1.0", date: "2026-06-20", text: "Added SplitActionButton.")
                     ])
                 }
-                .frame(width: 620, height: 420)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             },
             .init(name: "se-acknowledgement-view", size: .init(width: 620, height: 420)) {
                 NavigationStack {
@@ -200,12 +191,12 @@ enum ScreenshotGenerator {
                         .init(name: "ExampleKit", copyright: "Example Author", licence: "MIT")
                     ])
                 }
-                .frame(width: 620, height: 420)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         ]
     }
 
-    @available(macOS 14, *)
+    @available(macOS 14, iOS 17, *)
     private static var modernSpecs: [ScreenshotSpec] {
         [
             .init(name: "month-year-picker-view", size: .init(width: 620, height: 360)) {
@@ -243,7 +234,7 @@ enum ScreenshotGenerator {
             },
             .init(name: "notification-view", size: .init(width: 620, height: 220)) {
                 ZStack(alignment: .top) {
-                    Color(nsColor: .windowBackgroundColor)
+                    screenshotBackgroundColor
                     NotificationView(
                         title: "Export Complete",
                         message: "Screenshots were saved to the DocC catalog.",
@@ -252,11 +243,52 @@ enum ScreenshotGenerator {
                         .frame(maxWidth: .infinity)
                         .padding(.top, 24)
                 }
-                .frame(width: 620, height: 220)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            },
+            .init(name: "scroll-tracking-modifier", size: .init(width: 393, height: 600)) {
+                ScrollTrackingExample()
+            },
+            .init(name: "stretchy-header-modifier", size: .init(width: 393, height: 600)) {
+                StretchyHeaderExample()
+            },
+            .init(name: "island-toast-modifier", size: .init(width: 393, height: 520)) {
+                IslandToastExample()
+            },
+            .init(name: "picture-in-picture-modifier", size: .init(width: 393, height: 520)) {
+                PictureInPictureExample()
+            },
+            .init(name: "shimmer-modifier", size: .init(width: 393, height: 360)) {
+                ShimmerExample()
             }
         ]
     }
 
+}
+
+@ViewBuilder
+private var splitActionButtons: some View {
+    SplitActionButton(
+        primaryTitle: "Publish",
+        primarySystemImage: "paperplane",
+        secondaryTitle: "Save Draft",
+        secondarySystemImage: "doc",
+        primaryAction: { },
+        secondaryAction: { }
+    )
+    .buttonStyle(.borderedProminent)
+
+    SplitActionButton(
+        primaryTitle: "Publish",
+        primarySystemImage: "paperplane",
+        secondaryTitle: "Schedule",
+        secondarySystemImage: "calendar",
+        primaryAction: { },
+        secondaryAction: { },
+        label: {
+            Label("Custom", systemImage: "sparkles")
+        }
+    )
+    .buttonStyle(.bordered)
 }
 
 private let cardDescription = """
@@ -285,43 +317,6 @@ private let indexedListItems = [
     "Plum"
 ]
 
-@MainActor
-private func render(_ spec: ScreenshotSpec, output: URL) throws {
-    let view = NSHostingView(rootView:
-        spec.content()
-            .frame(width: spec.size.width, height: spec.size.height)
-            .environment(\.colorScheme, .light)
-            .tint(.blue)
-    )
-    view.frame = CGRect(origin: .zero, size: spec.size)
-    view.setFrameSize(spec.size)
-
-    let window = NSWindow(
-        contentRect: CGRect(origin: .zero, size: spec.size),
-        styleMask: [.borderless],
-        backing: .buffered,
-        defer: false
-    )
-    window.contentView = view
-    window.makeKeyAndOrderFront(nil)
-
-    view.layoutSubtreeIfNeeded()
-    RunLoop.main.run(until: Date().addingTimeInterval(5))
-    view.layoutSubtreeIfNeeded()
-
-    let representation = view.bitmapImageRepForCachingDisplay(in: view.bounds)
-    guard let bitmap = representation else {
-        throw ScreenshotError.renderFailed(spec.name)
-    }
-
-    view.cacheDisplay(in: view.bounds, to: bitmap)
-    guard let data = bitmap.representation(using: .png, properties: [:]) else {
-        throw ScreenshotError.renderFailed(spec.name)
-    }
-    window.orderOut(nil)
-    try data.write(to: output.appendingPathComponent("\(spec.name).png"))
-}
-
 struct ScreenshotSpec {
     let name: String
     let size: CGSize
@@ -333,7 +328,7 @@ struct ScreenshotSpec {
         @ViewBuilder content: @escaping @MainActor () -> Content
     ) {
         self.name = name
-        self.size = size
+        self.size = screenshotSize(size)
         self.content = { AnyView(content()) }
     }
 }
@@ -358,12 +353,8 @@ struct ExampleFrame<Content: View>: View {
         }
         .padding(28)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .background(Color(nsColor: .windowBackgroundColor))
+        .background(screenshotBackgroundColor)
     }
-}
-
-enum ScreenshotError: Error {
-    case renderFailed(String)
 }
 
 private func date(year: Int, month: Int) -> Date {
@@ -372,5 +363,12 @@ private func date(year: Int, month: Int) -> Date {
     }
 
     return date
+}
+#else
+@main
+enum ScreenshotGenerator {
+    static func main() {
+        print("SwiftExtrasScreenshots is available on macOS and iOS only.")
+    }
 }
 #endif

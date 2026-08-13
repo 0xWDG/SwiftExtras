@@ -40,4 +40,15 @@ public struct HexShape: Shape {
         }
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Hexagon") {
+    HexShape()
+        .fill(.blue.gradient)
+        .frame(width: 180, height: 200)
+        .accessibilityLabel("Blue hexagon")
+        .padding()
+}
+#endif
 #endif

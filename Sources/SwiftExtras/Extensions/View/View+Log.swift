@@ -58,4 +58,13 @@ extension View {
         return self
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Logging Modifier") {
+    Label("Logging leaves content unchanged", systemImage: "text.bubble")
+        .log { }
+        .padding()
+}
+#endif
 #endif

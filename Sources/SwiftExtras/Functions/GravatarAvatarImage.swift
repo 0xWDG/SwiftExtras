@@ -95,32 +95,80 @@ public func gravatarAvatarImage(
 }
 
 #if DEBUG
-@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
-#Preview {
-    @Previewable @State var image: Image?
+private final class GravatarPreviewURLProtocol: URLProtocol {
+    override static func canInit(with request: URLRequest) -> Bool {
+        true
+    }
 
-    Form {
-        Section("Async await") {
-            if let image {
-                image
+    override static func canonicalRequest(for request: URLRequest) -> URLRequest {
+        request
+    }
+
+    override func startLoading() {
+        let imageData = Data(
+            base64Encoded:
+                "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y9ZMcAAAAAASUVORK5CYII="
+        ) ?? Data()
+        guard let url = request.url,
+              let response = HTTPURLResponse(
+            url: url,
+            statusCode: 200,
+            httpVersion: nil,
+            headerFields: ["Content-Type": "image/png"]
+              ) else {
+            client?.urlProtocolDidFinishLoading(self)
+            return
+        }
+
+        client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
+        client?.urlProtocol(self, didLoad: imageData)
+        client?.urlProtocolDidFinishLoading(self)
+    }
+
+    override func stopLoading() { }
+}
+
+private struct GravatarPreview: View {
+    @State private var image: Image?
+    private let previewSession: URLSession
+
+    init() {
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [GravatarPreviewURLProtocol.self]
+        previewSession = URLSession(configuration: configuration)
+    }
+
+    var body: some View {
+        Form {
+            Section("Async await") {
+                if let image {
+                    image.accessibilityLabel("Preview avatar")
+                }
             }
-        }
-        .task {
-            image = try? await gravatarAvatarImage(
-                emailAddress: "email@wesleydegroot.nl"
-            )
-        }
-
-        Section("With AsyncView") {
-            AsyncView {
-                try? await gravatarAvatarImage(
-                    emailAddress: "email@wesleydegroot.nl"
+            .task {
+                image = try? await gravatarAvatarImage(
+                    emailAddress: "preview@example.invalid",
+                    session: previewSession
                 )
-            } content: { image in
-                image
+            }
+
+            Section("With AsyncView") {
+                AsyncView {
+                    try? await gravatarAvatarImage(
+                        emailAddress: "preview@example.invalid",
+                        session: previewSession
+                    )
+                } content: { image in
+                    image.accessibilityLabel("Preview avatar")
+                }
             }
         }
     }
+}
+
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Gravatar Fixture") {
+    GravatarPreview()
 }
 #endif
 #endif

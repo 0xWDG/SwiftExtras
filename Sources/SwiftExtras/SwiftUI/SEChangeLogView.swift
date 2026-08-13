@@ -66,7 +66,7 @@ public struct SEChangeLogView: View {
         SEChangeLogView(changeLog: [
             .init(
                 version: "1.0.0",
-                date: "\(Date.now.ddmmyyyy)",
+                date: "13-08-2026",
                 text: "Initial version"
             )
         ])

@@ -42,4 +42,34 @@ public extension View {
         self.modifier(KeyboardDismissModifier())
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, *)
+private struct KeyboardDismissPreview: View {
+    @State private var text = "Example text"
+
+    var body: some View {
+        VStack {
+#if os(tvOS)
+            TextField("Editable text", text: $text)
+                .accessibilityHint("Select the surrounding area to dismiss text entry")
+#else
+            TextField("Editable text", text: $text)
+                .textFieldStyle(.roundedBorder)
+                .accessibilityHint("Tap outside the field to dismiss the keyboard")
+#endif
+
+            Text("Tap this area to dismiss the keyboard")
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .padding()
+        .dismissKeyboardOnTap()
+    }
+}
+
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, *)
+#Preview("Keyboard Dismissal") {
+    KeyboardDismissPreview()
+}
+#endif
 #endif

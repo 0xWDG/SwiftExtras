@@ -18,6 +18,10 @@ let package = Package(
             name: "SwiftExtras",
             targets: ["SwiftExtras"]
         ),
+        .library(
+            name: "SwiftExtrasScreenshotTesting",
+            targets: ["SwiftExtrasScreenshotTesting"]
+        ),
         .executable(
             name: "SwiftExtrasScreenshots",
             targets: ["SwiftExtrasScreenshots"]
@@ -34,6 +38,7 @@ let package = Package(
             dependencies: [
                 .product(name: "OSLogViewer", package: "OSLogViewer")
             ],
+            exclude: ["SwiftExtras.docc"],
             resources: [
                 .process("Assets.xcassets"),
                 .process("Localizable.xcstrings")
@@ -41,7 +46,12 @@ let package = Package(
         ),
         .testTarget(
             name: "SwiftExtrasTests",
-            dependencies: ["SwiftExtras"]
+            dependencies: ["SwiftExtras", "SwiftExtrasScreenshotTesting"]
+        ),
+        .target(
+            name: "SwiftExtrasScreenshotTesting",
+            dependencies: ["SwiftExtras"],
+            exclude: ["SwiftExtrasScreenshotTesting.docc"]
         ),
         .executableTarget(
             name: "SwiftExtrasScreenshots",

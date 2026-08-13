@@ -2,7 +2,44 @@
 
 This file contains the changelog of SwiftExtras.
 
+### 1.2.9
+
+- Added project-wide, debug-only SwiftUI preview coverage for rendered views, modifiers, layouts, shapes, styles, and representables, with deterministic local fixtures and accessible controls.
+- Added compact, UIKit-rendered DocC previews for every documented SwiftUI view and modifier on iOS.
+- Added UIKit rendering and simulator output support to `SwiftExtrasScreenshots` so documentation assets can be generated on iOS as well as macOS.
+- Added [`Flow`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/flow)
+  A SwiftUI layout that arranges views in horizontal lines, wraps overflowing content, and supports configurable alignment and spacing.
+- Added [`ScrollView.trackScrolling()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/scrollview/trackscrolling()) and [`ScrollViewReader.onScrolled(_:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/scrollviewreader/onscrolled(_:))
+  Track horizontal and vertical scroll progress as normalized values without changing the accessibility hierarchy.
+- Added [`IslandToast`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/islandtoast) and [`IslandToastCard`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/islandtoastcard)
+  Accessible bottom-anchored toast presentations with semantic roles, automatic dismissal, Reduce Motion support, Liquid Glass on supported systems, and a fallback for earlier OS versions.
+- Added [`View.asStretchyHeader(startingHeight:coordinateSpace:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/asstretchyheader(startingheight:coordinatespace:))
+  A backwards-compatible stretchy header effect for scroll views.
+- Added [`PictureInPicture`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/pictureinpicture) and [`View.pictureInPicture(isPresented:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/pictureinpicture(ispresented:))
+  An original sample-buffer-based Picture in Picture implementation that can render a SwiftUI view using the system Picture in Picture experience.
+- Added [`View.pictureInPicture(isPresented:content:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/pictureinpicture(ispresented:content:))
+  Present custom SwiftUI content independently from the source view in Picture in Picture.
+- Improved cross-platform compatibility for `Flow`, island toasts, and Picture in Picture across supported Apple platforms.
+- Updated `Scripts/test-all-platforms.sh` to run Linux tests with Apple container instead of Docker.
+- Fixed Linux compilation and test portability for bundle metadata, dictionary raw values, test detection, relative-date tests, platform images, and web URL validation.
+
 ### 1.2.8
+- Added [`JSON`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/json)
+  A dynamically accessible JSON value with safe object, array, scalar-conversion, parsing, and serialization helpers.
+- Expanded [`View.shimmer()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/shimmer()) and added [`View.shimmering(active:animation:gradient:bandSize:mode:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/shimmering(active:animation:gradient:bandsize:mode:))
+  Added custom animations, gradients, band sizes, overlay and background modes, conditional activation, RTL movement, and Reduce Motion support.
+- Expanded [`AppInfo`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo)
+  Added accessibility, distribution, system-version, hardware, architecture, locale, appearance, screen, orientation, and time-zone metadata helpers.
+- Added [`ScreenshotTestCase`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextrasscreenshottesting/screenshottestcase)
+  A reusable UI-test case for capturing localized light and dark app screenshots as XCTest attachments and PNG files.
+- Added [`Date.timeAgo`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/timeago) and [`Date.timeAgo(relativeTo:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/foundation/date/timeago(relativeto:))
+  Localized descriptions of a date relative to now or another date.
+- Added [`DeviceInfo`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/deviceinfo)
+  Safe access to application bundle metadata, system versions, sandbox state, appearance, and the native app icon.
+- Added [`StringProtocol.quoted`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/stringprotocol/quoted)
+  A property that encloses string-like values in double quotation marks while escaping nested quotation marks and backslashes.
+- Added [`String.split(every:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swift/string/split(every:))
+  A Unicode-safe method for splitting a string into groups of a fixed maximum size.
 - Added [`AppInfo.deviceType`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/devicetype)  
   A property that returns the current device type as a string.
 - Renamed `AppInfo.deviceType` symbol image to [`AppInfo.deviceTypeSymbol`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/devicetypesymbol)  

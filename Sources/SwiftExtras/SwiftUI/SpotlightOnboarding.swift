@@ -437,4 +437,65 @@ private struct TutorialSizeKey: PreferenceKey {
         value = nextValue()
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+private struct TutorialSpotlightPreview: View {
+    private enum Step: String, CaseIterable {
+        case profile
+        case favorites
+    }
+
+    @State private var selection: Step? = .profile
+
+    var body: some View {
+        VStack {
+            HStack {
+                Label("Profile", systemImage: "person.crop.circle")
+                    .padding()
+                    .tutorialSpotlightSource(id: Step.profile, spotlightShape: .capsule)
+
+                Spacer()
+
+                Label("Favorites", systemImage: "heart.fill")
+                    .padding()
+                    .tutorialSpotlightSource(id: Step.favorites, spotlightShape: .capsule)
+            }
+
+            Spacer()
+
+            Button("Restart tutorial") {
+                selection = .profile
+            }
+            .accessibilityHint("Highlights the profile example")
+        }
+        .padding()
+        .tutorialSpotlight(
+            selection: $selection,
+            orderedIDs: Step.allCases,
+            cornerRadius: 20
+        ) { step, actions in
+            VStack(alignment: .leading) {
+                Text(step == .profile ? "Your profile" : "Your favorites")
+                    .font(.headline)
+
+                Text("This is deterministic preview guidance.")
+
+                HStack {
+                    Button("Dismiss", action: actions.dismiss)
+                    Spacer()
+                    Button("Next", action: actions.advance)
+                }
+            }
+            .padding()
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
+        }
+    }
+}
+
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Spotlight Onboarding") {
+    TutorialSpotlightPreview()
+}
+#endif
 #endif

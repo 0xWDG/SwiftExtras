@@ -114,6 +114,7 @@ public struct MonthYearPickerView: View {
     }
 }
 
+#if DEBUG
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview {
     @Previewable @State var selectedMonth: Int = 1
@@ -123,4 +124,5 @@ public struct MonthYearPickerView: View {
         selectedYear: $selectedYear
     )
 }
+#endif
 #endif

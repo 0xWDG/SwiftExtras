@@ -78,4 +78,13 @@ extension View {
         }
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Delayed Task") {
+    Label("Delayed task fixture", systemImage: "clock")
+        .task(delay: .seconds(60)) { }
+        .padding()
+}
+#endif
 #endif

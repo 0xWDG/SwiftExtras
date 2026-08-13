@@ -52,4 +52,18 @@ extension View {
         body(self)
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Conditional Modifiers") {
+    VStack {
+        Text("Condition applied")
+            .if(true) { $0.foregroundStyle(.green) }
+
+        Text("Modified content")
+            .modify { $0.padding().background(.blue.opacity(0.15), in: Capsule()) }
+    }
+    .padding()
+}
+#endif
 #endif

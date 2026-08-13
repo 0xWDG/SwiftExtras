@@ -24,4 +24,15 @@ extension View {
         }
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Horizontally Centered") {
+    Text("Centered content")
+        .padding(8)
+        .background(.blue.opacity(0.15), in: Capsule())
+        .horizontallyCentered()
+        .padding()
+}
+#endif
 #endif

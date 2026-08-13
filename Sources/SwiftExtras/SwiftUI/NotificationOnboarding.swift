@@ -27,6 +27,9 @@ public struct NotificationOnboarding: View {
     var primaryButtonTitle: LocalizedStringKey
     var secondaryButtonTitle: LocalizedStringKey
     var onPermissionChange: (_ isApproved: Bool) -> Void
+#if DEBUG
+    private var previewAuthorization: UNAuthorizationStatus?
+#endif
     /// View Properties
     @State private var askPermission: Bool = false
     @State private var showArrow: Bool = false
@@ -66,6 +69,9 @@ public struct NotificationOnboarding: View {
         self.primaryButtonTitle = primaryButtonTitle
         self.secondaryButtonTitle = secondaryButtonTitle
         self.onPermissionChange = onPermissionChange
+#if DEBUG
+        self.previewAuthorization = nil
+#endif
     }
 
     private var isIOS26: Bool {
@@ -119,6 +125,13 @@ public struct NotificationOnboarding: View {
 
                     /// Primary & Secondary Button's
                     Button {
+#if DEBUG
+                        if previewAuthorization != nil {
+                            dismiss()
+                            return
+                        }
+#endif
+
                         if authorization == .authorized {
                             dismiss()
                         } else if authorization == .denied {
@@ -156,6 +169,13 @@ public struct NotificationOnboarding: View {
         }
         /// To Cut off the infinite loop!
         .task {
+#if DEBUG
+            if let previewAuthorization {
+                authorization = previewAuthorization
+                return
+            }
+#endif
+
             let settings = await UNUserNotificationCenter.current().notificationSettings()
             let authorization = settings.authorizationStatus
             self.authorization = authorization
@@ -341,16 +361,17 @@ extension View {
 }
 #if DEBUG
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
-#Preview {
-    @Previewable @State var isPresented: Bool = true
-    VStack {
-        Button("Toggle") {
-            isPresented.toggle()
-        }
-        .notificationOnboarding(isPresented: $isPresented) {
-            print("Permission changed: \($0)")
-        }
+private extension NotificationOnboarding {
+    init(previewAuthorization: UNAuthorizationStatus) {
+        self.init()
+        self.previewAuthorization = previewAuthorization
+        _authorization = State(initialValue: previewAuthorization)
     }
+}
+
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview {
+    NotificationOnboarding(previewAuthorization: .notDetermined)
 }
 #endif
 #endif

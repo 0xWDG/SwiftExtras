@@ -33,11 +33,14 @@ public extension ProcessInfo {
     /// Detects if Unit Tests are running
     static var isUnitTesting: Bool {
 #if DEBUG
-        NSClassFromString("XCTestCase") != nil
+        NSClassFromString("XCTestCase") != nil ||
+        processInfo.arguments.contains { argument in
+            URL(fileURLWithPath: argument).pathExtension == "xctest"
+        }
 #else
         false
 #endif
-}
+    }
 
     /// Detects if Low Power Mode is enabled
     static var isLowPowerModeActive: Bool {

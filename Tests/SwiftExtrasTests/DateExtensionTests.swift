@@ -13,6 +13,25 @@ import Foundation
 import Testing
 @testable import SwiftExtras
 
+@Test func timeAgoMatchesFoundationRelativeFormatting() {
+    let referenceDate = Date(timeIntervalSince1970: 1_700_000_000)
+    let date = referenceDate.addingTimeInterval(-2 * 60 * 60)
+#if canImport(Darwin)
+    let formatter = RelativeDateTimeFormatter()
+    formatter.dateTimeStyle = .named
+    formatter.unitsStyle = .full
+    formatter.formattingContext = .standalone
+
+    #expect(date.timeAgo(relativeTo: referenceDate) == formatter.localizedString(
+        for: date,
+        relativeTo: referenceDate
+    ))
+#else
+    #expect(!date.timeAgo(relativeTo: referenceDate).isEmpty)
+#endif
+    #expect(!Date.now.timeAgo.isEmpty)
+}
+
 @Test func dateComponentsAndBoundaries() {
     let date = Date(year: 2024, month: 2, day: 15, hour: 12, minute: 34, second: 56)
 
@@ -69,4 +88,36 @@ import Testing
 
     #expect(date.time(timeZone: utc) == "00:00")
     #expect(date.time(timeZone: plusTwo) == "02:00")
+}
+
+@Test func dateParsingFormattingAndIdentifiersUseExpectedComponents() throws {
+    let date = try #require(Date(yyyymmdd: "2024-02-29"))
+
+    #expect(date.yyyymmdd == "2024-02-29")
+    #expect(date.formatted("yyyy-MM-dd") == "2024-02-29")
+    #expect(Date(yyyymmdd: "not-a-date") == nil)
+    #expect(date.weekNumber > 0)
+    #expect(!date.dayName.isEmpty)
+    #expect(!date.monthAndYear.isEmpty)
+}
+
+@Test func dayBoundariesSpanAllButOneSecondOfTheDay() {
+    let date = Date(year: 2024, month: 5, day: 20, hour: 12, minute: 30)
+
+    #expect(date.startOfDay <= date)
+    #expect(date.endOfDay >= date)
+    #expect(Calendar.current.dateComponents(
+        [.second],
+        from: date.startOfDay,
+        to: date.endOfDay
+    ).second == 86_399)
+}
+
+@Test func timezoneConversionAppliesTheDifferenceBetweenOffsets() throws {
+    let utc = try #require(TimeZone(secondsFromGMT: 0))
+    let plusTwo = try #require(TimeZone(secondsFromGMT: 7_200))
+    let date = Date(timeIntervalSince1970: 1_700_000_000)
+
+    #expect(date.to(timeZone: plusTwo, from: utc) == date.addingTimeInterval(7_200))
+    #expect(date.to(timeZone: utc, from: plusTwo) == date.addingTimeInterval(-7_200))
 }

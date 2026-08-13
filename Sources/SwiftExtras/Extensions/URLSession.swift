@@ -17,7 +17,7 @@ import FoundationNetworking
 /// A URL session delegate that accepts server-trust authentication challenges.
 ///
 /// Use this delegate only when certificate validation is intentionally disabled.
-public class IgnoreSSLErrorsDelegate: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
+public final class IgnoreSSLErrorsDelegate: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
     /// urlSession(_:didReceive:completionHandler:) - Ignore SSL certificate errors
     /// - Parameters:
     ///   - session: The URLSession instance
@@ -49,7 +49,6 @@ extension URLSession {
         let sessionConfig = URLSessionConfiguration.default
         sessionConfig.timeoutIntervalForRequest = 15.0
         sessionConfig.timeoutIntervalForResource = 30.0
-        let session = URLSession(configuration: sessionConfig)
 
         return URLSession(
             configuration: sessionConfig,
@@ -63,10 +62,9 @@ extension URLSession {
         let sessionConfig = URLSessionConfiguration.default
         sessionConfig.timeoutIntervalForRequest = 15.0
         sessionConfig.timeoutIntervalForResource = 30.0
-        let session = URLSession(configuration: sessionConfig)
 
         return URLSession(
-            configuration: URLSessionConfiguration.default,
+            configuration: sessionConfig,
             delegate: IgnoreSSLErrorsDelegate(),
             delegateQueue: nil
         )

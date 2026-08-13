@@ -157,4 +157,15 @@ public struct MailView: UIViewControllerRepresentable {
         context: UIViewControllerRepresentableContext<MailView>) {
         }
 }
+
+#if DEBUG
+@available(iOS 17, visionOS 1, *)
+#Preview("Mail Composer") {
+    MailView(result: .constant(nil)) { composer in
+        composer.setSubject("SwiftExtras preview")
+        composer.setToRecipients(["preview@example.invalid"])
+        composer.setMessageBody("Deterministic preview message", isHTML: false)
+    }
+}
+#endif
 #endif

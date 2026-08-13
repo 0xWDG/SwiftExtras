@@ -50,4 +50,32 @@ extension View {
         modifier(SaveSizeModifier(size: size))
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+private struct SaveSizePreview: View {
+    @State private var size = CGSize.zero
+
+    var body: some View {
+        VStack {
+            Text("Measure this view")
+                .padding()
+                .background(.orange.opacity(0.2), in: Capsule())
+                .saveSize(in: $size)
+
+            (
+                Text("\(size.width, format: .number.precision(.fractionLength(0))) × ")
+                    + Text("\(size.height, format: .number.precision(.fractionLength(0))) points")
+            )
+            .accessibilityLabel("Measured size")
+        }
+        .padding()
+    }
+}
+
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Saved Size") {
+    SaveSizePreview()
+}
+#endif
 #endif

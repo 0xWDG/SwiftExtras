@@ -10,7 +10,7 @@
 //
 
 import Foundation
-#if canImport(AppKit)
+#if canImport(AppKit) && !targetEnvironment(macCatalyst)
 import AppKit
 #endif
 #if canImport(UIKit)
@@ -40,7 +40,7 @@ public func openURL(_ url: URL?) -> Bool {
         return false
     }
 
-#if canImport(AppKit)
+#if canImport(AppKit) && !targetEnvironment(macCatalyst)
     return NSWorkspace.shared.open(url)
 #elseif canImport(UIKit) && !os(watchOS)
     Task { @MainActor in
