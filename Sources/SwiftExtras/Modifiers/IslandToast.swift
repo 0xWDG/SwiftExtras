@@ -69,6 +69,7 @@ public struct IslandToast<Item: IslandToastItem>: ViewModifier {
     }
 
     private func styledToast(card: IslandToastCard) -> AnyView {
+        #if compiler(>=6.2)
         if #available(iOS 26.0, macOS 26.0, tvOS 26.0, watchOS 26.0, *) {
             return AnyView(
                 GlassEffectContainer {
@@ -82,6 +83,7 @@ public struct IslandToast<Item: IslandToastItem>: ViewModifier {
                 .transition(toastTransition)
             )
         }
+        #endif
 
         return AnyView(
             toastContent(card: card)

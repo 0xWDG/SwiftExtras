@@ -1,5 +1,5 @@
 //
-//  main.swift
+//  SwiftExtrasScreenshots.swift
 //  SwiftExtras
 //
 //  Created by Wesley de Groot on 2026-07-06.
@@ -365,5 +365,10 @@ private func date(year: Int, month: Int) -> Date {
     return date
 }
 #else
-print("SwiftExtrasScreenshots is available on macOS and iOS only.")
+@main
+enum ScreenshotGenerator {
+    static func main() {
+        print("SwiftExtrasScreenshots is available on macOS and iOS only.")
+    }
+}
 #endif

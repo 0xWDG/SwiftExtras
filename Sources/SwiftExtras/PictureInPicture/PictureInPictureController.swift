@@ -174,7 +174,7 @@ final class ViewPictureInPictureController: NSObject, ObservableObject {
     }
 }
 
-extension ViewPictureInPictureController: @MainActor AVPictureInPictureControllerDelegate {
+extension ViewPictureInPictureController: @preconcurrency AVPictureInPictureControllerDelegate {
     func pictureInPictureControllerDidStartPictureInPicture(
         _ pictureInPictureController: AVPictureInPictureController
     ) {
@@ -218,7 +218,7 @@ extension ViewPictureInPictureController: @MainActor AVPictureInPictureControlle
     }
 }
 
-extension ViewPictureInPictureController: @MainActor AVPictureInPictureSampleBufferPlaybackDelegate {
+extension ViewPictureInPictureController: @preconcurrency AVPictureInPictureSampleBufferPlaybackDelegate {
     func pictureInPictureController(
         _ pictureInPictureController: AVPictureInPictureController,
         setPlaying playing: Bool
