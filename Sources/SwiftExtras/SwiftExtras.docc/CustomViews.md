@@ -1,25 +1,18 @@
 # Custom Views
 
-Use these examples as a visual reference for the SwiftExtras SwiftUI views and layouts.
-Each example shows its existing reference image followed by its compact iOS rendering.
+Use these compact iOS examples as a visual reference for the SwiftExtras SwiftUI views and layouts.
 
 ## Form Controls
 
 `LabeledTextField` displays a placeholder that can float above the field when text is present.
 
-![LabeledTextField examples](labeled-text-field.png)
-
 ![LabeledTextField examples on iOS](labeled-text-field-ios.png)
 
 `LimitedTextField` adds a character counter below a standard text field.
 
-![LimitedTextField example](limited-text-field.png)
-
 ![LimitedTextField example on iOS](limited-text-field-ios.png)
 
 `MonthYearPickerView` presents month and year pickers side by side.
-
-![MonthYearPickerView example](month-year-picker-view.png)
 
 ![MonthYearPickerView example on iOS](month-year-picker-view-ios.png)
 
@@ -27,13 +20,9 @@ Each example shows its existing reference image followed by its compact iOS rend
 
 `MultiSelectView` displays selectable rows with visible selected-state indicators.
 
-![MultiSelectView example](multi-select-view.png)
-
 ![MultiSelectView example on iOS](multi-select-view-ios.png)
 
 `MultiSelectPickerView` exposes the same selection experience from a navigation row.
-
-![MultiSelectPickerView example](multi-select-picker-view.png)
 
 ![MultiSelectPickerView example on iOS](multi-select-picker-view-ios.png)
 
@@ -41,13 +30,9 @@ Each example shows its existing reference image followed by its compact iOS rend
 
 `ConfirmationButton` shows a destructive action that asks for confirmation before running.
 
-![ConfirmationButton example](confirmation-button.png)
-
 ![ConfirmationButton example on iOS](confirmation-button-ios.png)
 
 `SplitActionButton` combines a primary action with a secondary menu action.
-
-![SplitActionButton example](split-action-button.png)
 
 ![SplitActionButton example on iOS](split-action-button-ios.png)
 
@@ -55,31 +40,21 @@ Each example shows its existing reference image followed by its compact iOS rend
 
 `CardView` wraps custom content in a dismissible card-style presentation.
 
-![CardView example](card-view.png)
-
 ![CardView example on iOS](card-view-ios.png)
 
 `DisclosureSection` creates an expandable section for grouped content.
-
-![DisclosureSection example](disclosure-section.png)
 
 ![DisclosureSection example on iOS](disclosure-section-ios.png)
 
 `CarouselView` displays images in a paged carousel with a progress indicator.
 
-![CarouselView example](carousel-view.png)
-
 ![CarouselView example on iOS](carousel-view-ios.png)
 
 `HorizontalStepper` renders progress across a fixed number of steps.
 
-![HorizontalStepper example](horizontal-stepper.png)
-
 ![HorizontalStepper example on iOS](horizontal-stepper-ios.png)
 
 `WStack` lays out children horizontally and wraps them to the next line when needed.
-
-![WStack example](wstack.png)
 
 ![WStack example on iOS](wstack-ios.png)
 
@@ -87,27 +62,19 @@ Each example shows its existing reference image followed by its compact iOS rend
 
 `IndexedList` groups rows by first letter and displays an index rail for fast navigation.
 
-![IndexedList example](indexed-list.png)
-
 ![IndexedList example on iOS](indexed-list-ios.png)
 
 `SEChangeLogView` renders versioned release notes.
 
-![SEChangeLogView example](se-changelog-view.png)
-
 ![SEChangeLogView example on iOS](se-changelog-view-ios.png)
 
 `SEAcknowledgementView` renders dependency acknowledgements.
-
-![SEAcknowledgementView example](se-acknowledgement-view.png)
 
 ![SEAcknowledgementView example on iOS](se-acknowledgement-view-ios.png)
 
 ## Notifications
 
 `NotificationView` displays a compact notification banner.
-
-![NotificationView example](notification-view.png)
 
 ![NotificationView example on iOS](notification-view-ios.png)
 
@@ -119,8 +86,6 @@ Apply ``SwiftUICore/ScrollView/trackScrolling()`` to the scroll view inside a
 `ScrollViewReader`, then use ``SwiftUICore/ScrollViewReader/onScrolled(_:)`` to
 receive a normalized horizontal and vertical position from `0` through `1` on
 iOS 16 and later.
-
-![Scroll tracking modifier example](scroll-tracking-modifier.png)
 
 ![Scroll tracking modifier on iOS](scroll-tracking-modifier-ios.png)
 
@@ -144,8 +109,6 @@ Use ``SwiftUICore/View/asStretchyHeader(startingHeight:coordinateSpace:)`` on a
 view at the top of a scroll view. The view grows into the space revealed when
 someone pulls beyond the top edge on iOS 16 and later.
 
-![Stretchy header modifier example](stretchy-header-modifier.png)
-
 ![Stretchy header modifier on iOS](stretchy-header-modifier-ios.png)
 
 ```swift
@@ -164,8 +127,6 @@ non-blocking notification while an optional item is non-`nil`. Supply a
 ``IslandToastCard`` with a role, optional action, and presentation duration.
 Island toasts require iOS 17 or later and use a compact-to-expanded transition
 in an iPhone's compact horizontal size class.
-
-![Island toast modifier example](island-toast-modifier.png)
 
 ![Island toast modifier on iOS](island-toast-modifier-ios.png)
 
@@ -191,8 +152,6 @@ enable the Audio, AirPlay, and Picture in Picture background mode in the app.
 The modifiers support iOS 16 and later; test system presentation on a physical
 device because simulator support can vary.
 
-![Picture in Picture modifier example](picture-in-picture-modifier.png)
-
 ![Picture in Picture modifier on iOS](picture-in-picture-modifier-ios.png)
 
 ```swift
@@ -215,8 +174,6 @@ and preview declarations aren't included in production builds.
 Use ``SwiftUICore/View/shimmer()`` for the default loading effect or
 ``SwiftUICore/View/shimmering(active:animation:gradient:bandSize:mode:)`` to
 customize its timing, gradient, band width, and compositing mode.
-
-![Shimmer modifier example](shimmer-modifier.png)
 
 ![Shimmer modifier on iOS](shimmer-modifier-ios.png)
 

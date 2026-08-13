@@ -365,10 +365,5 @@ private func date(year: Int, month: Int) -> Date {
     return date
 }
 #else
-@main
-enum ScreenshotGenerator {
-    static func main() {
-        print("SwiftExtrasScreenshots is available on macOS and iOS only.")
-    }
-}
+print("SwiftExtrasScreenshots is available on macOS and iOS only.")
 #endif
