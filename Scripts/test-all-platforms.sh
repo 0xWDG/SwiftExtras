@@ -91,10 +91,14 @@ mkdir -p "${BUILD_DIRECTORY}"
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
     run_check "macOS tests" swift test
-    build_for_apple_platform "ios" "generic/platform=iOS Simulator" "iphonesimulator"
-    build_for_apple_platform "tvos" "generic/platform=tvOS Simulator" "appletvsimulator"
-    build_for_apple_platform "watchos" "generic/platform=watchOS Simulator" "watchsimulator"
-    build_for_apple_platform "catalyst" "generic/platform=macOS,variant=Mac Catalyst" "macosx"
+    if [[ "${CI:-false}" == "true" ]]; then
+        printf '\nSKIP: Apple platform builds are disabled in CI.\n'
+    else
+        build_for_apple_platform "ios" "generic/platform=iOS Simulator" "iphonesimulator"
+        build_for_apple_platform "tvos" "generic/platform=tvOS Simulator" "appletvsimulator"
+        build_for_apple_platform "watchos" "generic/platform=watchOS Simulator" "watchsimulator"
+        build_for_apple_platform "catalyst" "generic/platform=macOS,variant=Mac Catalyst" "macosx"
+    fi
 else
     printf '\nSKIP: Apple platform builds require macOS with Xcode.\n'
 fi

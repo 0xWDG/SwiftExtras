@@ -79,7 +79,9 @@ runs the Linux suite using
 `container system start` before running the script. Set `SKIP_LINUX=1` to omit
 the containerized Linux tests, or set `SWIFT_CONTAINER_IMAGE` to select another
 Swift image. Missing Apple platform SDKs are reported as skipped rather than as
-build failures. On Linux, the script runs `swift test` directly.
+build failures. Apple platform builds are also skipped when `CI=true`; macOS
+and Linux tests continue to run in CI. On Linux, the script runs `swift test`
+directly.
 
 ## Custom Views (+ Screenshots)
 
