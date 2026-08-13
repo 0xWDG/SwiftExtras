@@ -7,6 +7,7 @@ This file contains the changelog of SwiftExtras.
 - Added project-wide, debug-only SwiftUI preview coverage for rendered views, modifiers, layouts, shapes, styles, and representables, with deterministic local fixtures and accessible controls.
 - Added compact, UIKit-rendered DocC previews for every documented SwiftUI view and modifier on iOS.
 - Added UIKit rendering and simulator output support to `SwiftExtrasScreenshots` so documentation assets can be generated on iOS as well as macOS.
+- Fixed Xcode 16 documentation builds by compile-time gating Liquid Glass APIs, using compatible AVKit delegate isolation, and correcting the screenshot generator entry point.
 - Added [`Flow`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/flow)
   A SwiftUI layout that arranges views in horizontal lines, wraps overflowing content, and supports configurable alignment and spacing.
 - Added [`ScrollView.trackScrolling()`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/scrollview/trackscrolling()) and [`ScrollViewReader.onScrolled(_:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/scrollviewreader/onscrolled(_:))

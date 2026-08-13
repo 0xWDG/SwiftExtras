@@ -98,8 +98,8 @@ final class ViewPictureInPictureController: NSObject, ObservableObject {
                 return
             }
 
-            DispatchQueue.main.async {
-                controller.startPictureInPicture()
+            Task { @MainActor [weak self, weak controller] in
+                controller?.startPictureInPicture()
                 self?.possibleObservation = nil
             }
         }
