@@ -21,7 +21,7 @@ This file contains the changelog of SwiftExtras.
 - Added [`View.pictureInPicture(isPresented:content:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/swiftuicore/view/pictureinpicture(ispresented:content:))
   Present custom SwiftUI content independently from the source view in Picture in Picture.
 - Improved cross-platform compatibility for `Flow`, island toasts, and Picture in Picture across supported Apple platforms.
-- Updated `Scripts/test-all-platforms.sh` to run Linux tests with Apple container instead of Docker.
+- Updated `Scripts/test-all-platforms.sh` to run Linux tests with Apple container instead of Docker and skip Apple platform builds when their SDK is not installed in the selected Xcode.
 - Fixed Linux compilation and test portability for bundle metadata, dictionary raw values, test detection, relative-date tests, platform images, and web URL validation.
 
 ### 1.2.8

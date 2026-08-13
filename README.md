@@ -73,11 +73,13 @@ Scripts/test-all-platforms.sh
 ```
 
 On macOS, the script runs the test suite locally, builds the package for every
-supported Apple platform, and runs the Linux suite using
+supported Apple platform whose SDK is installed in the selected Xcode, and
+runs the Linux suite using
 [Apple container](https://github.com/apple/container). Start the service with
 `container system start` before running the script. Set `SKIP_LINUX=1` to omit
 the containerized Linux tests, or set `SWIFT_CONTAINER_IMAGE` to select another
-Swift image. On Linux, the script runs `swift test` directly.
+Swift image. Missing Apple platform SDKs are reported as skipped rather than as
+build failures. On Linux, the script runs `swift test` directly.
 
 ## Custom Views (+ Screenshots)
 
