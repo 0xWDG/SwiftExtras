@@ -83,24 +83,24 @@ Swift image. On Linux, the script runs `swift test` directly.
 
 The screenshot assets are shared with the DocC catalog and can be refreshed with the command above.
 
-| View | Screenshot |
+| View | iOS Screenshot |
 | --- | --- |
-| CardView | ![CardView screenshot](Sources/SwiftExtras/SwiftExtras.docc/Resources/card-view.png) |
-| CarouselView | ![CarouselView screenshot](Sources/SwiftExtras/SwiftExtras.docc/Resources/carousel-view.png) |
-| ConfirmationButton | ![ConfirmationButton screenshot](Sources/SwiftExtras/SwiftExtras.docc/Resources/confirmation-button.png) |
-| DisclosureSection | ![DisclosureSection screenshot](Sources/SwiftExtras/SwiftExtras.docc/Resources/disclosure-section.png) |
-| HorizontalStepper | ![HorizontalStepper screenshot](Sources/SwiftExtras/SwiftExtras.docc/Resources/horizontal-stepper.png) |
-| IndexedList | ![IndexedList screenshot](Sources/SwiftExtras/SwiftExtras.docc/Resources/indexed-list.png) |
-| LabeledTextField | ![LabeledTextField screenshot](Sources/SwiftExtras/SwiftExtras.docc/Resources/labeled-text-field.png) |
-| LimitedTextField | ![LimitedTextField screenshot](Sources/SwiftExtras/SwiftExtras.docc/Resources/limited-text-field.png) |
-| MonthYearPickerView | ![MonthYearPickerView screenshot](Sources/SwiftExtras/SwiftExtras.docc/Resources/month-year-picker-view.png) |
-| MultiSelectPickerView | ![MultiSelectPickerView screenshot](Sources/SwiftExtras/SwiftExtras.docc/Resources/multi-select-picker-view.png) |
-| MultiSelectView | ![MultiSelectView screenshot](Sources/SwiftExtras/SwiftExtras.docc/Resources/multi-select-view.png) |
-| NotificationView | ![NotificationView screenshot](Sources/SwiftExtras/SwiftExtras.docc/Resources/notification-view.png) |
-| SEAcknowledgementView | ![SEAcknowledgementView screenshot](Sources/SwiftExtras/SwiftExtras.docc/Resources/se-acknowledgement-view.png) |
-| SEChangeLogView | ![SEChangeLogView screenshot](Sources/SwiftExtras/SwiftExtras.docc/Resources/se-changelog-view.png) |
-| SplitActionButton | ![SplitActionButton screenshot](Sources/SwiftExtras/SwiftExtras.docc/Resources/split-action-button.png) |
-| WStack | ![WStack screenshot](Sources/SwiftExtras/SwiftExtras.docc/Resources/wstack.png) |
+| CardView | ![CardView on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/card-view-ios.png) |
+| CarouselView | ![CarouselView on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/carousel-view-ios.png) |
+| ConfirmationButton | ![ConfirmationButton on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/confirmation-button-ios.png) |
+| DisclosureSection | ![DisclosureSection on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/disclosure-section-ios.png) |
+| HorizontalStepper | ![HorizontalStepper on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/horizontal-stepper-ios.png) |
+| IndexedList | ![IndexedList on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/indexed-list-ios.png) |
+| LabeledTextField | ![LabeledTextField on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/labeled-text-field-ios.png) |
+| LimitedTextField | ![LimitedTextField on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/limited-text-field-ios.png) |
+| MonthYearPickerView | ![MonthYearPickerView on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/month-year-picker-view-ios.png) |
+| MultiSelectPickerView | ![MultiSelectPickerView on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/multi-select-picker-view-ios.png) |
+| MultiSelectView | ![MultiSelectView on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/multi-select-view-ios.png) |
+| NotificationView | ![NotificationView on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/notification-view-ios.png) |
+| SEAcknowledgementView | ![SEAcknowledgementView on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/se-acknowledgement-view-ios.png) |
+| SEChangeLogView | ![SEChangeLogView on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/se-changelog-view-ios.png) |
+| SplitActionButton | ![SplitActionButton on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/split-action-button-ios.png) |
+| WStack | ![WStack on iOS](Sources/SwiftExtras/SwiftExtras.docc/Resources/wstack-ios.png) |
 
 
 ## Contact
