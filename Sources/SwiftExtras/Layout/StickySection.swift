@@ -2,8 +2,8 @@
 //  StickySection.swift
 //  SwiftExtras
 //
-//  Created by Balaji Venkatesh on 2026-06-20.
-//  https://github.com/0xWDG/SwiftExtras
+//  Created by Wesley de Groot on 2026-08-06.
+//  https://wesleydegroot.nl
 //
 //  https://github.com/0xWDG/SwiftExtras
 //  MIT License

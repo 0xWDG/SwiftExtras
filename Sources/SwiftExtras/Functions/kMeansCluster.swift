@@ -93,4 +93,40 @@ public func kMeansCluster(colors: [Color], clusters: Int, iterations: Int = 10) 
         Color(.sRGB, red: $0.red, green: $0.green, blue: $0.blue)
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Color Clustering") {
+    let sourceColors: [Color] = [.red, .orange, .yellow, .green, .mint, .blue, .indigo, .purple, .pink]
+    let clusteredColors = kMeansCluster(colors: sourceColors, clusters: 3)
+
+    VStack(alignment: .leading, spacing: 16) {
+        Text("Source colors")
+            .font(.headline)
+            .accessibilityAddTraits(.isHeader)
+
+        HStack(spacing: 6) {
+            ForEach(Array(sourceColors.enumerated()), id: \.offset) { index, color in
+                Circle()
+                    .fill(color)
+                    .accessibilityLabel("Source color \(index + 1)")
+            }
+        }
+
+        Text("Three cluster centroids")
+            .font(.headline)
+            .accessibilityAddTraits(.isHeader)
+
+        HStack(spacing: 12) {
+            ForEach(Array(clusteredColors.enumerated()), id: \.offset) { index, color in
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(color)
+                    .frame(height: 80)
+                    .accessibilityLabel("Cluster centroid \(index + 1)")
+            }
+        }
+    }
+    .padding()
+}
+#endif
 #endif

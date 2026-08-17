@@ -31,4 +31,26 @@ extension View {
         #endif
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, *)
+#Preview("Rendered View") {
+    let source = Label("Rendered", systemImage: "sparkles")
+        .font(.title2.bold())
+        .foregroundStyle(.white)
+        .padding()
+        .background(.blue.gradient, in: RoundedRectangle(cornerRadius: 16))
+    let renderedImage = source.render()
+
+    VStack(spacing: 16) {
+        source
+
+        if let renderedImage {
+            Image(platformImage: renderedImage)
+                .accessibilityLabel("Image rendered from the source view")
+        }
+    }
+    .padding()
+}
+#endif
 #endif

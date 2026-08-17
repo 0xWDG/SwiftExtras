@@ -122,10 +122,29 @@ public struct IslandToastCard {
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview("Toast Roles") {
     VStack(spacing: 12) {
-        IslandToastCard(title: "Information", subtitle: "A useful update", role: .info).expanded
-        IslandToastCard(title: "Success", subtitle: "The operation completed", role: .success).expanded
-        IslandToastCard(title: "Warning", subtitle: "Review this item", role: .warning).expanded
-        IslandToastCard(title: "Error", subtitle: "The operation failed", role: .error).expanded
+        IslandToastCard(
+            title: "Information",
+            subtitle: "A useful update",
+            role: .info)
+        .expanded
+
+        IslandToastCard(
+            title: "Success",
+            subtitle: "The operation completed",
+            role: .success
+        ).expanded
+
+        IslandToastCard(
+            title: "Warning",
+            subtitle: "Review this item",
+            role: .warning
+        ).expanded
+
+        IslandToastCard(
+            title: "Error",
+            subtitle: "The operation failed",
+            role: .error
+        ).expanded
     }
     .padding()
 }

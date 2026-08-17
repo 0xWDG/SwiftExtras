@@ -333,4 +333,31 @@ extension Color.Resolved {
         return 0.2126 * redLumiance + 0.7152 * greenLumiance + 0.0722 * blueLumiance
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Color Components") {
+    let color = Color(red: 0.18, green: 0.48, blue: 0.84)
+
+    VStack(alignment: .leading, spacing: 16) {
+        HStack(spacing: 12) {
+            RoundedRectangle(cornerRadius: 12)
+                .fill(color)
+                .accessibilityLabel("Original blue color")
+
+            RoundedRectangle(cornerRadius: 12)
+                .fill(color.complementary)
+                .accessibilityLabel("Complementary orange color")
+        }
+        .frame(height: 100)
+
+        LabeledContent("HEX", value: color.hex)
+        LabeledContent("RGB", value: color.rgbString())
+        LabeledContent("HSB", value: color.hsbString())
+        LabeledContent("HSL", value: color.hslString())
+        LabeledContent("Luminance", value: color.luminance.formatted(.number.precision(.fractionLength(3))))
+    }
+    .padding()
+}
+#endif
 #endif

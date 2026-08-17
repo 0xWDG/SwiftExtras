@@ -71,4 +71,25 @@ extension View {
         return self
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, *)
+#Preview("View Snapshot") {
+    let snapshotSize = CGSize(width: 220, height: 90)
+    let source = Label("Snapshot", systemImage: "camera.fill")
+        .font(.title2.bold())
+        .foregroundStyle(.white)
+        .frame(width: snapshotSize.width, height: snapshotSize.height)
+        .background(.purple.gradient, in: RoundedRectangle(cornerRadius: 16))
+    let snapshot = source.snapshot(size: snapshotSize)
+
+    VStack(spacing: 16) {
+        source
+
+        Image(platformImage: snapshot)
+            .accessibilityLabel("Snapshot captured from the source view")
+    }
+    .padding()
+}
+#endif
 #endif

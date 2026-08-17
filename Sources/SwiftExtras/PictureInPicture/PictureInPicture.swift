@@ -27,8 +27,12 @@ public enum PictureInPicture {
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, *)
 #Preview("Picture in Picture Support") {
     Label(
-        PictureInPicture.isSupported ? "Picture in Picture is supported" : "Picture in Picture is unavailable",
-        systemImage: PictureInPicture.isSupported ? "pip.fill" : "pip.remove"
+        PictureInPicture.isSupported
+        ? "Picture in Picture is supported"
+        : "Picture in Picture is unavailable",
+        systemImage: PictureInPicture.isSupported
+        ? "pip.fill"
+        : "pip.remove"
     )
     .padding()
 }

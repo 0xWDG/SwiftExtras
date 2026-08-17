@@ -178,4 +178,41 @@ extension PlatformImage {
     }
 }
 #endif
+
+#if canImport(SwiftUI) && DEBUG
+@available(iOS 17, macOS 14, tvOS 17, *)
+#Preview("Background Removal") {
+    let source = Image(systemName: "person.crop.square.fill")
+    let result = source.removeBackground()
+
+    HStack(spacing: 24) {
+        VStack {
+            Text("Source")
+                .font(.headline)
+            source
+                .resizable()
+                .scaledToFit()
+                .accessibilityLabel("Source person image")
+        }
+
+        VStack {
+            Text("Background removed")
+                .font(.headline)
+            if let result {
+                result
+                    .resizable()
+                    .scaledToFit()
+                    .accessibilityLabel("Person image after background removal")
+            } else {
+                ContentUnavailableView(
+                    "No foreground found",
+                    systemImage: "person.crop.rectangle.badge.xmark"
+                )
+            }
+        }
+    }
+    .frame(width: 420, height: 220)
+    .padding()
+}
+#endif
 #endif

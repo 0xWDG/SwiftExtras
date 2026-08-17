@@ -380,6 +380,15 @@ private func date(year: Int, month: Int) -> Date {
 
     return date
 }
+
+#if DEBUG
+@available(macOS 14, iOS 17, *)
+#Preview("Screenshot Example Frame") {
+    ExampleFrame(title: "Preview fixture") {
+        Label("Accessible example content", systemImage: "checkmark.circle.fill")
+    }
+}
+#endif
 #else
 @main
 enum ScreenshotGenerator {

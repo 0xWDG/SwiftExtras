@@ -25,4 +25,21 @@ extension Color {
         )
     }
 }
+
+#if DEBUG
+@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+#Preview("Random Colors") {
+    let colors = (1...5).map { _ in Color.random }
+
+    HStack(spacing: 8) {
+        ForEach(Array(colors.enumerated()), id: \.offset) { index, color in
+            RoundedRectangle(cornerRadius: 10)
+                .fill(color)
+                .frame(width: 52, height: 90)
+                .accessibilityLabel("Random color \(index + 1)")
+        }
+    }
+    .padding()
+}
+#endif
 #endif
