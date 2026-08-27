@@ -11,6 +11,7 @@
 
 import Foundation
 
+@available(iOS 16, macOS 13, tvOS 16, watchOS 9, *)
 public extension Locale {
     /// The user's country/region identifier (e.g., "US")
     static var userCountry: String { current.region?.identifier ?? "Unknown" }

@@ -238,7 +238,7 @@ private struct OverlayWindowView: View {
 
                 Image(uiImage: snapshot)
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .scaledToFit()
                     .accessibilityHidden(true)
                     .overlay {
                         Rectangle()

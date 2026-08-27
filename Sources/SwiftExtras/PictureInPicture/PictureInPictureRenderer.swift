@@ -20,6 +20,7 @@ enum PictureInPictureRenderingError: Error {
     case formatDescription(OSStatus)
 }
 
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 @MainActor
 struct PictureInPictureRenderer<Content: View> {
     let renderer: ImageRenderer<Content>

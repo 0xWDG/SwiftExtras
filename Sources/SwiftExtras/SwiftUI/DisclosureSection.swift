@@ -13,7 +13,7 @@
 import SwiftUI
 
 /// A section that can expand and collapse like a `DisclosureGroup`.
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 13.0, macOS 13, tvOS 13.0, watchOS 6.0, *)
 public struct DisclosureSection<Content: View, Label: View>: View {
     @Environment(\.isEnabled) var isEnabled
 
@@ -135,7 +135,7 @@ public struct DisclosureSection<Content: View, Label: View>: View {
 }
 
 #if DEBUG
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 #Preview {
     Form {
         DisclosureSection("Custom Disclosure Section") {

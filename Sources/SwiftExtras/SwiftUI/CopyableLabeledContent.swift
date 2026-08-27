@@ -13,6 +13,7 @@
 import SwiftUI
 
 /// A labeled value that provides a copy-to-clipboard context-menu action.
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 public struct CopyableLabeledContent: View {
     /// The label displayed for the value.
     public let title: String
@@ -58,7 +59,7 @@ public struct CopyableLabeledContent: View {
 }
 
 #if DEBUG
-@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+@available(iOS 16, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
     Form {
         CopyableLabeledContent("Test", value: "Copy me")

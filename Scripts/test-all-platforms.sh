@@ -72,9 +72,7 @@ test_linux() {
     fi
 
     if ! container system status >/dev/null 2>&1; then
-        printf '\nFAIL: Apple container is not running. Run: container system start\n' >&2
-        FAILURES+=("Linux tests")
-        return
+        container system start
     fi
 
     run_check \

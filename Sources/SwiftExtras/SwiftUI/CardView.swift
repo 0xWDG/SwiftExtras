@@ -13,7 +13,7 @@
 import SwiftUI
 
 /// A dismissible card that displays a title, optional subtitle, and custom content.
-@available(macOS 11.0, *, iOS 14, *)
+@available(iOS 16, macOS 13, tvOS 16, watchOS 9, *)
 public struct CardView<Content: View>: View {
     // To dismiss this screen using the button.
     @Environment(\.presentationMode) var presentationMode

@@ -13,6 +13,7 @@
 import SwiftUI
 
 /// A layout that arranges its subviews in horizontal lines and wraps them as needed.
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 public struct Flow: Layout {
     public typealias Cache = [[CGRect]]
 
@@ -177,6 +178,7 @@ public struct Flow: Layout {
     }
 }
 
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 public extension Flow {
     /// Creates a flow layout with independent horizontal and vertical spacing.
     init(

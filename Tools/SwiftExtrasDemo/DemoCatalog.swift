@@ -24,7 +24,7 @@ enum DemoCategory: String, CaseIterable, Identifiable {
 
     var id: String { rawValue }
 
-    var title: LocalizedStringResource {
+    var title: LocalizedStringKey {
         switch self {
         case .overview: "Overview"
         case .controls: "Controls"
@@ -54,10 +54,10 @@ enum DemoCategory: String, CaseIterable, Identifiable {
 }
 
 @available(macOS 14, *)
-struct DemoRootView: View {
+public struct DemoRootView: View {
     @State private var selection: DemoCategory? = .overview
 
-    var body: some View {
+    public var body: some View {
         NavigationSplitView {
             List(DemoCategory.allCases, selection: $selection) { category in
                 Label {
@@ -77,11 +77,11 @@ struct DemoRootView: View {
 }
 
 @available(macOS 14, *)
-struct DemoDestination: View {
+public struct DemoDestination: View {
     let category: DemoCategory
 
     @ViewBuilder
-    var body: some View {
+    public var body: some View {
         switch category {
         case .overview:
             OverviewDemo()

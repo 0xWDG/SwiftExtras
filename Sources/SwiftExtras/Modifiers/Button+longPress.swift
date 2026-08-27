@@ -34,17 +34,21 @@ struct LongPressButtonStyle: PrimitiveButtonStyle {
     ///     .buttonStyle(LongPressButtonStyle(longPressAction: { print("Long pressed!") }))
     /// ```
     func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .scaleEffect(self.isPressed ? 0.9 : 1.0)
-            .onTapGesture {
-                configuration.trigger()
-            }
-            .onLongPressGesture(
-                perform: {
+        Button {
+            configuration.trigger()
+        } label: {
+            configuration.label
+                .scaleEffect(self.isPressed ? 0.9 : 1.0)
+        }
+        .buttonStyle(.plain)
+        .simultaneousGesture(
+            LongPressGesture()
+                .onChanged { _ in
+                    self.isPressed = true
+                }
+                .onEnded { _ in
+                    self.isPressed = false
                     self.longPressAction()
-                },
-                onPressingChanged: { pressing in
-                    self.isPressed = pressing
                 }
             )
     }

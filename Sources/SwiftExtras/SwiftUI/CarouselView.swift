@@ -180,8 +180,7 @@ public struct CarouselView: View {
                 CarouselView(items: [
                     .init(systemName: "star"),
                     .init(systemName: "rainbow")
-                ])
-                .aspectRatio(contentMode: .fit)
+                ]).scaledToFit()
             }
         }
         .tint(Color.red)

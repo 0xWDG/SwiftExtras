@@ -16,6 +16,7 @@ import SwiftUI
 /// It allows for quick navigation to sections of the list \
 /// by tapping on the initial letters displayed on the right side of the view.
 /// The list is scrollable and each item can be customized using a cell builder closure.
+@available(iOS 16.0, macOS 13.0, *)
 public struct IndexedList<Cell: View>: View {
     /// The data to be displayed in the list, grouped by initial letter.
     private let listData: [String: [String]]

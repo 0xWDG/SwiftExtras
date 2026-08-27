@@ -72,7 +72,7 @@ extension View {
     }
 }
 
-#if DEBUG
+#if DEBUG && !os(watchOS)
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, *)
 #Preview("View Snapshot") {
     let snapshotSize = CGSize(width: 220, height: 90)

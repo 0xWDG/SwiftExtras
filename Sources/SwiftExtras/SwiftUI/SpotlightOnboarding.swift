@@ -283,6 +283,23 @@ private struct TutorialSpotlightOverlay<ID: Hashable, Overlay: View>: View {
                 let shape = target.spotlightShape ?? defaultSpotlightShape
                 let actions = spotlightActions(for: preferences)
 
+#if os(tvOS)
+                Button {
+                    guard dismissOnBackgroundTap else { return }
+                    actions.dismiss()
+                } label: {
+                    TutorialSpotlightCutoutShape(
+                        focusFrame: focusFrame,
+                        spotlightShape: shape
+                    )
+                    .fill(
+                        Color.black.opacity(dimmingOpacity),
+                        style: FillStyle(eoFill: true)
+                    )
+                }
+                .buttonStyle(.plain)
+                .accessibilityHidden(true)
+#else
                 TutorialSpotlightCutoutShape(
                     focusFrame: focusFrame,
                     spotlightShape: shape
@@ -297,6 +314,7 @@ private struct TutorialSpotlightOverlay<ID: Hashable, Overlay: View>: View {
                     actions.dismiss()
                 }
                 .accessibilityHidden(true)
+#endif
 
                 overlay(selected, actions)
                     .frame(maxWidth: maxOverlayWidth(in: containerBounds))

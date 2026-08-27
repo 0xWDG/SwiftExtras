@@ -18,6 +18,7 @@ import UIKit
 import SwiftExtras
 import SwiftUI
 
+@available(macOS 13, iOS 16, *)
 @main
 enum ScreenshotGenerator {
     @MainActor

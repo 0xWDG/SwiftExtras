@@ -17,6 +17,9 @@ import OSLogViewer
 #if canImport(StoreKit)
 import StoreKit
 #endif
+#if os(iOS)
+import UIKit
+#endif
 #if canImport(MessageUI)
 import MessageUI
 #endif
@@ -26,15 +29,10 @@ import MessageUI
 /// SwiftExtras Settings View is a SwiftUI View that can be used to show information about your app.
 /// It can show the app icon, app name, created by, privacy policy, support email, twitter handle,
 /// bluesky handle, mastodon handle, app store developer URL, changelog, and additional content.
-@available(macOS 13.0, *)
 public struct SESettingsView<TopContent: View, BottomContent: View>: View {
     // swiftlint:disable:previous type_body_length
     // MARK: Environment
     @Environment(\.dismiss) var dismiss
-#if canImport(StoreKit) && !os(watchOS) && !os(tvOS)
-    @Environment(\.requestReview) var requestReview
-#endif
-
 #if canImport(MessageUI)
     @State
     private var result: Result<MFMailComposeResult, Error>?
@@ -177,47 +175,76 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
 
     /// The application settings and support information.
     public var body: some View {
-        NavigationStack {
-            Form {
-                headerSection
-                updateAvailableSection
-                customTopSection() // Custom section
-                applicationInfoSection
-                aboutTheDeveloperSection
-                customBottomSection()
-                footerSection
-            }
-            .onAppear {
-#if canImport(StoreKit) && !os(watchOS) && !os(tvOS) && !DEBUG
-                if appStoreDeveloperURL != nil {
-                    requestReview()
+        Group {
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                NavigationStack {
+                    settingsForm
+                        .formStyle(.grouped)
                 }
-#endif
-            }
-            .task {
-                updateAvailable = await AppInfo.updateAvailable
-                appStoreVersion = await AppInfo.appStoreVersion
-            }
-            .buttonStyle(.list)
-            .foregroundStyle(Color.primary)
-            .formStyle(.grouped)
-            .navigationTitle(AppInfo.appName)
+            } else {
+                NavigationView {
+                    settingsForm
+                }
 #if os(iOS)
-            .navigationBarTitleDisplayMode(.inline)
+                .navigationViewStyle(.stack)
 #endif
-#if canImport(SwiftUI) && canImport(MessageUI)
-            .sheet(isPresented: $isShowingMailView) {
-                if let supportEmail = self.supportEmail {
-                    MailView(result: $result) { composer in
-                        composer.setSubject("\(AppInfo.appName.slugified) Feedback")
-                        composer.setToRecipients([supportEmail])
-                        composer.setMessageBody(getMailBody, isHTML: false)
-                    }
-                }
+            }
+        }
+    }
+
+    private var settingsForm: some View {
+        Form {
+            headerSection
+            updateAvailableSection
+            customTopSection() // Custom section
+            applicationInfoSection
+            aboutTheDeveloperSection
+            customBottomSection()
+            footerSection
+        }
+        .onAppear {
+#if canImport(StoreKit) && !os(watchOS) && !os(tvOS) && !DEBUG
+            if appStoreDeveloperURL != nil {
+                requestAppReview()
             }
 #endif
         }
+        .task {
+            updateAvailable = await AppInfo.updateAvailable
+            appStoreVersion = await AppInfo.appStoreVersion
+        }
+        .buttonStyle(.list)
+        .foregroundStyle(Color.primary)
+        .navigationTitle(AppInfo.appName)
+#if os(iOS)
+        .navigationBarTitleDisplayMode(.inline)
+#endif
+#if canImport(SwiftUI) && canImport(MessageUI)
+        .sheet(isPresented: $isShowingMailView) {
+            if let supportEmail = self.supportEmail {
+                MailView(result: $result) { composer in
+                    composer.setSubject("\(AppInfo.appName.slugified) Feedback")
+                    composer.setToRecipients([supportEmail])
+                    composer.setMessageBody(getMailBody, isHTML: false)
+                }
+            }
+        }
+#endif
     }
+
+#if canImport(StoreKit) && !os(watchOS) && !os(tvOS)
+    private func requestAppReview() {
+#if os(iOS)
+        guard let windowScene = UIApplication.shared.connectedScenes
+            .compactMap({ $0 as? UIWindowScene })
+            .first(where: { $0.activationState == .foregroundActive }) else {
+            return
+        }
+
+        SKStoreReviewController.requestReview(in: windowScene)
+#endif
+    }
+#endif
 
     var headerSection: some View {
         Section {
@@ -239,7 +266,7 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
             }
             .frame(maxWidth: .infinity)
         }
-#if !os(watchOS) && !os(tvOS)
+#if os(iOS)
         .listRowSeparator(.hidden)
 #endif
     }

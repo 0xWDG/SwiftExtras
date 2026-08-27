@@ -28,14 +28,11 @@ extension URL {
 
     /// Is the URL valid for being a website (contains a scheme and host)
     public var isWebURL: Bool {
-        guard let scheme = scheme?.lowercased(),
-              scheme == "http" || scheme == "https",
-              let host = host(),
-              host.isEmpty == false else {
+        guard let scheme = scheme?.lowercased() else {
             return false
         }
 
-        return true
+        return ["http", "https"].contains(scheme) && !(host?.isEmpty ?? true)
     }
 
     /// Is the URL valid for being a website (contains a scheme and host)

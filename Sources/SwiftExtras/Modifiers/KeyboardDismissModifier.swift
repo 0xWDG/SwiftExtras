@@ -18,11 +18,16 @@ public struct KeyboardDismissModifier: ViewModifier {
     ///
     /// - Parameter content: The content to modify.
     /// - Returns: The content with keyboard dismissal behavior applied.
+    @ViewBuilder
     public func body(content: Content) -> some View {
+#if os(tvOS)
+        content
+#else
         content
             .onTapGesture {
                 UIApplication.shared.endEditing()
             }
+#endif
     }
 }
 

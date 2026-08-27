@@ -15,6 +15,7 @@ import SwiftUI
 /// Wrapping Stack
 ///
 /// A layout that arranges its children in a horizontal stack, wrapping to the next line when the width is exceeded.
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 public struct WStack: Layout {
     /// Spacing inbetween items
     var spacing: CGFloat

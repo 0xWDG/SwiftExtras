@@ -32,6 +32,7 @@ extension PlatformImage {
 }
 
 #if os(iOS) || os(tvOS) || os(visionOS) || os(macOS)
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, *)
 extension Image {
     /// Converts a SwiftUI `Image` to PNG image data.
     /// - Returns: The PNG representation of the image as `Data`, or `nil` if the conversion fails.

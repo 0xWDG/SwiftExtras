@@ -44,6 +44,7 @@ extension View {
     /// - Parameters:
     ///   - delay: The duration to wait before executing the task.
     ///   - action: The asynchronous action to execute.
+    @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
     public func task(
         delay: ContinuousClock.Duration,
         _ action: @Sendable @escaping () async -> Void
@@ -64,6 +65,7 @@ extension View {
     /// - Parameters:
     ///   - delay: The duration to wait before executing the task.
     ///   - action: The asynchronous action to execute.
+    @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
     public func task(
         after delay: ContinuousClock.Duration,
         _ action: @Sendable @escaping () async -> Void
@@ -80,7 +82,7 @@ extension View {
 }
 
 #if DEBUG
-@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+@available(iOS 16, macOS 13, tvOS 16, visionOS 1, watchOS 9, *)
 #Preview("Delayed Task") {
     Label("Delayed task fixture", systemImage: "clock")
         .task(delay: .seconds(60)) { }

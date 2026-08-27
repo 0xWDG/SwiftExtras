@@ -18,7 +18,9 @@ extension View {
     /// 
     /// - Parameter displayScale: The scale of the display. Defaults to 1.0
     /// - Returns: A ``PlatformImage`` of the current view
-    @MainActor public func render(scale displayScale: CGFloat = 1.0) -> PlatformImage? {
+    @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+    @MainActor
+    public func render(scale displayScale: CGFloat = 1.0) -> PlatformImage? {
         let renderer = ImageRenderer(content: self)
         renderer.scale = displayScale
         #if canImport(UIKit)
@@ -32,7 +34,7 @@ extension View {
     }
 }
 
-#if DEBUG
+#if DEBUG && !os(watchOS)
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, *)
 #Preview("Rendered View") {
     let source = Label("Rendered", systemImage: "sparkles")

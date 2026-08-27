@@ -18,6 +18,7 @@ extension View {
     ///   - value: The value to observe
     ///   - delay: Time in seconds to wait before executing (default 1 second)
     ///   - action: Closure to execute after the delay
+    @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
     public func onChange<Value: Equatable>(
         of value: Value,
         after delay: Duration = .seconds(1),
@@ -37,6 +38,7 @@ extension View {
     ///   - value: The value to observe
     ///   - delay: Time in seconds to wait before executing (default 1 second)
     ///   - action: Closure to execute after the delay
+    @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
     public func onChange<Value: Equatable>(
         of value: Value,
         after delay: TimeInterval = 1.0,
@@ -90,6 +92,7 @@ extension View {
 }
 
 // MARK: - Modifier
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 private struct DebouncedOnChangeModifier<Value: Equatable>: ViewModifier {
     let observedValue: Value
     let delay: Duration

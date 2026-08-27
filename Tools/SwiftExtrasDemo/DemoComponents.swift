@@ -96,7 +96,7 @@ struct DemoPanel<Content: View>: View {
 }
 
 struct DemoValueRow: View {
-    let label: LocalizedStringResource
+    let label: LocalizedStringKey
     let value: String
 
     var body: some View {

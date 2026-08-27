@@ -12,6 +12,7 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 struct ToastPresenter: ViewModifier {
     @Binding var isPresented: Bool
 
@@ -80,6 +81,7 @@ private extension View {
     }
 }
 
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 extension View {
     /// Adds a toast message to the view
     /// - Parameters:
@@ -108,7 +110,7 @@ extension View {
 }
 
 #if DEBUG
-@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+@available(iOS 16, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
     Form {
         Text("Hello World!")

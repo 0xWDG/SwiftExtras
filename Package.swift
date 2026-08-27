@@ -68,14 +68,14 @@ let package = Package(
     name: "SwiftExtras",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v16),
-        .macOS(.v13),
-        .tvOS(.v16),
-        .watchOS(.v9)
+        .iOS(.v15),
+        .macOS(.v12),
+        .tvOS(.v15),
+        .watchOS(.v8)
     ],
     products: products,
     dependencies: [
-        .package(url: "https://github.com/0xWDG/OSLogViewer.git", branch: "main")
+        .package(url: "https://github.com/0xWDG/OSLogViewer.git", from: "1.1.5")
     ],
     targets: targets
 )

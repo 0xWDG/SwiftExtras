@@ -58,9 +58,17 @@ extension View {
                 action?()
             }
         }
+        .modify { alert in
 #if os(macOS)
-        .dialogSeverity(.critical)
+            if #available(macOS 13.0, *) {
+                alert.dialogSeverity(.critical)
+            } else {
+                alert
+            }
+#else
+            alert
 #endif
+        }
     }
 }
 

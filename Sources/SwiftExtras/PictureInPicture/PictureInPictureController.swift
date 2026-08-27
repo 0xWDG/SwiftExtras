@@ -14,6 +14,7 @@ import AVKit
 import OSLog
 import SwiftUI
 
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 @MainActor
 final class ViewPictureInPictureController: NSObject, ObservableObject {
     @Published private(set) var isActive = false
@@ -112,6 +113,7 @@ final class ViewPictureInPictureController: NSObject, ObservableObject {
                 if self?.isPlaying == true {
                     self?.renderOnce()
                 }
+
                 try? await Task.sleep(for: .milliseconds(33))
             }
         }
@@ -174,6 +176,7 @@ final class ViewPictureInPictureController: NSObject, ObservableObject {
     }
 }
 
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 extension ViewPictureInPictureController: @preconcurrency AVPictureInPictureControllerDelegate {
     func pictureInPictureControllerDidStartPictureInPicture(
         _ pictureInPictureController: AVPictureInPictureController
@@ -218,6 +221,7 @@ extension ViewPictureInPictureController: @preconcurrency AVPictureInPictureCont
     }
 }
 
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 extension ViewPictureInPictureController: @preconcurrency AVPictureInPictureSampleBufferPlaybackDelegate {
     func pictureInPictureController(
         _ pictureInPictureController: AVPictureInPictureController,

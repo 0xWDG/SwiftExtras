@@ -13,6 +13,7 @@
 import SwiftUI
 
 /// The content and behavior displayed by an island toast.
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 public struct IslandToastCard {
     /// The semantic role used to style the toast.
     public enum Role: Sendable {

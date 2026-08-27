@@ -209,6 +209,7 @@ public enum AppInfo {
     }
 
     /// open notification settings page
+    @available(iOS 16.0, *)
     public static func openNotificationSettings() {
         #if os(iOS) || os(tvOS) || os(visionOS)
         if let settingsURL = URL(string: UIApplication.openNotificationSettingsURLString) {
@@ -679,6 +680,7 @@ public extension AppInfo {
     static var locale: String { Locale.current.identifier }
 
     /// The current locale's region identifier.
+    @available(iOS 16, macOS 13, tvOS 16, watchOS 9, *)
     static var region: String {
         Locale.current.region?.identifier
             ?? Locale.current.identifier.split(whereSeparator: { $0 == "-" || $0 == "_" }).last.map(String.init)
@@ -686,6 +688,7 @@ public extension AppInfo {
     }
 
     /// The language identifier in which the app is running.
+    @available(iOS 16, macOS 13, tvOS 16, watchOS 9, *)
     static var appLanguage: String {
         Locale.current.language.languageCode?.identifier
             ?? Locale.current.identifier.split(whereSeparator: { $0 == "-" || $0 == "_" }).first.map(String.init)

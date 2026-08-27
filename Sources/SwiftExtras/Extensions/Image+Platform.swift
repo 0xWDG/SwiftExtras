@@ -46,6 +46,7 @@ extension Image {
     /// This property is available on all platforms that support SwiftUI.
     ///
     /// - Returns: The platform native image, or nil if the image could not be rendered
+    @available(iOS 16.0, macOS 13.0, tvOS 16.0, *)
     @MainActor
     public var asNativeImage: PlatformImage? {
         let renderer = ImageRenderer(content: self)
