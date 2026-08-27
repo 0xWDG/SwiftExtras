@@ -13,7 +13,7 @@
 import SwiftUI
 
 /// A dismissible card that displays a title, optional subtitle, and custom content.
-@available(iOS 16, macOS 13, tvOS 16, watchOS 9, *)
+@available(iOS 15, macOS 12, tvOS 15, watchOS 8, visionOS 1, *)
 public struct CardView<Content: View>: View {
     // To dismiss this screen using the button.
     @Environment(\.presentationMode) var presentationMode
@@ -63,47 +63,45 @@ public struct CardView<Content: View>: View {
 
     /// The card's title bar and scrollable content.
     public var body: some View {
-        NavigationStack {
-            VStack(spacing: 0) {
-                HStack {
-                    VStack(alignment: .leading, spacing: 0) {
-                        Text(.init(title))
-                            .font(.headline)
+        VStack(spacing: 0) {
+            HStack {
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(.init(title))
+                        .font(.headline)
+                        .lineLimit(1)
+
+                    if let subtitle = subtitle {
+                        Text(.init(subtitle))
+                            .font(.subheadline)
                             .lineLimit(1)
-
-                        if let subtitle = subtitle {
-                            Text(.init(subtitle))
-                                .font(.subheadline)
-                                .lineLimit(1)
-                        }
                     }
-
-                    Spacer()
-                    closeButton
                 }
-                .padding(12)
 
-                Divider()
-                    .ignoresSafeArea()
-                    .padding(0)
+                Spacer()
+                closeButton
+            }
+            .padding(12)
 
-                ScrollView {
-                    VStack(alignment: .leading) {
-                        // Custom Content
-                        self.content
-                            .padding(.top, 5)
-                            .frame(
-                                maxWidth: .infinity,
-                                alignment: .leading
-                            )
+            Divider()
+                .ignoresSafeArea()
+                .padding(0)
 
-                        // Move everything up
-                        Spacer()
-                    }
+            ScrollView {
+                VStack(alignment: .leading) {
+                    // Custom Content
+                    self.content
+                        .padding(.top, 5)
+                        .frame(
+                            maxWidth: .infinity,
+                            alignment: .leading
+                        )
+
+                    // Move everything up
+                    Spacer()
                 }
             }
-            .padding(5)
         }
+        .padding(5)
     }
 }
 
