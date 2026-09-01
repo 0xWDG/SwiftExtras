@@ -31,12 +31,12 @@ struct ConfettiView<ConfettiShape: View>: View {
     var shape: ConfettiShape
 
     /// The y-position of the confetti pieces.
-    @State var yPosition: CGFloat = 0
+    @State private var yPosition: CGFloat = 0
 
     /// The size of the view, used to determine the bounds for positioning confetti pieces.
     /// This is initialized to a large size to ensure confetti can be positioned anywhere within the view.
     /// It is updated dynamically based on the view's actual size.
-    @State var viewSize: CGSize = .init(width: 1000, height: 1000)
+    @State private var viewSize: CGSize = .init(width: 1000, height: 1000)
 
     /// Initializes a new `ConfettiView` with the specified colors and shape.
     /// - Parameters:

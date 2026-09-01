@@ -10,8 +10,8 @@
 //
 
 import Foundation
-import Testing
 @testable import SwiftExtras
+import Testing
 
 @Test func dictionaryRawRepresentationRoundTripsAndRejectsInvalidJSON() throws {
     let original = ["language": "Swift", "package": "SwiftExtras"]

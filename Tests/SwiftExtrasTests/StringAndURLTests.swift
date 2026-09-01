@@ -10,8 +10,8 @@
 //
 
 import Foundation
-import Testing
 @testable import SwiftExtras
+import Testing
 
 @Test func stringCleaningTrimmingAndSlugification() {
     #expect("  Héllo Wörld  ".clean() == "  Hello World  ")

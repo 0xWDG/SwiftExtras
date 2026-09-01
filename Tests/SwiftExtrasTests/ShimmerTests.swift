@@ -10,9 +10,9 @@
 //
 
 #if canImport(SwiftUI)
+@testable import SwiftExtras
 import SwiftUI
 import Testing
-@testable import SwiftExtras
 
 @MainActor
 @Test func viewShimmerAPIsSupportDefaultsAndCustomization() {

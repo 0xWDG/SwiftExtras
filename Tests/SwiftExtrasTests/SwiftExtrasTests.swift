@@ -10,8 +10,8 @@
 //
 
 #if canImport(Testing)
-import Testing
 @testable import SwiftExtras
+import Testing
 
 #if canImport(SwiftUI)
 import SwiftUI

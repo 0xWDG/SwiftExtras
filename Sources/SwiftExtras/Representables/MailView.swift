@@ -10,8 +10,8 @@
 //
 
 #if canImport(SwiftUI) && canImport(MessageUI)
-import SwiftUI
 import MessageUI
+import SwiftUI
 
 /// A SwiftUI wrapper around the system mail composer.
 ///

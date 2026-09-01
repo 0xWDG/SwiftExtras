@@ -10,8 +10,8 @@
 //
 
 import Foundation
-import Testing
 @testable import SwiftExtras
+import Testing
 
 @Test func deviceInfoExposesBundleMetadataWithoutEmptyRequiredValues() {
     #expect(!DeviceInfo.bundleName.isEmpty)

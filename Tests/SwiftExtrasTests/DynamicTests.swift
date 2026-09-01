@@ -11,8 +11,8 @@
 
 #if canImport(ObjectiveC)
 import Foundation
-import Testing
 @testable import SwiftExtras
+import Testing
 
 private final class DynamicTestObject: NSObject {
     @objc dynamic var title: NSString = "Original"

@@ -11,14 +11,14 @@
 //  Blog: https://wesleydegroot.nl/blog/Remove-the-background-from-images-using-Swift
 
 #if canImport(Vision) && canImport(CoreImage.CIFilterBuiltins)
-import Vision
-import CoreImage.CIFilterBuiltins
-#if canImport(UIKit)
-import UIKit
-#endif
 #if canImport(AppKit)
 import AppKit
 #endif
+#if canImport(UIKit)
+import UIKit
+#endif
+import CoreImage.CIFilterBuiltins
+import Vision
 
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, *)
 class BackgroundRemoverHelper {

@@ -34,6 +34,8 @@ opt_in_rules:
   - accessibility_trait_for_button # Accessibility trait for button should be set
   - force_unwrapping # Force unwrapping should be avoided
   - duplicate_imports # Duplicate imports should be avoided
+  - sorted_imports # Imports should be sorted alphabetically
+  - private_swiftui_state # SwiftUI @State properties should be private
 
 file_header:
   required_pattern: |

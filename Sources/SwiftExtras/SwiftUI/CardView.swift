@@ -15,8 +15,7 @@ import SwiftUI
 /// A dismissible card that displays a title, optional subtitle, and custom content.
 @available(iOS 15, macOS 12, tvOS 15, watchOS 8, visionOS 1, *)
 public struct CardView<Content: View>: View {
-    // To dismiss this screen using the button.
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
 
     let title: String
     let subtitle: String?
@@ -39,80 +38,137 @@ public struct CardView<Content: View>: View {
     }
 
     var closeButtonImage: some View {
-        Image(systemName: "xmark.circle.fill")
-            .font(.system(size: 26))
-            .foregroundColor(.gray.opacity(0.4))
-            .accessibility(label: Text("Close"))
-            .accessibility(hint: Text("Tap to close the screen"))
-            .accessibility(addTraits: .isButton)
-            .accessibility(removeTraits: .isImage)
+        Image(systemName: "xmark")
+            .font(.body.weight(.semibold))
+            .foregroundStyle(.secondary)
+            .frame(width: 40, height: 40)
+            .background(Color.secondary.opacity(0.14), in: Circle())
+            .accessibilityHidden(true)
     }
 
     /// A button that dismisses the current presentation.
     @ViewBuilder
     public var closeButton: some View {
-        Button {
-            presentationMode.wrappedValue.dismiss()
-        } label: {
-            self.closeButtonImage
-        }
+        if #available(iOS 26.0, *) {
+            Button(role: .close) {
+                dismiss()
+            } label: {
+                self
+                    .closeButtonImage
+                    .frame(minWidth: 44, minHeight: 44)
+                    .contentShape(Rectangle())
+            }
+            .tint(Color.secondary)
+            .accessibilityLabel(Text("Close", bundle: .module))
+            .accessibilityHint(Text("Tap to close the screen", bundle: .module))
 #if !os(watchOS) && !os(tvOS)
-        .keyboardShortcut(.cancelAction)
+            .keyboardShortcut(.cancelAction)
 #endif
+        } else {
+            Button {
+                dismiss()
+            } label: {
+                self
+                    .closeButtonImage
+                    .frame(minWidth: 44, minHeight: 44)
+                    .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel(Text("Close", bundle: .module))
+            .accessibilityHint(Text("Tap to close the screen", bundle: .module))
+#if !os(watchOS) && !os(tvOS)
+            .keyboardShortcut(.cancelAction)
+#endif
+        }
     }
 
     /// The card's title bar and scrollable content.
     public var body: some View {
-        VStack(spacing: 0) {
-            HStack {
-                VStack(alignment: .leading, spacing: 0) {
-                    Text(.init(title))
-                        .font(.headline)
-                        .lineLimit(1)
+        if #available(iOS 16.0, *) {
+            VStack(spacing: 0) {
+                CardHeader(
+                    title: title,
+                    subtitle: subtitle,
+                    closeButton: closeButton
+                )
 
-                    if let subtitle = subtitle {
-                        Text(.init(subtitle))
-                            .font(.subheadline)
-                            .lineLimit(1)
-                    }
-                }
+                Divider()
 
-                Spacer()
-                closeButton
-            }
-            .padding(12)
-
-            Divider()
-                .ignoresSafeArea()
-                .padding(0)
-
-            ScrollView {
-                VStack(alignment: .leading) {
-                    // Custom Content
+                ScrollView {
                     self.content
-                        .padding(.top, 5)
-                        .frame(
-                            maxWidth: .infinity,
-                            alignment: .leading
-                        )
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                }
+            }
+            .presentationDragIndicator(.visible)
+        } else {
+            VStack(spacing: 0) {
+                CardHeader(
+                    title: title,
+                    subtitle: subtitle,
+                    closeButton: closeButton
+                )
 
-                    // Move everything up
-                    Spacer()
+                Divider()
+
+                ScrollView {
+                    self.content
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
                 }
             }
         }
-        .padding(5)
+    }
+}
+
+private struct CardHeader<CloseButton: View>: View {
+    let title: String
+    let subtitle: String?
+    let closeButton: CloseButton
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Color // filler.
+                .clear
+                .frame(width: 30, height: 30)
+
+            Spacer(minLength: 0)
+
+            VStack(alignment: .center, spacing: 2) {
+                Text(.init(title))
+                    .font(.headline)
+                    .lineLimit(1)
+
+                if let subtitle {
+                    Text(.init(subtitle))
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                }
+            }
+
+            Spacer(minLength: 0)
+
+            closeButton
+        }
+        .padding()
     }
 }
 
 #if DEBUG
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
-    Text("Hello World!")
+    Color
+        .red
+        .ignoresSafeArea()
         .sheet(isPresented: .constant(true)) {
-            CardView(title: "Title", subtitle: "Subtitle") {
+            CardView(
+                title: "This is a long title for testing",
+                subtitle: "This is an ever longer subtitle for testing"
+            ) {
                 Text("Hello World!")
             }
+            .presentationDetents([.medium, .large])
         }
 }
 #endif

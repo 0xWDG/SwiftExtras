@@ -10,8 +10,8 @@
 //
 
 #if canImport(SwiftUI) && canImport(SafariServices) && canImport(UIKit)
-import SwiftUI
 import SafariServices
+import SwiftUI
 import UIKit
 
 /// Make a Safari View for SwiftUI

@@ -16,14 +16,14 @@ import SwiftUI
 /// Use this to prevent accidental destructive actions.
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 public struct ConfirmationButton: View {
-    @State var confirmationShown: Bool = false
+    @State private var confirmationShown: Bool = false
 
-    var action: () -> Void
-    var label: LocalizedStringKey
-    var role: ButtonRole
-    var visibility: Visibility
-    var confirmationText: LocalizedStringKey?
-    var systemImage: String?
+    private var action: () -> Void
+    private var label: LocalizedStringKey
+    private var role: ButtonRole
+    private var visibility: Visibility
+    private var confirmationText: LocalizedStringKey?
+    private var systemImage: String?
 
     /// Creates a new ConfirmationButton.
     /// - Parameters:

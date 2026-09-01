@@ -10,8 +10,8 @@
 //
 
 import Foundation
-import Testing
 @testable import SwiftExtras
+import Testing
 
 @Test(arguments: ["null", "true", "42", "3.5", #""SwiftExtras""#])
 func anyCodableRoundTripsScalarJSON(_ json: String) throws {

@@ -7205,6 +7205,15 @@
         }
       }
     },
+    "Dismisses the number keyboard" : {
+
+    },
+    "Done" : {
+
+    },
+    "Double-tap to enter the %lld-digit code" : {
+
+    },
     "Enter text" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -15391,6 +15400,12 @@
         }
       }
     },
+    "Paste verification code" : {
+
+    },
+    "Pastes a %lld-digit code from the clipboard" : {
+
+    },
     "Pick your items" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -19999,6 +20014,9 @@
           }
         }
       }
+    },
+    "Verification code" : {
+
     },
     "Version" : {
       "localizations" : {

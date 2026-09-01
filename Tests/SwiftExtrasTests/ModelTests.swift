@@ -9,8 +9,8 @@
 //  MIT License
 //
 
-import Testing
 @testable import SwiftExtras
+import Testing
 
 @Test func acknowledgementIdentityAndHashingUseStoredValues() {
     let first = SEAcknowledgement(

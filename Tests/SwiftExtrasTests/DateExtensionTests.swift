@@ -10,8 +10,8 @@
 //
 
 import Foundation
-import Testing
 @testable import SwiftExtras
+import Testing
 
 @Test func timeAgoMatchesFoundationRelativeFormatting() {
     let referenceDate = Date(timeIntervalSince1970: 1_700_000_000)

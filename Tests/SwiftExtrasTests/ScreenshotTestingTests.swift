@@ -10,8 +10,8 @@
 //
 
 import Foundation
-import Testing
 import SwiftExtrasScreenshotTesting
+import Testing
 
 @Test func screenshotLanguageUsesLanguageAsDefaultLocale() {
     let language = ScreenshotLanguage(identifier: "nl")

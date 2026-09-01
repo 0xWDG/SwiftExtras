@@ -10,8 +10,8 @@
 //
 
 import Foundation
-import Testing
 @testable import SwiftExtras
+import Testing
 
 @Test func dataHexStringAndStringValueExposeByteRepresentations() {
     let bytes = Data([0x00, 0x0f, 0xa5, 0xff])
