@@ -16,6 +16,7 @@ import SwiftUI
 @available(iOS 15, macOS 12, tvOS 15, watchOS 8, visionOS 1, *)
 public struct CardView<Content: View>: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.dismiss) private var dismiss
 
     let title: String
     let subtitle: String?
@@ -44,12 +45,19 @@ public struct CardView<Content: View>: View {
             .frame(width: 40, height: 40)
             .background(Color.secondary.opacity(0.14), in: Circle())
             .accessibilityHidden(true)
+        Image(systemName: "xmark")
+            .font(.body.weight(.semibold))
+            .foregroundStyle(.secondary)
+            .frame(width: 40, height: 40)
+            .background(Color.secondary.opacity(0.14), in: Circle())
+            .accessibilityHidden(true)
     }
 
     /// A button that dismisses the current presentation.
     @ViewBuilder
     public var closeButton: some View {
-        if #available(iOS 26.0, *) {
+#if compiler(>=6.2)
+        if #available(iOS 26.0, macOS 26.0, tvOS 26.0, watchOS 26.0, visionOS 26.0, *) {
             Button(role: .close) {
                 dismiss()
             } label: {
@@ -65,17 +73,25 @@ public struct CardView<Content: View>: View {
             .keyboardShortcut(.cancelAction)
 #endif
         } else {
-            Button {
-                dismiss()
-            } label: {
-                self
-                    .closeButtonImage
-                    .frame(minWidth: 44, minHeight: 44)
-                    .contentShape(Rectangle())
-            }
-            .buttonStyle(.plain)
-            .accessibilityLabel(Text("Close", bundle: .module))
-            .accessibilityHint(Text("Tap to close the screen", bundle: .module))
+            fallbackCloseButton
+        }
+#else
+        fallbackCloseButton
+#endif
+    }
+
+    private var fallbackCloseButton: some View {
+        Button {
+            dismiss()
+        } label: {
+            self
+                .closeButtonImage
+                .frame(minWidth: 44, minHeight: 44)
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(Text("Close", bundle: .module))
+        .accessibilityHint(Text("Tap to close the screen", bundle: .module))
 #if !os(watchOS) && !os(tvOS)
             .keyboardShortcut(.cancelAction)
 #endif
@@ -84,7 +100,7 @@ public struct CardView<Content: View>: View {
 
     /// The card's title bar and scrollable content.
     public var body: some View {
-        if #available(iOS 16.0, *) {
+        if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
             VStack(spacing: 0) {
                 CardHeader(
                     title: title,
@@ -108,11 +124,58 @@ public struct CardView<Content: View>: View {
                     subtitle: subtitle,
                     closeButton: closeButton
                 )
+                ScrollView {
+                    self.content
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                }
+            }
+            .presentationDragIndicator(.visible)
+        } else {
+            VStack(spacing: 0) {
+                CardHeader(
+                    title: title,
+                    subtitle: subtitle,
+                    closeButton: closeButton
+                )
 
+                Divider()
                 Divider()
 
                 ScrollView {
+                ScrollView {
                     self.content
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                }
+            }
+        }
+    }
+}
+
+private struct CardHeader<CloseButton: View>: View {
+    let title: String
+    let subtitle: String?
+    let closeButton: CloseButton
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Color // filler.
+                .clear
+                .frame(width: 30, height: 30)
+
+            Spacer(minLength: 0)
+
+            VStack(alignment: .center, spacing: 2) {
+                Text(.init(title))
+                    .font(.headline)
+                    .lineLimit(1)
+
+                if let subtitle {
+                    Text(.init(subtitle))
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding()
                 }
@@ -150,7 +213,12 @@ private struct CardHeader<CloseButton: View>: View {
             Spacer(minLength: 0)
 
             closeButton
+
+            Spacer(minLength: 0)
+
+            closeButton
         }
+        .padding()
         .padding()
     }
 }
@@ -161,13 +229,21 @@ private struct CardHeader<CloseButton: View>: View {
     Color
         .red
         .ignoresSafeArea()
+    Color
+        .red
+        .ignoresSafeArea()
         .sheet(isPresented: .constant(true)) {
+            CardView(
+                title: "This is a long title for testing",
+                subtitle: "This is an ever longer subtitle for testing"
+            ) {
             CardView(
                 title: "This is a long title for testing",
                 subtitle: "This is an ever longer subtitle for testing"
             ) {
                 Text("Hello World!")
             }
+            .presentationDetents([.medium, .large])
             .presentationDetents([.medium, .large])
         }
 }
