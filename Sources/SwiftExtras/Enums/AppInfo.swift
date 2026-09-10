@@ -150,6 +150,20 @@ public enum AppInfo {
 #endif
     }
 
+    /// Detects if the application is running on a simulator
+    public static var isSimulator: Bool {
+#if targetEnvironment(simulator)
+        return true
+#else
+        return false
+#endif
+    }
+
+    /// Detects if the application is running on a simulator or in a SwiftUI Preview
+    public static var isSimulatorOrPreview: Bool {
+        return isSimulator || isSwiftUIPreview
+    }
+
     /// Detects if UI Tests are running
     public static var isUITesting: Bool {
 #if DEBUG
