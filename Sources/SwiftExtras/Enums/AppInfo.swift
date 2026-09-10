@@ -525,15 +525,6 @@ public extension AppInfo {
     /// Whether the app is running in Simulator or was installed through TestFlight.
     static var isSimulatorOrTestFlight: Bool { isSimulator || isTestFlight }
 
-    /// Whether the app is running in Simulator.
-    static var isSimulator: Bool {
-#if targetEnvironment(simulator)
-        true
-#else
-        false
-#endif
-    }
-
     /// Whether this is a debug build.
     static var isDebug: Bool {
 #if DEBUG
