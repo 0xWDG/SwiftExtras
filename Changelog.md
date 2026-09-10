@@ -2,6 +2,11 @@
 
 This file contains the changelog of SwiftExtras.
 
+### 1.3.0
+
+- Added [`AppInfo.isSimulator`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/issimulator) to check if the app is running in a simulator.
+- Added [`AppInfo.isSimulatorOrPreview`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/issimulatororpreview) to check if the app is running in a simulator or a preview.
+
 ### 1.2.9
 
 - Added project-wide, debug-only SwiftUI preview coverage for rendered views, modifiers, layouts, shapes, styles, and representables, with deterministic local fixtures and accessible controls.
