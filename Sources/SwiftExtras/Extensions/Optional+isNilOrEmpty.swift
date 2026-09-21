@@ -23,7 +23,42 @@ public extension Optional where Wrapped: Collection {
     /// ```
     ///
     /// - Returns: `true` if the collection is nil or empty, `false` otherwise.
+    @inlinable
+    @inline(__always)
     var isNilOrEmpty: Bool {
         return self?.isEmpty ?? true
+    }
+
+    /// Checks if the optional collection is not nil nor empty.
+    ///
+    /// Usage example:
+    /// ```swift
+    /// let array: [Int]? = [0]
+    /// if array.isNotNilNorEmpty {
+    ///     print("Array is not nil or empty")
+    /// }
+    /// ```
+    ///
+    /// - Returns: `true` if the collection is nil or empty, `false` otherwise.
+    @inlinable
+    @inline(__always)
+    var isNotNilNorEmpty: Bool {
+        return self?.isEmpty ?? true
+    }
+}
+
+public extension Optional {
+    /// - Returns: `true` if the wrapped value is equal to nil, `false` otherwise.
+    @inlinable
+    @inline(__always)
+    var isNil: Bool {
+        return self == nil
+    }
+
+    /// - Returns: `true` if the wrapped value is not equal to nil, `false` otherwise.
+    @inlinable
+    @inline(__always)
+    var isNotNil: Bool {
+        return self != nil
     }
 }

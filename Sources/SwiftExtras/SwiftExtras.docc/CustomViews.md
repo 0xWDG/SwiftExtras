@@ -110,6 +110,28 @@ ScrollView {
 
 ## Modifiers
 
+### Keyboard Done Toolbar
+
+Apply `KeyboardDoneToolbar` to a view containing text fields to add a Done
+button above the software keyboard. Activating the button resigns the current
+first responder. The modifier is available on UIKit-based platforms other than
+watchOS.
+
+```swift
+Form {
+    TextField("Name", text: $name)
+}
+.modifier(KeyboardDoneToolbar())
+```
+
+### Arrangement View Compatibility
+
+`CompatableArrangementview` provides the iOS 26 fallback behavior for
+`ArrangementView`: it displays primary and secondary content side by side in a
+regular horizontal size class, and only primary content in a compact size
+class. It is deprecated on iOS 27.1 and later, where `ArrangementView` should
+be used directly.
+
 ### Border Beam
 
 Use ``SwiftUICore/View/borderBeam(border:hidesFadedBorder:beam:beamBlur:cornerRadius:isEnabled:)``

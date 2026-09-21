@@ -1,5 +1,5 @@
 //
-//  Date+IdentifiableString.swift
+//  Date+Identifiable.swift
 //  SwiftExtras
 //
 //  Created by Wesley de Groot on 2024-08-22.

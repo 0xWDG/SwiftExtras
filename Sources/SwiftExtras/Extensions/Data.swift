@@ -1,5 +1,5 @@
 //
-//  Data+Compression.swift
+//  Data.swift
 //  SwiftExtras
 //
 //  Created by Wesley de Groot on 2025-01-10.
@@ -27,11 +27,21 @@ extension Data {
     public var stringValue: String? {
         return String(data: self, encoding: .utf8)
     }
+
+    /// A UTF-8 string decoded from the data, replacing invalid byte sequences.
+    ///
+    /// Unlike ``stringValue``, this property always returns a string. Invalid
+    /// UTF-8 sequences are replaced with the Unicode replacement character.
+    public var decodingString: String {
+        return String(decoding: self, as: UTF8.self)
+        // swiftlint:disable:previous optional_data_string_conversion
+    }
+
 }
 
 #if canImport(Compression)
 extension Data {
-    /// Config (for (de)compression)
+    /// The configuration for a streaming compression operation.
     fileprivate typealias Config = (
         operation: compression_stream_operation,
         algorithm: compression_algorithm

@@ -1,8 +1,8 @@
 //
-//  NotificationName+.swift
+//  PlatformImage+.swift
 //  SwiftExtras
 //
-//  Created by Wesley de Groot on 2025-19-11.
+//  Created by Wesley de Groot on 2025-11-19.
 //  https://wesleydegroot.nl
 //
 //  https://github.com/0xWDG/SwiftExtras

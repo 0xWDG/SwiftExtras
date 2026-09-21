@@ -1,5 +1,5 @@
 //
-//  Color+Random.swift
+//  Color+random.swift
 //  SwiftExtras
 //
 //  Created by Wesley de Groot on 2025-01-10.

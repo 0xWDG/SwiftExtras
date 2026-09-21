@@ -1,5 +1,5 @@
 //
-//  Color+IdentifiableString.swift
+//  Color+Identifiable.swift
 //  SwiftExtras
 //
 //  Created by Wesley de Groot on 2025-01-10.

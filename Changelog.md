@@ -6,6 +6,10 @@ This file contains the changelog of SwiftExtras.
 
 - Added [`AppInfo.isSimulator`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/issimulator) to check if the app is running in a simulator.
 - Added [`AppInfo.isSimulatorOrPreview`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/issimulatororpreview) to check if the app is running in a simulator or a preview.
+- Added `Data.decodingString`, which decodes UTF-8 data while replacing malformed byte sequences.
+- Added [`KeyboardDoneToolbar`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/keyboarddonetoolbar), a SwiftUI modifier that adds an accessible Done button above the software keyboard on UIKit-based platforms.
+- Added [`CompatableArrangementview`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/compatablearrangementview), an iOS 26 compatibility implementation of `ArrangementView` that is deprecated once iOS 27.1 is available.
+- Reorganized Color, Date, Image, and Data extensions into focused subdirectories without changing their public APIs.
 
 ### 1.2.9
 

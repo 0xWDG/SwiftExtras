@@ -15,6 +15,29 @@ let historicalDescription = date.timeAgo(relativeTo: referenceDate)
 Relative descriptions are localized and approximate. Their exact wording depends
 on the user's locale and operating system.
 
+## Data Conversion and Compression
+
+`Data` offers convenient representations for values commonly exchanged with
+text-based APIs. Use `hexString` for lowercase hexadecimal output and
+`stringValue` when invalid UTF-8 should produce `nil`. `decodingString` always
+returns a string, substituting the Unicode replacement character for malformed
+UTF-8.
+
+```swift
+let bytes = Data([0x48, 0x69])
+let hexadecimal = bytes.hexString // "4869"
+let text = bytes.decodingString   // "Hi"
+```
+
+When the Compression framework is available, `deflate()` and `inflate()`
+encode and decode zlib streams. Both methods return `nil` when processing fails.
+
+```swift
+let payload = Data("Hello, SwiftExtras!".utf8)
+let compressed = payload.deflate()
+let restored = compressed?.inflate()
+```
+
 ## Device and Application Information
 
 ``DeviceInfo`` exposes bundle metadata and operating-system version components
