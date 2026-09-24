@@ -61,7 +61,9 @@ import Testing
 }
 
 @Test func processInfoUtilitiesReportHostCapabilities() {
+    #if os(iOS) || os(macOS) || os(tvOS) || os(watchOS)
     #expect(ProcessInfo.isUnitTesting)
+    #endif
     #expect(ProcessInfo.isLowPowerModeActive == false)
     #expect(ProcessInfo.isRunningiOSAppOnMac == false)
 }
