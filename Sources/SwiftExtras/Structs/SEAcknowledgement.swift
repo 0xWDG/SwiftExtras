@@ -14,4 +14,5 @@ import Foundation
 import PreferenceKit
 
 @available(*, deprecated, renamed: "Acknowledgement", message: "Use Acknowledgement instead")
+/// Deprecated typealias for `Acknowledgement`. Use `Acknowledgement` instead.
 public typealias SEAcknowledgement = Acknowledgement
