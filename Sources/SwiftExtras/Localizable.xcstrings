@@ -658,6 +658,7 @@
       }
     },
     "%@ %@, version: %@, build: %@." : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -1983,6 +1984,7 @@
       }
     },
     "About the developer" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -2968,6 +2970,7 @@
       }
     },
     "Application Info" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -4611,6 +4614,7 @@
       }
     },
     "Bluesky" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -6550,6 +6554,7 @@
       }
     },
     "Created by" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -7875,6 +7880,7 @@
       }
     },
     "Feedback" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -8203,6 +8209,7 @@
       }
     },
     "Fetching logs" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -12148,6 +12155,7 @@
       }
     },
     "Mastodon" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -12775,6 +12783,7 @@
       }
     },
     "More apps from the developer" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -16073,6 +16082,7 @@
 
     },
     "Privacy Policy" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -16401,6 +16411,7 @@
       }
     },
     "Rate the app" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -19363,6 +19374,7 @@
       }
     },
     "Update available" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -19691,6 +19703,7 @@
       }
     },
     "Update now to version %@!" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -21335,6 +21348,7 @@
       }
     },
     "𝕏/Twitter" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {

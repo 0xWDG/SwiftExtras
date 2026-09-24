@@ -12,58 +12,69 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
-/// A view wrapper for
 extension View {
-    /// Perform an action only if the device is landscape mode
+    /// Applies a transform in a compact vertical size class.
     ///
-    /// Only perform a view modifier if the device is in landscape mode.
-    /// Use this view modifier after your element. e.g.
+    /// A compact vertical size class usually corresponds to a landscape
+    /// iPhone layout. The size class is read from the view's environment, so
+    /// the result also adapts correctly in split views, sheets, and previews.
+    /// Use this view modifier after your element. For example:
     ///
     ///     Text("I will be hidden, if we are in landscape mode")
     ///       .onLandscape {
-    ///         // Hide if we are in landscape mode
+    ///         // Hide in a compact vertical size class.
     ///         $0.hidden()
     ///       }
     ///
-    /// - Returns: ViewModifier
-    @ViewBuilder public func onLandscape<Transform: View>(transform: (Self) -> Transform) -> some View {
-#if os(iOS)
-        if UIScreen.main.traitCollection.verticalSizeClass == .compact {
-            transform(self)
-        } else {
-            self
-        }
-#elseif os(visionOS)
-        self // visionOS is always landscape at default
-#else
-        transform(self)
-#endif
+    /// - Returns: The transformed view in a compact vertical size class;
+    ///   otherwise, the original view.
+    public func onLandscape<Transform: View>(transform: @escaping (Self) -> Transform) -> some View {
+        VerticalSizeClassTransform(
+            content: self,
+            targetSizeClass: .compact,
+            transform: transform
+        )
     }
 
-    /// Perform an action only if the device is portrait mode
+    /// Applies a transform in a regular vertical size class.
     ///
-    /// Only perform a view modifier if the device is in portrait mode.
-    /// Use this view modifier after your element. e.g.
+    /// A regular vertical size class usually corresponds to a portrait iPhone
+    /// layout. The size class is read from the view's environment, so the
+    /// result also adapts correctly in split views, sheets, and previews.
+    /// Use this view modifier after your element. For example:
     ///
     ///     Text("I will be hidden, if we are in portrait mode")
     ///       .onPortrait {
-    ///         // Hide if we are in portrait mode
+    ///         // Hide in a regular vertical size class.
     ///         $0.hidden()
     ///       }
     ///
-    /// - Returns: ViewModifier
-    @ViewBuilder public func onPortrait<Transform: View>(transform: (Self) -> Transform) -> some View {
-#if os(iOS)
-        if UIScreen.main.traitCollection.verticalSizeClass == .regular {
-            transform(self)
+    /// - Returns: The transformed view in a regular vertical size class;
+    ///   otherwise, the original view.
+    public func onPortrait<Transform: View>(transform: @escaping (Self) -> Transform) -> some View {
+        VerticalSizeClassTransform(
+            content: self,
+            targetSizeClass: .regular,
+            transform: transform
+        )
+    }
+}
+
+/// Conditionally transforms a view using its local vertical size class.
+private struct VerticalSizeClassTransform<Content: View, Transformed: View>: View {
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
+
+    let content: Content
+    let targetSizeClass: UserInterfaceSizeClass
+    let transform: (Content) -> Transformed
+
+    @ViewBuilder
+    var body: some View {
+        if verticalSizeClass == targetSizeClass {
+            transform(content)
         } else {
-            self
+            content
         }
-#elseif os(visionOS)
-        transform(self) // visionOS is always landscape at default
-#else
-        self
-#endif
     }
 }
 

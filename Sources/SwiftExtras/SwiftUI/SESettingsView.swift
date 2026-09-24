@@ -9,91 +9,28 @@
 //  MIT License
 //
 
-#if canImport(SwiftUI)
+#if canImport(SwiftUI) && canImport(PreferenceKit)
 import SwiftUI
-#if canImport(OSLog)
-import OSLogViewer
-#endif
-#if canImport(StoreKit)
-import StoreKit
-#endif
-#if os(iOS)
-import UIKit
-#endif
-#if canImport(MessageUI)
-import MessageUI
-#endif
 
-/// SwiftExtras Settings View
+@_exported import PreferenceKit
+
+/// SwiftExtras Settings View.
 ///
-/// SwiftExtras Settings View is a SwiftUI View that can be used to show information about your app.
-/// It can show the app icon, app name, created by, privacy policy, support email, twitter handle,
-/// bluesky handle, mastodon handle, app store developer URL, changelog, and additional content.
+/// Use `PreferenceKit` instead. This compatibility wrapper preserves the
+/// `SESettingsView` initializer API while forwarding its content to PreferenceKit.
+@available(*, deprecated, renamed: "PreferenceKit", message: "Use PreferenceKit instead.")
 public struct SESettingsView<TopContent: View, BottomContent: View>: View {
-    // swiftlint:disable:previous type_body_length
-    // MARK: Environment
-    @Environment(\.dismiss) var dismiss
-#if canImport(MessageUI)
-    @State
-    private var result: Result<MFMailComposeResult, Error>?
-#endif
+    private let createdBy: String?
+    private let privacyPolicyURL: URL?
+    private let supportEmail: String?
+    private let socialMediaLinks: [SocialMediaLink]
+    private let OSLogSubsystem: String?
+    private let changeLog: [SEChangeLogEntry]?
+    private let acknowledgements: [SEAcknowledgement]?
+    private let customTopSection: () -> TopContent?
+    private let customBottomSection: () -> BottomContent?
 
-    @State
-    private var isShowingMailView = false
-
-#if canImport(OSLog)
-    private var extractor: OSLogExtractor?
-#endif
-
-    @State
-    private var OSLogString = ""
-
-    @State
-    private var isLoading: Bool = false
-
-    @State
-    private var reviewURL: URL?
-
-    @State
-    private var developerURL: URL?
-
-    @State
-    private var updateAvailable: Bool = false
-
-    @State
-    private var appStoreVersion: String = ""
-
-    // MARK: Custom
-    var createdBy: String?
-    var privacyPolicyURL: URL?
-    var supportEmail: String?
-    var twitterHandle: String?
-    var blueskyHandle: String?
-    var mastodonHandle: String?
-    var appStoreDeveloperURL: String?
-    var changeLog: [SEChangeLogEntry]?
-    var acknowledgments: [SEAcknowledgement]?
-    let customTopSection: () -> TopContent?
-    let customBottomSection: () -> BottomContent?
-
-    /// Initialize SwiftExtras Settings View
-    ///
-    /// SwiftExtras Settings View is a SwiftUI View that can be used to show information about your app.
-    /// It can show the app icon, app name, created by, privacy policy, support email, twitter handle,
-    /// bluesky handle, mastodon handle, app store developer URL, changelog, and additional content.
-    ///
-    /// - Parameters:
-    ///   - createdBy: Your name (supports markdown)
-    ///   - privacyPolicyURL: Privacy policy URL.
-    ///   - supportEmail: Your support email
-    ///   - twitterHandle: Your Twitter/X handle.
-    ///   - blueskyHandle: Your Bluesky handle
-    ///   - mastodonHandle: Your Mastodon handle
-    ///   - OSLogSubsystem: The subsystem for your OS-Logs (nil = hidden), no value = AppBundle
-    ///   - changeLog: Changelog
-    ///   - acknowledgements: Acknowledgements to mention
-    ///   - topContent: Custom top content
-    ///   - bottomContent: Custom bottom content
+    /// Initializes SwiftExtras Settings View.
     public init(
         createdBy: String? = nil,
         privacyPolicyURL: URL? = nil,
@@ -110,24 +47,19 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
         self.createdBy = createdBy
         self.privacyPolicyURL = privacyPolicyURL
         self.supportEmail = supportEmail
-        self.twitterHandle = twitterHandle
-        self.blueskyHandle = blueskyHandle
-        self.mastodonHandle = mastodonHandle
+        self.socialMediaLinks = Self.socialMediaLinks(
+            twitterHandle: twitterHandle,
+            blueskyHandle: blueskyHandle,
+            mastodonHandle: mastodonHandle
+        )
+        self.OSLogSubsystem = OSLogSubsystem
         self.changeLog = changeLog
-        self.acknowledgments = acknowledgements
+        self.acknowledgements = acknowledgements
         self.customTopSection = topContent
         self.customBottomSection = bottomContent
-#if canImport(OSLog)
-        if let OSLogSubsystem {
-            self.extractor = OSLogExtractor(
-                subsystem: OSLogSubsystem,
-                since: Date().addingTimeInterval(-900) // 15 minutes max.
-            )
-        }
-#endif
     }
 
-    /// Internal: Initializes SwiftExtras Settings View (with default parameters for my apps)
+    /// Internal: Initializes SwiftExtras Settings View with default parameters.
     public init(
         _changeLog: [SEChangeLogEntry]?,
         // swiftlint:disable:previous identifier_name
@@ -137,412 +69,71 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
         @ViewBuilder bottomContent: @escaping () -> BottomContent? = { EmptyView() }
     ) {
         self.createdBy = "[Wesley de Groot](https://wesleydegroot.nl)"
-        if let privacyURL = URL(
+        self.privacyPolicyURL = URL(
             string: "https://wesleydegroot.nl/apps/\(AppInfo.appName.slugified)/privacy/"
-        ) {
-            self.privacyPolicyURL = privacyURL
-        }
+        )
         self.supportEmail = "email+\(AppInfo.appName.slugified)@wesleydegroot.nl"
-        self.twitterHandle = "0xWDG"
-        self.blueskyHandle = "0xwdg.bsky.social"
-        self.mastodonHandle = "@0xWDG@mastodon.social"
-        self.developerURL = URL(string: "https://apps.apple.com/developer/id602359900")
+        self.socialMediaLinks = [
+            .init(platform: .x, profile: "0xWDG"),
+            .init(platform: .bluesky, profile: "0xwdg.bsky.social"),
+            .init(platform: .mastodon, profile: "@0xWDG@mastodon.social"),
+            .init(platform: .website, profile: "https://wesleydegroot.nl")
+        ]
+        self.OSLogSubsystem = "nl.wesleydegroot"
         self.changeLog = _changeLog
-        self.acknowledgments = _acknowledgements
+        self.acknowledgements = _acknowledgements
         self.customTopSection = topContent
         self.customBottomSection = bottomContent
-#if canImport(OSLog)
-        self.extractor = OSLogExtractor(
-            subsystem: "nl.wesleydegroot",
-            since: Date().addingTimeInterval(-900) // 15 minutes max.
-        )
-#endif
-    }
-
-    var getMailBody: String {
-        return """
-        Hello,\n
-        I want to give some feedback/report a bug in \(AppInfo.appName),\n
-        ....\n
-        - PLEASE DO NOT CHANGE ANYTHING BELOW THIS LINE -\n
-        Version: \(AppInfo.versionNumber), \
-        Build: \(AppInfo.buildNumber), \
-        Environment: \(AppInfo.isTestflight ? "TestFlight" : "AppStore"), \
-        iOSAppOnMac: \(AppInfo.isiOSAppOnMac ? "Yes" : "No").\n
-        Log (Please do not change):\n\(OSLogString)
-        """
     }
 
     /// The application settings and support information.
     public var body: some View {
-        Group {
-            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
-                NavigationStack {
-                    settingsForm
-                        .formStyle(.grouped)
-                }
-            } else {
-                NavigationView {
-                    settingsForm
-                }
-#if os(iOS)
-                .navigationViewStyle(.stack)
-#endif
-            }
-        }
-    }
-
-    private var settingsForm: some View {
-        Form {
-            headerSection
-            updateAvailableSection
-            customTopSection() // Custom section
-            applicationInfoSection
-            aboutTheDeveloperSection
-            customBottomSection()
-            footerSection
-        }
-        .onAppear {
-#if canImport(StoreKit) && !os(watchOS) && !os(tvOS) && !DEBUG
-            if appStoreDeveloperURL != nil {
-                requestAppReview()
-            }
-#endif
-        }
-        .task {
-            updateAvailable = await AppInfo.updateAvailable
-            appStoreVersion = await AppInfo.appStoreVersion
-        }
-        .buttonStyle(.list)
-        .foregroundStyle(Color.primary)
-        .navigationTitle(AppInfo.appName)
-#if os(iOS)
-        .navigationBarTitleDisplayMode(.inline)
-#endif
-#if canImport(SwiftUI) && canImport(MessageUI)
-        .sheet(isPresented: $isShowingMailView) {
-            if let supportEmail = self.supportEmail {
-                MailView(result: $result) { composer in
-                    composer.setSubject("\(AppInfo.appName.slugified) Feedback")
-                    composer.setToRecipients([supportEmail])
-                    composer.setMessageBody(getMailBody, isHTML: false)
-                }
-            }
-        }
-#endif
-    }
-
-#if canImport(StoreKit) && !os(watchOS) && !os(tvOS)
-    private func requestAppReview() {
-#if os(iOS)
-        guard let windowScene = UIApplication.shared.connectedScenes
-            .compactMap({ $0 as? UIWindowScene })
-            .first(where: { $0.activationState == .foregroundActive }) else {
-            return
-        }
-
-        SKStoreReviewController.requestReview(in: windowScene)
-#endif
-    }
-#endif
-
-    var headerSection: some View {
-        Section {
-            VStack(alignment: .center) {
-                AppInfo.appIcon
-                    .resizable()
-                    .cornerRadius(24)
-                    .frame(width: 124, height: 124)
-
-                Text(AppInfo.appName)
-                    .font(.title)
-
-                if let createdBy {
-                    HStack(spacing: 2) {
-                        Text("Created by", bundle: Bundle.module)
-                        Text(.init(createdBy))
-                    }
-                }
-            }
-            .frame(maxWidth: .infinity)
-        }
-#if os(iOS)
-        .listRowSeparator(.hidden)
-#endif
-    }
-
-    @ViewBuilder
-    var updateAvailableSection: some View {
-        if updateAvailable {
-            Section {
-                Label {
-                    Button {
-                        Task {
-                            await AppInfo.openAppStorePage()
-                        }
-                    } label: {
-                        Text("Update available")
-                        Text("Update now to version \(appStoreVersion)!")
-                    }
-                } icon: {
-                    Image(systemName: "square.and.arrow.down.fill")
-                        .accessibilityHidden(true)
-                }
-            }
-        }
-    }
-
-    var applicationInfoSection: some View {
-        Section {
-            if let changeLog {
-                NavigationLink(
-                    destination: SEChangeLogView(changeLog: changeLog)
-                ) {
-                    Label {
-                        Text("Changelog", bundle: Bundle.module)
-                    } icon: {
-                        Image(systemName: "newspaper")
-                            .accessibilityHidden(true)
-                    }
-                }
-            }
-
-            if let acknowledgments {
-                NavigationLink(
-                    destination: SEAcknowledgementView(entries: acknowledgments)
-                ) {
-                    Label {
-                        Text("Acknowledgements", bundle: Bundle.module)
-                    } icon: {
-                        Image(systemName: "hands.clap")
-                            .accessibilityHidden(true)
-                    }
-                }
-            }
-
-            if let privacyPolicyURL {
-                Button {
-                    openURL(privacyPolicyURL)
-                } label: {
-                    Label {
-                        Text("Privacy Policy", bundle: Bundle.module)
-                    } icon: {
-                        Image(systemName: "person.badge.key")
-                            .accessibilityHidden(true)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                }
-            }
-
-            if let reviewURL = reviewURL {
-                Button {
-                    openURL(reviewURL)
-                } label: {
-                    Label {
-                        Text("Rate the app", bundle: Bundle.module)
-                    } icon: {
-                        Image(systemName: "star")
-                            .accessibilityHidden(true)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                }
-            }
-
-            if let supportEmail {
-                Button {
-                    Task {
-#if canImport(OSLogViewer) && canImport(OSLog)
-                        if let extractor {
-                            isLoading = true
-                            OSLogString = await extractor.export()
-                            isLoading = false
-                        }
-#endif
-#if canImport(MessageUI)
-                        if MFMailComposeViewController.canSendMail() {
-                            isShowingMailView.toggle()
-                            return
-                        }
-#endif
-
-                        // Send mail
-                        if let body = getMailBody.addingPercentEncoding(
-                            withAllowedCharacters: .urlHostAllowed
-                        ) {
-                            let mail = "mailto:\(supportEmail)" +
-                            "?subject=\(AppInfo.appName.slugified)%20Feedback" +
-                            "&body=\(body)"
-                            if let urlStr = URL(string: mail) {
-                                openURL(urlStr)
-                            }
-                        }
-                    }
-                } label: {
-                    HStack {
-                        Label {
-                            Text("Feedback", bundle: Bundle.module)
-                        } icon: {
-                            Image(systemName: "pencil.and.ellipsis.rectangle")
-                                .accessibilityHidden(true)
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-
-                        if isLoading {
-                            Spacer()
-
-                            ProgressView()
-#if !os(tvOS)
-                                .controlSize(.small)
-#endif
-
-                            Text("Fetching logs", bundle: Bundle.module)
-                                .lineLimit(1)
-                                .allowsTightening(true)
-                                .minimumScaleFactor(0.3)
-                        }
-                    }
-                }
-                .disabled(isLoading)
-            }
-        } header: {
-            Label {
-                Text("Application Info", bundle: Bundle.module)
-            } icon: {
-                Image(systemName: "info.circle")
-                    .accessibilityHidden(true)
-            }
-        }
-        .task {
-            if reviewURL == nil {
-                reviewURL = await AppInfo.reviewURL
-            }
-        }
-    }
-
-    var aboutTheDeveloperSection: some View {
-        Section {
-            if let twitterHandle,
-               let url = URL(string: "https://twitter.com/\(twitterHandle)") {
-                Button {
-                    openURL(url)
-                } label: {
-                    Label {
-                        Text("𝕏/Twitter", bundle: Bundle.module)
-                    } icon: {
-                        Image("x-twitter", bundle: Bundle.module)
-                            .accessibilityHidden(true)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                }
-            }
-
-            if let blueskyHandle,
-               let url = URL(string: "https://bsky.app/profile/\(blueskyHandle)") {
-                Button {
-                    openURL(url)
-                } label: {
-                    Label {
-                        Text("Bluesky", bundle: Bundle.module)
-                    } icon: {
-                        Image("bluesky", bundle: Bundle.module)
-                            .accessibilityHidden(true)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                }
-            }
-
-            if let mastodonHandle,
-               let url = URL(string: "https://mastodon.social/\(mastodonHandle)") {
-                Button {
-                    openURL(url)
-                } label: {
-                    Label {
-                        Text("Mastodon", bundle: Bundle.module)
-                    } icon: {
-                        Image("mastodon", bundle: Bundle.module)
-                            .accessibilityHidden(true)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                }
-            }
-
-            if let url = developerURL {
-                Button {
-                    openURL(url)
-                } label: {
-                    Label {
-                        Text("More apps from the developer", bundle: Bundle.module)
-                    } icon: {
-                        Image(systemName: "info.bubble")
-                            .accessibilityHidden(true)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                }
-            }
-        } header: {
-            Label {
-                Text("About the developer", bundle: Bundle.module)
-            } icon: {
-                Image(systemName: "person")
-                    .accessibilityHidden(true)
-            }
-        }
-        .task {
-            if developerURL == nil {
-                developerURL = await AppInfo.developerURL
-            }
-        }
-    }
-
-    var footerSection: some View {
-        Section {} footer: {
-            Text(
-                "\(AppInfo.appName) \(AppInfo.isDebugBuild ? "(Debug)" : "(AppStore)"), version: \(AppInfo.versionNumber), build: \(AppInfo.buildNumber).",
-                // swiftlint:disable:previous line_length
-                bundle: Bundle.module
-            )
-        }
-        .padding(.top, -25)
-    }
-}
-
-#if DEBUG
-private struct SESettingsDemo: View {
-    @Binding var isPresented: Bool
-
-    var body: some View {
-        SESettingsView(
-            _changeLog: [
-                .init(
-                    version: "0.0.1",
-                    date: "\(Date.now.ddmmyyyy)",
-                    text: "Initial version"
-                )
-            ],
-            _acknowledgements: [
-                .init(
-                    name: "This Package",
-                    copyright: "Wesley de Groot",
-                    licence: "Licence",
-                    url: "https://wesleydegroot.nl"
-                )
-            ],
-            topContent: {
-                Toggle("Open Sheet", isOn: $isPresented)
-            }
+        PreferenceKit(
+            createdBy: createdBy,
+            privacyPolicyURL: privacyPolicyURL,
+            supportEmail: supportEmail,
+            socialMediaLinks: socialMediaLinks,
+            OSLogSubsystem: OSLogSubsystem,
+            changeLog: preferenceKitChangeLog,
+            acknowledgements: preferenceKitAcknowledgements,
+            topContent: customTopSection,
+            bottomContent: customBottomSection
         )
     }
-}
 
-@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
-#Preview {
-    @Previewable @State var isPresented: Bool = false
-
-    SESettingsDemo(isPresented: $isPresented)
-        .sheet(isPresented: $isPresented) {
-            SESettingsDemo(isPresented: $isPresented)
+    private var preferenceKitChangeLog: [ChangeLogEntry]? {
+        changeLog?.map { entry in
+            var preferenceKitEntry = ChangeLogEntry(
+                version: entry.version,
+                text: LocalizedStringKey(stringLiteral: entry.text)
+            )
+            preferenceKitEntry.date = entry.date
+            return preferenceKitEntry
         }
+    }
+
+    private var preferenceKitAcknowledgements: [Acknowledgement]? {
+        acknowledgements?.map {
+            Acknowledgement(
+                name: $0.name,
+                copyright: $0.copyright,
+                licence: $0.licence,
+                url: $0.url
+            )
+        }
+    }
+
+    private static func socialMediaLinks(
+        twitterHandle: String?,
+        blueskyHandle: String?,
+        mastodonHandle: String?
+    ) -> [SocialMediaLink] {
+        [
+            twitterHandle.map { .init(platform: .x, profile: $0) },
+            blueskyHandle.map { .init(platform: .bluesky, profile: $0) },
+            mastodonHandle.map { .init(platform: .mastodon, profile: $0) }
+        ]
+        .compactMap { $0 }
+    }
 }
 #endif
-#endif
-// swiftlint:disable:this file_length

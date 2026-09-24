@@ -11,43 +11,7 @@
 
 import Foundation
 
-/// An acknowledgement entry for display in `SEAcknowledgementView`.
-///
-/// Acknowledgement entry for use in the `SEAcknowledgementView`.
-public struct SEAcknowledgement: Identifiable, Hashable {
-    /// The unique identifier for this entry.
-    public var id: String {
-        name
-    }
+import PreferenceKit
 
-    /// The name of the framework.
-    public var name: String
-
-    /// The copyright holder.
-    public var copyright: String
-
-    /// The licence under which the framework is distributed.
-    public var licence: String
-
-    /// The URL to the framework's website/repo.
-    public var url: String?
-
-    /// Initialize a new acknowledgement entry.
-    ///
-    /// - Parameters:
-    ///   - name: The name of the framework.
-    ///   - copyright: The copyright holder.
-    ///   - licence: The licence under which the framework is distributed.
-    ///   - url: The URL to the framework's website/repo.
-    public init(
-        name: String,
-        copyright: String,
-        licence: String,
-        url: String? = nil
-    ) {
-        self.name = name
-        self.copyright = copyright
-        self.licence = licence
-        self.url = url
-    }
-}
+@available(*, deprecated, renamed: "Acknowledgement", message: "Use Acknowledgement instead")
+public typealias SEAcknowledgement = Acknowledgement

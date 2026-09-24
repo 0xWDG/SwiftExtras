@@ -1,4 +1,5 @@
 // swift-tools-version: 5.8.0
+// swiftlint:disable:previous file_header
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -25,7 +26,8 @@ var targets: [Target] = [
     .target(
         name: "SwiftExtras",
         dependencies: [
-            .product(name: "OSLogViewer", package: "OSLogViewer")
+            .product(name: "OSLogViewer", package: "OSLogViewer"),
+            .product(name: "PreferenceKit", package: "PreferenceKit")
         ],
         resources: [
             .process("Assets.xcassets"),
@@ -75,7 +77,8 @@ let package = Package(
     ],
     products: products,
     dependencies: [
-        .package(url: "https://github.com/0xWDG/OSLogViewer.git", from: "1.1.5")
+        .package(url: "https://github.com/0xWDG/OSLogViewer.git", from: "1.1.5"),
+        .package(url: "https://github.com/0xWDG/PreferenceKit.git", from: "0.0.2")
     ],
     targets: targets
 )

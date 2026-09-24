@@ -15,6 +15,7 @@ import SwiftUI
 /// SwiftExtras Acknowledgement View
 ///
 /// SwiftExtras Acknowledgement View is a SwiftUI View that can be used to show acknowledgements.
+@available(*, deprecated, renamed: "PKSEAcknowledgementView", message: "Use PKSEAcknowledgementView instead")
 public struct SEAcknowledgementView: View {
     /// The change log entries to display.
     public var entries: Set<SEAcknowledgement>
@@ -74,7 +75,7 @@ public struct SEAcknowledgementView: View {
     /// - Returns: A label for the given change log entry.
     func label(for entry: SEAcknowledgement) -> some View {
         VStack(alignment: .leading) {
-            Text("\(entry.name)")
+            Text(entry.name)
 
             Text("Created by \(entry.copyright)", bundle: Bundle.module)
                 .font(.callout)

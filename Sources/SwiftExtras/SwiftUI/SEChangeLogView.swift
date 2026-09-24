@@ -15,6 +15,7 @@ import SwiftUI
 /// SwiftExtras Change Log View
 ///
 /// SwiftExtras Change Log View is a SwiftUI View that can be used to show a change log.
+@available(*, deprecated, renamed: "PKChangeLogView")
 public struct SEChangeLogView: View {
     /// The change log entries to display.
     public var changeLog: [SEChangeLogEntry]
