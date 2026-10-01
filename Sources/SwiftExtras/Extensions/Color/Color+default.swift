@@ -18,6 +18,9 @@ import UIKit
 import AppKit
 #endif
 
+/// Adds `Color default` functionality to `Color`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Color {
     /// The color for text labels that contain primary content.
     public static var label: Color {

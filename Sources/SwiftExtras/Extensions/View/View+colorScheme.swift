@@ -13,6 +13,9 @@
 #if canImport(SwiftUI)
     import SwiftUI
 
+    /// Adds `View colorScheme` functionality to `View`.
+    ///
+    /// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
     extension View {
         /// Sets the color scheme of the view.
         ///

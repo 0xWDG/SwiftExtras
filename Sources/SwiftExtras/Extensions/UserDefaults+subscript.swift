@@ -12,6 +12,9 @@
 import Foundation
 
 #if os(iOS) || os(tvOS) || os(watchOS) || os(macOS) || os(visionOS)
+/// Adds `UserDefaults subscript` functionality to `UserDefaults`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension UserDefaults {
     /// Subscript from UserDefaults (Any)
     ///

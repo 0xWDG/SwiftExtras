@@ -12,6 +12,9 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Adds `Color init` functionality to `Color`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Color {
     /// Creates a Color from a PlatformColor
     /// - Parameter color: The PlatformColor to create the Color from.

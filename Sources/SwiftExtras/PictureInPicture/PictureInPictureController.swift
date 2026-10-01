@@ -33,6 +33,9 @@ final class ViewPictureInPictureController: NSObject, ObservableObject {
         configureController()
     }
 
+    /// Performs the `setContent` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     func setContent(_ content: some View) {
         let renderer = PictureInPictureRenderer(content: content)
         renderFrame = {
@@ -41,6 +44,9 @@ final class ViewPictureInPictureController: NSObject, ObservableObject {
         renderOnce()
     }
 
+    /// Performs the `start` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     func start() {
         guard let controller else {
             isActive = false
@@ -62,6 +68,9 @@ final class ViewPictureInPictureController: NSObject, ObservableObject {
         }
     }
 
+    /// Performs the `stop` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     func stop() {
         possibleObservation = nil
         renderingTask?.cancel()
@@ -70,6 +79,9 @@ final class ViewPictureInPictureController: NSObject, ObservableObject {
         deactivateAudioSession()
     }
 
+    /// Performs the `configureController` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func configureController() {
         guard PictureInPicture.isSupported else {
             return
@@ -88,6 +100,9 @@ final class ViewPictureInPictureController: NSObject, ObservableObject {
         self.controller = controller
     }
 
+    /// Performs the `observePictureInPicturePossibility` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func observePictureInPicturePossibility(
         _ controller: AVPictureInPictureController
     ) {
@@ -106,6 +121,9 @@ final class ViewPictureInPictureController: NSObject, ObservableObject {
         }
     }
 
+    /// Performs the `startRendering` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func startRendering() {
         renderingTask?.cancel()
         renderingTask = Task { @MainActor [weak self] in
@@ -119,6 +137,9 @@ final class ViewPictureInPictureController: NSObject, ObservableObject {
         }
     }
 
+    /// Performs the `renderOnce` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func renderOnce() {
         guard let renderFrame else {
             return
@@ -137,6 +158,9 @@ final class ViewPictureInPictureController: NSObject, ObservableObject {
         }
     }
 
+    /// Performs the `configureAudioSession` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func configureAudioSession() {
         #if canImport(UIKit)
         let session = AVAudioSession.sharedInstance()
@@ -154,6 +178,9 @@ final class ViewPictureInPictureController: NSObject, ObservableObject {
         #endif
     }
 
+    /// Performs the `activateAudioSession` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func activateAudioSession() {
         #if canImport(UIKit)
         do {
@@ -166,6 +193,9 @@ final class ViewPictureInPictureController: NSObject, ObservableObject {
         #endif
     }
 
+    /// Performs the `deactivateAudioSession` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func deactivateAudioSession() {
         #if canImport(UIKit)
         try? AVAudioSession.sharedInstance().setActive(
@@ -177,13 +207,23 @@ final class ViewPictureInPictureController: NSObject, ObservableObject {
 }
 
 @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+/// Declares the `AVPictureInPictureControllerDelegate` conformance for
+/// `ViewPictureInPictureController`.
+///
+/// The conformance supplies the protocol behavior implemented by the declarations in this scope.
 extension ViewPictureInPictureController: @preconcurrency AVPictureInPictureControllerDelegate {
+    /// Performs the `pictureInPictureControllerDidStartPictureInPicture` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     func pictureInPictureControllerDidStartPictureInPicture(
         _ pictureInPictureController: AVPictureInPictureController
     ) {
         isActive = true
     }
 
+    /// Performs the `pictureInPictureControllerDidStopPictureInPicture` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     func pictureInPictureControllerDidStopPictureInPicture(
         _ pictureInPictureController: AVPictureInPictureController
     ) {
@@ -193,6 +233,9 @@ extension ViewPictureInPictureController: @preconcurrency AVPictureInPictureCont
         deactivateAudioSession()
     }
 
+    /// Performs the `pictureInPictureController` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     func pictureInPictureController(
         _ pictureInPictureController: AVPictureInPictureController,
         failedToStartPictureInPictureWithError error: Error
@@ -206,6 +249,9 @@ extension ViewPictureInPictureController: @preconcurrency AVPictureInPictureCont
         )
     }
 
+    /// Performs the `pictureInPictureController` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     func pictureInPictureController(
         _ pictureInPictureController: AVPictureInPictureController,
         restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void
@@ -214,6 +260,9 @@ extension ViewPictureInPictureController: @preconcurrency AVPictureInPictureCont
         completionHandler(true)
     }
 
+    /// Performs the `pictureInPictureControllerShouldProhibitBackgroundAudioPlayback` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     func pictureInPictureControllerShouldProhibitBackgroundAudioPlayback(
         _ pictureInPictureController: AVPictureInPictureController
     ) -> Bool {
@@ -222,7 +271,14 @@ extension ViewPictureInPictureController: @preconcurrency AVPictureInPictureCont
 }
 
 @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+/// Declares the `AVPictureInPictureSampleBufferPlaybackDelegate` conformance for
+/// `ViewPictureInPictureController`.
+///
+/// The conformance supplies the protocol behavior implemented by the declarations in this scope.
 extension ViewPictureInPictureController: @preconcurrency AVPictureInPictureSampleBufferPlaybackDelegate {
+    /// Performs the `pictureInPictureController` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     func pictureInPictureController(
         _ pictureInPictureController: AVPictureInPictureController,
         setPlaying playing: Bool
@@ -231,12 +287,18 @@ extension ViewPictureInPictureController: @preconcurrency AVPictureInPictureSamp
         pictureInPictureController.invalidatePlaybackState()
     }
 
+    /// Performs the `pictureInPictureControllerIsPlaybackPaused` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     func pictureInPictureControllerIsPlaybackPaused(
         _ pictureInPictureController: AVPictureInPictureController
     ) -> Bool {
         isPlaying == false
     }
 
+    /// Performs the `pictureInPictureControllerTimeRangeForPlayback` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     func pictureInPictureControllerTimeRangeForPlayback(
         _ pictureInPictureController: AVPictureInPictureController
     ) -> CMTimeRange {
@@ -246,11 +308,17 @@ extension ViewPictureInPictureController: @preconcurrency AVPictureInPictureSamp
         )
     }
 
+    /// Performs the `pictureInPictureController` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     func pictureInPictureController(
         _ pictureInPictureController: AVPictureInPictureController,
         didTransitionToRenderSize newRenderSize: CMVideoDimensions
     ) {}
 
+    /// Performs the `pictureInPictureController` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     func pictureInPictureController(
         _ pictureInPictureController: AVPictureInPictureController,
         skipByInterval skipInterval: CMTime

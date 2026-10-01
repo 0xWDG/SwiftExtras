@@ -132,6 +132,9 @@ public struct Flow: Layout {
     }
 
     @discardableResult
+    /// Performs the `commit` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func commit(
         line: [PartialRect],
         offsetY: CGFloat,
@@ -179,6 +182,10 @@ public struct Flow: Layout {
 }
 
 @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+/// Adds convenience construction APIs to the flow layout.
+///
+/// These helpers configure the layout's axis, spacing, and content while preserving `Flow`'s adaptive
+/// wrapping behavior.
 public extension Flow {
     /// Creates a flow layout with independent horizontal and vertical spacing.
     init(

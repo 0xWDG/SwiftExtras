@@ -75,6 +75,9 @@ struct LongPressModifier: ViewModifier {
     }
 }
 
+/// Adds `Button longPress` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Adds a long press action to the view.
     ///

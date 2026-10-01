@@ -69,6 +69,9 @@ public struct ColoredButtonStyle: ButtonStyle {
 }
 
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+/// Adds `ColoredButtonStyle` functionality to `ButtonStyle where Self == ColoredButtonStyle`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension ButtonStyle where Self == ColoredButtonStyle {
     /// A button style that uses a custom color.
     ///

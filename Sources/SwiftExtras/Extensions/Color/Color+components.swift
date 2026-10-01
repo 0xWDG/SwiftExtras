@@ -21,6 +21,9 @@ private func wcagLinearize(_ value: Double) -> Double {
     value <= 0.03928 ? value / 12.92 : pow((value + 0.055) / 1.055, 2.4)
 }
 
+/// Adds `Color components` functionality to `Color`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Color {
     /// Get the red value of a color
     /// - Returns: The normalized red component.
@@ -281,6 +284,9 @@ extension Color {
 }
 
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+/// Adds `Color components` functionality to `Color.Resolved`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Color.Resolved {
     /// Get the hex value of a color
     /// - Returns: A hexadecimal representation of the resolved color.

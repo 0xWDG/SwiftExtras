@@ -13,6 +13,9 @@
 import SwiftUI
 
 #if swift(>=5.9)
+/// Declares the `Identifiable` conformance for `LocalizedStringKey`.
+///
+/// The conformance supplies the protocol behavior implemented by the declarations in this scope.
 extension LocalizedStringKey: @retroactive Identifiable {
     /// The identifier of the localized string key.
     ///
@@ -22,6 +25,9 @@ extension LocalizedStringKey: @retroactive Identifiable {
     }
 }
 #else
+/// Declares the `Identifiable` conformance for `LocalizedStringKey`.
+///
+/// The conformance supplies the protocol behavior implemented by the declarations in this scope.
 extension LocalizedStringKey: Identifiable {
     /// The identifier of the localized string key.
     ///

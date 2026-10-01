@@ -11,6 +11,9 @@
 
 import Foundation
 
+/// Adds `Double ` functionality to `Double`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Double {
     /// Convert a length value from one unit to another.
     /// - Parameters:
@@ -21,6 +24,9 @@ extension Double {
     }
 }
 
+/// Adds `Double ` functionality to `BinaryFloatingPoint`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension BinaryFloatingPoint {
     /// Strips trailing decimal zeros, returning a clean string representation.
     ///

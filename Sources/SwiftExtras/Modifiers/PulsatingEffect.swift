@@ -36,6 +36,10 @@ public struct PulsatingEffect: ViewModifier {
 }
 
 /// A View extension to apply the pulsating effect.
+/// Adds a repeating pulsating animation to a view.
+///
+/// The modifiers in this extension preserve the original view while animating the visual properties needed
+/// to draw attention to it.
 public extension View {
     /// Applies a pulsating effect to the view.
     /// - Returns: A view with the pulsating effect applied.

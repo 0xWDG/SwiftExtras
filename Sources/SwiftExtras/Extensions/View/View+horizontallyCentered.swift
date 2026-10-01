@@ -13,6 +13,9 @@
 import SwiftUI
 
 @available(macOS 10.15, iOS 13, watchOS 6.0, tvOS 13.0, *)
+/// Adds `View horizontallyCentered` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Horizontally centers the view by embedding it
     /// in a HStack bookended by Spacers.

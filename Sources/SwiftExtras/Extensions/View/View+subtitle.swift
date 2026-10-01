@@ -13,6 +13,9 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Adds `View subtitle` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Configures the view's subtitle for purposes of navigation,
     /// using a string.

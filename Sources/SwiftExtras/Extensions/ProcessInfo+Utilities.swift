@@ -11,6 +11,10 @@
 
 import Foundation
 
+/// Adds environment and process-state utilities to `ProcessInfo`.
+///
+/// Use these values to adapt behavior for previews, tests, debugger attachment, and other execution
+/// contexts that are not represented by the standard process information API.
 public extension ProcessInfo {
     /// Detects if running in Xcode SwiftUI Preview mode
     static var isSwiftUIPreview: Bool {

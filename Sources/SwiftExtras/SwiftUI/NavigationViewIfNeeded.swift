@@ -36,6 +36,9 @@ struct ZeroFrameDetectionView: View {
             }
     }
 
+    /// Performs the `report` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func report(_ value: Bool) {
         guard !self.hasReported else { return }
         self.hasReported = true

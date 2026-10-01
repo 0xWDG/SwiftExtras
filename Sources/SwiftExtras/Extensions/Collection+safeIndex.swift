@@ -12,6 +12,9 @@
 #if canImport(Foundation)
 import Foundation
 
+/// Adds `Collection safeIndex` functionality to `Collection`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Collection {
     /// Accesses the element at the specified position in a safe manner.
     ///

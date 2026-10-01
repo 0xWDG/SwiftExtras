@@ -81,6 +81,9 @@ public struct BorderBeamEffect: ViewModifier {
         .padding(0.5)
     }
 
+    /// Performs the `beamLayers` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func beamLayers(rotation: Double) -> some View {
         let borderGradient = AngularGradient(
             colors: [.clear, border, .clear],
@@ -119,6 +122,10 @@ public struct BorderBeamEffect: ViewModifier {
     }
 }
 
+/// Adds an animated beam that travels around a view's border.
+///
+/// The modifier draws the effect as an overlay, allowing callers to customize its appearance without
+/// changing the view's content or layout contract.
 public extension View {
     /// Draws a rotating gradient beam around the view's rounded border.
     ///

@@ -39,6 +39,10 @@ public protocol PlatformViewRepresentable: PlatformViewRepresentableType {
 #if canImport(UIKit)
 /// A platform-agnostic version of `UIViewRepresentable`/`NSViewRepresentable`,
 /// allowing for a single implementation to be used for both UIKit and AppKit platforms.
+/// Supplies UIKit-specific conveniences to representables whose underlying view is a `PlatformViewType`.
+///
+/// These APIs let a cross-platform representable expose the same configuration surface when it is hosted
+/// by SwiftUI on iOS-family platforms.
 public extension PlatformViewRepresentable where UIViewType == PlatformViewType {
     /// Create the platform view.
     ///
@@ -62,6 +66,10 @@ public extension PlatformViewRepresentable where UIViewType == PlatformViewType 
     }
 }
 #else
+/// Supplies AppKit-specific conveniences to representables whose underlying view is a `PlatformViewType`.
+///
+/// These APIs preserve the cross-platform abstraction while adapting it to SwiftUI's macOS representable
+/// lifecycle.
 public extension PlatformViewRepresentable where NSViewType == PlatformViewType {
     /// Create the platform view.
     ///

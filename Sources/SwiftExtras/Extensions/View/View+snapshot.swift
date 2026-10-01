@@ -12,6 +12,9 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Adds `View snapshot` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Captures a snapshot of the current view and returns it as a `PlatformImage`.
     /// - Parameter size: The desired size of the snapshot. Defaults to the device's screen size.

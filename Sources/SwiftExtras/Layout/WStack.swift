@@ -69,6 +69,9 @@ public struct WStack: Layout {
         }
     }
 
+    /// Performs the `maxHeight` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     func maxHeight(
         proposal: ProposedViewSize,
         subviews: Subviews

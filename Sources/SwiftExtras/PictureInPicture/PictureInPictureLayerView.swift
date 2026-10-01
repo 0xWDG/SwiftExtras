@@ -20,6 +20,9 @@ struct PictureInPictureLayerView: UIViewRepresentable {
     let displayLayer: AVSampleBufferDisplayLayer
     let preferredSize: CGSize?
 
+    /// Creates the value required by `makeUIView`.
+    ///
+    /// The implementation configures the returned value from current state and context.
     func makeUIView(context: Context) -> UIView {
         let view = UIView()
         view.isAccessibilityElement = false
@@ -28,10 +31,16 @@ struct PictureInPictureLayerView: UIViewRepresentable {
         return view
     }
 
+    /// Updates the existing value handled by `updateUIView`.
+    ///
+    /// The implementation applies the enclosing type’s latest state.
     func updateUIView(_ view: UIView, context: Context) {
         updateDisplayLayer(in: view)
     }
 
+    /// Updates the existing value handled by `updateDisplayLayer`.
+    ///
+    /// The implementation applies the enclosing type’s latest state.
     private func updateDisplayLayer(in view: UIView) {
         displayLayer.frame = CGRect(
             origin: .zero,
@@ -46,6 +55,9 @@ struct PictureInPictureLayerView: NSViewRepresentable {
     let displayLayer: AVSampleBufferDisplayLayer
     let preferredSize: CGSize?
 
+    /// Creates the value required by `makeNSView`.
+    ///
+    /// The implementation configures the returned value from current state and context.
     func makeNSView(context: Context) -> NSView {
         let view = NSView()
         view.wantsLayer = true
@@ -55,10 +67,16 @@ struct PictureInPictureLayerView: NSViewRepresentable {
         return view
     }
 
+    /// Updates the existing value handled by `updateNSView`.
+    ///
+    /// The implementation applies the enclosing type’s latest state.
     func updateNSView(_ view: NSView, context: Context) {
         updateDisplayLayer(in: view)
     }
 
+    /// Updates the existing value handled by `updateDisplayLayer`.
+    ///
+    /// The implementation applies the enclosing type’s latest state.
     private func updateDisplayLayer(in view: NSView) {
         displayLayer.frame = CGRect(
             origin: .zero,

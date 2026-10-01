@@ -113,6 +113,9 @@ public struct CardView<Content: View>: View {
 
 private struct CardPresentationDragIndicator: ViewModifier {
     @ViewBuilder
+    /// Builds the view hierarchy represented by this declaration.
+    ///
+    /// SwiftUI evaluates this when it needs the current visual representation.
     func body(content: Content) -> some View {
         if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
             content.presentationDragIndicator(.visible)

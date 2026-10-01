@@ -12,6 +12,9 @@
 #if canImport(SwiftUI) && !os(watchOS)
 import SwiftUI
 
+/// Adds `Image Platform` functionality to `Image`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Image {
     /// Create an Image from a PlatformImage
     ///
@@ -77,6 +80,9 @@ extension Image {
 }
 
 #if swift(>=5.9)
+/// Declares the `Identifiable` conformance for `PlatformImage`.
+///
+/// The conformance supplies the protocol behavior implemented by the declarations in this scope.
 extension PlatformImage: @retroactive Identifiable {
     /// The identifier of the image.
     ///
@@ -86,6 +92,9 @@ extension PlatformImage: @retroactive Identifiable {
     }
 }
 #else
+/// Declares the `Identifiable` conformance for `PlatformImage`.
+///
+/// The conformance supplies the protocol behavior implemented by the declarations in this scope.
 extension PlatformImage: Identifiable {
     /// The identifier of the image.
     ///

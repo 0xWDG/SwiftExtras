@@ -13,7 +13,13 @@
 import SwiftUI
 
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
+/// Adds `Color dynamicColor` functionality to `Color`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Color {
+    /// Performs the `dynamicColor` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     static func dynamicColor(light: NSColor, dark: NSColor, named: String = "DynamicColor") -> Color {
         Color(
             NSColor(
@@ -32,7 +38,13 @@ extension Color {
 #endif
 
 #if canImport(UIKit)
+/// Adds `Color dynamicColor` functionality to `Color`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Color {
+    /// Performs the `dynamicColor` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     static func dynamicColor(light: UIColor, dark: UIColor, named: String = "DynamicColor") -> Color {
 #if os(watchOS)
         return Color(dark)

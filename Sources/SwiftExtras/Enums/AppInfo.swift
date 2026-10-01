@@ -483,6 +483,10 @@ public enum AppInfo {
 
 // MARK: - Signal and environment metadata
 
+/// Adds application metadata and App Store utilities to `AppInfo`.
+///
+/// These APIs expose information derived from the app bundle and provide opt-in navigation to the app's
+/// system settings and store listing.
 public extension AppInfo {
     /// Accessibility settings available on the current platform.
     @MainActor

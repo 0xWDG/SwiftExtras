@@ -9,6 +9,9 @@
 //  MIT License
 //
 
+/// Adds splitting utilities tailored to `String` values.
+///
+/// Use these helpers when the standard library's delimiter handling needs a higher-level string result.
 public extension String {
     /// Splits the string into groups containing at most the given number of characters.
     ///

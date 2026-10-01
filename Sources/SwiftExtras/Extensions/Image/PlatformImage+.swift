@@ -12,6 +12,9 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Adds `PlatformImage ` functionality to `PlatformImage`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension PlatformImage {
     /// Converts the `PlatformImage` to PNG image data.
     /// - Returns: The PNG representation of the image as `Data`, or `nil` if the conversion fails.
@@ -33,6 +36,9 @@ extension PlatformImage {
 
 #if os(iOS) || os(tvOS) || os(visionOS) || os(macOS)
 @available(iOS 16.0, macOS 13.0, tvOS 16.0, *)
+/// Adds `PlatformImage ` functionality to `Image`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Image {
     /// Converts a SwiftUI `Image` to PNG image data.
     /// - Returns: The PNG representation of the image as `Data`, or `nil` if the conversion fails.

@@ -12,6 +12,9 @@
 #if canImport(SwiftUI) && canImport(UIKit) && !os(watchOS)
 import SwiftUI
 
+/// Adds `View getRootViewController` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Get root view controller
     ///

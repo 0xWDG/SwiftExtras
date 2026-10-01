@@ -13,6 +13,9 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Adds `View onNotification` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Adds an action to perform when a notification is received.
     /// - Parameters:

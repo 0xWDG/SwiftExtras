@@ -12,6 +12,10 @@
 import Foundation
 
 @available(iOS 16, macOS 13, tvOS 16, watchOS 9, *)
+/// Adds locale inspection and formatting conveniences.
+///
+/// Use these helpers to derive user-facing locale information while respecting the current locale's
+/// language and regional conventions.
 public extension Locale {
     /// The user's country/region identifier (e.g., "US")
     static var userCountry: String { current.region?.identifier ?? "Unknown" }

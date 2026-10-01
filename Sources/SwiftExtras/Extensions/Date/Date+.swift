@@ -11,6 +11,9 @@
 
 import Foundation
 
+/// Adds `Date ` functionality to `Date`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Date {
     /// A localized description of the date relative to the current time.
     ///

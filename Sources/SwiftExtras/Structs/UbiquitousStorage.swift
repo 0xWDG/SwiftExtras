@@ -12,6 +12,9 @@
 #if canImport(SwiftUI) || os(iOS) || os(macOS) || os(tvOS) || os(watchOS) || os(visionOS)
 import SwiftUI
 
+/// Adds `UbiquitousStorage` functionality to `Notification.Name`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Notification.Name {
     /// Notification posted when a value in `UbiquitousStorage` changes.
     public static let ubiquitousStorageDidChange = Notification.Name("UbiquitousStorage.didChange")
@@ -21,6 +24,9 @@ private enum UbiquitousStorageNotificationUserInfoKey {
     static let key = "key"
 }
 
+/// Performs the `notifyUbiquitousStorageChange` operation for the enclosing type.
+///
+/// This implementation supports the enclosing declaration’s behavior.
 private func notifyUbiquitousStorageChange(forKey key: String) {
     NotificationCenter.default.post(
         name: .ubiquitousStorageDidChange,
@@ -95,6 +101,9 @@ public struct UbiquitousStorage<Value> {
     }
 }
 
+/// Adds `UbiquitousStorage` functionality to `UbiquitousStorage where Value == Bool`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension UbiquitousStorage where Value == Bool {
     /// Initializes a new instance of `UbiquitousStorage` for a `Bool` value.
     ///
@@ -139,6 +148,9 @@ extension UbiquitousStorage where Value == Bool {
     }
 }
 
+/// Declares the `RawRepresentable, Value.RawValue == String` conformance for `UbiquitousStorage where Value`.
+///
+/// The conformance supplies the protocol behavior implemented by the declarations in this scope.
 extension UbiquitousStorage where Value: RawRepresentable, Value.RawValue == String {
     /// Initializes storage for a string-backed raw-representable value.
     ///
@@ -178,6 +190,9 @@ extension UbiquitousStorage where Value: RawRepresentable, Value.RawValue == Str
     }
 }
 
+/// Adds `UbiquitousStorage` functionality to `UbiquitousStorage where Value == Int`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension UbiquitousStorage where Value == Int {
     /// Initializes a new instance of `UbiquitousStorage` for an `Int` value.
     ///
@@ -203,6 +218,9 @@ extension UbiquitousStorage where Value == Int {
     }
 }
 
+/// Adds `UbiquitousStorage` functionality to `UbiquitousStorage where Value == Double`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension UbiquitousStorage where Value == Double {
     /// Initializes a new instance of `UbiquitousStorage` for a `Double` value.
     ///
@@ -228,6 +246,9 @@ extension UbiquitousStorage where Value == Double {
     }
 }
 
+/// Adds `UbiquitousStorage` functionality to `UbiquitousStorage where Value == String`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension UbiquitousStorage where Value == String {
     /// Initializes a new instance of `UbiquitousStorage` for a `String` value.
     ///
@@ -253,6 +274,9 @@ extension UbiquitousStorage where Value == String {
     }
 }
 
+/// Adds `UbiquitousStorage` functionality to `UbiquitousStorage where Value == String?`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension UbiquitousStorage where Value == String? {
     /// Initializes a new instance of `UbiquitousStorage` for an optional `String` value.
     ///
@@ -282,6 +306,9 @@ extension UbiquitousStorage where Value == String? {
     }
 }
 
+/// Adds `UbiquitousStorage` functionality to `UbiquitousStorage where Value == Color`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension UbiquitousStorage where Value == Color {
     /// Initializes a new instance of `UbiquitousStorage` for a `Color` value.
     ///
@@ -313,6 +340,9 @@ extension UbiquitousStorage where Value == Color {
     }
 }
 
+/// Adds `UbiquitousStorage` functionality to `NSUbiquitousKeyValueStore`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension NSUbiquitousKeyValueStore {
     /// Returns the integer stored for `key`, or `defaultValue` when the key is absent.
     ///

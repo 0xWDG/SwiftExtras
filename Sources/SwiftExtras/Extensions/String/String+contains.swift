@@ -11,6 +11,10 @@
 
 import Foundation
 
+/// Adds case and locale-aware containment checks to `String`.
+///
+/// Use these comparisons when a simple exact substring search does not reflect the intended user-facing
+/// matching behavior.
 public extension String {
     /// Check if this string contains another string.
     /// - Parameters:

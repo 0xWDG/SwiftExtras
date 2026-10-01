@@ -13,6 +13,10 @@
 import SwiftUI
 
 @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+/// Adds view-driven Picture in Picture presentation.
+///
+/// Apply the modifier to render SwiftUI content into a Picture in Picture session whose lifecycle is
+/// controlled by bindings and the supplied presentation configuration.
 public extension View {
     /// Presents this view in the system Picture in Picture window.
     ///
@@ -60,6 +64,9 @@ private struct ViewPictureInPictureModifier<PictureContent: View>: ViewModifier 
     let pictureInPictureContent: () -> PictureContent
     let usesSourceViewSize: Bool
 
+    /// Builds the view hierarchy represented by this declaration.
+    ///
+    /// SwiftUI evaluates this when it needs the current visual representation.
     func body(content: Content) -> some View {
         content
             .overlay {
@@ -88,6 +95,9 @@ private struct ViewPictureInPictureModifier<PictureContent: View>: ViewModifier 
             }
     }
 
+    /// Performs the `renderingLayer` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func renderingLayer(size: CGSize?) -> some View {
         PictureInPictureLayerView(
             displayLayer: controller.displayLayer,
@@ -98,6 +108,9 @@ private struct ViewPictureInPictureModifier<PictureContent: View>: ViewModifier 
         .accessibilityHidden(true)
     }
 
+    /// Updates the existing value handled by `updatePresentation`.
+    ///
+    /// The implementation applies the enclosing type’s latest state.
     private func updatePresentation(_ shouldPresent: Bool) {
         if shouldPresent {
             guard PictureInPicture.isSupported else {

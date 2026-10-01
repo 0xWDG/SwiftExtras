@@ -12,6 +12,9 @@
 #if canImport(SwiftUI) && !os(watchOS)
 import SwiftUI
 
+/// Adds `Image centerCropped` functionality to `Image`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Image {
     /// Crops the image to the center, filling the available space.
     public func centerCropped() -> some View {

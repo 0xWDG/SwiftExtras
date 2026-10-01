@@ -12,6 +12,9 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Adds `View modifier` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Applies the given transform if the given condition evaluates to `true`.
     /// - Parameters:

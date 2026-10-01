@@ -12,6 +12,10 @@
 #if canImport(SwiftUI) && !os(watchOS) && !os(tvOS)
 import SwiftUI
 
+/// Adds source and presentation modifiers for popovers anchored to a matched SwiftUI view.
+///
+/// The modifiers coordinate a shared identifier so a popover can inherit the geometry of its source while
+/// retaining SwiftUI's binding-driven presentation model.
 public extension View {
     /// Apply this once on a common parent to enable matched popovers.
     /// - Parameters:
@@ -65,6 +69,9 @@ private struct MatchedPopoverSourceModifier<ID: Hashable>: ViewModifier {
     @Environment(\.matchedPopoverNamespace) private var namespace
     @Namespace private var fallbackNamespace
 
+    /// Builds the view hierarchy represented by this declaration.
+    ///
+    /// SwiftUI evaluates this when it needs the current visual representation.
     func body(content: Content) -> some View {
         content
             .matchedGeometryEffect(
@@ -136,6 +143,9 @@ private struct MatchedPopoverContainerModifier<ID: Hashable, Popover: View>: Vie
         }
     }
 
+    /// Performs the `applySelection` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func applySelection(_ newValue: ID?) {
         guard let newValue else {
             withAnimation {
@@ -165,6 +175,9 @@ private struct MatchedPopoverContainerModifier<ID: Hashable, Popover: View>: Vie
     }
 }
 
+/// Adds `MatchedPopover` functionality to `UnitPoint`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 private extension UnitPoint {
     /// Returns the paired popover anchor for a source anchor.
     var opposite: UnitPoint {
@@ -187,6 +200,9 @@ private struct MatchedPopoverNamespaceKey: EnvironmentKey {
     static let defaultValue: Namespace.ID? = nil
 }
 
+/// Adds `MatchedPopover` functionality to `EnvironmentValues`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 private extension EnvironmentValues {
     /// Shared namespace for `matchedGeometryEffect` between sources and the overlay popover.
     var matchedPopoverNamespace: Namespace.ID? {

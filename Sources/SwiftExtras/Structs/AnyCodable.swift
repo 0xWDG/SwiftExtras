@@ -54,6 +54,10 @@ public struct AnyCodable: Codable, @unchecked Sendable {
         }
     }
 
+    /// Encodes the stored value using its concrete `Encodable` implementation.
+    ///
+    /// - Parameter encoder: The encoder that receives the wrapped value.
+    /// - Throws: An error when the wrapped value cannot be encoded by the supplied encoder.
     public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
 
@@ -76,6 +80,9 @@ public struct AnyCodable: Codable, @unchecked Sendable {
     }
 }
 
+/// Declares the `CustomReflectable` conformance for `AnyCodable`.
+///
+/// The conformance supplies the protocol behavior implemented by the declarations in this scope.
 extension AnyCodable: CustomReflectable {
     /// Returns a mirror that reflects the underlying value of the `AnyCodable` instance.
     public var customMirror: Mirror {

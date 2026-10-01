@@ -12,6 +12,9 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Adds `View onChange` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Adds a debounced onChange handler
     /// - Parameters:
@@ -98,6 +101,9 @@ private struct DebouncedOnChangeModifier<Value: Equatable>: ViewModifier {
     let delay: Duration
     let action: (Value) -> Void
 
+    /// Builds the view hierarchy represented by this declaration.
+    ///
+    /// SwiftUI evaluates this when it needs the current visual representation.
     func body(content: Content) -> some View {
         content
             .task(id: observedValue) {
@@ -117,6 +123,15 @@ private struct DebouncedOnChangeModifier<Value: Equatable>: ViewModifier {
 /// A wrapper for multiple Equatable values to allow for onChange detection of any of them.
 @available(iOS 17, macOS 14, tvOS 17, watchOS 10, *)
 public struct Equatables<each T>: Equatable where repeat each T: Equatable {
+    /// Compares every element in two variadic equatable-value collections.
+    ///
+    /// The comparison supports SwiftUI change observation for a heterogeneous parameter pack by requiring
+    /// each corresponding element to be equal.
+    ///
+    /// - Parameters:
+    ///   - lhs: The values on the left side of the comparison.
+    ///   - rhs: The values on the right side of the comparison.
+    /// - Returns: `true` when all corresponding values are equal; otherwise, `false`.
     public static func == (lhs: Equatables<repeat each T>, rhs: Equatables<repeat each T>) -> Bool {
         var result = true
         repeat (result = result && (each lhs.values == each rhs.values))

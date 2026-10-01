@@ -53,6 +53,9 @@ public struct ToggleButtonStyle: ButtonStyle {
 }
 
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+/// Adds `ToggleButtonStyle` functionality to `ButtonStyle where Self == GrayButtonStyle`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension ButtonStyle where Self == GrayButtonStyle {
     /// A button style makes a toggle style button.
     ///

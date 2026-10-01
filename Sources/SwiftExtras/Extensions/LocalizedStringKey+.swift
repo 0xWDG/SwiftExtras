@@ -12,6 +12,9 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Adds `LocalizedStringKey ` functionality to `LocalizedStringKey`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension LocalizedStringKey {
     /// The string key of the LocalizedStringKey
     var stringKey: String? {

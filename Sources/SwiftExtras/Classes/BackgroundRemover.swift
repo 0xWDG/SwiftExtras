@@ -162,6 +162,9 @@ public class BackgroundRemoverHelper {
 #if canImport(SwiftUI)
 import SwiftUI
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, *)
+/// Adds `BackgroundRemover` functionality to `Image`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Image {
     /// Removes the background from the image.
     @available(iOS 17.0, macOS 14.0, *)
@@ -179,6 +182,9 @@ extension Image {
 #endif
 
 #if canImport(UIKit) || canImport(AppKit)
+/// Adds `BackgroundRemover` functionality to `PlatformImage`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension PlatformImage {
     /// Removes the background from the image.
     @available(iOS 17.0, macOS 14.0, tvOS 17.0, *)

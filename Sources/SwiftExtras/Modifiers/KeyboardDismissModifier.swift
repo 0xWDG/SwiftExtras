@@ -32,6 +32,10 @@ public struct KeyboardDismissModifier: ViewModifier {
 }
 
 /// A helper function to extend UIApplication for dismissing the keyboard.
+/// Adds a platform-appropriate action for dismissing the active keyboard.
+///
+/// Call the helper when application code needs to end editing without holding a reference to the responder
+/// that currently owns focus.
 public extension UIApplication {
     /// Dismisses the keyboard.
     func endEditing() {
@@ -40,6 +44,10 @@ public extension UIApplication {
 }
 
 /// A view extension to use the modifier easily.
+/// Adds a SwiftUI modifier that dismisses the keyboard according to the selected interaction policy.
+///
+/// Use this API to make keyboard dismissal part of a view's declarative configuration rather than managing
+/// responder state in individual controls.
 public extension View {
     /// Dismisses the keyboard when tapping outside a text field.
     /// - Returns: A view with the keyboard dismiss modifier applied.

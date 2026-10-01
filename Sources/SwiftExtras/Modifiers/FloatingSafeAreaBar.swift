@@ -19,6 +19,9 @@ struct FloatingSafeAreaBar<InsetContent: View>: ViewModifier {
     @ViewBuilder let insetContent: () -> InsetContent
 
     @ViewBuilder
+    /// Builds the view hierarchy represented by this declaration.
+    ///
+    /// SwiftUI evaluates this when it needs the current visual representation.
     func body(content: Content) -> some View {
         #if compiler(>=6.2)
         if #available(iOS 26, macOS 26, tvOS 26, watchOS 26, *) {
@@ -74,6 +77,9 @@ struct FloatingSafeAreaBar<InsetContent: View>: ViewModifier {
 }
 
 private struct CardStyle: ViewModifier {
+    /// Builds the view hierarchy represented by this declaration.
+    ///
+    /// SwiftUI evaluates this when it needs the current visual representation.
     func body(content: Content) -> some View {
         content
             .padding()
@@ -89,6 +95,9 @@ private struct CardStyle: ViewModifier {
     }
 }
 
+/// Adds `FloatingSafeAreaBar` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Adds a floating safe area bar to the view.
     /// - Parameter insetContent: A closure that returns the content to be displayed in the floating safe area bar

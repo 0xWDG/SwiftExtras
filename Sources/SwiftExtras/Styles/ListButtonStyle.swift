@@ -39,6 +39,10 @@ public struct ListButtonStyle: ButtonStyle {
     }
 }
 
+/// Exposes the list-oriented button style through SwiftUI's constrained style API.
+///
+/// Use the static member supplied by this extension to apply ``ListButtonStyle`` with standard
+/// `buttonStyle` syntax.
 public extension ButtonStyle where Self == ListButtonStyle {
     /// This style makes the button take up the entire row, then
     /// applies a shape that makes the entire view tappable.

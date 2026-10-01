@@ -12,6 +12,9 @@
 #if canImport(Foundation)
 import Foundation
 
+/// Adds `CGFloat ` functionality to `CGFloat`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension CGFloat {
    /// Returns the default spacing value based on the current platform.
    ///

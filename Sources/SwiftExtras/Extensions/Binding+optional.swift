@@ -12,6 +12,10 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Adds optional-binding adapters for SwiftUI state.
+///
+/// The adapters safely derive bindings for optional values, allowing controls to participate in SwiftUI's
+/// binding APIs without force unwrapping missing state.
 public extension Binding {
     /// Provides a binding that unwraps an optional binding, providing a default value if the optional is nil.
     ///

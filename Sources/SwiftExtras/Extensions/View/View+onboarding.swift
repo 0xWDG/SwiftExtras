@@ -39,6 +39,9 @@ struct OnboardingModifier: ViewModifier {
     let steps: [OnboardingStep]
     let skipable: Bool
 
+    /// Builds the view hierarchy represented by this declaration.
+    ///
+    /// SwiftUI evaluates this when it needs the current visual representation.
     func body(content: Content) -> some View {
         content
             .overlay {
@@ -74,6 +77,9 @@ struct OnboardingModifier: ViewModifier {
     }
 
     @ViewBuilder
+    /// Performs the `popoverContent` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func popoverContent(for index: Int) -> some View {
         VStack {
             Text(steps[index].text)
@@ -114,6 +120,9 @@ struct OnboardingModifier: ViewModifier {
     }
 }
 
+/// Adds `View onboarding` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// A view modifier that highlights a view and shows a popover with explanation text.
     /// - Parameters:

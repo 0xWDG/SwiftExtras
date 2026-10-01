@@ -33,6 +33,9 @@ public enum ANSIColors: String {
     case `default` = "\u{001B}[0;0m"
 }
 
+/// Adds `String ANSIColors` functionality to `String`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension String {
     /// Add ANSI colors to a string
     ///

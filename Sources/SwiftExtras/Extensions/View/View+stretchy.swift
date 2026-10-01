@@ -13,6 +13,9 @@
 import SwiftUI
 
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+/// Adds `View stretchy` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Applies a stretchy effect to the view, scaling it based on the scroll offset.
     /// 

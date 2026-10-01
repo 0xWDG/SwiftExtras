@@ -12,6 +12,9 @@
 #if canImport(OSLog)
 import OSLog
 
+/// Adds `Logger ` functionality to `Logger`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Logger {
     /// Start a logger with default values
     /// subsystem: Bundle.main.bundleIdentifier

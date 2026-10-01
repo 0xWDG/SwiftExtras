@@ -12,6 +12,9 @@
 import Foundation
 
 #if swift(>=5.9)
+/// Declares the `Identifiable` conformance for `Date`.
+///
+/// The conformance supplies the protocol behavior implemented by the declarations in this scope.
 extension Date: @retroactive Identifiable {
     /// The identifier of the date.
     ///
@@ -21,6 +24,9 @@ extension Date: @retroactive Identifiable {
     }
 }
 #else
+/// Declares the `Identifiable` conformance for `Date`.
+///
+/// The conformance supplies the protocol behavior implemented by the declarations in this scope.
 extension Date: Identifiable {
     /// The identifier of the date.
     ///

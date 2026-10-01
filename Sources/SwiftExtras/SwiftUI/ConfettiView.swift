@@ -194,6 +194,9 @@ struct ConfettiModifier<ConfettiShape: View>: ViewModifier {
     /// The duration of the fade-out effect after the confetti animation ends.
     var fadeTime = 2.0
 
+    /// Builds the view hierarchy represented by this declaration.
+    ///
+    /// SwiftUI evaluates this when it needs the current visual representation.
     func body(content: Content) -> some View {
         if #available(iOS 17.0, watchOS 10.0, macOS 14.0, tvOS 17.0, *) {
             content
@@ -219,6 +222,9 @@ struct ConfettiModifier<ConfettiShape: View>: ViewModifier {
         }
     }
 
+    /// Performs the `handleAnimationSequence` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func handleAnimationSequence() async {
         if !automaticEnd || !isActive { return }
         try? await Task.sleep(nanoseconds: UInt64(animationTime * 1_000_000_000))
@@ -228,6 +234,9 @@ struct ConfettiModifier<ConfettiShape: View>: ViewModifier {
     }
 }
 
+/// Adds `ConfettiView` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Displays confetti on the view when `isActive` is true.
     /// This modifier can be used to celebrate events like achievements, \

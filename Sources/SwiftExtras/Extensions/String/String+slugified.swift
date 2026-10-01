@@ -11,6 +11,9 @@
 
 import Foundation
 
+/// Adds `String slugified` functionality to `String`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension String {
     /// Slugify a string
     public var slugified: String {

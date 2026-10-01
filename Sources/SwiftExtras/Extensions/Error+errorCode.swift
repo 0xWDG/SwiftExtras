@@ -11,6 +11,9 @@
 
 import Foundation
 
+/// Adds `Error errorCode` functionality to `Error`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Error {
     /// Returns the error code of the error if it is an NSError.
     /// If the error is not an NSError, this will return nil.

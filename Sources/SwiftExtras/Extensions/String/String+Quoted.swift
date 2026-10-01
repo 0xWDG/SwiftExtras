@@ -13,6 +13,9 @@ import Foundation
 
 private let backslashesAndQuotes = CharacterSet(["\"", "\\"])
 
+/// Adds quoting utilities to string-like values.
+///
+/// The helpers return a value with the requested quote characters while preserving the source text.
 public extension StringProtocol {
     /// The string enclosed in double quotation marks, with nested quotation
     /// marks and backslashes escaped using backslashes.

@@ -12,6 +12,10 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Adds binding transformations that observe value changes.
+///
+/// The resulting bindings retain the original source of truth while invoking caller-supplied work when a
+/// new value is written.
 public extension Binding {
     /// On change
     ///

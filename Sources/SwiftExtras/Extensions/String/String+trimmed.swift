@@ -11,6 +11,9 @@
 
 import Foundation
 
+/// Adds `String trimmed` functionality to `String`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension String {
     /// This is a shorthand for `trimmingCharacters(in:)`.
     ///

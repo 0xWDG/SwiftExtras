@@ -12,6 +12,9 @@
 #if canImport(NotificationCenter)
 import Foundation
 
+/// Adds `NotificationName ` functionality to `Notification.Name`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Notification.Name {
    /// Returns the publisher of the notification on the default notification center.
    ///

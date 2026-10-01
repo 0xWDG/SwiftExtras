@@ -13,6 +13,9 @@
 import SwiftUI
 
 #if swift(>=5.9)
+/// Declares the `Identifiable` conformance for `Color`.
+///
+/// The conformance supplies the protocol behavior implemented by the declarations in this scope.
 extension Color: @retroactive Identifiable {
     /// The identifier of the color.
     ///
@@ -22,6 +25,9 @@ extension Color: @retroactive Identifiable {
     }
 }
 #else
+/// Declares the `Identifiable` conformance for `Color`.
+///
+/// The conformance supplies the protocol behavior implemented by the declarations in this scope.
 extension Color: Identifiable {
     /// The identifier of the color.
     ///

@@ -118,6 +118,9 @@ public struct Onboarding<Content: View>: View {
             }
     }
 
+    /// Performs the `createWindow` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func createWindow() async {
         if let scene = (UIApplication.shared.connectedScenes.first as? UIWindowScene),
            !isOnboarded, coordinator.overlayWindow == nil {
@@ -156,6 +159,9 @@ public struct Onboarding<Content: View>: View {
         }
     }
 
+    /// Performs the `hideWindow` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func hideWindow() {
         coordinator.overlayWindow?.rootViewController = nil
         coordinator.overlayWindow?.isHidden = true
@@ -163,6 +169,9 @@ public struct Onboarding<Content: View>: View {
     }
 }
 
+/// Adds `Onboarding` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Onboarding Item Modifier
     /// Mark the views you want to highlight with this modifier.
@@ -197,6 +206,9 @@ private struct OnboardingItemSetter<ContentView: View>: ViewModifier {
 
     @Environment(OnboardingCoordinator.self) var coordinator
 
+    /// Builds the view hierarchy represented by this declaration.
+    ///
+    /// SwiftUI evaluates this when it needs the current visual representation.
     func body(content: Content) -> some View {
         content
             .onGeometryChange(for: CGRect.self) {
@@ -280,6 +292,9 @@ private struct OverlayWindowView: View {
     }
 
     @ViewBuilder
+    /// Performs the `iPhoneShape` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func iPhoneShape(_ safeArea: EdgeInsets) -> some View {
         let isHomeButtoniPhone = safeArea.bottom == 0
         let cornerRadius: CGFloat = isHomeButtoniPhone ? 20 : 45
@@ -299,6 +314,9 @@ private struct OverlayWindowView: View {
     }
 
     @ViewBuilder
+    /// Performs the `bottomView` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func bottomView(_ safeArea: EdgeInsets) -> some View {
         // swiftlint:disable:previous function_body_length
         VStack(spacing: 10) {
@@ -359,6 +377,9 @@ private struct OverlayWindowView: View {
         .padding(.bottom, safeArea.bottom + 10)
     }
 
+    /// Performs the `closeWindow` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func closeWindow() {
         withAnimation(.easeInOut(duration: 0.25), completionCriteria: .removed) {
             animate = false
@@ -373,6 +394,9 @@ private struct OverlayWindowView: View {
     }
 }
 
+/// Adds `Onboarding` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Captures the current key window.
     /// - Returns: An image of the key window, or `nil` when no key window is available.

@@ -11,6 +11,9 @@
 
 import Foundation
 
+/// Adds `Task ` functionality to `Task where Failure == Error`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Task where Failure == Error {
     /// Performs an async task in a sync context.
     ///

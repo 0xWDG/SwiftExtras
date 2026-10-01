@@ -99,6 +99,9 @@ public struct Dynamic {
         object as? Value
     }
 
+    /// Performs the `value` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func value(for key: String) -> Any? {
         guard let subject = subject as? NSObject else {
             return nil
@@ -107,6 +110,9 @@ public struct Dynamic {
         return subject.value(forKey: key)
     }
 
+    /// Performs the `setValue` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func setValue(_ value: Any?, for key: String) {
         guard let subject = subject as? NSObject else {
             return
@@ -115,10 +121,16 @@ public struct Dynamic {
         subject.setValue(value, forKey: key)
     }
 
+    /// Performs the `call` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func call(_ selectorName: String, with arguments: [AnyObject]) -> Dynamic {
         invoke(selectorName, arguments: arguments.map(Optional.some))
     }
 
+    /// Performs the `invoke` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func invoke(_ selectorName: String, arguments: [AnyObject?]) -> Dynamic {
         guard arguments.count <= 2,
               let subject = subject as? NSObjectProtocol else {
@@ -146,7 +158,13 @@ public struct Dynamic {
     }
 }
 
+/// Adds `Dynamic` functionality to `String`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 private extension String {
+    /// Performs the `normalizedSelectorName` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     func normalizedSelectorName(argumentCount: Int) -> String {
         guard argumentCount > 0, !contains(":") else {
             return self

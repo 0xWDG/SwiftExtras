@@ -11,6 +11,9 @@
 
 import Foundation
 
+/// Adds `String clean` functionality to `String`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension String {
     /// Strips diacritics from the string
     /// - Returns: String without diacritics

@@ -22,6 +22,9 @@ import WatchKit
 import AppKit
 #endif
 
+/// Adds `CGSize device` functionality to `CGSize`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension CGSize {
     /// The size of the current device's screen.
     /// - Note: On macOS, this returns the size of the main screen or `.zero` if no screen is available.

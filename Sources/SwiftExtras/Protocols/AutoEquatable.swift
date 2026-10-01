@@ -17,6 +17,9 @@ import Foundation
 /// are stable and contain every value relevant to equality.
 protocol AutoEquatable: Equatable {}
 
+/// Adds `AutoEquatable` functionality to `AutoEquatable`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension AutoEquatable {
     /// Compares two values using their textual dump representations.
     ///

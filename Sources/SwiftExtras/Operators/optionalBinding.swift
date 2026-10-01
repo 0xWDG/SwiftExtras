@@ -12,6 +12,9 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Adds `optionalBinding` functionality to `Binding`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Binding {
     /// Optional binding
     ///

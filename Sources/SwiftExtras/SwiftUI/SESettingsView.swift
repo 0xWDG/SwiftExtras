@@ -123,6 +123,9 @@ public struct SESettingsView<TopContent: View, BottomContent: View>: View {
         }
     }
 
+    /// Performs the `socialMediaLinks` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private static func socialMediaLinks(
         twitterHandle: String?,
         blueskyHandle: String?,

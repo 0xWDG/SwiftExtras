@@ -11,6 +11,9 @@
 
 import Foundation
 
+/// Adds `Int ` functionality to `Int`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Int {
     /// Convert Int to Currency
     ///

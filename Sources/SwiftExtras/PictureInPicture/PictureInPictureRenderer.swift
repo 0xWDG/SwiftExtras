@@ -29,6 +29,9 @@ struct PictureInPictureRenderer<Content: View> {
         renderer = ImageRenderer(content: content)
     }
 
+    /// Creates the value required by `makeSampleBuffer`.
+    ///
+    /// The implementation configures the returned value from current state and context.
     func makeSampleBuffer() throws -> CMSampleBuffer {
         var renderedPixelBuffer: Result<CVPixelBuffer, Error>?
         let scale = displayScale
@@ -45,6 +48,9 @@ struct PictureInPictureRenderer<Content: View> {
         return try makeSampleBuffer(from: renderedPixelBuffer.get())
     }
 
+    /// Creates the value required by `makePixelBuffer`.
+    ///
+    /// The implementation configures the returned value from current state and context.
     private func makePixelBuffer(
         size: CGSize,
         scale: CGFloat,
@@ -79,6 +85,9 @@ struct PictureInPictureRenderer<Content: View> {
         return pixelBuffer
     }
 
+    /// Creates the value required by `makeSampleBuffer`.
+    ///
+    /// The implementation configures the returned value from current state and context.
     private func makeSampleBuffer(from pixelBuffer: CVPixelBuffer) throws -> CMSampleBuffer {
         var formatDescription: CMFormatDescription?
         let formatStatus = CMVideoFormatDescriptionCreateForImageBuffer(
@@ -116,6 +125,9 @@ struct PictureInPictureRenderer<Content: View> {
         ] as CFDictionary
     }
 
+    /// Performs the `graphicsContext` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func graphicsContext(for pixelBuffer: CVPixelBuffer) -> CGContext? {
         CGContext(
             data: CVPixelBufferGetBaseAddress(pixelBuffer),

@@ -43,6 +43,9 @@ public final class IgnoreSSLErrorsDelegate: NSObject, URLSessionDelegate, URLSes
     }
 }
 
+/// Adds `URLSession` functionality to `URLSession`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension URLSession {
     /// A URLSession that ignores SSL certificate errors.
     public static let ignoreCertificateErrors: URLSession = {

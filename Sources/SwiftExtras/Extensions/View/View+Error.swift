@@ -12,6 +12,9 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Adds `View Error` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Show an error message if there is any.
     ///
@@ -120,6 +123,9 @@ public struct CustomError: Error, CustomNSError, Equatable {
     }
 }
 
+/// Declares the `LocalizedError` conformance for `CustomError`.
+///
+/// The conformance supplies the protocol behavior implemented by the declarations in this scope.
 extension CustomError: LocalizedError {
     /// A localized message describing what error occurred.
     ///

@@ -12,6 +12,9 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Adds `Color random` functionality to `Color`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Color {
     /// Returns a random color
     ///

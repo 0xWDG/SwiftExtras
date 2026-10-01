@@ -212,6 +212,9 @@ public struct StickySection<Content: View, Header: View, MinimizedHeader: View>:
             .fill(configuration.background)
     }
 
+    /// Performs the `bottomPadding` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func bottomPadding(for proxy: GeometryProxy) -> CGFloat {
         let minimumY = proxy.frame(in: .named(stickySectionCoordinateSpaceName)).minY
         let headerHeight = headerSize.height
@@ -224,6 +227,9 @@ public struct StickySection<Content: View, Header: View, MinimizedHeader: View>:
 
 private let stickySectionCoordinateSpaceName = "SwiftExtras.StickySection"
 
+/// Performs the `stickySectionProgress` operation for the enclosing type.
+///
+/// This implementation supports the enclosing declaration’s behavior.
 private func stickySectionProgress(_ distance: CGFloat, over totalDistance: CGFloat) -> CGFloat {
     guard totalDistance > 0 else { return distance > 0 ? 1 : 0 }
     return max(min(distance / totalDistance, 1), 0)

@@ -16,6 +16,9 @@ import SwiftUI
 struct SaveSizeModifier: ViewModifier {
     @Binding var size: CGSize
 
+    /// Builds the view hierarchy represented by this declaration.
+    ///
+    /// SwiftUI evaluates this when it needs the current visual representation.
     func body(content: Content) -> some View {
         content
             .background(
@@ -42,6 +45,9 @@ struct SaveSizeModifier: ViewModifier {
     }
 }
 
+/// Adds `View sizeSaver` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Save the size of the view
     /// - Parameter size: size of view

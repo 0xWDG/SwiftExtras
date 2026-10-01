@@ -14,6 +14,9 @@ import Foundation
 import UIKit
 #endif
 
+/// Adds `String HTML` functionality to `String`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension String {
     /// Checks if the string contains HTML tags.
     public var containsHTML: Bool {

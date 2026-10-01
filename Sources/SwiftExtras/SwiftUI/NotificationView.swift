@@ -96,6 +96,9 @@ public struct NotificationView: View {
         .accessibilityAddTraits(.isButton)
     }
 
+    /// Performs the `loopAnimation` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func loopAnimation() async {
         try? await Task.sleep(for: .seconds(0.5))
 
@@ -116,6 +119,9 @@ public struct NotificationView: View {
     }
 }
 
+/// Adds `NotificationView` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Notification View
     /// 

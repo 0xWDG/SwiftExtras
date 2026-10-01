@@ -68,6 +68,9 @@ public struct IslandToast<Item: IslandToastItem>: ViewModifier {
         }
     }
 
+    /// Performs the `styledToast` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func styledToast(card: IslandToastCard) -> AnyView {
         #if compiler(>=6.2)
         if #available(iOS 26.0, macOS 26.0, tvOS 26.0, watchOS 26.0, *) {
@@ -100,6 +103,9 @@ public struct IslandToast<Item: IslandToastItem>: ViewModifier {
         )
     }
 
+    /// Performs the `toastContent` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func toastContent(card: IslandToastCard) -> some View {
         Button {
             handleTap()
@@ -130,6 +136,9 @@ public struct IslandToast<Item: IslandToastItem>: ViewModifier {
 
     private static var glassID: String { "islandToast" }
 
+    /// Performs the `accessibilityHint` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func accessibilityHint(for card: IslandToastCard) -> String {
         if card.action == nil {
             return "Dismisses the notification"
@@ -138,6 +147,9 @@ public struct IslandToast<Item: IslandToastItem>: ViewModifier {
         return "Performs the action and dismisses the notification"
     }
 
+    /// Performs the `handleItemChange` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func handleItemChange(_ newItem: Item?) {
         presentationTask?.cancel()
 
@@ -159,6 +171,9 @@ public struct IslandToast<Item: IslandToastItem>: ViewModifier {
     }
 
     @MainActor
+    /// Performs the `present` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func present(_ card: IslandToastCard) async {
         displayedCard = card
         isExpanded = horizontalSizeClass != .compact || reduceMotion
@@ -185,6 +200,9 @@ public struct IslandToast<Item: IslandToastItem>: ViewModifier {
     }
 
     @MainActor
+    /// Performs the `dismissPresentedCard` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func dismissPresentedCard() async {
         if horizontalSizeClass == .compact && reduceMotion == false {
             withAnimation(morphAnimation) {
@@ -202,12 +220,19 @@ public struct IslandToast<Item: IslandToastItem>: ViewModifier {
         }
     }
 
+    /// Performs the `handleTap` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func handleTap() {
         displayedCard?.action?()
         item = nil
     }
 }
 
+/// Adds accessible, card-based toast presentation to any SwiftUI view.
+///
+/// The modifier observes an optional item binding, presents supported toast-card styles, and coordinates
+/// dismissal and interaction without requiring a separate overlay container.
 public extension View {
     /// Presents a bottom-anchored toast while `item` is non-nil.
     ///

@@ -40,6 +40,10 @@ public struct ShakeEffect: GeometryEffect {
 }
 
 /// A View extension to apply the shake effect.
+/// Adds a trigger-driven shake animation to a view.
+///
+/// The modifier is intended for transient feedback, such as signaling invalid input, and does not alter the
+/// source view's layout when idle.
 public extension View {
     /// Applies a shake effect to the view.
     /// - Parameter times: The number of times the view should shake.

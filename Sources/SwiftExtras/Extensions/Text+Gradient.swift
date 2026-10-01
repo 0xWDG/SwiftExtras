@@ -25,6 +25,9 @@ struct EnvironmentWrapperIsEnabled<Content: View>: View {
     }
 }
 
+/// Adds `Text Gradient` functionality to `Text`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Text {
     /// Applies a linear gradient to the text foreground.
     ///

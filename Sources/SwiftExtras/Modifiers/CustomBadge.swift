@@ -24,6 +24,9 @@ struct CustomBadge: ViewModifier {
         count > 9 ? 5 : 0
     }
 
+    /// Builds the view hierarchy represented by this declaration.
+    ///
+    /// SwiftUI evaluates this when it needs the current visual representation.
     func body(content: Content) -> some View {
         if count >= 1 {
             content
@@ -54,6 +57,9 @@ struct CustomBadge: ViewModifier {
     }
 }
 
+/// Adds `CustomBadge` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Adds a custom badge to the view, displaying a count.
     ///

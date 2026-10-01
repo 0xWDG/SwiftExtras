@@ -12,6 +12,9 @@
 import Foundation
 
 #if swift(>=5.9)
+/// Declares the `Identifiable` conformance for `String`.
+///
+/// The conformance supplies the protocol behavior implemented by the declarations in this scope.
 extension String: @retroactive Identifiable {
     /// The identifier of the string.
     ///
@@ -21,6 +24,9 @@ extension String: @retroactive Identifiable {
     }
 }
 #else
+/// Declares the `Identifiable` conformance for `String`.
+///
+/// The conformance supplies the protocol behavior implemented by the declarations in this scope.
 extension String: Identifiable {
     /// The identifier of the string.
     ///

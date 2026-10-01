@@ -57,6 +57,10 @@ public struct TutorialSpotlightShape: Shape {
         TutorialSpotlightShape(Capsule())
     }
 
+    /// Creates the overlay path that cuts the spotlight shape out of the supplied drawing rectangle.
+    ///
+    /// - Parameter rect: The bounds offered by SwiftUI for the shape's path.
+    /// - Returns: A path containing the requested spotlight geometry.
     public func path(in rect: CGRect) -> Path {
         makePath(rect)
     }
@@ -74,6 +78,10 @@ public struct TutorialSpotlightActions {
     public let advance: () -> Void
 }
 
+/// Adds registration and presentation APIs for guided spotlight onboarding.
+///
+/// Mark views as spotlight targets and present the resulting walkthrough from a shared selection binding.
+/// The extension manages the geometry required to position each instructional overlay.
 public extension View {
     /// Adds a spotlight onboarding overlay to a parent view.
     ///
@@ -168,6 +176,9 @@ public extension View {
         tutorialSpotlightSource(id: id, spotlightShape: spotlightShape as TutorialSpotlightShape?)
     }
 
+    /// Performs the `tutorialSpotlightSource` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func tutorialSpotlightSource<ID: Hashable>(
         id: ID,
         spotlightShape: TutorialSpotlightShape?
@@ -191,6 +202,9 @@ private struct TutorialSpotlightPreferenceKey<ID: Hashable>: PreferenceKey {
         [:]
     }
 
+    /// Combines child preference values into the accumulated preference value.
+    ///
+    /// SwiftUI calls this while propagating preferences through the view hierarchy.
     static func reduce(
         value: inout [ID: TutorialSpotlightTarget],
         nextValue: () -> [ID: TutorialSpotlightTarget]
@@ -203,6 +217,9 @@ private struct TutorialSpotlightSourceModifier<ID: Hashable>: ViewModifier {
     let id: ID
     let spotlightShape: TutorialSpotlightShape?
 
+    /// Builds the view hierarchy represented by this declaration.
+    ///
+    /// SwiftUI evaluates this when it needs the current visual representation.
     func body(content: Content) -> some View {
         content.anchorPreference(
             key: TutorialSpotlightPreferenceKey<ID>.self,
@@ -231,6 +248,9 @@ private struct TutorialSpotlightContainerModifier<ID: Hashable, Overlay: View>: 
 
     @State private var overlaySize: CGSize = .zero
 
+    /// Builds the view hierarchy represented by this declaration.
+    ///
+    /// SwiftUI evaluates this when it needs the current visual representation.
     func body(content: Content) -> some View {
         content.overlayPreferenceValue(TutorialSpotlightPreferenceKey<ID>.self) { preferences in
             GeometryReader { proxy in
@@ -342,6 +362,9 @@ private struct TutorialSpotlightOverlay<ID: Hashable, Overlay: View>: View {
         }
     }
 
+    /// Performs the `spotlightActions` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func spotlightActions(for preferences: [ID: TutorialSpotlightTarget]) -> TutorialSpotlightActions {
         TutorialSpotlightActions(
             dismiss: {
@@ -358,6 +381,9 @@ private struct TutorialSpotlightOverlay<ID: Hashable, Overlay: View>: View {
         )
     }
 
+    /// Performs the `moveSelection` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func moveSelection(by offset: Int, registeredIDs: Dictionary<ID, TutorialSpotlightTarget>.Keys) {
         guard let currentSelection = selection,
               let currentIndex = orderedIDs.firstIndex(of: currentSelection) else {
@@ -378,6 +404,9 @@ private struct TutorialSpotlightOverlay<ID: Hashable, Overlay: View>: View {
         }
     }
 
+    /// Performs the `nextRegisteredID` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func nextRegisteredID(
         from currentIndex: Array<ID>.Index,
         offset: Int,
@@ -396,10 +425,16 @@ private struct TutorialSpotlightOverlay<ID: Hashable, Overlay: View>: View {
         return nil
     }
 
+    /// Performs the `maxOverlayWidth` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func maxOverlayWidth(in container: CGRect) -> CGFloat {
         max(0, min(320, container.width - 32))
     }
 
+    /// Performs the `overlayPosition` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func overlayPosition(
         for focusFrame: CGRect,
         overlaySize: CGSize,
@@ -438,6 +473,9 @@ private struct TutorialSpotlightCutoutShape: Shape {
     let focusFrame: CGRect
     let spotlightShape: TutorialSpotlightShape
 
+    /// Performs the `path` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     func path(in rect: CGRect) -> Path {
         var path = Path()
         path.addRect(rect)
@@ -451,6 +489,9 @@ private struct TutorialSizeKey: PreferenceKey {
         .zero
     }
 
+    /// Combines child preference values into the accumulated preference value.
+    ///
+    /// SwiftUI calls this while propagating preferences through the view hierarchy.
     static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
         value = nextValue()
     }

@@ -12,6 +12,9 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Adds `View render` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Render the current view as a ``PlatformImage``
     /// Usually you would pass  `@Environment(\.displayScale) var displayScale`

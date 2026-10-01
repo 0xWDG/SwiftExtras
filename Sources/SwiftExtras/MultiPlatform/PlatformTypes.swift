@@ -66,6 +66,10 @@ public typealias PlatformColor = UIColor
     #endif
 #endif
 
+/// Adds platform-neutral image conversion and sizing utilities to `PlatformImage`.
+///
+/// The extension hides the `UIImage`/`NSImage` differences so callers can perform common image work with
+/// one API on every supported Apple platform.
 public extension PlatformImage {
     /// Create a `PlatformImage` from contents of url/file.
     ///
@@ -127,6 +131,9 @@ public typealias PlatformScreen = NSScreen
 /// this is aliased to `NSScreen` when building a native macOS target.
 public typealias PlatformWindowScene = NSScreen
 
+/// Adds macOS-specific convenience APIs to `NSImage`.
+///
+/// Use these helpers when AppKit image behavior cannot be represented by the platform-neutral image API.
 public extension NSImage {
     /// Create a `NSImage` from a CGImage.
     ///
@@ -149,6 +156,10 @@ public extension NSImage {
 #endif // os(macOS)
 
 #if swift(>=6.0)
+/// Declares unchecked sendability for the cross-platform image type.
+///
+/// Image instances are treated as safely transferable by this library because the underlying platform image
+/// APIs are used as immutable values across concurrency boundaries.
 extension PlatformImage: @unchecked @retroactive Sendable { }
 #endif
 #endif

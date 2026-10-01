@@ -12,6 +12,9 @@
 #if os(macOS)
 import AppKit
 
+/// Adds `NSPasteboard string` functionality to `NSPasteboard`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension NSPasteboard {
     /// get/set the string contents of the pasteboard.
     /// - Note: This is a wrapper around `setString(_:forType:)` and `string(forType:)`.

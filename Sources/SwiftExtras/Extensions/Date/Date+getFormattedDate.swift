@@ -11,6 +11,9 @@
 
 import Foundation
 
+/// Adds `Date getFormattedDate` functionality to `Date`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Date {
     /// Get a formatted date
     ///

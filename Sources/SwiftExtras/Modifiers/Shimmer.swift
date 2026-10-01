@@ -147,6 +147,10 @@ public struct Shimmer: ViewModifier {
     }
 }
 
+/// Adds configurable shimmer effects to SwiftUI views.
+///
+/// Use these modifiers for loading placeholders or emphasis; the supplied options control the animation,
+/// gradient, and layout direction while leaving the source view's identity intact.
 public extension View {
     /// Applies the default animated shimmer to the view.
     func shimmer() -> some View {

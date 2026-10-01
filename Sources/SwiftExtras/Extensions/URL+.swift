@@ -14,6 +14,9 @@ import Foundation
 import FoundationNetworking
 #endif
 
+/// Adds `URL ` functionality to `URL`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension URL {
     /// Creates a URL, adding the `https` scheme when one is not provided.
     ///

@@ -15,6 +15,9 @@ import Foundation
 import Compression
 #endif
 
+/// Adds `Data` functionality to `Data`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Data {
     /// A lowercase hexadecimal representation of the data.
     public var hexString: String {
@@ -40,6 +43,9 @@ extension Data {
 }
 
 #if canImport(Compression)
+/// Adds `Data` functionality to `Data`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Data {
     /// The configuration for a streaming compression operation.
     fileprivate typealias Config = (

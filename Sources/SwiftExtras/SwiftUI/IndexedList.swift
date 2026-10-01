@@ -240,6 +240,9 @@ struct IndexKeyInfo: Equatable {
 /// on the frames of the indexed letters.
 struct IndexKeyPreferenceKey: PreferenceKey {
     static var defaultValue: [IndexKeyInfo] = []
+    /// Combines child preference values into the accumulated preference value.
+    ///
+    /// SwiftUI calls this while propagating preferences through the view hierarchy.
     static func reduce(value: inout [IndexKeyInfo], nextValue: () -> [IndexKeyInfo]) {
         value.append(contentsOf: nextValue())
     }

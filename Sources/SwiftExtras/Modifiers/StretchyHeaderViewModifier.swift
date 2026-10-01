@@ -44,19 +44,32 @@ public struct StretchyHeaderViewModifier: ViewModifier {
         .frame(height: startingHeight)
     }
 
+    /// Performs the `yOffset` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func yOffset(for geometry: GeometryProxy) -> CGFloat {
         geometry.frame(in: coordinateSpace).minY
     }
 
+    /// Performs the `stretchedHeight` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func stretchedHeight(for geometry: GeometryProxy) -> CGFloat {
         startingHeight + max(0, yOffset(for: geometry))
     }
 
+    /// Performs the `stretchedOffset` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func stretchedOffset(for geometry: GeometryProxy) -> CGFloat {
         -max(0, yOffset(for: geometry))
     }
 }
 
+/// Adds a scroll-aware stretchy header treatment to a view.
+///
+/// The modifier expands and repositions the supplied header as the enclosing scroll view is pulled beyond
+/// its leading edge.
 public extension View {
     /// Makes the view stretch when its scroll view is pulled beyond its top edge.
     ///

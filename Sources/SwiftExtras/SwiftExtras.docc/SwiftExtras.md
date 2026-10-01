@@ -17,6 +17,11 @@ SwiftExtras provides convenience APIs, data structures, styles, and custom Swift
 - <doc:FoundationUtilities>
 - <doc:DynamicJSON>
 
+### Extensions and Functions
+
+- <doc:Extensions>
+- <doc:Functions>
+
 ### SwiftUI
 
 - <doc:CustomViews>

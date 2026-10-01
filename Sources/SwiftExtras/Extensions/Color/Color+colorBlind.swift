@@ -12,6 +12,9 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Adds `Color colorBlind` functionality to `Color`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Color {
     /// A color that simulates the appearance of the color for a person with protanopia.
     /// Protanopia is a type of red-green color blindness that affects the perception of red light.

@@ -11,6 +11,9 @@
 
 import Foundation
 
+/// Adds `TimeInterval ` functionality to `TimeInterval`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension TimeInterval {
     /// Returns the time interval in years
     public var years: Int {

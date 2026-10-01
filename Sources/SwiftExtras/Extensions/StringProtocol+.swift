@@ -11,6 +11,9 @@
 
 import Foundation
 
+/// Adds `StringProtocol ` functionality to `StringProtocol`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension StringProtocol {
     /// Capitalize the first letter of a string
     public var firstUppercased: String {

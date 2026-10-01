@@ -13,6 +13,9 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Adds `View onFirstAppear` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Performs an action when the view first appears.
     /// - Parameter action: The action to perform when the view first appears.
@@ -31,6 +34,9 @@ private struct OnFirstAppearModifier: ViewModifier {
     // Use this to only fire your block one time
     @State private var hasAppeared = false
 
+    /// Builds the view hierarchy represented by this declaration.
+    ///
+    /// SwiftUI evaluates this when it needs the current visual representation.
     func body(content: Content) -> some View {
         // And then, track it here
         content.onAppear {

@@ -13,6 +13,9 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Adds `View adaptiveColor` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Adaptive color that switches between two colors based on the background.
     /// - Parameters:

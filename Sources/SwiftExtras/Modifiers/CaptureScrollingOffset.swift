@@ -12,6 +12,10 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Adds scrolling instrumentation to `ScrollView`.
+///
+/// Use these modifiers to publish normalized scrolling state to descendants without replacing the scroll
+/// view's content or gesture handling.
 public extension ScrollView {
     /// Configures the scroll view so a surrounding `ScrollViewReader` can report its progress.
     ///
@@ -38,6 +42,10 @@ public extension ScrollView {
     }
 }
 
+/// Adds callbacks for observing the scrolling state of a reader-managed scroll view.
+///
+/// The extension complements ``ScrollView/trackScrolling()`` by delivering the current normalized offset
+/// to application code.
 public extension ScrollViewReader {
     /// Calls `perform` when the scroll position changes.
     ///
@@ -84,6 +92,9 @@ private struct ScrollingOffsetData: Equatable {
         )
     }
 
+    /// Performs the `normalizedOffset` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func normalizedOffset(
         viewportOrigin: CGFloat,
         contentOrigin: CGFloat,
@@ -101,6 +112,9 @@ private struct ScrollingOffsetData: Equatable {
 private struct ScrollingOffsetPreferenceKey: PreferenceKey {
     static let defaultValue = ScrollingOffsetData(bounds: .zero, content: .zero)
 
+    /// Combines child preference values into the accumulated preference value.
+    ///
+    /// SwiftUI calls this while propagating preferences through the view hierarchy.
     static func reduce(
         value: inout ScrollingOffsetData,
         nextValue: () -> ScrollingOffsetData
@@ -113,6 +127,9 @@ private struct ScrollingOffsetEnvironmentKey: EnvironmentKey {
     static let defaultValue: ScrollingOffsetState? = nil
 }
 
+/// Adds `CaptureScrollingOffset` functionality to `EnvironmentValues`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 private extension EnvironmentValues {
     var scrollingOffsetState: ScrollingOffsetState? {
         get { self[ScrollingOffsetEnvironmentKey.self] }
@@ -123,6 +140,9 @@ private extension EnvironmentValues {
 private struct CaptureScrollingOffsetModifier: ViewModifier {
     @Environment(\.scrollingOffsetState) private var state
 
+    /// Builds the view hierarchy represented by this declaration.
+    ///
+    /// SwiftUI evaluates this when it needs the current visual representation.
     func body(content: Content) -> some View {
         content.background {
             if let state {

@@ -189,6 +189,9 @@ public struct VerificationField: View {
         }
     }
 
+    /// Performs the `characterView` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func characterView(at index: Int) -> some View {
         Group {
             switch style {
@@ -215,6 +218,9 @@ public struct VerificationField: View {
         .accessibilityHidden(true)
     }
 
+    /// Performs the `pasteGesture` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func pasteGesture(at index: Int) -> some View {
         GeometryReader { proxy in
             let frame = proxy.frame(in: .named(Self.coordinateSpaceName))
@@ -236,11 +242,17 @@ public struct VerificationField: View {
         }
     }
 
+    /// Performs the `character` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func character(at index: Int) -> String {
         guard value.count > index else { return "" }
         return String(value[value.index(value.startIndex, offsetBy: index)])
     }
 
+    /// Performs the `borderColor` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func borderColor(at index: Int) -> Color {
         switch state {
         case .typing:
@@ -252,6 +264,9 @@ public struct VerificationField: View {
         }
     }
 
+    /// Performs the `sanitized` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func sanitized(_ input: String) -> String {
         String(input.filter(\.isNumber).prefix(type.rawValue))
     }

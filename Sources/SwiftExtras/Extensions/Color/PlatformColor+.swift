@@ -12,6 +12,9 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Adds `PlatformColor ` functionality to `PlatformColor`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension PlatformColor {
     /// Get the hex value of a color
     /// - Returns: A string representation of the color in hexadecimal format.

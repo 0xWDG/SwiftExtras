@@ -12,6 +12,10 @@
 #if canImport(UIKit) && !os(watchOS)
 import UIKit
 
+/// Adds device classification and capability conveniences to `UIDevice`.
+///
+/// Use these values for behavior that genuinely depends on the current device; prefer adaptive layouts for
+/// ordinary interface decisions.
 public extension UIDevice {
     /// The device name (e.g., "John’s iPhone")
     static var deviceName: String { current.name }

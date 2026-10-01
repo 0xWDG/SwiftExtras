@@ -197,6 +197,9 @@ public struct NotificationOnboarding: View {
     }
 
     @ViewBuilder
+    /// Performs the `iPhonePreview` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func iPhonePreview() -> some View {
         // swiftlint:disable:previous function_body_length
         GeometryReader {
@@ -265,6 +268,9 @@ public struct NotificationOnboarding: View {
         }
     }
 
+    /// Performs the `pulseArrow` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func pulseArrow() async {
         while !Task.isCancelled {
             withAnimation(.spring(duration: 1)) {
@@ -279,6 +285,9 @@ public struct NotificationOnboarding: View {
         }
     }
 
+    /// Performs the `askNotificationPermission` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     private func askNotificationPermission() {
         Task { @MainActor in
             withAnimation(.smooth(duration: 0.3, extraBounce: 0)) {
@@ -314,6 +323,9 @@ public struct NotificationOnboarding: View {
     }
 }
 
+/// Adds `NotificationOnboarding` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// A SwiftUI view that presents an onboarding screen to request push notification permissions from the user.
     /// The view includes a mock iPhone interface with a sample notification and buttons to either request permission
@@ -361,6 +373,9 @@ extension View {
 }
 #if DEBUG
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+/// Adds `NotificationOnboarding` functionality to `NotificationOnboarding`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 private extension NotificationOnboarding {
     init(previewAuthorization: UNAuthorizationStatus) {
         self.init()

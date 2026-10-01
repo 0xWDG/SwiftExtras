@@ -64,6 +64,9 @@ public struct PlainBorderedToggleStyle: ToggleStyle {
 }
 
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+/// Adds `PlainBorderedToggleStyle` functionality to `ToggleStyle where Self == PlainBorderedToggleStyle`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension ToggleStyle where Self == PlainBorderedToggleStyle {
     /// A toggle style that uses a border around the toggle.
     ///

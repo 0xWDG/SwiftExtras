@@ -11,6 +11,10 @@
 
 import Foundation
 
+/// Adds emptiness inspection to optional collections.
+///
+/// The supplied values treat both `nil` and an empty wrapped collection as empty, which is useful for
+/// optional collection state received from external data sources.
 public extension Optional where Wrapped: Collection {
     /// Checks if the optional collection is nil or empty.
     ///
@@ -47,6 +51,9 @@ public extension Optional where Wrapped: Collection {
     }
 }
 
+/// Adds utilities that apply to optional values regardless of their wrapped type.
+///
+/// These helpers make explicit optional-state checks concise without changing the wrapped value.
 public extension Optional {
     /// - Returns: `true` if the wrapped value is equal to nil, `false` otherwise.
     @inlinable

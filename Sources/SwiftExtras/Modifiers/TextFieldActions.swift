@@ -117,6 +117,10 @@ public enum TextFieldWithAxisActionBuilder {
     }
 }
 
+/// Adds context-menu actions to SwiftUI text fields.
+///
+/// These modifiers bridge to the underlying platform text input so callers can provide selection-aware menu
+/// actions without replacing the field's standard editing behavior.
 public extension TextField {
     /// Adds custom actions to the edit menu of a single-line text field.
     ///
@@ -159,10 +163,16 @@ private struct TextFieldActionHelper: UIViewRepresentable {
     @Binding var showSuggestions: Bool
     let actions: [TextFieldAction]
 
+    /// Creates the value required by `makeCoordinator`.
+    ///
+    /// The implementation configures the returned value from current state and context.
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
     }
 
+    /// Creates the value required by `makeUIView`.
+    ///
+    /// The implementation configures the returned value from current state and context.
     func makeUIView(context: Context) -> UIView {
         let view = UIView(frame: .zero)
         view.backgroundColor = .clear
@@ -170,11 +180,17 @@ private struct TextFieldActionHelper: UIViewRepresentable {
         return view
     }
 
+    /// Updates the existing value handled by `updateUIView`.
+    ///
+    /// The implementation applies the enclosing type’s latest state.
     func updateUIView(_ view: UIView, context: Context) {
         context.coordinator.parent = self
         context.coordinator.scheduleAttachment(from: view)
     }
 
+    /// Performs the `dismantleUIView` operation for the enclosing type.
+    ///
+    /// This implementation supports the enclosing declaration’s behavior.
     static func dismantleUIView(_ view: UIView, coordinator: Coordinator) {
         coordinator.detach()
     }
@@ -188,6 +204,9 @@ private struct TextFieldActionHelper: UIViewRepresentable {
             self.parent = parent
         }
 
+        /// Performs the `scheduleAttachment` operation for the enclosing type.
+        ///
+        /// This implementation supports the enclosing declaration’s behavior.
         func scheduleAttachment(from view: UIView) {
             DispatchQueue.main.async { [weak self, weak view] in
                 guard let self, let view else { return }
@@ -195,6 +214,9 @@ private struct TextFieldActionHelper: UIViewRepresentable {
             }
         }
 
+        /// Performs the `detach` operation for the enclosing type.
+        ///
+        /// This implementation supports the enclosing declaration’s behavior.
         func detach() {
             if textField?.delegate === self {
                 textField?.delegate = originalDelegate
@@ -203,10 +225,16 @@ private struct TextFieldActionHelper: UIViewRepresentable {
             originalDelegate = nil
         }
 
+        /// Performs the `textFieldDidChangeSelection` operation for the enclosing type.
+        ///
+        /// This implementation supports the enclosing declaration’s behavior.
         func textFieldDidChangeSelection(_ textField: UITextField) {
             originalDelegate?.textFieldDidChangeSelection?(textField)
         }
 
+        /// Performs the `textField` operation for the enclosing type.
+        ///
+        /// This implementation supports the enclosing declaration’s behavior.
         func textField(
             _ textField: UITextField,
             editMenuForCharactersIn range: NSRange,
@@ -222,6 +250,9 @@ private struct TextFieldActionHelper: UIViewRepresentable {
                 : customActions)
         }
 
+        /// Performs the `attach` operation for the enclosing type.
+        ///
+        /// This implementation supports the enclosing declaration’s behavior.
         private func attach(to newTextField: UITextField?) {
             guard let newTextField, newTextField !== textField else { return }
             detach()
@@ -240,124 +271,6 @@ private struct TextFieldActionHelper: UIViewRepresentable {
             }
             return super.forwardingTarget(for: selector)
         }
-    }
-}
-
-@available(iOS 16, *)
-private struct TextFieldWithAxisActionHelper: UIViewRepresentable {
-    @Binding var showSuggestions: Bool
-    let actions: [TextFieldWithAxisAction]
-
-    func makeCoordinator() -> Coordinator {
-        Coordinator(parent: self)
-    }
-
-    func makeUIView(context: Context) -> UIView {
-        let view = UIView(frame: .zero)
-        view.backgroundColor = .clear
-        context.coordinator.scheduleAttachment(from: view)
-        return view
-    }
-
-    func updateUIView(_ view: UIView, context: Context) {
-        context.coordinator.parent = self
-        context.coordinator.scheduleAttachment(from: view)
-    }
-
-    static func dismantleUIView(_ view: UIView, coordinator: Coordinator) {
-        coordinator.detach()
-    }
-
-    final class Coordinator: NSObject, UITextViewDelegate {
-        var parent: TextFieldWithAxisActionHelper
-        private weak var textView: UITextView?
-        private weak var originalDelegate: UITextViewDelegate?
-
-        init(parent: TextFieldWithAxisActionHelper) {
-            self.parent = parent
-        }
-
-        func scheduleAttachment(from view: UIView) {
-            DispatchQueue.main.async { [weak self, weak view] in
-                guard let self, let view else { return }
-                attach(to: view.firstSuperviewDescendant(of: UITextView.self))
-            }
-        }
-
-        func detach() {
-            if textView?.delegate === self {
-                textView?.delegate = originalDelegate
-            }
-            textView = nil
-            originalDelegate = nil
-        }
-
-        func textViewDidChangeSelection(_ textView: UITextView) {
-            originalDelegate?.textViewDidChangeSelection?(textView)
-        }
-
-        func textViewDidChange(_ textView: UITextView) {
-            originalDelegate?.textViewDidChange?(textView)
-        }
-
-        func textView(
-            _ textView: UITextView,
-            editMenuForTextIn range: NSRange,
-            suggestedActions: [UIMenuElement]
-        ) -> UIMenu? {
-            let customActions = parent.actions.map { item in
-                UIAction(title: item.title) { _ in
-                    item.action(range, textView)
-                }
-            }
-            return UIMenu(children: parent.showSuggestions
-                ? customActions + suggestedActions
-                : customActions)
-        }
-
-        private func attach(to newTextView: UITextView?) {
-            guard let newTextView, newTextView !== textView else { return }
-            detach()
-            originalDelegate = newTextView.delegate
-            textView = newTextView
-            newTextView.delegate = self
-        }
-
-        override func responds(to selector: Selector!) -> Bool {
-            super.responds(to: selector) || originalDelegate?.responds(to: selector) == true
-        }
-
-        override func forwardingTarget(for selector: Selector!) -> Any? {
-            if originalDelegate?.responds(to: selector) == true {
-                return originalDelegate
-            }
-            return super.forwardingTarget(for: selector)
-        }
-    }
-}
-
-private extension UIView {
-    func firstSuperviewDescendant<ViewType: UIView>(of type: ViewType.Type) -> ViewType? {
-        var ancestor = superview
-        while let currentAncestor = ancestor {
-            if let match = currentAncestor.firstDescendant(of: type) {
-                return match
-            }
-            ancestor = currentAncestor.superview
-        }
-        return nil
-    }
-
-    func firstDescendant<ViewType: UIView>(of type: ViewType.Type) -> ViewType? {
-        if let match = self as? ViewType {
-            return match
-        }
-        for subview in subviews {
-            if let match = subview.firstDescendant(of: type) {
-                return match
-            }
-        }
-        return nil
     }
 }
 

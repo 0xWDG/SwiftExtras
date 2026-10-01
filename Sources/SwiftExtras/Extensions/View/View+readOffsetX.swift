@@ -12,6 +12,9 @@
 #if canImport(SwiftUI)
 import SwiftUI
 
+/// Adds `View readOffsetX` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Read the offset of the view
     /// - Parameter offsetX: offset of view
@@ -39,6 +42,9 @@ extension View {
 struct ViewOffsetXKey: PreferenceKey {
     static var defaultValue: CGFloat = 0
 
+    /// Combines child preference values into the accumulated preference value.
+    ///
+    /// SwiftUI calls this while propagating preferences through the view hierarchy.
     static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
         value = nextValue()
     }
@@ -48,6 +54,9 @@ struct ViewOffsetXKey: PreferenceKey {
 struct ReadFrameModifier: ViewModifier {
     @Binding var frame: CGRect
 
+    /// Builds the view hierarchy represented by this declaration.
+    ///
+    /// SwiftUI evaluates this when it needs the current visual representation.
     func body(content: Content) -> some View {
         content
             .background(
@@ -74,6 +83,9 @@ struct ReadFrameModifier: ViewModifier {
     }
 }
 
+/// Adds `View readOffsetX` functionality to `View`.
+///
+/// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension View {
     /// Save the frame of the view
     /// - Parameter frame: frame of view
