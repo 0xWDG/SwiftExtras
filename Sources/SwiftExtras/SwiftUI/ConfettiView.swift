@@ -48,7 +48,7 @@ struct ConfettiView<ConfettiShape: View>: View {
     /// ```swift
     /// ConfettiView(colors: [Color.red, Color.blue], shape: Circle())
     /// ```
-    public init(
+    init(
         colors: [Color] = [Color.orange, Color.green, Color.blue, Color.red, Color.yellow],
         shape: ConfettiShape = Rectangle()
     ) {
@@ -119,7 +119,7 @@ struct ConfettiView<ConfettiShape: View>: View {
         /// - Parameters:
         ///   - colors: An array of colors for the confetti piece.
         ///   - shape: The shape of the confetti piece, which can be any SwiftUI view.
-        public init(colors: [Color], shape: ConfettiShape) {
+        init(colors: [Color], shape: ConfettiShape) {
             self.colors = colors
             self.shape = shape
         }

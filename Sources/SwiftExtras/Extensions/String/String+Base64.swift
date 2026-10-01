@@ -18,7 +18,7 @@ extension String {
     ///
     /// - Returns: Encoded string
     public func base64Encoded() -> String? {
-        return data(using: .utf8)?.base64EncodedString()
+        data(using: .utf8)?.base64EncodedString()
     }
 
     /// Base64 decode

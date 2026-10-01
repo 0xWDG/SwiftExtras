@@ -17,7 +17,7 @@ extension String {
     ///        "it's%20easy%20to%20decode%20strings".urlDecoded -> "it's easy to decode strings"
     ///
     public var urlDecoded: String {
-        return removingPercentEncoding ?? self
+        removingPercentEncoding ?? self
     }
 
     /// URL escaped string.

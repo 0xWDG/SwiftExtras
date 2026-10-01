@@ -23,7 +23,7 @@ extension PlatformColor {
     /// RGB Hex value of a color
     /// - Returns: A string representation of the color in hexadecimal format.
     public var rgbHex: String {
-        return String(
+        String(
             format: "#%02x%02x%02x",
             Int(self.redValue * 255),
             Int(self.greenValue * 255),
@@ -77,7 +77,7 @@ extension PlatformColor {
 
     /// Get the (6) hex color from the current
     public var hex6: String {
-        return String(
+        String(
             format: "#%02x%02x%02x",
             Int(self.redValue * 255),
             Int(self.greenValue * 255),

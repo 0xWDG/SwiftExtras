@@ -11,31 +11,33 @@
 
 import Foundation
 
-///  Regular expression infix operator (Matching)
-infix operator =~
+extension String {
+    ///  Regular expression infix operator (Matching)
+    public static infix operator =~
 
-/// Regular expression infix operator (Matching)
-/// - Parameters:
-///   - source: String to be checked
-///   - pattern: against regular expression
-/// - Returns: true if found, otherwise false
-public func =~ (source: String, pattern: String) -> Bool {
-    return source.range(
-        of: pattern,
-        options: .regularExpression,
-        range: nil,
-        locale: nil
-    ) != nil
-}
+    /// Regular expression infix operator (Matching)
+    /// - Parameters:
+    ///   - source: String to be checked
+    ///   - pattern: against regular expression
+    /// - Returns: true if found, otherwise false
+    public static func =~ (source: String, pattern: String) -> Bool {
+        source.range(
+            of: pattern,
+            options: .regularExpression,
+            range: nil,
+            locale: nil
+        ) != nil
+    }
 
-///  Regular expression infix operator (inverse matching)
-infix operator !~
+    ///  Regular expression infix operator (inverse matching)
+    public static infix operator !~
 
-/// Regular expression infix operator (inverse matching)
-/// - Parameters:
-///   - source: String to be checked
-///   - pattern: against regular expression
-/// - Returns: true if not found, otherwise false
-public func !~ (source: String, pattern: String) -> Bool {
-    return !(source =~ pattern)
+    /// Regular expression infix operator (inverse matching)
+    /// - Parameters:
+    ///   - source: String to be checked
+    ///   - pattern: against regular expression
+    /// - Returns: true if not found, otherwise false
+    public static func !~ (source: String, pattern: String) -> Bool {
+        !(source =~ pattern)
+    }
 }

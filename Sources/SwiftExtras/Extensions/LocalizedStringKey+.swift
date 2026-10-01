@@ -23,7 +23,7 @@ extension LocalizedStringKey {
 
     /// The string value of the LocalizedStringKey
     public var stringValue: String {
-        return NSLocalizedString(self.stringKey ?? "Unknown", comment: "None")
+        NSLocalizedString(self.stringKey ?? "Unknown", comment: "None")
     }
 }
 #endif

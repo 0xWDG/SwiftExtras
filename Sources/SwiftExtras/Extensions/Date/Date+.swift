@@ -69,17 +69,17 @@ extension Date {
 
     /// Day component of the date
     public var day: Int {
-        return Calendar.current.component(.day, from: self)
+        Calendar.current.component(.day, from: self)
     }
 
     /// Month component of the date
     public var month: Int {
-        return Calendar.current.component(.month, from: self)
+        Calendar.current.component(.month, from: self)
     }
 
     /// Year component of the date
     public var year: Int {
-        return Calendar.current.component(.year, from: self)
+        Calendar.current.component(.year, from: self)
     }
 
     /// Start of the current year
@@ -415,7 +415,7 @@ extension Date {
     ///  - date2: The second date of the range
     /// - Returns: `true` if the date is between the two dates, `false` otherwise
     public func isBetween(_ date1: Date, and date2: Date) -> Bool {
-        return (min(date1, date2)...max(date1, date2)).contains(self)
+        (min(date1, date2)...max(date1, date2)).contains(self)
     }
 
     /// Time in HH:MM format

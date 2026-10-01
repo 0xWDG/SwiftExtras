@@ -36,7 +36,7 @@ public struct WStack: Layout {
         subviews: Subviews,
         cache: inout ()
     ) -> CGSize {
-        return .init(
+        .init(
             width: proposal.width ?? 0,
             height: maxHeight(
                 proposal: proposal,

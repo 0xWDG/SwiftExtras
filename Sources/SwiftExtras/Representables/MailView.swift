@@ -96,8 +96,10 @@ public struct MailView: UIViewControllerRepresentable {
         @Binding
         var result: Result<MFMailComposeResult, Error>?
 
-        init(presentation: Binding<PresentationMode>,
-             result: Binding<Result<MFMailComposeResult, Error>?>) {
+        init(
+            presentation: Binding<PresentationMode>,
+            result: Binding<Result<MFMailComposeResult, Error>?>
+        ) {
             _presentation = presentation
             _result = result
         }
@@ -128,7 +130,7 @@ public struct MailView: UIViewControllerRepresentable {
 
     /// Creates the coordinator that handles mail composer delegate callbacks.
     public func makeCoordinator() -> Coordinator {
-        return Coordinator(presentation: presentation, result: $result)
+        Coordinator(presentation: presentation, result: $result)
     }
 
     /// Creates and configures the underlying mail composer.
@@ -154,8 +156,8 @@ public struct MailView: UIViewControllerRepresentable {
     ///   - context: Context supplied by SwiftUI.
     public func updateUIViewController(
         _ uiViewController: MFMailComposeViewController,
-        context: UIViewControllerRepresentableContext<MailView>) {
-        }
+        context: UIViewControllerRepresentableContext<MailView>
+    ) { }
 }
 
 #if DEBUG

@@ -118,6 +118,6 @@ extension String {
     /// - Parameter characterIndex: The index of the character that we search for.
     /// - Returns: The character found at the specified index.
     public subscript(characterIndex: Int) -> String {
-        return String(self[self.index(startIndex, offsetBy: characterIndex)])
+        String(self[self.index(startIndex, offsetBy: characterIndex)])
     }
 }

@@ -26,7 +26,7 @@ public extension Optional where Wrapped: Collection {
     @inlinable
     @inline(__always)
     var isNilOrEmpty: Bool {
-        return self?.isEmpty ?? true
+        self?.isEmpty ?? true
     }
 
     /// Checks if the optional collection is not nil nor empty.
@@ -43,7 +43,7 @@ public extension Optional where Wrapped: Collection {
     @inlinable
     @inline(__always)
     var isNotNilNorEmpty: Bool {
-        return self?.isEmpty ?? true
+        self?.isEmpty ?? true
     }
 }
 
@@ -52,13 +52,13 @@ public extension Optional {
     @inlinable
     @inline(__always)
     var isNil: Bool {
-        return self == nil
+        self == nil
     }
 
     /// - Returns: `true` if the wrapped value is not equal to nil, `false` otherwise.
     @inlinable
     @inline(__always)
     var isNotNil: Bool {
-        return self != nil
+        self != nil
     }
 }

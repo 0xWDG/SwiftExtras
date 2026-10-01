@@ -17,7 +17,7 @@ extension String: @retroactive Identifiable {
     ///
     /// This is a hash value of the string to make String conform to Identifiable.
     public var id: Int {
-        return hash
+        hash
     }
 }
 #else
@@ -26,7 +26,7 @@ extension String: Identifiable {
     ///
     /// This is a hash value of the string to make String conform to Identifiable.
     public var id: Int {
-        return hash
+        hash
     }
 }
 #endif

@@ -82,7 +82,7 @@ extension PlatformImage: @retroactive Identifiable {
     ///
     /// This is a random hash value to make PlatformImage conform to Identifiable.
     public var id: Int {
-        return UUID().hashValue
+        UUID().hashValue
     }
 }
 #else
@@ -91,7 +91,7 @@ extension PlatformImage: Identifiable {
     ///
     /// This is a random hash value to make PlatformImage conform to Identifiable.
     public var id: Int {
-        return UUID().hashValue
+        UUID().hashValue
     }
 }
 #endif

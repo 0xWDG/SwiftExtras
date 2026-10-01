@@ -32,7 +32,7 @@ public struct ColoredButtonStyle: ButtonStyle {
     var color: Color
 
     private var contrastForeground: Color {
-        return color.resolve(in: environment).luminance > 0.5 ? .black : .white
+        color.resolve(in: environment).luminance > 0.5 ? .black : .white
     }
 
     /// Creates a blue button style.

@@ -20,8 +20,17 @@ import UIKit
 import CoreImage.CIFilterBuiltins
 import Vision
 
+/// A helper class for removing the background from images.
+///
+/// This class provides methods to remove the background from images using Vision and Core Image.
+///
+/// Example usage:
+/// ```swift
+/// let remover = BackgroundRemoverHelper()
+/// let outputImage = try remover.removeBackground(from: inputImage)
+/// ```
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, *)
-class BackgroundRemoverHelper {
+public class BackgroundRemoverHelper {
     enum Errors: Error {
         /// Failed to unwrap the image.
         case failedToUnwrapImage
@@ -125,7 +134,7 @@ class BackgroundRemoverHelper {
     ///
     /// - Parameter image: The image from which to remove the background.
     /// - Returns: The image with the background removed.
-    public func parse(image: PlatformImage) throws -> PlatformImage {
+    func parse(image: PlatformImage) throws -> PlatformImage {
 #if os(iOS)
         // iOS: Create a CIImage from the UIImage
         guard let ciImage = CIImage(image: image) else {
@@ -174,7 +183,7 @@ extension PlatformImage {
     /// Removes the background from the image.
     @available(iOS 17.0, macOS 14.0, tvOS 17.0, *)
     public func removeBackground() -> PlatformImage? {
-        return try? BackgroundRemoverHelper().parse(image: self)
+        try? BackgroundRemoverHelper().parse(image: self)
     }
 }
 #endif

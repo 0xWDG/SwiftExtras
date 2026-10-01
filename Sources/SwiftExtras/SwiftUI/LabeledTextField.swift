@@ -53,7 +53,7 @@ public struct LabeledTextField: View {
     /// The view body
     public var body: some View {
         ZStack(alignment: .leading) {
-            TextField(isEditing ? "" : placeHolderText, text: $text, onEditingChanged: { (edit) in
+            TextField(isEditing ? "" : placeHolderText, text: $text, onEditingChanged: { edit in
 #if !os(macOS)
                 isEditing = edit
 #endif

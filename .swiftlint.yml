@@ -1,41 +1,101 @@
 excluded:
   - "*resource_bundle_accessor*" # SwiftPM Generated
   - ".build"
+  - ".build/*"
   - "Package.swift"
 
 opt_in_rules:
-  - first_where # Use first(where:) instead of filter().first
-  - fatal_error_message # Use fatalError() with a message instead of fatalError()
   - file_header # All files should have a same header.
   - empty_count # Use .isEmpty instead of .count == 0
-  - closure_spacing # Closure should have a space before and after the braces
-  - contains_over_first_not_nil # Use .contains instead of .first(where:)
   - missing_docs # Required documentation for public functions
-  - modifier_order # Modifier order should be consistent
-  - convenience_type # Use convenience type instead of type with default values
-  - pattern_matching_keywords # Use pattern matching keywords instead of 'is' and 'as'
   - identical_operands # Identical operands should be avoided
   - empty_string # Use .isEmpty instead of .count == 0
-  - multiline_parameters # Multiline parameters should be indented the same as the line they are on
   - closure_end_indentation # Closure end should be indented the same as the line the closure starts
   - operator_usage_whitespace # Operator should be surrounded by whitespace
   - closure_parameter_position # Closure parameters should be on the same line as the opening brace
-  - collection_alignment # Collection should have the same alignment
-  - last_where # Use last(where:) instead of filter().last
   - unused_optional_binding # Unused optional binding should be avoided
-  - toggle_bool # use .toggle() instead of !variable
-  - explicit_init # .init is not needed
-  - fallthrough # fallthrough is not allowed
   - no_fallthrough_only # fallthrough should not be the only statement in a case body
   - comment_spacing # Comments should be followed by a space
   - orphaned_doc_comment # Orphaned doc comment should be avoided
-  - local_doc_comment # Local doc comment should be avoided
   - accessibility_label_for_image # Accessibility label for image should be set
   - accessibility_trait_for_button # Accessibility trait for button should be set
   - force_unwrapping # Force unwrapping should be avoided
   - duplicate_imports # Duplicate imports should be avoided
   - sorted_imports # Imports should be sorted alphabetically
   - private_swiftui_state # SwiftUI @State properties should be private
+  # "Minimise access. Escalate one level at a time, only when something that
+  # exists today requires it."
+  - lower_acl_than_parent
+  # "Omit `return` where Swift allows it."
+  - implicit_return
+  # "A `Task` handles what it throws."
+  - unhandled_throwing_task
+
+  # Rules nothing here breaks. Each found zero violations when it was added on
+  # 2026-09-24, so none of them changed a line of source.
+
+  # "Favour functional style. Treat `Optional` and `Result` as functors: `map`,
+  # `flatMap`, `compactMap`." These name the call that says what you mean.
+  - array_init
+  - contains_over_filter_count
+  - contains_over_filter_is_empty
+  - contains_over_first_not_nil
+  - contains_over_range_nil_comparison
+  - first_where
+  - flatmap_over_map_reduce
+  - joined_default_parameter
+  - last_where
+  - legacy_multiple
+  - sorted_first_last
+
+  # "Code reads like clean English." Each of these deletes a word that carries
+  # no meaning.
+  - direct_return
+  - empty_collection_literal
+  - explicit_init
+  - prefer_self_type_over_type_of_self
+  - prefer_zero_over_explicit_init
+  - redundant_final
+  - redundant_nil_coalescing
+  - redundant_type_annotation
+  - toggle_bool
+  - unneeded_parentheses_in_closure_argument
+
+  # A reference that outlives what it points at, or an observer nobody removes,
+  # is a leak the compiler cannot see.
+  - discarded_notification_center_observer
+  - unowned_variable_capture
+  - weak_delegate
+
+  # "Prefer typed throws." An error, a crash and a fallthrough each need to be
+  # deliberate and visible at the point a reader meets them.
+  - fallthrough
+  - fatal_error_message
+  - return_value_from_void_function
+  - unavailable_function
+  - untyped_error_in_catch
+  - yoda_condition
+
+  # Layout the codebase already follows everywhere.
+  - closure_spacing
+  - collection_alignment
+  - comma_inheritance
+  - file_name_no_space
+  - literal_expression_end_indentation
+  - modifier_order
+  - multiline_parameters
+  - multiline_parameters_brackets
+  - period_spacing
+  - vertical_parameter_alignment_on_call
+
+  # "One enum case per line" and "a domain type does not conform to `Codable`":
+  # these guard the shapes those rules leave behind.
+  - convenience_type
+  - local_doc_comment
+  - optional_enum_case_matching
+  - pattern_matching_keywords
+  - raw_value_for_camel_cased_codable_enum
+  - static_operator
 
 file_header:
   required_pattern: |

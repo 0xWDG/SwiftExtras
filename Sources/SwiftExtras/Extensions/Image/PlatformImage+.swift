@@ -38,7 +38,7 @@ extension Image {
     /// - Returns: The PNG representation of the image as `Data`, or `nil` if the conversion fails.
     @MainActor
     public func toImageData() -> Data? {
-        return self.asNativeImage?.toImageData()
+        self.asNativeImage?.toImageData()
     }
 }
 #endif

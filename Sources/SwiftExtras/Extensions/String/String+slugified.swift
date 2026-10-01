@@ -17,7 +17,6 @@ extension String {
         let input = self
         let lowercased = input.lowercased()
         let trimmed = lowercased.trimmingCharacters(in: .whitespacesAndNewlines)
-        let slugified = trimmed.replacingOccurrences(of: " ", with: "-")
-        return slugified
+        return trimmed.replacingOccurrences(of: " ", with: "-")
     }
 }

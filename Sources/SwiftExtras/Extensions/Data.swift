@@ -18,14 +18,14 @@ import Compression
 extension Data {
     /// A lowercase hexadecimal representation of the data.
     public var hexString: String {
-        return self.map({
-            return String(format: "%02hhx", $0)
+        self.map({
+            String(format: "%02hhx", $0)
         }).joined()
     }
 
     /// A UTF-8 string representation of the data, or `nil` when decoding fails.
     public var stringValue: String? {
-        return String(data: self, encoding: .utf8)
+        String(data: self, encoding: .utf8)
     }
 
     /// A UTF-8 string decoded from the data, replacing invalid byte sequences.
@@ -33,7 +33,7 @@ extension Data {
     /// Unlike ``stringValue``, this property always returns a string. Invalid
     /// UTF-8 sequences are replaced with the Unicode replacement character.
     public var decodingString: String {
-        return String(decoding: self, as: UTF8.self)
+        String(decoding: self, as: UTF8.self)
         // swiftlint:disable:previous optional_data_string_conversion
     }
 
@@ -91,7 +91,7 @@ extension Data {
         stream.src_ptr  = source
         stream.src_size = sourceSize
         var resource = preload
-        let flags: Int32 = Int32(COMPRESSION_STREAM_FINALIZE.rawValue)
+        let flags = Int32(COMPRESSION_STREAM_FINALIZE.rawValue)
 
         while true {
             switch compression_stream_process(&stream, flags) {
@@ -125,7 +125,7 @@ extension Data {
     /// - Returns: Raw deflated data according to
     ///   [RFC 1951](https://www.rfc-editor.org/rfc/rfc1951), or `nil` on failure.
     public func deflate() -> Data? {
-        return self.withUnsafeBytes { (rawBufferPtr: UnsafeRawBufferPointer) -> Data? in
+        self.withUnsafeBytes { (rawBufferPtr: UnsafeRawBufferPointer) -> Data? in
             guard let baseAddress = rawBufferPtr.baseAddress else {
                 return nil
             }
@@ -160,7 +160,7 @@ extension Data {
     ///   [RFC 1951](https://www.rfc-editor.org/rfc/rfc1951).
     /// - Returns: The uncompressed data, or `nil` when decompression fails.
     public func inflate() -> Data? {
-        return self.withUnsafeBytes { (rawBufferPtr: UnsafeRawBufferPointer) -> Data? in
+        self.withUnsafeBytes { (rawBufferPtr: UnsafeRawBufferPointer) -> Data? in
             guard let baseAddress = rawBufferPtr.baseAddress else {
                 return nil
             }

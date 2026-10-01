@@ -21,7 +21,7 @@ extension UserDefaults {
     /// - Returns: The object
     public subscript(key: String) -> Any? {
         get {
-            return object(forKey: key)
+            object(forKey: key)
         }
         set {
             set(newValue, forKey: key)
@@ -36,7 +36,7 @@ extension UserDefaults {
     /// - Returns: The boolean
     public subscript(key: String) -> Bool {
         get {
-            return bool(forKey: key)
+            bool(forKey: key)
         }
         set {
             set(newValue, forKey: key)

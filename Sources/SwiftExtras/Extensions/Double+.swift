@@ -17,7 +17,7 @@ extension Double {
     ///  - originalUnit: The original unit of the length value.
     ///  - convertedUnit: The unit to convert the length value to.
     public func convert(_ originalUnit: UnitLength, to convertedUnit: UnitLength) -> Double {
-        return Measurement(value: self, unit: originalUnit).converted(to: convertedUnit).value
+        Measurement(value: self, unit: originalUnit).converted(to: convertedUnit).value
     }
 }
 

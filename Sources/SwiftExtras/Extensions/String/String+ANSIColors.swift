@@ -33,36 +33,38 @@ public enum ANSIColors: String {
     case `default` = "\u{001B}[0;0m"
 }
 
-/// Add ANSI colors to a string
-///
-/// This allows you to use the `+` operator to add ANSI colors to a string.
-///
-/// Example:
-/// ```swift
-/// print(ANSIColors.red + "Hello, " + ANSIColors.default + "World")
-/// ```
-///
-/// - Parameters:
-///   - left: ANSI Color
-///   - right: String
-/// - Returns: Colored String
-func + (left: ANSIColors, right: String) -> String {
-    return left.rawValue + right
-}
+extension String {
+    /// Add ANSI colors to a string
+    ///
+    /// This allows you to use the `+` operator to add ANSI colors to a string.
+    ///
+    /// Example:
+    /// ```swift
+    /// print(ANSIColors.red + "Hello, " + ANSIColors.default + "World")
+    /// ```
+    ///
+    /// - Parameters:
+    ///   - left: ANSI Color
+    ///   - right: String
+    /// - Returns: Colored String
+    public static func + (left: ANSIColors, right: String) -> String {
+        left.rawValue + right
+    }
 
-/// Add ANSI colors to a string
-///
-/// This allows you to use the `+` operator to add ANSI colors to a string.
-///
-/// Example:
-/// ```swift
-/// print("Hello, " + ANSIColors.red + "World" + ANSIColors.default)
-/// ```
-///
-/// - Parameters:
-///   - left: String
-///   - right: ANSI Color
-/// - Returns: Colored String
-func + (left: String, right: ANSIColors) -> String {
-    return left + right.rawValue
+    /// Add ANSI colors to a string
+    ///
+    /// This allows you to use the `+` operator to add ANSI colors to a string.
+    ///
+    /// Example:
+    /// ```swift
+    /// print("Hello, " + ANSIColors.red + "World" + ANSIColors.default)
+    /// ```
+    ///
+    /// - Parameters:
+    ///   - left: String
+    ///   - right: ANSI Color
+    /// - Returns: Colored String
+    public static func + (left: String, right: ANSIColors) -> String {
+        left + right.rawValue
+    }
 }

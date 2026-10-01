@@ -17,7 +17,7 @@ extension Date: @retroactive Identifiable {
     ///
     /// This is a hash value of the description to make Date conform to Identifiable.
     public var id: Int {
-        return self.description.hashValue
+        self.description.hashValue
     }
 }
 #else
@@ -26,7 +26,7 @@ extension Date: Identifiable {
     ///
     /// This is a hash value of the description to make Date conform to Identifiable.
     public var id: Int {
-        return self.description.hashValue
+        self.description.hashValue
     }
 }
 #endif

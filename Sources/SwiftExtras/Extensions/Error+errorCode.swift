@@ -25,6 +25,6 @@ extension Error {
     /// ```
     /// - Returns: The error code if the error is an NSError, otherwise nil.
     public var errorCode: Int? {
-        return (self as NSError).code
+        (self as NSError).code
     }
 }

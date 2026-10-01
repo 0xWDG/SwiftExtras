@@ -378,12 +378,10 @@ extension View {
     /// - Returns: An image of the key window, or `nil` when no key window is available.
     fileprivate func snapshotScreen() -> UIImage? {
         if let snaposhotView = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.keyWindow {
-            let renderer: UIGraphicsImageRenderer = UIGraphicsImageRenderer(size: snaposhotView.bounds.size)
-            let image: UIImage = renderer.image { _ in
+            let renderer = UIGraphicsImageRenderer(size: snaposhotView.bounds.size)
+            return renderer.image { _ in
                 snaposhotView.drawHierarchy(in: snaposhotView.bounds, afterScreenUpdates: true)
-            }
-
-            return image
+            } as UIImage
         }
 
         return nil

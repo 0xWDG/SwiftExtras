@@ -15,7 +15,7 @@ import SwiftUI
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 extension Color {
     static func dynamicColor(light: NSColor, dark: NSColor, named: String = "DynamicColor") -> Color {
-        return Color(
+        Color(
             NSColor(
                 name: named,
                 dynamicProvider: { traits in
@@ -40,7 +40,7 @@ extension Color {
         return Color(
             UIColor(
                 dynamicProvider: { trait in
-                    return trait.userInterfaceStyle == .dark ? dark : light
+                    trait.userInterfaceStyle == .dark ? dark : light
                 }
             )
         )

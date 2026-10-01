@@ -97,7 +97,7 @@ public enum AppInfo {
 
     /// Is the application an app extension
     public static var isAppExtension: Bool {
-        return Bundle.main.executablePath?.contains(".appex/") ?? false
+        Bundle.main.executablePath?.contains(".appex/") ?? false
     }
 
     /// Is the iOS application running on a mac
@@ -161,7 +161,7 @@ public enum AppInfo {
 
     /// Detects if the application is running on a simulator or in a SwiftUI Preview
     public static var isSimulatorOrPreview: Bool {
-        return isSimulator || isSwiftUIPreview
+        isSimulator || isSwiftUIPreview
     }
 
     /// Detects if UI Tests are running
@@ -356,7 +356,7 @@ public enum AppInfo {
 
     /// Main URL scheme
     public static var mainScheme: String? {
-        return schemes.first
+        schemes.first
     }
 
 #if os(iOS)

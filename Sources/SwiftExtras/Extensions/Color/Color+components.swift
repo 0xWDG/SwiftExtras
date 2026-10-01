@@ -228,7 +228,7 @@ extension Color {
 
     /// Get the (6) hex color from the current
     public var hex6: String {
-        return String(
+        String(
             format: "#%02x%02x%02x",
             Int(self.redValue * 255),
             Int(self.greenValue * 255),
@@ -292,19 +292,19 @@ extension Color.Resolved {
     /// Get the red value of a color
     /// - Returns: The normalized red component.
     public var redValue: CGFloat {
-        return CGFloat(red)
+        CGFloat(red)
     }
 
     /// Get the green value of a color
     /// - Returns: The normalized green component.
     public var greenValue: CGFloat {
-        return CGFloat(green)
+        CGFloat(green)
     }
 
     /// Get the blue value of a color
     /// - Returns: The normalized blue component.
     public var blueValue: CGFloat {
-        return CGFloat(blue)
+        CGFloat(blue)
     }
 
     /// Get the alpha value of a color
@@ -315,7 +315,7 @@ extension Color.Resolved {
 
     /// Get the (6) hex color from the current
     public var hex6: String {
-        return String(
+        String(
             format: "#%02x%02x%02x",
             Int(self.redValue * 255),
             Int(self.greenValue * 255),

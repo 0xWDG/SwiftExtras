@@ -15,7 +15,7 @@ extension String {
     /// Strips diacritics from the string
     /// - Returns: String without diacritics
     public func clean() -> Self {
-        return self.folding(
+        self.folding(
             options: .diacriticInsensitive,
             locale: .current
         )

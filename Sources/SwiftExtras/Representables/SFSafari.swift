@@ -28,7 +28,7 @@ public struct SafariView: UIViewControllerRepresentable {
     /// - Parameter url: The URL to display.
     public init(url: Binding<URL>) {
         _urlString = Binding(get: {
-            return url.wrappedValue.absoluteString
+            url.wrappedValue.absoluteString
         }, set: { _ in
             // Ignore
         })
@@ -71,7 +71,7 @@ public struct SafariView: UIViewControllerRepresentable {
         _ safariViewController: SFSafariViewController,
         context: UIViewControllerRepresentableContext<SafariView>
     ) {
-        return
+
     }
 }
 

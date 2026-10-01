@@ -18,7 +18,7 @@ extension LocalizedStringKey: @retroactive Identifiable {
     ///
     /// This is a random hash value to make LocalizedStringKey conform to Identifiable.
     public var id: Int {
-        return self.stringKey?.hashValue ?? UUID().hashValue
+        self.stringKey?.hashValue ?? UUID().hashValue
     }
 }
 #else
@@ -27,7 +27,7 @@ extension LocalizedStringKey: Identifiable {
     ///
     /// This is a random hash value to make LocalizedStringKey conform to Identifiable.
     public var id: Int {
-        return self.stringKey?.hashValue ?? UUID().hashValue
+        self.stringKey?.hashValue ?? UUID().hashValue
     }
 }
 #endif

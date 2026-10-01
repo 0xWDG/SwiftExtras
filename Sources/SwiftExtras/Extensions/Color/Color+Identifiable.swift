@@ -18,7 +18,7 @@ extension Color: @retroactive Identifiable {
     ///
     /// This is a random hash value to make Color conform to Identifiable.
     public var id: Int {
-        return UUID().hashValue
+        UUID().hashValue
     }
 }
 #else
@@ -27,7 +27,7 @@ extension Color: Identifiable {
     ///
     /// This is a random hash value to make Color conform to Identifiable.
     public var id: Int {
-        return UUID().hashValue
+        UUID().hashValue
     }
 }
 #endif
