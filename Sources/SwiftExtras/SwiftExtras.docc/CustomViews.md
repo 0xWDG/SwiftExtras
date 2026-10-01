@@ -164,8 +164,8 @@ TextField("Message", text: $message)
 
 ### Scroll Tracking
 
-Apply ``SwiftUICore/ScrollView/trackScrolling()`` to the scroll view inside a
-`ScrollViewReader`, then use ``SwiftUICore/ScrollViewReader/onScrolled(_:)`` to
+Apply ``SwiftUI/ScrollView/trackScrolling()`` to the scroll view inside a
+`ScrollViewReader`, then use ``SwiftUI/ScrollViewReader/onScrolled(_:)`` to
 receive a normalized horizontal and vertical position from `0` through `1` on
 iOS 16 and later.
 

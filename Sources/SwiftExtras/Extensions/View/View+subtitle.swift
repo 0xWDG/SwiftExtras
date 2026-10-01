@@ -27,7 +27,7 @@ extension View {
     /// the subtitle is displayed with the navigation title in the
     /// navigation bar.
     ///
-    /// - Parameter subtitle: The subtitle to display.
+    /// - Parameter title: The subtitle to display.
     @ViewBuilder
     public func subtitle(_ title: String) -> some View {
         #if os(iOS) || os(macOS)

@@ -15,7 +15,7 @@ import Foundation
 ///
 /// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension Task where Failure == Error {
-    /// Performs an async task in a sync context.
+    /// Performs an async task in a synchronous context.
     ///
     /// - Note: This function blocks the thread until the given operation is finished. \
     ///         The caller is responsible for managing multithreading.

@@ -18,7 +18,7 @@ extension String {
     /// Slices a string between two substrings.
     /// - Parameters:
     ///   - from: The starting substring.
-    ///   - to: The ending substring.
+    ///   - end: The ending substring.
     /// - Returns: The sliced substring, or nil if the substrings are not found.
     public func slice(from: String, to end: String) -> String? {
         guard let rangeFrom = range(of: from)?.upperBound else { return nil }

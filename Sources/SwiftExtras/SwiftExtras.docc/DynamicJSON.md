@@ -29,7 +29,7 @@ to serialize the value again. Top-level JSON fragments are supported.
 
 ### Navigation
 
-- ``JSON/subscript(_:)``
+Use keyed and indexed `JSON` subscripts to navigate object and array values.
 
 ### Values and Conversion
 

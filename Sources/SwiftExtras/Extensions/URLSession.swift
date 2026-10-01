@@ -18,11 +18,11 @@ import FoundationNetworking
 ///
 /// Use this delegate only when certificate validation is intentionally disabled.
 public final class IgnoreSSLErrorsDelegate: NSObject, URLSessionDelegate, URLSessionTaskDelegate {
-    /// urlSession(_:didReceive:completionHandler:) - Ignore SSL certificate errors
+    /// Handles a server-trust authentication challenge without certificate validation.
     /// - Parameters:
     ///   - session: The URLSession instance
     ///   - challenge: The URLAuthenticationChallenge instance
-    ///   - completionHandler: The completion handler to call with the disposition and credential.
+    /// - Returns: The disposition and optional credential that the session should use.
     public func urlSession(
         _ session: URLSession,
         didReceive challenge: URLAuthenticationChallenge

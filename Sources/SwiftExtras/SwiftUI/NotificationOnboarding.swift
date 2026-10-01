@@ -333,6 +333,7 @@ extension View {
     /// the user's response.
     /// 
     /// - Parameters:
+    ///   - isPresented: A binding that controls whether the onboarding interface is visible.
     ///   - title: The title text displayed at the top of the onboarding screen.
     ///   - content: The content text displayed below the title.
     ///   - notificationTitle: The title of the mock notification displayed in the iPhone preview.

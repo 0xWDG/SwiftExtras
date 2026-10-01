@@ -19,7 +19,7 @@ the calling interface.
 
 ## URL Handling
 
-``openURL(_:)`` has overloads for string and `URL` input. Each validates its
+`openURL` has overloads for string and `URL` input. Each validates its
 input and delegates opening to the current platform, returning whether it could
 begin the request. It does not prove that a remote destination is reachable or
 that the user completed a navigation.
