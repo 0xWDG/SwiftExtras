@@ -95,7 +95,9 @@ opt_in_rules:
   - optional_enum_case_matching
   - pattern_matching_keywords
   - raw_value_for_camel_cased_codable_enum
-  - static_operator
+
+  # Custom operators must be declared and implemented at file scope. Swift's
+  # static_operator rule would require an invalid declaration for these APIs.
 
 file_header:
   required_pattern: |

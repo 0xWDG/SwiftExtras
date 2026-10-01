@@ -4,6 +4,7 @@ This file contains the changelog of SwiftExtras.
 
 ### 1.3.0
 
+- Fixed app-group `UbiquitousStorage` support so apps and their extensions can share Boolean and string-backed values.
 - Moved the settings experience to [PreferenceKit](https://github.com/0xWDG/PreferenceKit); `SESettingsView`, `SEChangeLogEntry`, and `SEAcknowledgement` remain available as deprecated compatibility APIs.
 - Added [`AppInfo.isSimulator`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/issimulator) to check if the app is running in a simulator.
 - Added [`AppInfo.isSimulatorOrPreview`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/appinfo/issimulatororpreview) to check if the app is running in a simulator or a preview.

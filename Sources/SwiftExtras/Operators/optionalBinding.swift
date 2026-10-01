@@ -23,7 +23,7 @@ extension Binding {
     ///   - rhs: The fallback value to use while the wrapped value is `nil`.
     /// - Returns: A nonoptional binding that writes changes back to `lhs`.
     public static func ?? <T>(lhs: Binding<T?>, rhs: T) -> Binding<T> {
-        Binding(
+        Binding<T>(
             get: { lhs.wrappedValue ?? rhs },
             set: { lhs.wrappedValue = $0 }
         )

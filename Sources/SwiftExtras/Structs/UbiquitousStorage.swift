@@ -29,6 +29,19 @@ private func notifyUbiquitousStorageChange(forKey key: String) {
     )
 }
 
+/// Selects the persistence domain used by ``UbiquitousStorage``.
+///
+/// Use ``iCloud`` for the default cross-device key-value store. Use
+/// ``appGroup(_:)`` when an app and its extensions need to share a value on
+/// the current device through the same app-group suite.
+public enum UbiquitousStorageBackend: Sendable, Equatable {
+    /// Stores the value in `NSUbiquitousKeyValueStore.default`.
+    case iCloud
+
+    /// Stores the value in the `UserDefaults` suite identified by an app-group name.
+    case appGroup(String)
+}
+
 /// A property wrapper that stores values in iCloud's key-value store (`NSUbiquitousKeyValueStore`).
 ///
 /// Values are automatically synchronized across all devices signed into the same iCloud account
@@ -88,22 +101,80 @@ extension UbiquitousStorage where Value == Bool {
     /// - Parameters:
     ///   - wrappedValue: The default value to return when the key is absent.
     ///   - key: The key used to store the value in iCloud's key-value store.
+    ///   - backend: The store that persists the value. Defaults to iCloud.
     ///
     /// Example usage:
     /// ```swift
     /// @UbiquitousStorage("isDarkModeEnabled") var isDarkModeEnabled: Bool = false
     /// ```
-    public init(wrappedValue: Bool, _ key: String) {
-        let store = NSUbiquitousKeyValueStore.default
-        self.init(
-            key: key,
-            defaultValue: wrappedValue,
-            reader: { store.object(forKey: key) != nil ? store.bool(forKey: key) : wrappedValue },
-            writer: {
-                store.set($0, forKey: key)
-                notifyUbiquitousStorageChange(forKey: key)
-            }
-        )
+    public init(
+        wrappedValue: Bool,
+        _ key: String,
+        backend: UbiquitousStorageBackend = .iCloud
+    ) {
+        switch backend {
+        case .iCloud:
+            let store = NSUbiquitousKeyValueStore.default
+            self.init(
+                key: key,
+                defaultValue: wrappedValue,
+                reader: { store.object(forKey: key) != nil ? store.bool(forKey: key) : wrappedValue },
+                writer: {
+                    store.set($0, forKey: key)
+                    notifyUbiquitousStorageChange(forKey: key)
+                }
+            )
+        case let .appGroup(suiteName):
+            let store = UserDefaults(suiteName: suiteName)
+            self.init(
+                key: key,
+                defaultValue: wrappedValue,
+                reader: { store?.object(forKey: key) != nil ? store?.bool(forKey: key) ?? wrappedValue : wrappedValue },
+                writer: {
+                    store?.set($0, forKey: key)
+                    notifyUbiquitousStorageChange(forKey: key)
+                }
+            )
+        }
+    }
+}
+
+extension UbiquitousStorage where Value: RawRepresentable, Value.RawValue == String {
+    /// Initializes storage for a string-backed raw-representable value.
+    ///
+    /// - Parameters:
+    ///   - wrappedValue: The default value to return when the key is absent or invalid.
+    ///   - key: The key used to store the raw value in the selected persistence backend.
+    ///   - backend: The store that persists the value. Defaults to iCloud.
+    public init(
+        wrappedValue: Value,
+        _ key: String,
+        backend: UbiquitousStorageBackend = .iCloud
+    ) {
+        switch backend {
+        case .iCloud:
+            let store = NSUbiquitousKeyValueStore.default
+            self.init(
+                key: key,
+                defaultValue: wrappedValue,
+                reader: { store.string(forKey: key).flatMap(Value.init(rawValue:)) ?? wrappedValue },
+                writer: {
+                    store.set($0.rawValue, forKey: key)
+                    notifyUbiquitousStorageChange(forKey: key)
+                }
+            )
+        case let .appGroup(suiteName):
+            let store = UserDefaults(suiteName: suiteName)
+            self.init(
+                key: key,
+                defaultValue: wrappedValue,
+                reader: { store?.string(forKey: key).flatMap(Value.init(rawValue:)) ?? wrappedValue },
+                writer: {
+                    store?.set($0.rawValue, forKey: key)
+                    notifyUbiquitousStorageChange(forKey: key)
+                }
+            )
+        }
     }
 }
 
