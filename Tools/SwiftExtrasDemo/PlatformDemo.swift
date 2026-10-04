@@ -128,7 +128,7 @@ struct SystemPresentationDemo: View {
 
     var body: some View {
         DemoPanel("Settings and notification onboarding", systemImage: "gearshape.2") {
-            Button("Open SESettingsView") {
+            Button("Open PreferenceKit") {
                 showsSettings = true
             }
 
@@ -162,14 +162,14 @@ struct SystemPresentationDemo: View {
         }
         .buttonStyle(.bordered)
         .sheet(isPresented: $showsSettings) {
-            SESettingsView<EmptyView, EmptyView>(
+            PreferenceKit<EmptyView, EmptyView>(
                 createdBy: "SwiftExtras contributors",
                 privacyPolicyURL: URL(string: "https://github.com/0xWDG/SwiftExtras"),
                 supportEmail: nil,
                 OSLogSubsystem: nil,
-                changeLog: [SEChangeLogEntry(version: "Demo", text: "Complete component catalog")],
+                changeLog: [ChangeLogEntry(version: "Demo", text: "Complete component catalog")],
                 acknowledgements: [
-                    SEAcknowledgement(name: "SwiftExtras", copyright: "0xWDG", licence: "MIT")
+                    Acknowledgement(name: "SwiftExtras", copyright: "0xWDG", licence: "MIT")
                 ]
             )
 #if os(macOS)

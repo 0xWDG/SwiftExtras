@@ -10,12 +10,13 @@
 //
 
 #if canImport(SwiftUI)
+import PreferenceKit
 import SwiftUI
 
 /// SwiftExtras Change Log View
 ///
 /// SwiftExtras Change Log View is a SwiftUI View that can be used to show a change log.
-@available(*, deprecated, renamed: "PKChangeLogView")
+@available(*, deprecated, renamed: "PreferenceKitChangeLogView")
 public struct SEChangeLogView: View {
     /// The change log entries to display.
     public var changeLog: [SEChangeLogEntry]
@@ -64,7 +65,7 @@ public struct SEChangeLogView: View {
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 #Preview {
     NavigationStack {
-        SEChangeLogView(changeLog: [
+        PreferenceKitChangeLogView(changeLog: [
             .init(
                 version: "1.0.0",
                 date: "13-08-2026",

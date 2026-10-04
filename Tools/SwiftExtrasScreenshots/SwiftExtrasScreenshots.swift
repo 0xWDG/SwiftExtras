@@ -176,23 +176,6 @@ enum ScreenshotGenerator {
                     }
                     .frame(height: 280)
                 }
-            },
-            .init(name: "se-changelog-view", size: .init(width: 620, height: 420)) {
-                NavigationStack {
-                    SEChangeLogView(changeLog: [
-                        .init(version: "1.2.0", date: "2026-07-06", text: "Added DocC screenshots for custom views."),
-                        .init(version: "1.1.0", date: "2026-06-20", text: "Added SplitActionButton.")
-                    ])
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-            },
-            .init(name: "se-acknowledgement-view", size: .init(width: 620, height: 420)) {
-                NavigationStack {
-                    SEAcknowledgementView(entries: [
-                        .init(name: "ExampleKit", copyright: "Example Author", licence: "MIT")
-                    ])
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         ]
     }

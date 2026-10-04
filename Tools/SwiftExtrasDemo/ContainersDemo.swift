@@ -9,6 +9,7 @@
 //  MIT License
 //
 
+import PreferenceKit
 import SwiftExtras
 import SwiftUI
 
@@ -159,8 +160,8 @@ struct MetadataViewsDemo: View {
 
     private var acknowledgementView: some View {
         NavigationStack {
-            SEAcknowledgementView(entries: [
-                SEAcknowledgement(
+            PreferenceKitAcknowledgementView(entries: [
+                Acknowledgement(
                     name: "OSLogViewer",
                     copyright: "0xWDG",
                     licence: "MIT",
@@ -173,9 +174,9 @@ struct MetadataViewsDemo: View {
 
     private var changeLogView: some View {
         NavigationStack {
-            SEChangeLogView(changeLog: [
-                SEChangeLogEntry(version: "2.0", date: "2026-08-16", text: "Added the complete demo app."),
-                SEChangeLogEntry(version: "1.0", date: "2025-01-10", text: "Initial release.")
+            PreferenceKitChangeLogView(changeLog: [
+                ChangeLogEntry(version: "2.0", date: "2026-08-16", text: "Added the complete demo app."),
+                ChangeLogEntry(version: "1.0", date: "2025-01-10", text: "Initial release.")
             ])
         }
         .frame(minWidth: 320, minHeight: 260)

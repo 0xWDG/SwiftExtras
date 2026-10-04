@@ -14,21 +14,21 @@ import SwiftUI
 import UIKit
 
 @available(iOS 16, *)
-private struct TextFieldWithAxisActionHelper: UIViewRepresentable {
+public struct TextFieldWithAxisActionHelper: UIViewRepresentable {
     @Binding var showSuggestions: Bool
     let actions: [TextFieldWithAxisAction]
 
     /// Creates the value required by `makeCoordinator`.
     ///
     /// The implementation configures the returned value from current state and context.
-    func makeCoordinator() -> Coordinator {
+    public func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
     }
 
     /// Creates the value required by `makeUIView`.
     ///
     /// The implementation configures the returned value from current state and context.
-    func makeUIView(context: Context) -> UIView {
+    public func makeUIView(context: Context) -> UIView {
         let view = UIView(frame: .zero)
         view.backgroundColor = .clear
         context.coordinator.scheduleAttachment(from: view)
@@ -38,7 +38,7 @@ private struct TextFieldWithAxisActionHelper: UIViewRepresentable {
     /// Updates the existing value handled by `updateUIView`.
     ///
     /// The implementation applies the enclosing type’s latest state.
-    func updateUIView(_ view: UIView, context: Context) {
+    public func updateUIView(_ view: UIView, context: Context) {
         context.coordinator.parent = self
         context.coordinator.scheduleAttachment(from: view)
     }
@@ -46,11 +46,11 @@ private struct TextFieldWithAxisActionHelper: UIViewRepresentable {
     /// Performs the `dismantleUIView` operation for the enclosing type.
     ///
     /// This implementation supports the enclosing declaration’s behavior.
-    static func dismantleUIView(_ view: UIView, coordinator: Coordinator) {
+    public static func dismantleUIView(_ view: UIView, coordinator: Coordinator) {
         coordinator.detach()
     }
 
-    final class Coordinator: NSObject, UITextViewDelegate {
+    public final class Coordinator: NSObject, UITextViewDelegate {
         var parent: TextFieldWithAxisActionHelper
         private weak var textView: UITextView?
         private weak var originalDelegate: UITextViewDelegate?
@@ -83,21 +83,21 @@ private struct TextFieldWithAxisActionHelper: UIViewRepresentable {
         /// Performs the `textViewDidChangeSelection` operation for the enclosing type.
         ///
         /// This implementation supports the enclosing declaration’s behavior.
-        func textViewDidChangeSelection(_ textView: UITextView) {
+        public func textViewDidChangeSelection(_ textView: UITextView) {
             originalDelegate?.textViewDidChangeSelection?(textView)
         }
 
         /// Performs the `textViewDidChange` operation for the enclosing type.
         ///
         /// This implementation supports the enclosing declaration’s behavior.
-        func textViewDidChange(_ textView: UITextView) {
+        public func textViewDidChange(_ textView: UITextView) {
             originalDelegate?.textViewDidChange?(textView)
         }
 
         /// Performs the `textView` operation for the enclosing type.
         ///
         /// This implementation supports the enclosing declaration’s behavior.
-        func textView(
+        public func textView(
             _ textView: UITextView,
             editMenuForTextIn range: NSRange,
             suggestedActions: [UIMenuElement]
@@ -123,11 +123,11 @@ private struct TextFieldWithAxisActionHelper: UIViewRepresentable {
             newTextView.delegate = self
         }
 
-        override func responds(to selector: Selector!) -> Bool {
+        override public func responds(to selector: Selector!) -> Bool {
             super.responds(to: selector) || originalDelegate?.responds(to: selector) == true
         }
 
-        override func forwardingTarget(for selector: Selector!) -> Any? {
+        override public func forwardingTarget(for selector: Selector!) -> Any? {
             if originalDelegate?.responds(to: selector) == true {
                 return originalDelegate
             }
@@ -139,11 +139,11 @@ private struct TextFieldWithAxisActionHelper: UIViewRepresentable {
 /// Adds `TextFieldActions` functionality to `UIView`.
 ///
 /// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
-private extension UIView {
+extension UIView {
     /// Performs the `firstSuperviewDescendant` operation for the enclosing type.
     ///
     /// This implementation supports the enclosing declaration’s behavior.
-    func firstSuperviewDescendant<ViewType: UIView>(of type: ViewType.Type) -> ViewType? {
+    public func firstSuperviewDescendant<ViewType: UIView>(of type: ViewType.Type) -> ViewType? {
         var ancestor = superview
         while let currentAncestor = ancestor {
             if let match = currentAncestor.firstDescendant(of: type) {
@@ -157,7 +157,7 @@ private extension UIView {
     /// Performs the `firstDescendant` operation for the enclosing type.
     ///
     /// This implementation supports the enclosing declaration’s behavior.
-    func firstDescendant<ViewType: UIView>(of type: ViewType.Type) -> ViewType? {
+    public func firstDescendant<ViewType: UIView>(of type: ViewType.Type) -> ViewType? {
         if let match = self as? ViewType {
             return match
         }

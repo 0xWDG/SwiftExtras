@@ -13,13 +13,13 @@
 import Testing
 
 @Test func acknowledgementIdentityAndHashingUseStoredValues() {
-    let first = SEAcknowledgement(
+    let first = Acknowledgement(
         name: "SwiftExtras",
         copyright: "Wesley",
         licence: "MIT"
     )
     let duplicate = first
-    let changedLicence = SEAcknowledgement(
+    let changedLicence = Acknowledgement(
         name: "SwiftExtras",
         copyright: "Wesley",
         licence: "Apache-2.0"
@@ -30,7 +30,7 @@ import Testing
     #expect(first != changedLicence)
     #expect(Set([first, duplicate, changedLicence]).count == 2)
 
-    let linked = SEAcknowledgement(
+    let linked = Acknowledgement(
         name: "ExampleKit",
         copyright: "Example",
         licence: "MIT",
@@ -40,14 +40,14 @@ import Testing
 }
 
 @Test func changeLogIdentityUsesVersion() {
-    let entry = SEChangeLogEntry(version: "1.2.3", date: "2026-06-14", text: "Changes")
+    let entry = ChangeLogEntry(version: "1.2.3", date: "2026-06-14", text: "Changes")
 
     #expect(entry.id == "1.2.3")
     #expect(entry.version == "1.2.3")
     #expect(entry.date == "2026-06-14")
     #expect(entry.text == "Changes")
 
-    let undated = SEChangeLogEntry(version: "1.2.4", text: "Fixed tests")
+    let undated = ChangeLogEntry(version: "1.2.4", text: "Fixed tests")
     #expect(undated.id == "1.2.4")
     #expect(undated.date == nil)
     #expect(undated.text == "Fixed tests")

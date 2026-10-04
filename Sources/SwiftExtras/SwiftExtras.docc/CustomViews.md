@@ -48,6 +48,29 @@ VerificationField(type: .six, value: $code) { code in
 
 ![SplitActionButton example on iOS](split-action-button-ios.png)
 
+### Presentation Close Controls
+
+`CloseButton` provides a semantic close control for the current SwiftUI
+presentation. It uses the system close-button role on Apple platform version
+26 and later, and supplies an accessible labeled Close button on earlier
+supported releases.
+
+Use `CloseButton(dismiss:)` when you need to place the control yourself, or
+apply `dismissButton()` to add it at the cancellation toolbar location.
+
+```swift
+struct MySheetView: View {
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            MySheetContent()
+                .dismissButton(dismiss: dismiss)
+        }
+    }
+}
+```
+
 ## Containers
 
 `CardView` wraps custom content in a dismissible card-style presentation.
@@ -94,9 +117,9 @@ ScrollView {
 
 ![IndexedList example on iOS](indexed-list-ios.png)
 
-`SEChangeLogView` renders versioned release notes.
+`PKChangeLogView` renders versioned release notes.
 
-![SEChangeLogView example on iOS](se-changelog-view-ios.png)
+![PKChangeLogView example on iOS](se-changelog-view-ios.png)
 
 `SEAcknowledgementView` renders dependency acknowledgements.
 

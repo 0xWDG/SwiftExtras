@@ -4,6 +4,9 @@ This file contains the changelog of SwiftExtras.
 
 ### 1.3.0
 
+- Added `CloseButton(dismiss:)` and `View.dismissButton()` for accessible,
+  backward-compatible presentation close controls that adopt the system close
+  button role on Apple platform version 26 and later.
 - Expanded the DocC catalog with extension and standalone-function guidance, including platform, failure, and usage considerations.
 - Fixed app-group `UbiquitousStorage` support so apps and their extensions can share Boolean and string-backed values.
 - Moved the settings experience to [PreferenceKit](https://github.com/0xWDG/PreferenceKit); `SESettingsView`, `SEChangeLogEntry`, and `SEAcknowledgement` remain available as deprecated compatibility APIs.
