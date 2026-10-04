@@ -36,7 +36,11 @@ var targets: [Target] = [
     ),
     .testTarget(
         name: "SwiftExtrasTests",
-        dependencies: ["SwiftExtras", "SwiftExtrasScreenshotTesting"]
+        dependencies: [
+            "SwiftExtras",
+            "SwiftExtrasScreenshotTesting",
+            .product(name: "PreferenceKit", package: "PreferenceKit")
+        ]
     ),
     .target(
         name: "SwiftExtrasScreenshotTesting",

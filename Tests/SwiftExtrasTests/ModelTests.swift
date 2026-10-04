@@ -9,6 +9,7 @@
 //  MIT License
 //
 
+import PreferenceKit
 @testable import SwiftExtras
 import Testing
 
