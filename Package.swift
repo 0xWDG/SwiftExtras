@@ -82,7 +82,7 @@ let package = Package(
     products: products,
     dependencies: [
         .package(url: "https://github.com/0xWDG/OSLogViewer.git", from: "1.1.5"),
-        .package(url: "https://github.com/0xWDG/PreferenceKit.git", from: "0.0.5")
+        .package(url: "https://github.com/0xWDG/PreferenceKit.git", from: "0.0.6")
     ],
     targets: targets
 )
