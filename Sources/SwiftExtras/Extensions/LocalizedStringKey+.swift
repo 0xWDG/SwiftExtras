@@ -17,7 +17,7 @@ import SwiftUI
 /// The declarations in this scope provide focused utilities while preserving the type’s standard behavior.
 extension LocalizedStringKey {
     /// The string key of the LocalizedStringKey
-    var stringKey: String? {
+    public var stringKey: String? {
         Mirror(reflecting: self)
             .children
             .first(where: { $0.label == "key" })?
