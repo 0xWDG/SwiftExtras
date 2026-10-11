@@ -53,17 +53,12 @@ public struct CardView<Content: View>: View {
         if #available(iOS 26.0, macOS 26.0, tvOS 26.0, watchOS 26.0, visionOS 26.0, *) {
             Button(role: .close) {
                 dismiss()
-            } label: {
-                self
-                    .closeButtonImage
-                    .frame(minWidth: 44, minHeight: 44)
-                    .contentShape(Rectangle())
             }
-            .tint(Color.secondary)
             .accessibilityLabel(Text("Close", bundle: .module))
             .accessibilityHint(Text("Tap to close the screen", bundle: .module))
 #if !os(watchOS) && !os(tvOS)
             .keyboardShortcut(.cancelAction)
+            .toolbarTitleDisplayMode(.inline)
 #endif
         } else {
             fallbackCloseButton
@@ -92,22 +87,38 @@ public struct CardView<Content: View>: View {
 
     /// The card's title bar and scrollable content.
     public var body: some View {
-        VStack(spacing: 0) {
-            CardHeader(
-                title: title,
-                subtitle: subtitle,
-                closeButton: closeButton
-            )
-
-            Divider()
-
-            ScrollView {
-                self.content
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding()
+        if #available(iOS 18, *) {
+            NavigationStack {
+                ScrollView {
+                    self.content
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                }
+                .navigationTitle(title)
+                .subtitle(subtitle ?? "")
+                .toolbar {
+                    closeButton
+                }
+                .modifier(CardPresentationDragIndicator())
             }
+        } else {
+            VStack(spacing: 0) {
+                CardHeader(
+                    title: title,
+                    subtitle: subtitle,
+                    closeButton: closeButton
+                )
+
+                Divider()
+
+                ScrollView {
+                    self.content
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                }
+            }
+            .modifier(CardPresentationDragIndicator())
         }
-        .modifier(CardPresentationDragIndicator())
     }
 }
 
