@@ -87,7 +87,7 @@ public struct CardView<Content: View>: View {
 
     /// The card's title bar and scrollable content.
     public var body: some View {
-        if #available(iOS 18, *) {
+        if #available(iOS 18, macOS 13, tvOS 16, watchOS 9, visionOS 1, *) {
             NavigationStack {
                 ScrollView {
                     self.content
