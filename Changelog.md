@@ -2,6 +2,9 @@
 
 This file contains the changelog of SwiftExtras.
 
+### 1.3.2
+- Added an `active` parameter to highlight modifiers so highlights can be enabled or disabled without removing the view.
+
 ### 1.3.1
 - Fixed package build compatibility with Linux and older Apple SDKs.
 

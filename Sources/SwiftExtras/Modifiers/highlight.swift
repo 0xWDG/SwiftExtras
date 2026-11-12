@@ -57,7 +57,8 @@ extension View {
         description: LocalizedStringKey?,
         maskShape: some Shape,
         inset: CGFloat = 15,
-        group: Binding<[Int: Highlight]>
+        group: Binding<[Int: Highlight]>,
+        active: Bool = true
     ) -> some View {
         self
             .onGeometryChange(for: CGRect.self) {
@@ -71,10 +72,14 @@ extension View {
                     inset: inset,
                     frame: newValue
                 )
-                group.wrappedValue[order] = highlight
+                if active {
+                    group.wrappedValue[order] = highlight
+                }
             }
             .onDisappear {
-                group.wrappedValue[order] = nil
+                if active {
+                    group.wrappedValue[order] = nil
+                }
             }
     }
 
