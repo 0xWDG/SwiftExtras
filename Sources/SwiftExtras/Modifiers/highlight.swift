@@ -50,7 +50,7 @@ extension View {
     ///   - maskShape: The shape used for masking the highlight.
     ///   - inset: The inset for the highlight mask.
     ///   - group: The binding to the group of highlights.
-    @ContentBuilder
+    @ViewBuilder
     public func highlight(
         order: Int,
         title: LocalizedStringKey,
@@ -84,7 +84,7 @@ extension View {
     ///   - isPresented: A binding to whether the highlight overlay is presented.
     ///   - group: The binding to the group of highlights.
     /// - Returns: A view with the highlight overlay applied.
-    @ContentBuilder
+    @ViewBuilder
     public func highlightOverlay(
         isPresented: Binding<Bool>,
         group: Binding<[Int: Highlight]>
@@ -129,10 +129,10 @@ private extension View {
     ///   - alignment: Alignment to use for the masking overlay.
     ///   - content: The masking shape to subtract from the view.
     /// - Returns: A view masked by subtracting `content` from a full-rect mask.
-    @ContentBuilder
+    @ViewBuilder
     func inverseMask<Content: View>(
         alignment: Alignment = .center,
-        @ContentBuilder content: () -> Content
+        @ViewBuilder content: () -> Content
     ) -> some View {
         self
             .mask {
@@ -269,11 +269,15 @@ private struct HighlightView: View {
     /// - Returns: A view representing the styled button.
     @ViewBuilder
     private func styledButton<Content: View>(_ button: Content) -> some View {
+#if compiler(>=6.2)
         if #available(iOS 26.0, macOS 26.0, tvOS 26.0, watchOS 26.0, *) {
             button.buttonStyle(.glassProminent)
         } else {
             button.buttonStyle(.borderedProminent)
         }
+#else
+        button.buttonStyle(.borderedProminent)
+#endif
     }
 
     /// Applies a capsule border shape on platform versions that support it.
@@ -301,7 +305,7 @@ private struct HighlightView: View {
     /// Returns the view for the popover corresponding to the given highlight.
     /// - Parameter highlight: The highlight to display in the popover.
     /// - Returns: A view representing the popover content.
-    @ContentBuilder
+    @ViewBuilder
     private func popoverView(highlight: Highlight) -> some View {
         VStack(alignment: .leading, spacing: 15) {
             HStack {
