@@ -2,6 +2,9 @@
 
 This file contains the changelog of SwiftExtras.
 
+### 1.3.1
+- Fixed package build compatibility with Linux and older Apple SDKs.
+
 ### 1.3.0
 - Added `Highlight` overlay and related modifiers for presenting contextual highlights in SwiftUI views.
   see: [`.highlight(_:order:title:description:maskshape:inset:group:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/highlight(_:order:title:description:maskshape:inset:group:)) and [`.highlightOverlay(isPresented:group:)`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/highlightoverlay(ispresented:group:)) for usage examples.

@@ -13,6 +13,7 @@
 // Sort on identifiers, and skip missing identifiers.
 // added public/private declarations for docc rendering
 
+#if canImport(SwiftUI)
 import SwiftUI
 
 /// Highlight represents a view that should be highlighted with a mask and additional information.
@@ -480,4 +481,5 @@ private struct HighlightView: View {
         .highlightOverlay(isPresented: $showHighlightView, group: $group)
     }
 }
+#endif
 // swiftlint:disable:this file_length
