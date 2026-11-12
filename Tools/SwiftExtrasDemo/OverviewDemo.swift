@@ -12,7 +12,7 @@
 import SwiftExtras
 import SwiftUI
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct OverviewDemo: View {
     private let categories = DemoCategory.allCases.filter { $0 != .overview }
 
@@ -21,14 +21,16 @@ struct OverviewDemo: View {
             "SwiftExtras Demo",
             summary: "A live catalog of views, modifiers, styles, platform helpers, and Foundation utilities."
         ) {
-            OverviewHero()
+            if #available(iOS 17, *) {
+                OverviewHero()
+            }
             OverviewCategories(categories: categories)
             OverviewCoverage()
         }
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 struct OverviewHero: View {
     var body: some View {
         DemoPanel("Package at a glance", systemImage: "shippingbox.fill") {
@@ -46,7 +48,7 @@ struct OverviewHero: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct OverviewMetric: View {
     let value: String
     let label: LocalizedStringResource
@@ -63,7 +65,7 @@ struct OverviewMetric: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct OverviewCategories: View {
     let categories: [DemoCategory]
 
@@ -86,7 +88,7 @@ struct OverviewCategories: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct OverviewCoverage: View {
     var body: some View {
         DemoPanel("Coverage", systemImage: "checkmark.seal.fill") {
@@ -98,7 +100,7 @@ struct OverviewCoverage: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 #Preview("Overview") {
     OverviewDemo()
         .frame(width: 900, height: 700)

@@ -13,7 +13,7 @@ import SwiftExtras
 import SwiftUI
 
 @main
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 struct SwiftExtrasDemoApp: App {
     var body: some Scene {
         WindowGroup {
@@ -23,7 +23,7 @@ struct SwiftExtrasDemoApp: App {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 #Preview("Demo App") {
     DemoRootView()
         .frame(width: 1_180, height: 780)

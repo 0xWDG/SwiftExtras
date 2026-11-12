@@ -15,7 +15,7 @@ import SwiftUI
 import MessageUI
 #endif
 
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 struct PlatformDemo: View {
     var body: some View {
         DemoPage(
@@ -34,7 +34,7 @@ struct PlatformDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct AppInfoDemo: View {
     var body: some View {
         DemoPanel("AppInfo, Device, and DeviceInfo", systemImage: "info.circle") {
@@ -71,7 +71,7 @@ struct AppInfoDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct WebContentDemo: View {
     private let localPage = URL(
         string: "data:text/html,"
@@ -92,7 +92,7 @@ struct WebContentDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct SocialIconsDemo: View {
     private let identifiers = SocialIcons.dict.keys.sorted()
 
@@ -114,7 +114,7 @@ struct SocialIconsDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct SystemPresentationDemo: View {
     @State private var showsSettings = false
     @State private var showsNotificationOnboarding = false
@@ -132,8 +132,10 @@ struct SystemPresentationDemo: View {
                 showsSettings = true
             }
 
-            Button("Open notification onboarding") {
-                showsNotificationOnboarding = true
+            if #available(iOS 17, *) {
+                Button("Open notification onboarding") {
+                    showsNotificationOnboarding = true
+                }
             }
 
 #if os(iOS)
@@ -162,7 +164,7 @@ struct SystemPresentationDemo: View {
         }
         .buttonStyle(.bordered)
         .sheet(isPresented: $showsSettings) {
-            PreferenceKit<EmptyView, EmptyView>(
+            PreferenceKit<EmptyView, EmptyView, EmptyView>(
                 createdBy: "SwiftExtras contributors",
                 privacyPolicyURL: URL(string: "https://github.com/0xWDG/SwiftExtras"),
                 supportEmail: nil,
@@ -177,7 +179,9 @@ struct SystemPresentationDemo: View {
 #endif
         }
         .sheet(isPresented: $showsNotificationOnboarding) {
-            NotificationOnboarding()
+            if #available(iOS 17, *) {
+                NotificationOnboarding()
+            }
 #if os(macOS)
                 .frame(minWidth: 520, minHeight: 680)
 #endif
@@ -217,7 +221,7 @@ struct KeyboardDismissDemo: View {
 }
 #endif
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct PlatformAvailabilityDemo: View {
     var body: some View {
         DemoPanel("Platform-specific APIs", systemImage: "iphone.and.arrow.forward") {
@@ -255,7 +259,7 @@ struct PlatformAvailabilityDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct AvailabilityLine: View {
     let name: LocalizedStringResource
     let available: Bool
@@ -277,7 +281,7 @@ struct AvailabilityLine: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 #Preview("Platform APIs") {
     PlatformDemo()
         .frame(width: 900, height: 700)

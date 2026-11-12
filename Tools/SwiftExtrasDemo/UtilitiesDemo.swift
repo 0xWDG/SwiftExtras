@@ -13,7 +13,7 @@ import Foundation
 import SwiftExtras
 import SwiftUI
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct UtilitiesDemo: View {
     var body: some View {
         DemoPage(
@@ -30,7 +30,7 @@ struct UtilitiesDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct StringUtilitiesDemo: View {
     @State private var input = "  Café SwiftExtras Demo  "
 
@@ -61,7 +61,7 @@ struct StringUtilitiesDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct DateUtilitiesDemo: View {
     private let date = Date(year: 2026, month: 8, day: 16, hour: 14, minute: 30)
 
@@ -82,7 +82,7 @@ struct DateUtilitiesDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct CollectionAndNumericDemo: View {
     private let values = [2, 4, 6, 8, 10]
     private let optionalValues: [Int]? = nil
@@ -104,7 +104,7 @@ struct CollectionAndNumericDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct DataAndCodingDemo: View {
     private let text = "SwiftExtras compression fixture"
 
@@ -129,7 +129,7 @@ struct DataAndCodingDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct DynamicJSONDemo: View {
     private let json = JSON([
         "name": "SwiftExtras",
@@ -149,7 +149,7 @@ struct DynamicJSONDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct LocaleAndProcessDemo: View {
     var body: some View {
         DemoPanel("Locale and process", systemImage: "globe") {
@@ -166,7 +166,7 @@ struct LocaleAndProcessDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 #Preview("Utilities") {
     UtilitiesDemo()
         .frame(width: 900, height: 700)

@@ -12,21 +12,25 @@
 import SwiftExtras
 import SwiftUI
 
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 struct StylesDemo: View {
     var body: some View {
         DemoPage(
             "Styles",
             summary: "Button and toggle styles with enabled, disabled, light, and dark variants."
         ) {
-            ColoredButtonStylesDemo()
+            if #available(iOS 17, *) {
+                ColoredButtonStylesDemo()
+            }
             OtherButtonStylesDemo()
-            ToggleStylesDemo()
+            if #available(iOS 17, *) {
+                ToggleStylesDemo()
+            }
         }
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 struct ColoredButtonStylesDemo: View {
     var body: some View {
         DemoPanel("ColoredButtonStyle", systemImage: "paintpalette") {
@@ -53,7 +57,7 @@ struct ColoredButtonStylesDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 struct OtherButtonStylesDemo: View {
     var body: some View {
         DemoPanel("Gray, list, and toggle buttons", systemImage: "button.programmable") {
@@ -75,7 +79,7 @@ struct OtherButtonStylesDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 struct ToggleStylesDemo: View {
     @State private var bordered = true
     @State private var plainBordered = false
@@ -90,7 +94,7 @@ struct ToggleStylesDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 #Preview("Styles") {
     StylesDemo()
         .frame(width: 800, height: 650)

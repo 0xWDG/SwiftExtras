@@ -17,7 +17,7 @@ struct DemoColorSwatch: Identifiable {
     let color: Color
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct ColorsAndImagesDemo: View {
     var body: some View {
         DemoPage(
@@ -34,7 +34,7 @@ struct ColorsAndImagesDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct SemanticColorsDemo: View {
     private let colors = [
         DemoColorSwatch(id: "label", color: .label),
@@ -77,7 +77,7 @@ struct SemanticColorsDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct ColorComponentsDemo: View {
     private let color = Color(hex: "#3478D4")
 
@@ -113,7 +113,7 @@ struct ColorComponentsDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct ColorVisionDemo: View {
     private let colors = [
         DemoColorSwatch(id: "Original", color: .orange),
@@ -142,7 +142,7 @@ struct ColorVisionDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct ColorClusteringDemo: View {
     private let sourceSwatches = [
         DemoColorSwatch(id: "red", color: .red),
@@ -170,7 +170,7 @@ struct ColorClusteringDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct ColorRow: View {
     let swatches: [DemoColorSwatch]
     let label: LocalizedStringResource
@@ -191,7 +191,7 @@ struct ColorRow: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct ImageExtensionsDemo: View {
     @State private var backgroundRemovedImage: Image?
 
@@ -221,15 +221,17 @@ struct ImageExtensionsDemo: View {
                 }
             }
 
-            Button("Run background removal") {
-                backgroundRemovedImage = Image(systemName: "person.crop.square.fill").removeBackground()
+            if #available(iOS 17, *) {
+                Button("Run background removal") {
+                    backgroundRemovedImage = Image(systemName: "person.crop.square.fill").removeBackground()
+                }
+                .accessibilityHint("Uses Vision to isolate the foreground of a symbol image")
             }
-            .accessibilityHint("Uses Vision to isolate the foreground of a symbol image")
         }
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct ImageRenderingDemo: View {
     @Environment(\.displayScale) private var displayScale
     @State private var renderedImage: PlatformImage?
@@ -271,7 +273,7 @@ struct ImageRenderingDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 #Preview("Colors and Images") {
     ColorsAndImagesDemo()
         .frame(width: 900, height: 700)

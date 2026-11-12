@@ -17,6 +17,7 @@ import SwiftUI
 /// by tapping on the initial letters displayed on the right side of the view.
 /// The list is scrollable and each item can be customized using a cell builder closure.
 @available(iOS 16.0, macOS 13.0, *)
+@available(*, deprecated, message: "Use the built in indexed list")
 public struct IndexedList<Cell: View>: View {
     /// The data to be displayed in the list, grouped by initial letter.
     private let listData: [String: [String]]
@@ -250,6 +251,7 @@ struct IndexKeyPreferenceKey: PreferenceKey {
 
 #if DEBUG
 @available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+@available(*, deprecated, message: "Use the built in indexed list")
 #Preview {
     IndexedList(data: [
         "Wesley", "Carlo", "Uneata", "Anne", "Bram", "Sanne", "Daan", "Lieke", "Milan",

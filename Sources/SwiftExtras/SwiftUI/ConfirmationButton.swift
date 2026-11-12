@@ -14,7 +14,7 @@ import SwiftUI
 
 /// A button that shows a confirmation dialog before performing its action.
 /// Use this to prevent accidental destructive actions.
-@available(iOS 17, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
+@available(iOS 16, macOS 14, tvOS 17, visionOS 1, watchOS 10, *)
 public struct ConfirmationButton: View {
     @State private var confirmationShown: Bool = false
 

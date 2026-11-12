@@ -13,7 +13,7 @@ import PreferenceKit
 import SwiftExtras
 import SwiftUI
 
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 struct ContainersDemo: View {
     var body: some View {
         DemoPage(
@@ -30,7 +30,7 @@ struct ContainersDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct NavigationContainerDemo: View {
     var body: some View {
         DemoPanel("NavigationViewIfNeeded", systemImage: "point.topleft.down.to.point.bottomright.curvepath") {
@@ -48,7 +48,7 @@ struct NavigationContainerDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct CardAndDisclosureDemo: View {
     var body: some View {
         DemoPanel("CardView and DisclosureSection", systemImage: "rectangle.3.group") {
@@ -75,7 +75,7 @@ struct CardAndDisclosureDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 struct CarouselDemo: View {
     var body: some View {
         DemoPanel("CarouselView", systemImage: "rectangle.stack") {
@@ -94,7 +94,7 @@ struct CarouselDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct IndexedListDemo: View {
     private let names = [
         "AsyncView", "CardView", "CarouselView", "DisclosureSection",
@@ -111,7 +111,7 @@ struct IndexedListDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 struct NotificationContainerDemo: View {
     @State private var showsOverlay = false
 
@@ -141,7 +141,7 @@ struct NotificationContainerDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct MetadataViewsDemo: View {
     var body: some View {
         DemoPanel("Acknowledgements and changelog", systemImage: "doc.text.magnifyingglass") {
@@ -183,7 +183,7 @@ struct MetadataViewsDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 #Preview("Containers") {
     ContainersDemo()
         .frame(width: 900, height: 700)

@@ -11,7 +11,7 @@
 
 import SwiftUI
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct DemoPage<Content: View>: View {
     let title: LocalizedStringResource
     let summary: LocalizedStringResource
@@ -40,7 +40,7 @@ struct DemoPage<Content: View>: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct DemoPageHeader: View {
     let title: LocalizedStringResource
     let summary: LocalizedStringResource
@@ -57,7 +57,7 @@ struct DemoPageHeader: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct DemoPanel<Content: View>: View {
     let title: LocalizedStringResource
     let systemImage: String
@@ -74,23 +74,38 @@ struct DemoPanel<Content: View>: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Label {
-                Text(title)
-            } icon: {
-                Image(systemName: systemImage)
-            }
+        if #available(iOS 17.0, *) {
+            VStack(alignment: .leading, spacing: 16) {
+                Label {
+                    Text(title)
+                } icon: {
+                    Image(systemName: systemImage)
+                }
                 .font(.title2.bold())
                 .accessibilityAddTraits(.isHeader)
-            content
-        }
-        .padding(20)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.background.secondary, in: RoundedRectangle(cornerRadius: 18))
-        .overlay {
-            RoundedRectangle(cornerRadius: 18)
-                .stroke(.separator.opacity(0.5))
-                .accessibilityHidden(true)
+                content
+            }
+            .padding(20)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(.background.secondary, in: RoundedRectangle(cornerRadius: 18))
+            .overlay {
+                RoundedRectangle(cornerRadius: 18)
+                    .stroke(.separator.opacity(0.5))
+                    .accessibilityHidden(true)
+            }
+        } else {
+            VStack(alignment: .leading, spacing: 16) {
+                Label {
+                    Text(title)
+                } icon: {
+                    Image(systemName: systemImage)
+                }
+                .font(.title2.bold())
+                .accessibilityAddTraits(.isHeader)
+                content
+            }
+            .padding(20)
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }
@@ -111,7 +126,7 @@ struct DemoValueRow: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 struct DemoUnavailable: View {
     let title: LocalizedStringResource
     let reason: LocalizedStringResource
@@ -137,7 +152,7 @@ struct DemoTag: Identifiable {
     let systemImage: String
 }
 
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 #Preview("Demo Components") {
     DemoPage("Components", summary: "Reusable presentation building blocks.") {
         DemoPanel("Example", systemImage: "sparkles") {

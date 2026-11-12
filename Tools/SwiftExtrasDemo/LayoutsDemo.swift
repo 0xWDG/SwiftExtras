@@ -12,7 +12,7 @@
 import SwiftExtras
 import SwiftUI
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct LayoutsDemo: View {
     private let tags = [
         DemoTag(id: "swiftui", title: "SwiftUI", systemImage: "swift"),
@@ -30,13 +30,15 @@ struct LayoutsDemo: View {
         ) {
             FlowLayoutDemo(tags: tags)
             WStackLayoutDemo(tags: tags)
-            StickySectionDemo()
+            if #available(iOS 17, *) {
+                StickySectionDemo()
+            }
             GeometryAndShapeDemo()
         }
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct FlowLayoutDemo: View {
     let tags: [DemoTag]
 
@@ -55,7 +57,7 @@ struct FlowLayoutDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct WStackLayoutDemo: View {
     let tags: [DemoTag]
 
@@ -74,7 +76,7 @@ struct WStackLayoutDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 struct StickySectionDemo: View {
     var body: some View {
         DemoPanel("StickySection and stretchy header", systemImage: "pin.fill") {
@@ -107,7 +109,7 @@ struct StickySectionDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct GeometryAndShapeDemo: View {
     @State private var measuredSize = CGSize.zero
     @State private var measuredFrame = CGRect.zero
@@ -134,7 +136,7 @@ struct GeometryAndShapeDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 #Preview("Layouts") {
     LayoutsDemo()
         .frame(width: 900, height: 700)

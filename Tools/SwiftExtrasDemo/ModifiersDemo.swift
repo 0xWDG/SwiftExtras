@@ -16,7 +16,7 @@ private extension Notification.Name {
     static let demoPing = Notification.Name("SwiftExtrasDemo.ping")
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct ModifiersDemo: View {
     var body: some View {
         DemoPage(
@@ -24,18 +24,24 @@ struct ModifiersDemo: View {
             summary: "Animated effects, transient presentation, observation, tasks, geometry, and onboarding."
         ) {
             EffectsDemo()
-            PresentationModifiersDemo()
+            if #available(iOS 17, *) {
+                PresentationModifiersDemo()
+            }
             ScrollTrackingModifierDemo()
             ObservationModifiersDemo()
-            MatchedPopoverDemo()
-            OnboardingModifierDemo()
+            if #available(iOS 17, *) {
+                MatchedPopoverDemo()
+                OnboardingModifierDemo()
+            }
             SpotlightModifierDemo()
-            FloatingBarDemo()
+            if #available(iOS 17, *) {
+                FloatingBarDemo()
+            }
         }
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct ScrollTrackingModifierDemo: View {
     @State private var position = UnitPoint.zero
 
@@ -68,7 +74,7 @@ struct ScrollTrackingModifierDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct EffectsDemo: View {
     @State private var shakeCount: CGFloat = 0
     @State private var isShimmering = true
@@ -100,13 +106,15 @@ struct EffectsDemo: View {
                 .accessibilityHint("Animates the button horizontally")
             }
 
-            Text("Animated border beam")
-                .font(.headline)
-                .foregroundStyle(.white)
-                .padding(24)
-                .frame(maxWidth: .infinity)
-                .background(.black, in: RoundedRectangle(cornerRadius: 20))
-                .borderBeam(border: .purple, hidesFadedBorder: false)
+            if #available(iOS 17, *) {
+                Text("Animated border beam")
+                    .font(.headline)
+                    .foregroundStyle(.white)
+                    .padding(24)
+                    .frame(maxWidth: .infinity)
+                    .background(.black, in: RoundedRectangle(cornerRadius: 20))
+                    .borderBeam(border: .purple, hidesFadedBorder: false)
+            }
 
             Button("Long-press capable button") {
                 longPressMessage = "Short press detected"
@@ -123,7 +131,7 @@ struct EffectsDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 struct PresentationModifiersDemo: View {
     @State private var showsToast = false
     @State private var islandItem: String?
@@ -166,7 +174,7 @@ struct PresentationModifiersDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct ObservationModifiersDemo: View {
     @State private var sliderValue = 25.0
     @State private var debouncedValue = 25.0
@@ -209,7 +217,7 @@ struct ObservationModifiersDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 struct MatchedPopoverDemo: View {
     @State private var selection: String?
 
@@ -237,7 +245,7 @@ struct MatchedPopoverDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 struct OnboardingModifierDemo: View {
     @State private var currentStep = 3
 
@@ -265,7 +273,7 @@ struct OnboardingModifierDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct SpotlightModifierDemo: View {
     private enum Step: String, CaseIterable {
         case profile
@@ -315,7 +323,7 @@ struct SpotlightModifierDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 struct FloatingBarDemo: View {
     var body: some View {
         DemoPanel("Floating safe-area bar", systemImage: "dock.rectangle") {
@@ -334,7 +342,7 @@ struct FloatingBarDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 #Preview("Modifiers") {
     ModifiersDemo()
         .frame(width: 900, height: 700)

@@ -53,7 +53,7 @@ enum DemoCategory: String, CaseIterable, Identifiable {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 public struct DemoRootView: View {
     @State private var selection: DemoCategory? = .overview
 
@@ -76,7 +76,7 @@ public struct DemoRootView: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 public struct DemoDestination: View {
     let category: DemoCategory
 
@@ -88,19 +88,25 @@ public struct DemoDestination: View {
         case .controls:
             ControlsDemo()
         case .containers:
-            ContainersDemo()
+            if #available(iOS 17, *) {
+                ContainersDemo()
+            }
         case .layouts:
             LayoutsDemo()
         case .modifiers:
             ModifiersDemo()
         case .styles:
-            StylesDemo()
+            if #available(iOS 17, *) {
+                StylesDemo()
+            }
         case .colorsAndImages:
             ColorsAndImagesDemo()
         case .utilities:
             UtilitiesDemo()
         case .platform:
-            PlatformDemo()
+            if #available(iOS 17, *) {
+                PlatformDemo()
+            }
         }
     }
 }

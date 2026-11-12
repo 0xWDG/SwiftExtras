@@ -12,7 +12,7 @@
 import SwiftExtras
 import SwiftUI
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct ControlsDemo: View {
     var body: some View {
         DemoPage(
@@ -20,7 +20,9 @@ struct ControlsDemo: View {
             summary: "Text entry, selection, confirmation, progress, and asynchronous controls."
         ) {
             TextEntryDemo()
-            SelectionControlsDemo()
+            if #available(iOS 17, *) {
+                SelectionControlsDemo()
+            }
             ActionControlsDemo()
             AsyncControlsDemo()
             VerificationControlDemo()
@@ -28,7 +30,7 @@ struct ControlsDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct TextEntryDemo: View {
     @State private var name = "SwiftExtras"
     @State private var note = "Reusable"
@@ -46,7 +48,7 @@ struct TextEntryDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 17, macOS 14, *)
 struct SelectionControlsDemo: View {
     @State private var selectedItems = ["star", "heart"]
     @State private var selectedMonth = Calendar.current.component(.month, from: .now)
@@ -79,7 +81,7 @@ struct SelectionControlsDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct ActionControlsDemo: View {
     @State private var actionMessage = "No action yet"
 
@@ -107,10 +109,12 @@ struct ActionControlsDemo: View {
 
     @ViewBuilder
     private var controls: some View {
-        ConfirmationButton("Delete", systemImage: "trash") {
-            actionMessage = "Delete confirmed"
+        if #available(iOS 17, *) {
+            ConfirmationButton("Delete", systemImage: "trash") {
+                actionMessage = "Delete confirmed"
+            }
+            .buttonStyle(.bordered)
         }
-        .buttonStyle(.bordered)
 
         SplitActionButton(
             primaryTitle: "Publish",
@@ -124,7 +128,7 @@ struct ActionControlsDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct AsyncControlsDemo: View {
     var body: some View {
         DemoPanel("AsyncView and AsyncTask", systemImage: "clock.arrow.circlepath") {
@@ -145,12 +149,14 @@ struct AsyncControlsDemo: View {
     }
 }
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 struct VerificationControlDemo: View {
     var body: some View {
         DemoPanel("VerificationField", systemImage: "number.square") {
             #if os(iOS)
-            VerificationControlContent()
+            if #available(iOS 17, *) {
+                VerificationControlContent()
+            }
             #else
             DemoUnavailable(
                 title: "VerificationField is iOS-only",
@@ -163,6 +169,7 @@ struct VerificationControlDemo: View {
 }
 
 #if os(iOS)
+@available(iOS 17, *)
 struct VerificationControlContent: View {
     @State private var code = ""
 
@@ -174,7 +181,7 @@ struct VerificationControlContent: View {
 }
 #endif
 
-@available(macOS 14, *)
+@available(iOS 16, macOS 14, *)
 #Preview("Controls") {
     ControlsDemo()
         .frame(width: 800, height: 700)
