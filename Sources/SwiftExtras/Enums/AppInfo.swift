@@ -815,6 +815,7 @@ public extension AppInfo {
     }
 }
 
+@available(*, deprecated, message: "This struct is deprecated and may be removed in future versions.")
 /// AppStore Search Result
 public struct SEAppInfoAppStoreInfo: Decodable {
     /// Result Count
@@ -824,6 +825,7 @@ public struct SEAppInfoAppStoreInfo: Decodable {
     public let results: [SEAppInfoAppStoreResult]
 }
 
+@available(*, deprecated, message: "This struct is deprecated and may be removed in future versions.")
 /// AppStore App Info Result
 public struct SEAppInfoAppStoreResult: Decodable {
     /// Developer Identifier
