@@ -169,6 +169,8 @@ public struct NotificationOnboarding: View {
         }
         /// To Cut off the infinite loop!
         .task {
+            guard NotificationOnboardingSupport.canRequestNotifications else { return }
+
 #if DEBUG
             if let previewAuthorization {
                 authorization = previewAuthorization
@@ -289,6 +291,8 @@ public struct NotificationOnboarding: View {
     ///
     /// This implementation supports the enclosing declaration’s behavior.
     private func askNotificationPermission() {
+        guard NotificationOnboardingSupport.canRequestNotifications else { return }
+
         Task { @MainActor in
             withAnimation(.smooth(duration: 0.3, extraBounce: 0)) {
                 askPermission = true

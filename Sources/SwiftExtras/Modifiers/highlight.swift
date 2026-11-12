@@ -33,7 +33,7 @@ public struct Highlight: Identifiable {
     /// The inset for the highlight mask.
     public var inset: CGFloat
 
-    /// The frame of the highlighted view.
+    /// The highlighted view's frame in global coordinates, converted relative to the overlay container when drawn.
     public var frame: CGRect
 }
 
@@ -88,6 +88,15 @@ extension View {
         isPresented: Binding<Bool>,
         group: Binding<[Int: Highlight]>
     ) -> some View {
+#if os(macOS)
+        self.overlay {
+            if isPresented.wrappedValue {
+                HighlightView(isPresented: isPresented, group: group)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .transition(.opacity)
+            }
+        }
+#else
         if #available(iOS 27, *) {
             self
                 .fullScreenCover(isPresented: isPresented) {
@@ -95,7 +104,9 @@ extension View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .ignoresSafeArea()
                         .presentationBackground(.clear)
+#if os(iOS)
                         .navigationTransition(.crossFade)
+#endif
                 }
         } else {
             self
@@ -106,6 +117,7 @@ extension View {
                         .presentationBackground(.clear)
                 }
         }
+#endif
     }
 }
 
@@ -139,20 +151,23 @@ private extension View {
 ///   - isPresented: A binding indicating whether the highlight overlay is presented.
 ///   - group: A binding to the dictionary of highlights keyed by their identifiers.
 ///   - currentHighlight: The currently active highlight, if any.
-///   - containerSize: The size of the container view.
+///   - containerFrame: The container's global frame, used to place highlights in its local coordinate space.
 private struct HighlightView: View {
     @Binding var isPresented: Bool
     @Binding var group: [Int: Highlight]
     /// View Properties
     @State private var currentHighlight: Highlight?
-    @State private var containerSize: CGSize = .zero
+    @State private var containerFrame: CGRect = .zero
 
     var body: some View {
         Rectangle()
             .fill(.black.opacity(0.7))
             .inverseMask(alignment: .topLeading) {
                 if let currentHighlight {
-                    let frame = currentHighlight.frame
+                    let frame = currentHighlight.frame.offsetBy(
+                        dx: -containerFrame.minX,
+                        dy: -containerFrame.minY
+                    )
                     let origin = frame.origin
                     let inset = currentHighlight.inset
 
@@ -162,12 +177,56 @@ private struct HighlightView: View {
                         .offset(x: origin.x - inset / 2, y: origin.y - inset / 2)
                 }
             }
+#if os(macOS)
             .overlay(alignment: .topLeading) {
-                let frame = currentHighlight?.frame ?? .zero
+                if let currentHighlight {
+                    let frame = currentHighlight.frame.offsetBy(
+                        dx: -containerFrame.minX,
+                        dy: -containerFrame.minY
+                    )
+                    let inset = currentHighlight.inset
+                    let cardWidth: CGFloat = 330
+                    let horizontalPadding: CGFloat = 16
+                    let xPosition = min(
+                        max(frame.midX, cardWidth / 2 + horizontalPadding),
+                        containerFrame.width - cardWidth / 2 - horizontalPadding
+                    )
+                    let yPosition = frame.midY < containerFrame.height / 2
+                        ? frame.maxY + inset / 2 + 24
+                        : frame.minY - inset / 2 - 24
+
+                    popoverView(highlight: currentHighlight)
+                        .frame(width: cardWidth)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 12))
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(.separator.opacity(0.5))
+                                .accessibilityHidden(true)
+                        }
+                        .shadow(color: .black.opacity(0.2), radius: 14, y: 6)
+                        .position(x: xPosition, y: yPosition)
+                }
+            }
+#elseif os(watchOS) || os(tvOS)
+            .overlay {
+                if let currentHighlight {
+                    popoverView(highlight: currentHighlight)
+                        .padding()
+                        .background(Color.black.opacity(0.9))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                }
+            }
+#else
+            .overlay(alignment: .topLeading) {
+                let frame = currentHighlight?.frame.offsetBy(
+                    dx: -containerFrame.minX,
+                    dy: -containerFrame.minY
+                ) ?? .zero
                 let origin = frame.origin
                 let inset = currentHighlight?.inset ?? 0
                 /// Using Only either top or bottom edge!
-                let edge: Edge = origin.y > (containerSize.height / 2) ? .bottom : .top
+                let edge: Edge = origin.y > (containerFrame.height / 2) ? .bottom : .top
 
                 Rectangle()
                     .foregroundStyle(.clear)
@@ -184,10 +243,11 @@ private struct HighlightView: View {
                     }
                     .offset(x: origin.x - inset / 2, y: origin.y - inset / 2)
             }
-            .onGeometryChange(for: CGSize.self) {
-                $0.size
+#endif
+            .onGeometryChange(for: CGRect.self) {
+                $0.frame(in: .global)
             } action: { newValue in
-                containerSize = newValue
+                containerFrame = newValue
             }
             .task {
                 try? await Task.sleep(for: .seconds(0.25))
@@ -213,6 +273,28 @@ private struct HighlightView: View {
         } else {
             button.buttonStyle(.borderedProminent)
         }
+    }
+
+    /// Applies a capsule border shape on platform versions that support it.
+    /// - Parameter button: The button view to shape.
+    /// - Returns: The button with a capsule shape when available.
+    @ViewBuilder
+    private func capsuleButton<Content: View>(_ button: Content) -> some View {
+#if os(tvOS)
+        if #available(tvOS 17, *) {
+            button.buttonBorderShape(.capsule)
+        } else {
+            button
+        }
+#elseif os(macOS)
+        if #available(macOS 14, *) {
+            button.buttonBorderShape(.capsule)
+        } else {
+            button
+        }
+#else
+        button.buttonBorderShape(.capsule)
+#endif
     }
 
     /// Returns the view for the popover corresponding to the given highlight.
@@ -271,8 +353,7 @@ private struct HighlightView: View {
                         .padding(.vertical, 4)
                 }
 
-                styledButton(button)
-                    .buttonBorderShape(.capsule)
+                capsuleButton(styledButton(button))
             }
         }
         .padding(20)
@@ -361,7 +442,7 @@ private struct HighlightView: View {
         }
         .navigationTitle("Highlight view demo")
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
+            ToolbarItem(placement: .automatic) {
                 Button {
 
                 } label: {
@@ -376,7 +457,7 @@ private struct HighlightView: View {
                 )
             }
 
-            ToolbarItem(placement: .bottomBar) {
+            ToolbarItem(placement: .automatic) {
                 Button {
                     showHighlightView = true
                 } label: {
@@ -398,6 +479,5 @@ private struct HighlightView: View {
         }
         .highlightOverlay(isPresented: $showHighlightView, group: $group)
     }
-    .environment(\.colorScheme, .dark)
 }
 // swiftlint:disable:this file_length

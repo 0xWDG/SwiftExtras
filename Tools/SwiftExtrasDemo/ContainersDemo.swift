@@ -95,6 +95,7 @@ struct CarouselDemo: View {
 }
 
 @available(iOS 16, macOS 14, *)
+@available(*, deprecated, message: "Use the built in indexed list")
 struct IndexedListDemo: View {
     private let names = [
         "AsyncView", "CardView", "CarouselView", "DisclosureSection",

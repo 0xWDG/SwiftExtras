@@ -181,10 +181,10 @@ struct SystemPresentationDemo: View {
         .sheet(isPresented: $showsNotificationOnboarding) {
             if #available(iOS 17, *) {
                 NotificationOnboarding()
-            }
 #if os(macOS)
                 .frame(minWidth: 520, minHeight: 680)
 #endif
+            }
         }
 #if os(iOS)
         .sheet(isPresented: $showsSafari) {

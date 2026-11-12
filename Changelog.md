@@ -18,6 +18,9 @@ This file contains the changelog of SwiftExtras.
 - Added [`CompatableArrangementview`](https://0xwdg.github.io/SwiftExtras/documentation/swiftextras/compatablearrangementview), an iOS 26 compatibility implementation of `ArrangementView` that is deprecated once iOS 27.1 is available.
 - Reorganized Color, Date, Image, and Data extensions into focused subdirectories without changing their public APIs.
 - Updated `View.onLandscape` and `View.onPortrait` to use each view's vertical size class, so they adapt to split views, sheets, and previews instead of relying on global screen traits.
+- Fixed the scroll progress demo on macOS so its indicator updates while the content scrolls.
+- Fixed highlight callouts on macOS so they stay anchored to the highlighted controls.
+- Prevented notification onboarding from accessing UserNotifications in unbundled macOS executables.
 
 ### 1.2.9
 

@@ -28,7 +28,7 @@ public struct CompatableArrangementview<Primary: View, Secondary: View>: View {
     @ViewBuilder var secondary: Secondary
 
     public var body: some View {
-#if canImport(SwiftUI, _version: 8.0.85)
+#if os(iOS) && canImport(SwiftUI, _version: 8.0.85)
         if #available(iOS 27.1, *) {
             ArrangementView {
                 primary

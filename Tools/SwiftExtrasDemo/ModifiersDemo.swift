@@ -42,7 +42,9 @@ struct ModifiersDemo: View {
 }
 
 @available(iOS 16, macOS 14, *)
+/// Demonstrates normalized scroll progress in the modifiers catalog.
 struct ScrollTrackingModifierDemo: View {
+    /// Stores the current vertical scroll position from zero to one.
     @State private var position = UnitPoint.zero
 
     var body: some View {
@@ -54,22 +56,52 @@ struct ScrollTrackingModifierDemo: View {
                 )
             )
 
-            ScrollViewReader { _ in
-                ScrollView {
-                    LazyVStack(spacing: 8) {
-                        ForEach(1...10, id: \.self) { index in
-                            Text("Tracked row \(index)")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(10)
-                                .background(.blue.opacity(0.08), in: RoundedRectangle(cornerRadius: 8))
-                        }
+            let scrollView = ScrollView {
+                LazyVStack(spacing: 8) {
+                    ForEach(1...10, id: \.self) { index in
+                        Text("Tracked row \(index)")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(10)
+                            .background(.blue.opacity(0.08), in: RoundedRectangle(cornerRadius: 8))
                     }
                 }
-                .trackScrolling()
+            }
+
+#if os(macOS)
+            Group {
+                if #available(macOS 15, *) {
+                    scrollView
+                        .onScrollGeometryChange(for: CGFloat.self) { geometry in
+                            let scrollableHeight = geometry.contentSize.height
+                                + geometry.contentInsets.top
+                                + geometry.contentInsets.bottom
+                                - geometry.containerSize.height
+                            guard scrollableHeight > 0 else {
+                                return 0
+                            }
+
+                            let offset = geometry.contentOffset.y + geometry.contentInsets.top
+                            return min(max(offset / scrollableHeight, 0), 1)
+                        } action: { _, progress in
+                            position = UnitPoint(x: 0, y: progress)
+                        }
+                } else {
+                    ScrollViewReader { _ in
+                        scrollView.trackScrolling()
+                    }
+                    .onScrolled { position = $0 }
+                }
+            }
+            .frame(height: 180)
+            .accessibilityLabel("Scroll view with normalized position tracking")
+#else
+            ScrollViewReader { _ in
+                scrollView.trackScrolling()
             }
             .onScrolled { position = $0 }
             .frame(height: 180)
             .accessibilityLabel("Scroll view with normalized position tracking")
+#endif
         }
     }
 }
